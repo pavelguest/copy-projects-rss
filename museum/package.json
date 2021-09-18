@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx sass ./src/scss/main.scss ./dist/css/style.css &cp -r './src/js' './dist/js' &cp -r './src/index.html' './dist/' &cp -r './src/assets' './dist/'"
+    "start": "npx sass ./src/scss/main.scss ./dist/css/style.css &cp -r './src/js' './dist/' &cp -r './src/index.html' './dist/' &cp -r './src/assets' './dist/'"
   },
   "repository": {
     "type": "git",
