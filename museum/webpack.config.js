@@ -95,7 +95,7 @@ module.exports = ({ development }) => {
       ],
     },
     plugins: [
-      new MiniCssExtractPlugin({ filename: 'css/[name].[contenthash].css' }),
+      new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
       ...getHtmlPlugins(pages),
       new CopyPlugin({
         patterns: [

@@ -47,6 +47,10 @@
     width: 360px;
     height: 75px;
     border-radius: 10px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 25px;
+
   }
   .btn {
     font-weight: $font-weight3;
@@ -108,11 +112,11 @@
   }
   .slider-nav__pages {
     font-weight: $font-weight4;
-   
+
   }
   .slider-nav__pages > span {
     padding-right: 10px;
-    
+
   }
   .welcome-slider__back {
     background: url(../assets/svg/welcome-back.svg);
