@@ -174,9 +174,9 @@
         <div class="control-panel">
           <div class="panel">
             <button class="panel__play toggle btn-hover" title="Toggle Play"></button>
-            <input type="range" value="0" class="panel__progress-video">
+            <input type="range" name="progress" min="0" max="100" step="1" value="54" class="panel__progress-video progress">
             <button class="panel__volume mute-volume btn-hover"></button>
-            <input type="range" name="volume" min="0" max="1" step="0.05" value="1" class="panel__progress-volume">
+            <input type="range" name="volume" min="0" max="100" step="1" value="42" class="panel__progress-volume progress-vol">
             <button class="panel__fullscreen fullscreen btn-hover"></button>
           </div>
         </div>
@@ -198,7 +198,7 @@
           </div>
         </div>
         <div class="video-slider__nav">
-            <div class="video-slider__btn-back" id="btn-prev"></div>
+            <button class="video-slider__btn-back" id="btn-prev"></button>
             <div class="vslider-nav__dots">
               <span class="dot active"></span>
               <span class="dot"></span>
@@ -206,7 +206,7 @@
               <span class="dot"></span>
               <span class="dot"></span>
             </div>
-            <div class="video-slider__btn-next" id="btn-next"></div>
+            <button class="video-slider__btn-next" id="btn-next"></button>
         </div>
       </div>
     </section>
@@ -215,7 +215,7 @@
         <h2 class="gallery__title">Art Gallery</h2>
         <div class="picture-container">
           <div class="picture-inner-container">
-            <img src="./assets/img/gallery/galery2.jpg" alt="" class="gallery-img">
+         <!--   <img src="./assets/img/gallery/galery2.jpg" alt="" class="gallery-img">
             <img src="./assets/img/gallery/galery1.jpg" alt="" class="gallery-img">
             <img src="./assets/img/gallery/galery7.jpg" alt="" class="gallery-img">
             <img src="./assets/img/gallery/galery9.jpg" alt="" class="gallery-img">
@@ -229,7 +229,7 @@
             <img src="./assets/img/gallery/galery12.jpg" alt="" class="gallery-img">
             <img src="./assets/img/gallery/galery13.jpg" alt="" class="gallery-img">
             <img src="./assets/img/gallery/galery14.jpg" alt="" class="gallery-img">
-            <img src="./assets/img/gallery/galery11.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery11.jpg" alt="" class="gallery-img"> -->
           </div>
         </div>
       </div>

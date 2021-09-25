@@ -47,6 +47,7 @@
     font-weight: 300;
     margin-left: 25px;
     margin-bottom: 15px;
+    line-height: 26px;
   }
   .type-container {
     display: block;
@@ -55,6 +56,7 @@
     margin-bottom: 25px;
     cursor: pointer;
     font-weight: $font-weight3;
+    line-height: 26px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -73,6 +75,7 @@
     width: 17px;
     border: 2px solid $bg-dark;
     border-radius: 50%;
+    margin-top: 3px;
   }
   .checkmark::after {
     content: "";
@@ -91,12 +94,12 @@
       border-radius: 50%;
       background: $bg-dark;
   }
-  
+
   /*---end radio input---*/
-  
+
   .amount__number {
     all: unset;
-    width: 20px;
+    width: 50px;
     text-align: center;
     font-weight: 300;
   }
@@ -108,10 +111,10 @@
     border: 3px solid $bg-dark;
     padding: 1px 5px;
     margin-left: 25px;
-    margin-bottom: 10px;
+    margin-bottom: 11px;
     display: flex;
     justify-content: space-between;
-  
+
   }
   .amount-button button {
     background-color: transparent;
@@ -140,4 +143,3 @@
     background-color: $font-gold;
     color: $bg-white;
   }
-  
