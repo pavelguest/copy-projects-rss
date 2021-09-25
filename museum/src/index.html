@@ -234,5 +234,64 @@
         </div>
       </div>
     </section>
+    <section class="tickets section" id="tickets">
+      <div class="container">
+        <h2 class="tickets__title">Buy tickets</h2>
+        <div class="tickets-content">
+          <img src="./assets/img/Buy-tickets.jpg" alt="tickets-img" class="tickets-img">
+          <div class="tickets-button">
+            <div class="ticket-type">
+              <h3 class="ticket-type__title">Ticket Type</h3>
+              <label class="type-container">Permanent exhibition
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+              </label>
+              <label class="type-container">Temporary exhibition
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+              </label>
+              <label class="type-container">Combined Admission
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <div class="amount">
+              <h3 class="amount__title">Amount</h3>
+              <p class="amount__subtitle">Basic 18+</p>
+              <div class="amount-button">
+                <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
+                <input type="number" min="0" max="100" value="1" readonly class="amount__number">
+                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+              <p class="amount__subtitle">Senior 65+</p>
+              <div class="amount-button">
+                <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
+                <input type="number" min="0" max="100" value="1" readonly class="amount__number">
+                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+              </div>
+              <p class="amount__total">Total &#8364;<span class="total-price">220</span></p>
+              <button class="amount__buy">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="parallax"></section>
+    <section class="contacts section" id="contacts">
+      <div class="container">
+        <h2 class="contacts__title">contacts</h2>
+        <div class="contacts-content">
+          <div class="contacts-main">
+            <h3 class="contacts-main__subtitle">Palais Royal<br> Musee du Louvre</h3>
+            <ul class="contacts-info">
+              <li class="contacts-info__info-item">address: 75001 Paris, France</li>
+              <li class="contacts-info__info-item">phone: +33(0) 1 40 20 50 50</li>
+              <li class="contacts-info__info-item">mail: info@louvre.fr</li>
+            </ul>
+          </div>
+          <img src="./assets/img/map-img.png" alt="google map" class="map-img">
+        </div>
+      </div>
+    </section>
 </body>
 </html>
