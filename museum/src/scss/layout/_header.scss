@@ -3,18 +3,21 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+
 }
 .header-content__title {
   display: block;
-  padding-left: 70px;
+  padding-left: 74px;
   margin: 0;
   font-family: $forum;
   font-size: $font3;
   font-weight: $font-weight4;
   letter-spacing: 5px;
+  line-height: 33px;
   text-transform: uppercase;
   background-image: url("../assets/svg/logo.svg");
   background-repeat: no-repeat;
+  background-size: 49px 26px;
 }
 .header-content__title:hover {
   filter: invert(77%) sepia(0%) saturate(1046%) hue-rotate(239deg) brightness(79%) contrast(50%);
@@ -24,12 +27,13 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  max-width: 775px;
 }
 .header-list__item {
-  padding: 0 38px;
+  padding-right: 55px;
   font-weight: $font-weight1;
   letter-spacing: 2px;
-  line-height: 50px;
+  line-height: 25px;
 }
 .header-list__item:last-child {
   padding-right: 0;

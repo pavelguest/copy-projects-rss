@@ -1,0 +1,126 @@
+.welcome-wrap {
+  display: flex;
+  position: relative;
+  min-height: 810px;
+  }
+  .welcome__slider {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .slide > img {
+    width: 1000px;
+    height: 750px;
+    display: block;
+  }
+  .slide::after {
+    content:'';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to left,transparent 65%, rgba(0,0,0, 1));
+  }
+  .welcome-content {
+    padding-top: 150px;
+    max-width: 598px;
+    position: relative;
+    z-index: 1;
+  }
+  .welcome-content__title {
+    font-family: $forum;
+    font-size: $font1;
+    font-weight: $font-weight4;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 90px;
+    margin-bottom: 25px;
+  }
+  .welcome-content__text {
+    font-size: $font3;
+    font-weight: $font-weight3;
+    letter-spacing: 2px;
+    margin-bottom: 75px;
+  }
+  .welcome-content__btn {
+    width: 360px;
+    height: 75px;
+    border-radius: 10px;
+  }
+  .btn {
+    font-weight: $font-weight3;
+    background-color: $dark-red;
+    color: white;
+    line-height: 25px;
+    letter-spacing: 2px;
+  }
+  .btn:hover {
+    cursor: pointer;
+    background-color: $font-gold;
+  }
+  .slider__nav {
+    min-width: 600px;
+    min-height: 120px;
+    background-color: $bg-dark;
+    color: white;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 0 74px;
+  }
+  .slider-nav__dots {
+    display: flex;
+    flex-direction: row;
+  }
+  .slider-nav__dots > span {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: $bg-white;
+    margin-right: 25px;
+  }
+  .dot.active {
+    background-color: #D2B183;
+  }
+  .slide {
+    width: 100%;
+    height: 100%;
+    display: none;
+  }
+  .slide.active {
+    display: block;
+  }
+  .slider-nav__button {
+    display: flex;
+  }
+  .slider-nav__button > div {
+    margin-right: 20px;
+  }
+  .slider-nav__button > div:last-child {
+    margin-right: 0;
+  }
+  .slider-nav__pages {
+    font-weight: $font-weight4;
+   
+  }
+  .slider-nav__pages > span {
+    padding-right: 10px;
+    
+  }
+  .welcome-slider__back {
+    background: url(../assets/svg/welcome-back.svg);
+    width: 30px;
+    height: 8px;
+  }
+  .welcome-slider__next {
+    background: url(../assets/svg/welcome-next.svg);
+    width: 30px;
+    height: 8px;
+  }

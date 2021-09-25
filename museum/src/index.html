@@ -9,7 +9,7 @@
   <title>museum</title>
 </head>
 <body>
-  <header class="section dark-section">
+  <header class="welcome-section dark-section">
     <div class="container">
       <div class="header-content">
         <h1><a class="header-content__title" href="./index.html">louvre</a></h1>
@@ -25,6 +25,9 @@
               <a href="#video" class="link">Video</a>
             </li>
             <li class="header-list__item">
+              <a href="#gallery" class="link">Gallery</a>
+            </li>
+            <li class="header-list__item">
               <a href="#tickets" class="link">Tickets</a>
             </li>
             <li class="header-list__item">
@@ -35,5 +38,52 @@
       </div>
     </div>
   </header>
+  <main class="main">
+    <section class="welcome dark-section" id="welcome">
+      <div class="container">
+        <div class="welcome-wrap">
+          <div class="welcome-content">
+            <h2 class="welcome-content__title">Welcome<br>to the Louvre</h2>
+            <p class="welcome-content__text">From the castle to the museum</p>
+            <button class="welcome-content__btn btn">Discover the Louvre</button>
+          </div>
+          <div class="welcome__slider">
+            <div class="slide active">
+              <img src="./assets/img/welcome-slider1.jpg" alt="" width="1000" height="750">
+            </div>
+            <div class="slide">
+              <img src="./assets/img/welcome-slider2.jpg" alt="" width="1000" height="750">
+            </div>
+            <div class="slide">
+              <img src="./assets/img/welcome-slider3.jpg" alt="" width="1000" height="750">
+            </div>
+            <div class="slide">
+              <img src="./assets/img/welcome-slider4.jpg" alt="" width="1000" height="750">
+            </div>
+            <div class="slide">
+              <img src="./assets/img/welcome-slider5.jpg" alt="" width="1000" height="750">
+            </div>
+          </div>
+          <div class="slider__nav">
+            <div class="slider-nav__pages">
+              <span class="counter active">01</span>
+              <span>|</span>
+              <span class="counter">05</span>
+            </div>
+            <div class="slider-nav__dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="slider-nav__button">
+              <div class="welcome-slider__back" id="btn-prev"></div>
+              <div class="welcome-slider__next" id="btn-next"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
