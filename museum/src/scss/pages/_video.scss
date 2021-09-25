@@ -1,0 +1,184 @@
+.video-main {
+    display: flex;
+    flex-direction: row;
+  }
+  .video-main__title {
+    max-width: 615px;
+    font-family: $forum;
+    font-size: $font1;
+    color: $font-gold;
+    font-weight: $font-weight4;
+    letter-spacing: 5px;
+    line-height: 90px;
+    text-transform: uppercase;
+  }
+  .video-main__text {
+    max-width: 830px;
+    padding-left: 115px;
+    padding-top: 8px;
+    font-weight: $font-weight3;
+    line-height: 38px;
+  }
+.video-content {
+    margin-top: 75px;
+   // max-width: 1440px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 650px;
+  }
+  .v-slide {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+   // display: block;
+    position: absolute;
+    object-fit: cover;
+    transition: 0.4s ease;
+    z-index: -1;
+  }
+  .v-slide.active {
+    z-index: 0;
+  }
+  .panel {
+    max-width: 1440px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #030303;
+    transition: all 0.3s;
+  }
+  .player__play-large {
+    position: absolute;
+    display: flex;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    background: transparent url(../assets/svg/video-section/play-video.svg);
+    width: 220px;
+    height: 220px;
+  }
+  .panel__play {
+    background: no-repeat url(../assets/svg/video-section/play.svg);
+    width: 25px;
+    height: 30px;
+  }
+  .panel__pause {
+    background: no-repeat url(../assets/svg/video-section/pause.svg);
+    width: 25px;
+    height: 30px;
+  }
+  .panel__volume {
+    background: no-repeat url(../assets/svg/video-section/volume.svg);
+    width: 38px;
+    height: 30px;
+  }
+  .panel__unmute {
+
+    background: no-repeat url(../assets/svg/video-section/unmute.svg);
+    width: 38px;
+    height: 30px;
+  }
+  .panel__fullscreen {
+    background: no-repeat url(../assets/svg/video-section/fullscreen.svg);
+    width: 36px;
+    height: 36px;
+  }
+  .panel__progress-video {
+    height: 8px;
+    width: 929px;
+    outline: none;
+    -webkit-appearance: none;
+    transition: background 450ms ease-in;
+  }
+    .panel__progress-video::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    background: #FFFFFF;
+  }
+  .panel__progress-volume {
+    background: linear-gradient(to right,#24809E 0%, #24809E 100%);
+    height: 8px;
+    width: 155px;
+    outline: none;
+    transition: background 450ms ease-in;
+    -webkit-appearance: none;
+  }
+  .panel__progress-volume::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    -webkit-appearance: none;
+    cursor: ew-resize;
+    background: #FFFFFF;
+  }
+  .btn-hover:hover, .panel__unmute:hover, .panel__pause:hover, .panel__play:hover, .panel__volume:hover {
+    cursor: pointer;
+    filter: invert(77%) sepia(0%) saturate(1046%) hue-rotate(239deg) brightness(79%) contrast(87%);
+  }
+  .fullscreen-window {
+    width: 100%;
+  }
+  :-webkit-full-screen .slide {
+    width: 100%;
+    height: 100%;
+  }
+  :-webkit-full-screen .panel {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+  }
+  .video-slider {
+    display: flex;
+    padding-top: 40px;
+    column-gap: 42px;
+  }
+  .video-slide {
+    display: none;
+  }
+  .video-slide.active {
+    display: block;
+  }
+  .video-slide.active > iframe {
+    height: 254px;
+    width: 452px;
+    display: block;
+  }
+.video-slider__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
+}
+.vslider-nav__dots {
+  display: flex;
+}
+.vslider-nav__dots > span {
+  display: flex;
+  flex-direction: column;
+  width: 12px;
+  height: 12px;
+  background-color: #999999;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.vslider-nav__dots > .dot.active {
+  background-color: #333333;
+}
+.video-slider__btn-back {
+  background: no-repeat url(../assets/svg/video-section/video-slider-back.svg);
+  width: 10px;
+  height: 12px;
+  margin-right: 20px;
+}
+.video-slider__btn-next {
+  background: no-repeat url(../assets/svg/video-section/video-slider-next.svg);
+  width: 10px;
+  height: 12px;
+}

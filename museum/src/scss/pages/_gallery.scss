@@ -1,0 +1,70 @@
+.gallery {
+    padding-bottom: 0;
+    
+}
+.gallery__title {
+    font-family: $forum;
+    font-size: $font1;
+    font-weight: $font-weight3;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 90px;
+    margin-bottom: 75px;
+}
+.picture-container {
+    overflow-y: hidden;
+    max-height: 1960px;
+    position: relative;
+}
+.picture-container::after {
+    content:'';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom,transparent 80%, rgba(0,0,0, 1));
+   
+  }
+
+.picture-inner-container > img {
+    object-fit: contain;
+    width: 456px;
+    display: block;
+}
+  .picture-inner-container {
+      display: flex;
+      flex-flow: column wrap;
+      align-content: space-between;
+      row-gap: 24px;
+      counter-reset: items;
+      height: 3020px;
+      overflow: hidden;
+  }
+  .picture-inner-container > img::before {
+    counter-increment: items;
+    content: counter(items);
+  }
+  .picture-inner-container > img:nth-child(3n+1) {
+      order: 1;
+  }
+  .picture-inner-container > img:nth-child(3n+2) {
+      order: 2;
+  }
+  .picture-inner-container > img:nth-child(3n) {
+      order: 3;
+  }
+  .picture-inner-container > img:nth-child(1) {
+      margin-top: 50px;
+  }
+  .picture-inner-container > img:nth-child(3) {
+      margin-top: 50px;
+  }
+.picture-inner-container::before,
+.picture-inner-container::after {
+  content: "";
+  flex-basis: 100%;
+  width: 0;
+  order: 2;
+}
+

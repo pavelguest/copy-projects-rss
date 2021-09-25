@@ -155,5 +155,84 @@
         </div>
       </div>
     </section>
+    <section class="video video-section" id="video">
+      <div class="container">
+        <div class="video-main">
+          <h2 class="video-main__title">Video journey</h2>
+          <p class="video-main__text">Enter and visit one of the most famous
+            museums in the world and enjoy masterpieces such as Mona Lisa
+            or Hammurabi's Code</p>
+        </div>
+        <div class="video-content">
+          <video class="player v-slide active" src="./assets/video/video0.mp4" poster="./assets/video//poster0.jpg"></video>
+          <video class="player v-slide" src="./assets/video/video1.mp4" poster="./assets/video//poster1.jpg"></video>
+          <video class="player v-slide" src="./assets/video/video2.mp4" poster="./assets/video//poster2.jpg"></video>
+          <video class="player v-slide" src="./assets/video/video3.mp4" poster="./assets/video//poster3.jpg"></video>
+          <video class="player v-slide" src="./assets/video/video4.mp4" poster="./assets/video//poster4.jpg"></video>
+          <button class="player__play-large btn-hover"></button>
+        </div>
+        <div class="control-panel">
+          <div class="panel">
+            <button class="panel__play toggle btn-hover" title="Toggle Play"></button>
+            <input type="range" value="0" class="panel__progress-video">
+            <button class="panel__volume mute-volume btn-hover"></button>
+            <input type="range" name="volume" min="0" max="1" step="0.05" value="1" class="panel__progress-volume">
+            <button class="panel__fullscreen fullscreen btn-hover"></button>
+          </div>
+        </div>
+        <div class="video-slider">
+          <div class="video-slide active">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video-slide active">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video-slide active">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video-slide">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+          <div class="video-slide">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        </div>
+        <div class="video-slider__nav">
+            <div class="video-slider__btn-back" id="btn-prev"></div>
+            <div class="vslider-nav__dots">
+              <span class="dot active"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="video-slider__btn-next" id="btn-next"></div>
+        </div>
+      </div>
+    </section>
+    <section class="gallery section dark-section" id="gallery">
+      <div class="container">
+        <h2 class="gallery__title">Art Gallery</h2>
+        <div class="picture-container">
+          <div class="picture-inner-container">
+            <img src="./assets/img/gallery/galery2.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery1.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery7.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery9.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery8.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery10.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery4.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery3.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery15.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery6.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery5.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery12.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery13.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery14.jpg" alt="" class="gallery-img">
+            <img src="./assets/img/gallery/galery11.jpg" alt="" class="gallery-img">
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
