@@ -144,10 +144,10 @@
           </div>
           <div class="explore__filter">
             <div class="explore__img">
-              <img src="./assets/img/before.jpg" alt="picture explore" class="explore-content__img">
+              <img src="./assets/img/before.jpg" width= "720" height = "700" alt="picture explore" class="explore-content__img">
             </div>
-            <div class="explore__img-after">
-              <img src="./assets/img/after.jpg" alt="picture explore" class="explore-content__img">
+            <div class="explore__img explore-content__overlay">
+              <img src="./assets/img/after.jpg" width= "720" height = "700" alt="picture explore" class="explore-content__img">
             </div>
 
           </div>
@@ -182,23 +182,23 @@
         </div>
         <div class="video-slider">
           <div class="video-slide active">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
           <div class="video-slide active">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Vi5D6FKhRmo" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
           <div class="video-slide active">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/NOhDysLnTvY" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
           <div class="video-slide">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/aWmJ5DgyWPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/zp1BXPX8jcU" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
           <div class="video-slide">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/2OR0OCr6uRE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
         <div class="video-slider__nav">
-            <button class="video-slider__btn-back" id="btn-prev"></button>
+            <button class="video-slider__btn-back" id="button-prev"></button>
             <div class="vslider-nav__dots">
               <span class="dot active"></span>
               <span class="dot"></span>
@@ -206,7 +206,7 @@
               <span class="dot"></span>
               <span class="dot"></span>
             </div>
-            <button class="video-slider__btn-next" id="btn-next"></button>
+            <button class="video-slider__btn-next" id="button-next"></button>
         </div>
       </div>
     </section>
@@ -276,7 +276,7 @@
         </div>
       </div>
     </section>
-    <section class="parallax"></section>
+    <div class="parallax"></div>
     <section class="contacts section" id="contacts">
       <div class="container">
         <h2 class="contacts__title">contacts</h2>
@@ -338,14 +338,14 @@
           </ul>
         </div>
         <div class="footer__school">
-          <h5 class="footer__sub-title">&#169;<time>2021</time></h5>
-          <a href="https://rs.school/js/">The Rolling Scopes School</a>
+          <h5 class="footer__subtitle">&#169; <time>2021</time></h5>
+          <a class ="school-link" href="https://rs.school/js/">The Rolling Scopes School</a>
           <a href="https://github.com/pavelguest/">Pavel Puchinski</a>
         </div>
       </div>
     </footer>
   </main>
-  <section class="booking-tickets">
+  <div class="booking-tickets">
     <div class="booking-tickets__container">
       <div class="container">
         <div class="booking-tickets__content">
@@ -353,7 +353,7 @@
           <div class="info-input">
             <h2 class="info-input__title">booking tickets</h2>
             <p class="info-input__subtitle">Tour to Louvre</p>
-            <form action="" class="info-input__form">
+            <form action="#" class="info-input__form">
               <div class="form__value">
                <input type="date" name="date" id="date" placeholder="Date" class="value__select">
                <input type="time" name="time" id="time" placeholder="Time" class="value__select">
@@ -362,8 +362,10 @@
               <input type="text" name="email" id="email" placeholder = "E-mail">
               <input type="text" name="tel" id="phone" placeholder = "Phone">
               <select name="ticket-type" id="ticket-type">
-                <option value="">Ticket Type</option>
-                <option value=""></option>
+                <option>Ticket Type</option>
+                <option>Permanent exhibition</option>
+                <option>Temporary exhibition</option>
+                <option>Combined Admission</option>
               </select>
             </form>
             <div class="entry-ticket">
@@ -412,13 +414,13 @@
             </div>
             <div class="card-input__card">
               <div class="card__front">
-                <form action="">
+                <form action="#">
                   <p>Card number</p>
                   <input name="credit-number" class="cc-number" type="tel" pattern="\d*" maxlength="19">
                   <p>Expiration date</p>
                   <div class="cc-date">
-                    <input type="number" value="03" min="01" max="12" step="01">
-                    <input type="number" value="2024" min="2000" max="2050" step="1">
+                    <input type="number" value="03" min="01" max="12" step="01" id="card-ico">
+                    <input type="number" value="2024" min="2000" max="2050" step="1" id="card-ico">
                   </div>
                   <p>Cardholder name</p>
                   <input type="text" class="cardholder-name">
@@ -439,11 +441,11 @@
             <div class="book-button">
               <button class="book__btn">Book</button>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  <div class="booking-tickets__bg"></div>
 </body>
 </html>

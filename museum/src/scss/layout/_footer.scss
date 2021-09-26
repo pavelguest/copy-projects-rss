@@ -101,11 +101,24 @@
       font-size: 22px;
       line-height: 22px;
       font-weight: $font-weight1;
-      padding: 50px 0;
+      padding: 52px 0;
   }
- .footer__school > h5, time {
+.school-link {
+  margin-left: 100px;
+}
+  .footer__school > h5, time, .footer__subtitle, a {
     font-size: 22px;
     line-height: 22px;
     font-weight: $font-weight1;
+    letter-spacing: 2px;
   }
- 
+  footer {
+    position: relative;
+  }
+  footer::after {
+    content: "";
+    border: solid 2px #ffffff;
+    width: 100%;
+    position: absolute;
+    bottom: 123px;
+  }

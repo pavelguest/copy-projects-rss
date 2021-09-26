@@ -82,13 +82,13 @@
   .slider-nav__dots {
     display: flex;
     flex-direction: row;
-  }
-  .slider-nav__dots > span {
-    display: block;
-    width: 16px;
-    height: 16px;
-    background-color: $bg-white;
-    margin-right: 25px;
+    column-gap: 25px;
+    span {
+      display: block;
+      width: 16px;
+      height: 16px;
+      background-color: $bg-white;
+    }
   }
   .dot.active {
     background-color: #D2B183;
@@ -106,20 +106,21 @@
   }
   .slider-nav__button {
     display: flex;
-  }
-  .slider-nav__button > div {
-    margin-right: 20px;
-  }
-  .slider-nav__button > div:last-child {
-    margin-right: 0;
+    div {
+      margin-right: 20px;
+    }
+    div:last-child {
+      margin-right: 0;
+    }
   }
   .slider-nav__pages {
     font-weight: $font-weight4;
-
-  }
-  .slider-nav__pages > span {
-    padding-right: 10px;
-
+    span {
+      padding-right: 5px;
+    }
+    span:last-child {
+      padding-right: 0;
+    }
   }
   .welcome-slider__back {
     background: url(../assets/svg/welcome-back.svg);

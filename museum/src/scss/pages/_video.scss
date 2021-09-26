@@ -142,6 +142,9 @@
   }
   .video-slide {
     display: none;
+    iframe {
+      border: none;
+    }
   }
   .video-slide.active {
     display: block;

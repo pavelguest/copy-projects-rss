@@ -27,16 +27,13 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  max-width: 775px;
+  max-width: 776px;
+  column-gap: 56px;
 }
 .header-list__item {
-  padding-right: 55px;
   font-weight: $font-weight1;
   letter-spacing: 2px;
-  line-height: 25px;
-}
-.header-list__item:last-child {
-  padding-right: 0;
+  line-height: 26px;
 }
 .link:hover {
   cursor: pointer;

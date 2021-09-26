@@ -2,17 +2,21 @@ const booking = document.querySelector('.booking-tickets');
 const closeButton = document.querySelector('.booking-tickets__close');
 const button = document.querySelector('.amount__buy');
 const body = document.querySelector('body');
+const overlay = document.querySelector('.booking-tickets__bg');
 
 function open() {
    booking.classList.add('open');
+   overlay.style.opacity = '1';
    booking.addEventListener('click', function (e) {
      if (!e.target.closest('.container')) {
-      booking.classList.remove('open');
+     booking.classList.remove('open');
+     overlay.style.opacity = '0';
      }
    })
 }
 function close() {
     booking.classList.remove('open');
+    overlay.style.opacity = '0';
 }
 button.addEventListener('click', open);
 closeButton.addEventListener('click', close);

@@ -4,12 +4,23 @@
   height: 100%;
   left: -100%;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 3;
+  z-index: 15;
   transition: all 0.5s ease 0s;
 }
 .booking-tickets.open {
   left: 0;
+}
+.booking-tickets__bg {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: .6s all ease-in-out;
+    z-index: 14;
 }
 .booking-tickets > .booking-tickets__container {
   min-height: 100%;
@@ -23,7 +34,7 @@
   height: 27px;
   position: absolute;
   top: 30px;
-  right: 50px;
+  right: 30px;
 }
 .booking-tickets__content {
   min-width: 1440px;
@@ -58,7 +69,6 @@
     line-height: 19px;
     position: relative;
     font-weight: $font-weight4;
-
 }
 .info-input__subtitle::after {
     content: "";
@@ -111,6 +121,12 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+
+}
+#card-ico {
+  background: transparent url("../assets/svg/booking-ticket/ico-card.svg") right top 50% no-repeat;
+  border: solid 1px #A4A4A3;
+  background-color: white;
 }
 #ticket-type {
   font-family: 'Roboto';
@@ -156,7 +172,6 @@ input[type=date]:focus::before, input[type=time]:focus::before {
     padding: 10px 15px 15px 15px;
     border: solid 1px $bg-dark;
     height: 135px;
-
 }
 .entry-ticket__subtitle {
   font-family: $forum;
@@ -176,7 +191,6 @@ input[type=date]:focus::before, input[type=time]:focus::before {
     width: 370px;
     background-color: $dark-red;
   }
-
   .ticket-price {
     display: flex;
     justify-content: space-between;
@@ -184,7 +198,6 @@ input[type=date]:focus::before, input[type=time]:focus::before {
     line-height: 21px;
     margin-bottom: 18px;
   }
-
   .entry-ticket__button {
     border: 1px solid $bg-dark;
     display: flex;
@@ -192,7 +205,6 @@ input[type=date]:focus::before, input[type=time]:focus::before {
     font-family: $roboto;
     font-size: 18px;
     font-weight: 400;
-
   }
   .entry-ticket__number {
       all: unset;
@@ -215,7 +227,6 @@ input[type=date]:focus::before, input[type=time]:focus::before {
   background-repeat: no-repeat;
   background-size: 150px 120px;
   background-position: top 25px right 30px;
-
 }
 .card-input__title {
   font-family: $roboto;
@@ -223,14 +234,13 @@ input[type=date]:focus::before, input[type=time]:focus::before {
   font-weight: $font-weight5;
   line-height: 38px;
   margin-bottom: 2px;
-
 }
 .card-input__subtitle {
   font-family: $roboto;
   font-weight: $font-weight5;
-  line-height: 26px;
+  line-height: 25px;
   color: $dark-red;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 .card-input__subtitle::after {
   content: "";
@@ -250,30 +260,28 @@ input[type=date]:focus::before, input[type=time]:focus::before {
   font-weight: $font-weight3;
   line-height: 21px;
   margin-bottom: 5px;
-
 }
 .date-time > .date::before {
   content: '';
   display: inline-block;
   height: 1em;  width: 1em;
   background: url(../assets/svg/booking-ticket/date.svg) no-repeat bottom;
-  margin-right: 15px;
+  margin-right: 12px;
 }
 .date-time > .time::before {
   content: '';
   display: inline-block;
   height: 1em;  width: 1em;
   background: url(../assets/svg/booking-ticket/time.svg) no-repeat bottom;
-  margin-right: 15px;
+  margin-right: 12px;
 }
 .date-time > .ok::before {
   content: '';
   display: inline-block;
   height: 1em;  width: 1em;
   background: url(../assets/svg/booking-ticket/check_circle_outline.svg) no-repeat bottom;
-  margin-right: 15px;
+  margin-right: 12px;
 }
-
 .card-input__price {
   height: 117px;
   margin-bottom: 10px;
@@ -286,26 +294,31 @@ input[type=date]:focus::before, input[type=time]:focus::before {
 }
 .ticket-num__type {
 
-}
-.ticket-num__type > span {
-  color: $bg-white;
-  background-color: $bg-dark;
-  border-radius: 10%;
-  width: 32px;
-  height: 21px;
-  display: inline-block;
-  text-align: center;
-  margin-right: 10px;
+  span {
+    color: $bg-white;
+    background-color: $bg-dark;
+    border-radius: 20%;
+    width: 32px;
+    height: 21px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    line-height: 22px;
+    font-size: $font4;
+  }
 }
 .ticket-num__total {
   padding-top: 21px;
   font-size: $font2;
   font-weight: 400;
+  line-height: 37px;
+  position: relative;
 }
 .ticket-num__total::before {
     content: "";
     position: absolute;
-    top: 11px;
+    top: 6px;
     left: 0;
     height: 2px;
     width: 470px;
@@ -318,6 +331,9 @@ input[type=date]:focus::before, input[type=time]:focus::before {
   align-items: flex-end;
   position: relative;
   font-size: 12px;
+  input {
+    border: solid 1px #A4A4A3;
+  }
 }
 .card__front {
   position: absolute;
