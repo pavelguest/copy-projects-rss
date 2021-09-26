@@ -155,17 +155,10 @@
 ::-webkit-input-placeholder {
   color: $bg-dark;
 }
-input[type=date]::before, input[type=time]::before {
-  color: $bg-dark;
-  content: attr(placeholder) !important;
-  margin-right: 0.5em;
-}
-input[type=date]:focus::before, input[type=time]:focus::before {
-  content: '' !important;
-}
 .value__select {
     width: 190px;
-    height: 45px
+    height: 45px;
+    border: solid 1px ;
 }
 .value__date, .value__time {
   position: relative;
@@ -176,6 +169,9 @@ input[type=date]:focus::before, input[type=time]:focus::before {
     font-family: 'Roboto';
     font-size: 18px;
     line-height: 21px;
+  }
+  input {
+    border: solid 1px $bg-dark;
   }
 }
 .entry-ticket {
