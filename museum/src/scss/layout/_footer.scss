@@ -106,11 +106,17 @@
 .school-link {
   margin-left: 100px;
 }
-  .footer__school > h5, time, .footer__subtitle, a {
+  .footer__school  {
     font-size: 22px;
     line-height: 22px;
     font-weight: $font-weight1;
     letter-spacing: 2px;
+    time, h5 {
+      font-size: 22px;
+      line-height: 22px;
+      font-weight: $font-weight1;
+      letter-spacing: 2px;
+    }
   }
   footer {
     position: relative;

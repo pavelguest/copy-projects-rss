@@ -123,7 +123,7 @@
   appearance: none;
 
 }
-#card-ico {
+#card-ico, #ico-card {
   background: transparent url("../assets/svg/booking-ticket/ico-card.svg") right top 50% no-repeat;
   border: solid 1px #A4A4A3;
   background-color: white;
@@ -166,6 +166,17 @@ input[type=date]:focus::before, input[type=time]:focus::before {
 .value__select {
     width: 190px;
     height: 45px
+}
+.value__date, .value__time {
+  position: relative;
+  span{
+    position: absolute;
+    top: 12px;
+    left: 44px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    line-height: 21px;
+  }
 }
 .entry-ticket {
     margin-top: 20px;

@@ -355,8 +355,14 @@
             <p class="info-input__subtitle">Tour to Louvre</p>
             <form action="#" class="info-input__form">
               <div class="form__value">
-               <input type="date" name="date" id="date" placeholder="Date" class="value__select">
-               <input type="time" name="time" id="time" placeholder="Time" class="value__select">
+               <div class="value__date">
+                <input type="date" name="date" id="date" class="value__select">
+                <span>Date</span>
+               </div>
+               <div class="value__time">
+                <input type="time" name="time" id="time" class="value__select">
+                <span>Time</span>
+               </div>
               </div>
               <input type="text" name="name" id="name" placeholder = "Name">
               <input type="text" name="email" id="email" placeholder = "E-mail">
@@ -420,7 +426,7 @@
                   <p>Expiration date</p>
                   <div class="cc-date">
                     <input type="number" value="03" min="01" max="12" step="01" id="card-ico">
-                    <input type="number" value="2024" min="2000" max="2050" step="1" id="card-ico">
+                    <input type="number" value="2024" min="2000" max="2050" step="1" id="ico-card">
                   </div>
                   <p>Cardholder name</p>
                   <input type="text" class="cardholder-name">
