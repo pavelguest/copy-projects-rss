@@ -13,28 +13,34 @@
     <div class="container">
       <div class="header-content">
         <h1><a class="header-content__title" href="./index.html">louvre</a></h1>
-        <nav class="header-nav">
-          <ul class="header-list">
-            <li class="header-list__item">
-              <a href="#visiting" class="link">Visiting</a>
-            </li>
-            <li class="header-list__item">
-              <a href="#explore" class="link">Explore</a>
-            </li>
-            <li class="header-list__item">
-              <a href="#video" class="link">Video</a>
-            </li>
-            <li class="header-list__item">
-              <a href="#gallery" class="link">Gallery</a>
-            </li>
-            <li class="header-list__item">
-              <a href="#tickets" class="link">Tickets</a>
-            </li>
-            <li class="header-list__item">
-              <a href="#contacts" class="link">Contacts</a>
-            </li>
-          </ul>
-        </nav>
+        <div class="header-menu">
+          <div class="header-menu__icon">
+            <span></span>
+          </div>
+          <nav class="header-nav">
+            <ul class="header-list">
+              <li class="header-list__item">
+                <a data-goto=".visiting" href="#visiting" class="link">Visiting<span></span></a>
+              </li>
+              <li class="header-list__item">
+                <a data-goto=".explore" href="#explore" class="link">Explore<span></span></a>
+              </li>
+              <li class="header-list__item">
+                <a data-goto=".video" href="#video" class="link">Video<span></span></a>
+              </li>
+              <li class="header-list__item">
+                <a data-goto=".gallery" href="#gallery" class="link">Gallery<span></span></a>
+              </li>
+              <li class="header-list__item">
+                <a data-goto=".tickets" href="#tickets" class="link">Tickets<span></span></a>
+              </li>
+              <li class="header-list__item">
+                <a data-goto=".contacts" href="#contacts" class="link">Contacts <span></span></a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
       </div>
     </div>
   </header>
@@ -285,8 +291,8 @@
             <h3 class="contacts-main__subtitle">Palais Royal<br> Musee du Louvre</h3>
             <ul class="contacts-info">
               <li class="contacts-info__info-item">address: 75001 Paris, France</li>
-              <li class="contacts-info__info-item">phone: +33(0) 1 40 20 50 50</li>
-              <li class="contacts-info__info-item">mail: info@louvre.fr</li>
+              <li class="contacts-info__info-item">phone: <a href="tel:+330140205050">+33(0) 1 40 20 50 50</a></li>
+              <li class="contacts-info__info-item">mail: <a href="mailto:info@louvre.fr">info@louvre.fr</a></li>
             </ul>
           </div>
           <img src="./assets/img/map-img.png" alt="google map" class="map-img">
@@ -300,21 +306,21 @@
           <nav class="footer-nav">
             <ul class="footer-list">
               <li class="footer-list__item">
-                <a href="#visiting" class="link">Visiting</a>
+                <a data-goto=".visiting" href="#visiting" class="link">Visiting</a>
               </li>
               <li class="footer-list__item">
-                <a href="#explore" class="link">Explore</a>
+                <a data-goto=".explore" href="#explore" class="link">Explore</a>
               </li>
               <li class="footer-list__item">
-                <a href="#video" class="link">Video</a>
+                <a data-goto=".video" href="#video" class="link">Video</a>
                 <li class="footer-list__item">
-                  <a href="#gallery" class="link">Gallery</a>
+                  <a data-goto=".gallery" href="#gallery" class="link">Gallery</a>
                 </li>
                 <li class="footer-list__item">
-                  <a href="#tickets" class="link">Tickets</a>
+                  <a data-goto=".tickets" href="#tickets" class="link">Tickets</a>
                 </li>
                 <li class="footer-list__item">
-                  <a href="#contacts" class="link">Contacts</a>
+                  <a data-goto=".contacts" href="#contacts" class="link">Contacts</a>
                 </li>
               </li>
             </ul>
@@ -367,8 +373,8 @@
               <input type="text" name="name" id="name" placeholder = "Name">
               <input type="email" name="email" id="email" placeholder = "E-mail">
               <input type="tel" name="tel" id="phone" placeholder = "Phone">
-              <select name="ticket-type" id="ticket-type">
-                <option>Ticket Type</option>
+              <select name="ticket-type" id="ticket-type" class="ticket-type">
+                <option style="display: none;">Ticket Type</option>
                 <option>Permanent exhibition</option>
                 <option>Temporary exhibition</option>
                 <option>Combined Admission</option>
@@ -380,7 +386,7 @@
                 <p>Basic 18+ (20 &#8364;)</p>
                 <div class="entry-ticket__button">
                   <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                  <input type="number" min="0" max="100" value="2" readonly class="entry-ticket__number">
+                  <input type="number" min="0" max="20" value="2" readonly class="entry-ticket__number">
                   <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                 </div>
               </div>
@@ -388,7 +394,7 @@
                 <p>Senior 65+ (10 &#8364;)</p>
                 <div class="entry-ticket__button">
                   <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                  <input type="number" min="0" max="100" value="2" readonly class="entry-ticket__number">
+                  <input type="number" min="0" max="20" value="2" readonly class="entry-ticket__number">
                   <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                 </div>
               </div>

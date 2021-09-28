@@ -81,18 +81,15 @@
     content: "";
     position: absolute;
     display: none;
+    top: 25%;
+    left: 25%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $bg-dark;
   }
   .type-container input:checked ~ .checkmark::after {
     display: block;
-  }
-  .type-container .checkmark::after {
-      top: 50%;
-      left: 50%;
-      transform: translate3d(-50%, -50%, 0);
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: $bg-dark;
   }
 
   /*---end radio input---*/

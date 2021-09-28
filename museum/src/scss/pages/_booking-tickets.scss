@@ -94,9 +94,13 @@
     display: flex;
     flex-direction: row;
     column-gap: 20px;
-}
-.form__value > input {
-  border: solid 1px $bg-dark;
+    input {
+      border: solid 1px $bg-dark;
+      font-family: 'Roboto';
+      font-size: 18px;
+      line-height: 21px;
+      padding-inline-start: 44px;
+    }
 }
 #date {
   background: url(../assets/svg/booking-ticket/date.svg) calc(15px) no-repeat,
@@ -121,26 +125,17 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-
+  font-family: 'Roboto';
+  font-size: 18px;
+  line-height: 21px;
+  padding-inline-start: 44px;
 }
 #card-ico, #ico-card {
   background: transparent url("../assets/svg/booking-ticket/ico-card.svg") right top 50% no-repeat;
   border: solid 1px #A4A4A3;
   background-color: white;
 }
-#ticket-type {
-  font-family: 'Roboto';
-  font-size: 18px;
-  line-height: 21px;
-  padding-inline-start: 44px;
-}
 .info-input__form > input[placeholder] {
-  font-family: 'Roboto';
-  font-size: 18px;
-  line-height: 21px;
-  padding-inline-start: 44px;
-}
-.form__value > input {
   font-family: 'Roboto';
   font-size: 18px;
   line-height: 21px;
