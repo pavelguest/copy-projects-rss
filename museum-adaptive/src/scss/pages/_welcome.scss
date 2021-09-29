@@ -9,8 +9,8 @@
     right: 0;
   }
   .slide > img {
-    width: 1000px;
-    height: 750px;
+    max-width: 1000px;
+    max-height: 750px;
     display: block;
   }
   .slide::after {

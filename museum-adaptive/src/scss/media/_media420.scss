@@ -1,0 +1,39 @@
+@media (max-width: 420px) {
+  body {
+    font-size: 16px;
+  }
+  .welcome-section {
+    padding: 35px 0 35px 0;
+  }
+  .header-content__title {
+    line-height: 18px;
+    background-position: left top;
+    background-size: 29px 16px;
+    font-size: 16px;
+  }
+  .welcome-content__title {
+    text-align: center;
+    line-height: 40px;
+    font-size: 28px;
+  }
+  .welcome-content__text {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  .slide {
+    img {
+      max-width:  380px;
+      max-height: 285px;
+    }
+  }
+  .slider__nav {
+    min-height: 80px;
+    min-width: 230px;
+    justify-content: space-evenly;
+    column-gap: 10px;
+    padding: 0;
+  }
+  .slider-nav__dots {
+    column-gap: 10px;
+  }
+}

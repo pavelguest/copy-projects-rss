@@ -317,4 +317,14 @@
   footer.section {
       padding-bottom: 0;
     }
+    //---------------footer-end--------------//
+    .booking-tickets__content {
+      padding: 75px 27px 30px 27px;
+    }
+    .booking-tickets__container {
+      .container {
+        max-width: 1440px;
+        padding: 0;
+      }
+    }
 }

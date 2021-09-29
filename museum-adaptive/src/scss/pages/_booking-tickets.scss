@@ -37,13 +37,12 @@
   right: 30px;
 }
 .booking-tickets__content {
-  min-width: 1440px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+ // flex-wrap: wrap;
   column-gap: 40px;
   justify-content: center;
-  padding: 91px 0;
+  padding: 91px 235px;
   position: relative;
   background-color: white;
 }
