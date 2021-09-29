@@ -19,26 +19,26 @@
     font-weight: $font-weight3;
     line-height: 38px;
   }
-.video-content {
+  .video-content {
     margin-top: 75px;
-   // max-width: 1440px;
     position: relative;
-    overflow: hidden;
     width: 100%;
-    min-height: 650px;
+    line-height: 0;
+  }
+  .v-slider {
+    position: relative;
+    max-height: 650px;
+    overflow: hidden;
   }
   .v-slide {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-   // display: block;
     position: absolute;
-    object-fit: cover;
-    transition: 0.4s ease;
-    z-index: -1;
+    opacity: 0;
+    transition: all 0.3s ease;
   }
   .v-slide.active {
-    z-index: 0;
+    position: relative;
+    opacity: 1;
+    width: 100%;
   }
   .panel {
     max-width: 1440px;
@@ -52,7 +52,6 @@
   }
   .player__play-large {
     position: absolute;
-    display: flex;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);

@@ -5,6 +5,9 @@
   .section {
     padding: 60px 0;
   }
+  .video-section {
+    padding: 60px 0;
+  }
   .welcome-section {
     padding: 49px 0 48px 0;
   }
@@ -186,4 +189,132 @@
   .explore__filter {
     margin-top: 62px;
   }
+  //-------------explore-end------------/
+  .video-main__title {
+    font-size: 50px;
+    line-height: 75px;
+  }
+  .video-main__text {
+    display: none;
+  }
+  .video-content {
+    margin-top: 40px;
+  }
+  .v-slider {
+    max-height: 444px;
+  }
+  .panel {
+    height: 60px;
+  }
+  .panel__progress-video {
+    width: 564px;
+  }
+  .panel__progress-volume {
+    width: 143px;
+  }
+  .player__play-large {
+    width: 152px;
+    height: 152px;
+    background-size: cover;
+  }
+  .video-slide.active > iframe {
+    width: 300px;
+    height: 170px;
+  }
+  //---------------video-end------------//
+
+  .gallery__title {
+    font-size: 50px;
+    line-height: 75px;
+    margin-bottom: 60px;
+  }
+  .picture-container {
+    max-height: 1206px;
+  }
+  //----------gallery-end-----------//
+  .tickets__title {
+    font-size: 50px;
+    line-height: 75px;
+    margin-bottom: 83px;
+  }
+  .tickets__title::after {
+    bottom: -23px;
+  }
+  .tickets-img {
+    width: 700px;
+    height: 440px;
+
+  }
+  .ticket-type {
+    display: none;
+  }
+  .tickets-content {
+    column-gap: 80px;
+  }
+  .tickets-button {
+    flex: 0 0 205px;
+    padding-left: 0;
+  }
+  .amount__title {
+    justify-content: flex-start;
+    line-height: 32px;
+  }
+  .amount__subtitle, .amount-button {
+    margin-left: 0;
+    font-size: 22px;
+    line-height: 26px;
+  }
+  .amount__total {
+    justify-content: flex-start;
+  }
+  .amount-button {
+    margin-bottom: 25px;
+  }
+  .amount__total {
+    padding-top: 0;
+    margin-bottom: 70px;
+  }
+  .total-price:before {
+    content: "\00a0\00a0";
+  }
+  //---------------tickets-end----------------//
+  .contacts__title {
+    font-size: 50px;
+    line-height: 75px;
+  }
+  .contacts__title::after {
+    bottom: -23px;
+  }
+  .map-img {
+    width: calc(100vw - 330px);
+    height: calc(65vw - 212px);
+  }
+  .contacts-content {
+    padding-top: 83px;
+  }
+  .contacts-main__subtitle {
+    font-size: 24px;
+    line-height: 28px;
+    margin-bottom: 35px;
+  }
+  .contacts-info__info-item {
+    padding-bottom: 15px;
+    line-height: 23px;
+  }
+  //---------------contacts-end--------------------//
+  .footer-title {
+    margin-right: 45px;
+  }
+  .footer-nav {
+    column-gap: 100px;
+  }
+  .footer-social {
+    flex: 0 0 450px;
+  }
+  footer::after {
+    bottom: 125px;
+  }
+  footer.section {
+      padding-bottom: 0;
+    }
 }

@@ -1,6 +1,6 @@
 .gallery {
     padding-bottom: 0;
-    
+
 }
 .gallery__title {
     font-family: $forum;
@@ -24,12 +24,12 @@
     bottom: 0;
     left: 0;
     background-image: linear-gradient(to bottom,transparent 80%, rgba(0,0,0, 1));
-   
+
   }
 
 .picture-inner-container > img {
     object-fit: contain;
-    width: 456px;
+    width: calc(33.3% - 24px);
     display: block;
 }
   .picture-inner-container {

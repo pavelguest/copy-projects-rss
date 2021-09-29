@@ -4,6 +4,7 @@ let array = [
   'assets/img/gallery/galery1.jpg',
   'assets/img/gallery/galery2.jpg',
   'assets/img/gallery/galery3.jpg',
+  'assets/img/gallery/galery4.jpg',
   'assets/img/gallery/galery5.jpg',
   'assets/img/gallery/galery6.jpg',
   'assets/img/gallery/galery7.jpg',
