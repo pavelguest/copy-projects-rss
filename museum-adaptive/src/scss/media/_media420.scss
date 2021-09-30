@@ -3,13 +3,21 @@
     font-size: 16px;
   }
   .welcome-section {
-    padding: 35px 0 35px 0;
+    padding: 37px 0 35px 0;
   }
   .header-content__title {
     line-height: 18px;
     background-position: left top;
     background-size: 29px 16px;
     font-size: 16px;
+    padding-left: 54px;
+  }
+  .welcome-content {
+    padding-top: 5px;
+
+  }
+  .welcome-wrap {
+    min-height: 544px;
   }
   .welcome-content__title {
     text-align: center;
@@ -32,8 +40,51 @@
     justify-content: space-evenly;
     column-gap: 10px;
     padding: 0;
+    font-size: 16px;
   }
   .slider-nav__dots {
     column-gap: 10px;
+    span {
+      width: 7px;
+      height: 7px;
+    }
+  }
+  .slider-nav__button {
+    div {
+      width: 20px;
+      height: 8px;
+      background-size: 20px 8px;
+    }
+  }
+  //----------welcome-end---------//
+  .visiting {
+    margin-bottom: 0px;
+  }
+  .visiting__title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .visiting-card__title {
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 5px;
+  }
+  .visiting-card__subtitle, .visiting-card__text {
+    font-size: 16px;
+    line-height: 19px;
+  }
+  //----------visiting-end-------//
+  .explore-content__title {
+    font-size: 28px;
+    line-height: 40px;
+    margin-bottom: 63px;
+  }
+  .explore-conteiner {
+    justify-content: flex-start;
+  }
+  .explore__filter {
+    margin-top: 0px;
+    width: 380px;
+    height: 368px;
   }
 }

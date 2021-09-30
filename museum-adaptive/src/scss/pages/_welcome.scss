@@ -7,11 +7,12 @@
     position: absolute;
     top: 0;
     right: 0;
+    max-width: 1000px;
   }
   .slide > img {
-    max-width: 1000px;
-    max-height: 750px;
     display: block;
+    height: 100%;
+    width: 100%;
   }
   .slide::after {
     content:'';

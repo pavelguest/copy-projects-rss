@@ -135,7 +135,7 @@
   }
   .visiting__title::after {
     bottom: -23px;
-    width: 984px;
+    max-width: 984px;
   }
   .visiting-content {
     column-gap: 108px;
