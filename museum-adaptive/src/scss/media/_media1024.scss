@@ -206,10 +206,10 @@
   .panel {
     height: 60px;
   }
-  .panel__progress-video {
+  .container__progress-video {
     width: 564px;
   }
-  .panel__progress-volume {
+  .container__progress-volume {
     width: 143px;
   }
   .player__play-large {
@@ -217,7 +217,7 @@
     height: 152px;
     background-size: cover;
   }
-  .video-slide.active > iframe {
+  .video-slide {
     width: 300px;
     height: 170px;
   }
@@ -285,7 +285,7 @@
   .contacts__title::after {
     bottom: -23px;
   }
-  .map-img {
+  .contacts-content__map {
     width: calc(100vw - 330px);
     height: calc(65vw - 212px);
   }

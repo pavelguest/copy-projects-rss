@@ -188,9 +188,14 @@
           </div>
           <div class="panel">
             <button class="panel__play toggle btn-hover" title="Toggle Play"></button>
-            <input type="range" name="progress" min="0" max="100" step="1" value="54" class="panel__progress-video progress">
+            <div class="container__progress-video">
+              <input type="range" name="progress" min="0" max="100" step="1" value="54" class="panel__progress-video progress">
+            </div>
             <button class="panel__volume mute-volume btn-hover"></button>
-            <input type="range" name="volume" min="0" max="100" step="1" value="42" class="panel__progress-volume progress-vol">
+            <div class="container__progress-volume">
+              <input type="range" name="volume" min="0" max="100" step="1" value="42" class="panel__progress-volume progress-vol">
+            </div>
+
             <button class="panel__fullscreen fullscreen btn-hover"></button>
           </div>
         </div>
@@ -303,7 +308,10 @@
               <li class="contacts-info__info-item">mail: <a href="mailto:info@louvre.fr">info@louvre.fr</a></li>
             </ul>
           </div>
-          <img src="./assets/img/map-img.png" alt="google map" class="map-img">
+          <div class="contacts-content__map">
+            <img src="./assets/img/map-img.png" alt="google map" class="map-img">
+          </div>
+
         </div>
       </div>
     </section>

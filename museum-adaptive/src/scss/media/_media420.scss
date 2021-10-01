@@ -5,6 +5,9 @@
   .welcome-section {
     padding: 37px 0 35px 0;
   }
+  .video-section {
+    padding: 36px 0 40px 0;
+  }
   .header-content__title {
     line-height: 18px;
     background-position: left top;
@@ -87,4 +90,120 @@
     width: 380px;
     height: 368px;
   }
+  //--------------explore-end---------//
+  .video-main__title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .v-slider {
+    max-height: 172px;
+  }
+  .panel {
+    height: 54px;
+    position: relative;
+  }
+  .container__progress-video {
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    top: 0;
+  }
+  .container__progress-volume {
+    width: 200px;
+    height: 4px;
+  }
+  .panel__progress-video::-webkit-slider-thumb, .panel__progress-volume::-webkit-slider-thumb {
+   width: 10px;
+   height: 10px;
+  }
+  .panel__play {
+    width: 13.6px;
+    height: 17.69px;
+    background-size: cover;
+  }
+  .panel__volume {
+    width: 17.55px;
+    height: 13.76px;
+    background-size: cover;
+  }
+  .panel__fullscreen {
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+  }
+  .player__play-large {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+  }
+  .video-slide {
+    width: 180px;
+    height: 101px;
+  }
+  .video-slider {
+    padding-top: 40px;
+  }
+  .video-slider__nav {
+    padding-top: 40px;
+    margin-bottom: 0;
+  }
+  .vslider-nav__dots {
+    span {
+      width: 8px;
+      height: 8px;
+    }
+  }
+  .video-slider__btn-back, .video-slider__btn-next {
+    width: 7px;
+    height: 8px;
+    background-size: contain;
+    background-position: center center;
+  }
+   //---------------video-end------------//
+   .gallery__title {
+    font-size: 28px;
+    line-height: 40px;
+    margin-bottom: 40px;
+  }
+  .picture-inner-container > img {
+   width: calc(50% - 12px);
+
+}
+.picture-inner-container > img:nth-child(3n) {
+ display: none;
+}
+.picture-container {
+ max-height: 598px;
+}
+.picture-inner-container {
+ column-gap: 12px;
+}
+//---------gallery-end-------------//
+//-----------ticket-end------------//
+.contacts__title {
+  font-size: 28px;
+  line-height: 40px;
+}
+.contacts-content__map {
+  width: calc(100vw - 40px);
+  height: calc(75vw - 43px);
+}
+.contacts-content {
+  padding-top: 63px;
+  flex-direction: column;
+}
+.contacts-main__subtitle {
+  font-size: 16px;
+  line-height: 19px;
+  margin-bottom: 40px;
+}
+.contacts-info__info-item {
+  padding-bottom: 15px;
+  font-size: 16px;
+  line-height: 19px;
+}
+.contacts-content__map {
+  padding-top: 25px;
+  margin-bottom: 0px;
+}
 }
