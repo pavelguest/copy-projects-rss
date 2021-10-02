@@ -97,6 +97,7 @@
     min-height: 100px;
     min-width: 400px;
     justify-content: space-evenly;
+    padding: 0;
   }
   //----------welcome-end--------//
   .visiting {
@@ -227,7 +228,38 @@
   column-gap: 12px;
 }
 //----------gallery-end-----------//
+.tickets__title {
+  font-size: 40px;
+  line-height: 60px;
+  margin-bottom: 63px;
+}
+.tickets-content__img{
+  width: 444px;
+  height: 340px;
+}
+.tickets-content {
+  column-gap: 60px;
+}
+.amount__title {
+  margin-bottom: 39px;
+}
+.amount__subtitle {
+  margin-bottom: 10px;
+}
+.amount-button {
+  padding: 2px 10px;
+  margin-bottom: 25px;
+}
+.amount__total {
+  line-height: 33px;
+  padding-top: 14px;
+  margin-bottom: 40px;
+}
 //----------ticket-end-----------//
+.parallax {
+  height: 300px;
+}
+//-----------parallax------------//
 .contacts__title {
   font-size: 40px;
   line-height: 60px;

@@ -6,9 +6,12 @@
   top: 0;
   z-index: 15;
   transition: all 0.5s ease 0s;
+  background-color: #fff;
 }
 .booking-tickets.open {
-  left: 0;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
 }
 .booking-tickets__bg {
     opacity: 0;
@@ -42,9 +45,9 @@
  // flex-wrap: wrap;
   column-gap: 40px;
   justify-content: center;
-  padding: 91px 235px;
+  padding: 91px 0;
   position: relative;
-  background-color: white;
+
 }
 .info-input {
     max-width: 400px;
