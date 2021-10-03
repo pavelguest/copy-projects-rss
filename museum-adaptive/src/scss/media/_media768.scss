@@ -34,11 +34,15 @@
   }
   .header-list__img {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px 20px;
     max-width: 658px;
     border-bottom: solid 1px $bg-white;
     padding-bottom: 35px;
+  }
+  .header-list__img-last {
+    display: flex;
+    gap: 20px 20px;
   }
   .header-list__img img {
     display: block;
@@ -53,7 +57,15 @@
   .header-list__img:nth-of-type(3) {
     width: calc(50% - 10px);
   }
-
+  .header-social {
+    display: block;
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+  }
+  .welcome-content.active {
+    display: block;
+  }
   .welcome-content {
     padding-top: 0;
   }
@@ -129,7 +141,7 @@
   }
   //-----------------visiting-end------------//
   .explore-content {
-    max-width: 984px;
+    width: 100%;
     p {
       display: none;
     }
@@ -143,7 +155,14 @@
     justify-content: flex-start;
   }
   .explore__filter {
+    width: 728px;
     margin-top: 0px;
+    height: 705px;
+  }
+  .explore__img {
+    img {
+      height: 705px;
+    }
   }
   //-----------explore-end----------//
   .video-main__title {
@@ -290,6 +309,34 @@
   margin-bottom: 27px;
 }
 //---------contacts-end--------//
+.footer {
+  flex-direction: row;
+}
+.footer-nav {
+  column-gap: 170px;
+}
+footer::after {
+  bottom: 100px;
+  border: solid 1px #666666;
+}
+footer.section {
+    padding-bottom: 0;
+  }
+  .footer-container {
+    width: 641px;
+  }
+  .footer-list__item {
+    font-size: 18px;
+    line-height: 21px;
+    padding: 16px 0 10px 0;
+  }
+  .footer-social {
+    margin-left: 298px;
+  }
+  .footer__school {
+    padding: 25px 0 40px 0;
+  }
+  //-------------footer-end----------//
 }
 @media (max-width: 1023px) {
   .booking-tickets {
@@ -323,4 +370,50 @@
     padding: 25px 15px;
     background-position: top 25px right 15px;
   }
+}
+@media (max-width: 665px) {
+  .footer-nav {
+    column-gap: 20px;
+  }
+    .footer-container {
+      width: 641px;
+    }
+    .footer-social {
+      margin-left: 0px;
+    }
+    .school-link {
+      display: none;
+    }
+}
+@media (max-width: 760px) {
+  .explore-content__title {
+    font-size: 28px;
+    line-height: 40px;
+  }
+  .explore__filter {
+    width: 380px;
+    margin-top: 0px;
+    height: 368px;
+  }
+  .explore__img {
+    img {
+      height: 368px;
+    }
+  }
+  .explore__img-slider {
+    width: 20px;
+    height: 20px;
+    border: solid 2px #ffffff;
+    &::before {
+      width: 2px;
+      height: 176px;
+      top: -176px;
+  }
+  &::after {
+      width: 2px;
+      height: 175px;
+      top: 18px;
+  }
+  }
+
 }

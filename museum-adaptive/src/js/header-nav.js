@@ -13,8 +13,10 @@ if (menuLinks.length > 0) {
 
       if (iconMenu.classList.contains('_active')) {
      //   document.body.classList.remove('_lock');
+        welcomeDel.classList.remove('active');
         iconMenu.classList.remove('_active');
         menuBody.classList.remove('_active');
+
       }
       window.scrollTo({
         top: gotoBlockValue,
@@ -25,12 +27,15 @@ if (menuLinks.length > 0) {
   }
 }
 //---------------//
+const welcomeDel = document.querySelector('.welcome-content');
 const iconMenu = document.querySelector('.header-menu__icon');
 const menuBody = document.querySelector('.header-nav');
 if (iconMenu) {
   iconMenu.addEventListener('click', function (e) {
  //   document.body.classList.toggle('_lock');
+    welcomeDel.classList.toggle('active');
     iconMenu.classList.toggle('_active');
     menuBody.classList.toggle('_active');
+    welcomeDel.style.opacity = '1';
   })
 }

@@ -69,6 +69,9 @@
   .header-nav._active {
     left: 0;
   }
+  .welcome-content.active {
+    display: none;
+  }
   .header-list {
     flex-direction: column;
     row-gap: 25px;
@@ -302,20 +305,30 @@
     line-height: 23px;
   }
   //---------------contacts-end--------------------//
-  .footer-title {
-    margin-right: 45px;
+  .footer {
+    flex-wrap: wrap;
   }
   .footer-nav {
     column-gap: 100px;
-  }
-  .footer-social {
-    flex: 0 0 450px;
   }
   footer::after {
     bottom: 125px;
   }
   footer.section {
       padding-bottom: 0;
+    }
+    .footer-container {
+      width: 545px;
+    }
+    .footer-title {
+      font-size: 28px;
+      line-height: 31px;
+      background-size: 49px 26px;
+    }
+    .footer-list__item {
+      font-size: 22px;
+      line-height: 26px;
+      padding: 8px 0 16px 0;
     }
     //---------------footer-end--------------//
     .booking-tickets__content {

@@ -2,6 +2,50 @@
   body {
     font-size: 16px;
   }
+  .header-content__title {
+    line-height: 41px;
+    background-position: left top 4px;
+  }
+  .header-nav {
+    top: 90px;
+    height: 544px;
+  }
+  .header-list {
+    margin-bottom: 35px;
+  }
+ .header-list__img {
+   display: none;
+ }
+ .header-list__img420 {
+   display: block;
+   display: flex;
+    column-gap: 12px;
+    border-bottom: solid 1px $bg-white;
+    padding-bottom: 20px;
+ }
+  .header-list__img-item420:nth-of-type(1) {
+    background: url(../assets/img/image1-420.jpg) no-repeat;
+  }
+  .header-list__img-item420:nth-of-type(2) {
+    background: url(../assets/img/image2-420.jpg) no-repeat;
+  }
+  .header-list__img-item420:nth-of-type(3) {
+    background: url(../assets/img/image3-420.jpg) no-repeat;
+  }
+  .header-list__img-item420 {
+    display: block;
+    background-size: cover;
+    width: 95px;
+    height: 95px;
+    display: block;
+  }
+  .header-social {
+    display: block;
+    display: flex;
+    justify-content: center;
+    padding-top: 24px;
+    column-gap: 5px;
+  }
   .welcome-section {
     padding: 37px 0 35px 0;
   }
@@ -262,6 +306,57 @@
   padding-top: 25px;
   margin-bottom: 0px;
 }
+//-------------contacts-end----------------//
+.footer {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.footer-nav {
+  column-gap: 90px;
+  column-count: 3;
+  margin-bottom: 23px;
+}
+footer::after {
+  bottom: 100px;
+}
+footer.section {
+    padding-bottom: 0;
+  }
+  .footer-container {
+    width: 420px;
+    flex-direction: column;
+    row-gap: 30px;
+  }
+  .footer-title {
+    font-size: 16px;
+    line-height: 17px;
+    background-size: 29px 16px;
+    padding-left: 0;
+    padding-right: 200px;
+  }
+  .footer-list__item {
+    font-size: 16px;
+    line-height: 19px;
+    padding: 8px 0 20px 0;
+  }
+  .footer__school  {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: $font-weight1;
+    time, h5 {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+  .footer-social {
+    margin-left: 0;
+    column-gap: 5px;
+
+  }
+  .footer__subtitle {
+    padding-left: 4px;
+  }
+  //-------------footer-end----------//
 }
 @media (max-width: 600px) {
   .booking-tickets__content {
@@ -392,5 +487,30 @@
   .cc-date input {
    width: 100px;
    height: 25px;
+  }
+  .footer-nav {
+    column-gap: 10px;
+  }
+  .footer-title {
+    padding-right: 100px;
+  }
+  .explore__filter {
+    width: 280px;
+    height: 268px;
+  }
+  .explore__img {
+    img {
+      height: 268px;
+    }
+  }
+  .explore__img-slider {
+    &::before {
+      height: 125px;
+      top: -125px;
+  }
+  &::after {
+      height: 125px;
+      top: 18px;
+  }
   }
 }

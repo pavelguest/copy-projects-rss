@@ -3,6 +3,12 @@
 }
 .footer {
     display: flex;
+    justify-content: space-between;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
   }
   .footer-title {
     display: block;
@@ -19,7 +25,6 @@
     background-image: url("../assets/svg/logo.svg");
     background-repeat: no-repeat;
     background-size: 50px 34px;
-    margin-right: 140px;
   }
   .footer-title:hover {
     filter: invert(77%) sepia(0%) saturate(1046%) hue-rotate(239deg) brightness(79%) contrast(50%);
@@ -39,8 +44,8 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    flex: 0 0 738px;
     margin-bottom: 55px;
+    column-gap: 24px;
   }
   .youtube {
     display: block;
@@ -50,7 +55,6 @@
     height: 48px;
     border: 1px solid white;
     border-radius: 50%;
-    margin-right: 24px;
   }
   .instagram {
     display: block;
@@ -60,7 +64,6 @@
     height: 48px;
     border: 1px solid white;
     border-radius: 50%;
-    margin-right: 24px;
   }
   .facebook {
     display: block;
@@ -70,7 +73,6 @@
     height: 48px;
     border: 1px solid white;
     border-radius: 50%;
-    margin-right: 24px;
   }
   .twitter {
     display: block;
@@ -80,7 +82,6 @@
     height: 48px;
     border: 1px solid white;
     border-radius: 50%;
-    margin-right: 24px;
   }
   .pinterest {
     display: block;
@@ -123,7 +124,7 @@
   }
   footer::after {
     content: "";
-    border: solid 2px #ffffff;
+    border: solid 2px #666666;
     width: 100%;
     position: absolute;
     bottom: 123px;
