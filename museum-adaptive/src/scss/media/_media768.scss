@@ -291,3 +291,36 @@
 }
 //---------contacts-end--------//
 }
+@media (max-width: 1023px) {
+  .booking-tickets {
+    overflow-y: auto;
+  }
+  .booking-tickets__content {
+    flex-direction: column;
+    min-width: 590px;
+    padding: 79.78px 30px 40px 30px;
+    row-gap: 50.96px;
+  }
+  .info-input {
+   max-width: 530px;
+  }
+  .info-input__form {
+    margin-top: 52.86px;
+    row-gap: 19.95px;
+    input, select {
+      max-width: 530px;
+      height: 44.88px;
+    }
+  }
+  .value__select {
+    width: 251px;
+    height: 44.88px;
+  }
+  .form__value {
+    column-gap: 28px;
+  }
+  .card-input {
+    padding: 25px 15px;
+    background-position: top 25px right 15px;
+  }
+}

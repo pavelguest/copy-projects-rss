@@ -321,10 +321,12 @@
     .booking-tickets__content {
       padding: 75px 27px 30px 27px;
     }
-    .booking-tickets__container {
-      .container {
-        max-width: 1440px;
-        padding: 0;
-      }
+    .card-input__subtitle {
+      font-size: 22px;
     }
+}
+@media (max-width:1440px) {
+  .booking-tickets__content {
+    min-width: 1024px;
+  }
 }

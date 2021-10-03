@@ -263,3 +263,134 @@
   margin-bottom: 0px;
 }
 }
+@media (max-width: 600px) {
+  .booking-tickets__content {
+    min-width: 420px;
+    padding: 80.09px 30px 50px 30px;
+    row-gap: 49.12px;
+  }
+  .info-input {
+   max-width: 360px;
+  }
+  .info-input__title {
+    font-size: 32px;
+    line-height: 35px;
+  }
+  .info-input__subtitle {
+    font-size: 18px;
+    line-height: 21px;
+  }
+  .info-input__form {
+    margin-top: 52.86px;
+    row-gap: 19.95px;
+    input, select {
+      max-width: 360px;
+      height: 45.05px;
+    }
+  }
+  .value__select {
+    width: 360px;
+    height: 45.05px;
+  }
+  .form__value {
+    column-gap: 0px;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+  .card-input {
+    width: 360px;
+    padding: 25px 15px;
+    background-position: top 25px right 15px;
+    background-size: 120px 96px;
+  }
+  .card__front {
+    position: relative;
+    width: 330px;
+    height: 209px;
+  }
+  .card__backend {
+    width: 330px;
+    height: 209px;
+  }
+  .card-input__card {
+    padding-top: 5px;
+    flex-direction: column;
+    row-gap: 25px;
+    height: 100%;
+  }
+  .cardholder-name {
+    width: 290px;
+  }
+  .book__btn {
+    margin-top: 40px;
+  }
+  .date-time {
+    margin-bottom: 4px;
+  }
+}
+@media (max-width: 419px) {
+  .booking-tickets__content {
+    min-width: 320px;
+    padding: 50px 10px 30px 10px;
+    row-gap: 49.12px;
+  }
+  .info-input {
+   max-width: 300px;
+  }
+  .info-input__form {
+    margin-top: 30px;
+    input, select {
+      max-width: 300px;
+      height: 35.05px;
+    }
+  }
+  .value__select {
+    width: 300px;
+    height: 35.05px;
+  }
+  .card-input {
+    width: 300px;
+    padding: 25px 15px;
+    background-position: top 5px right 5px;
+    background-size: 120px 96px;
+  }
+  .card__front {
+    position: relative;
+    width: 270px;
+    height: 209px;
+  }
+  .card__backend {
+    width: 270px;
+    height: 209px;
+  }
+  .cardholder-name {
+    width: 190px;
+  }
+  .book__btn {
+    margin-top: 20px;
+  }
+  .cvc {
+    margin-top: 5px;
+    width: 75px;
+    height: 25px;
+  }
+  .cc-number {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 115px;
+    height: 25px;
+  }
+  .cc-date > input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .cardholder-name {
+    margin-top: 5px;
+    width: 170px;
+    height: 25px;
+  }
+  .cc-date input {
+   width: 100px;
+   height: 25px;
+  }
+}

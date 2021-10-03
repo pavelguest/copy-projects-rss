@@ -6,12 +6,9 @@
   top: 0;
   z-index: 15;
   transition: all 0.5s ease 0s;
-  background-color: #fff;
 }
 .booking-tickets.open {
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  left: 0;
 }
 .booking-tickets__bg {
     opacity: 0;
@@ -25,11 +22,14 @@
     transition: .6s all ease-in-out;
     z-index: 14;
 }
-.booking-tickets > .booking-tickets__container {
+.booking-tickets__container {
   min-height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  .container {
+    max-width: 1440px;
+    padding: 0;
+  }
 }
 .booking-tickets__close {
   background: transparent url(../assets/svg/booking-ticket/Close.svg) no-repeat;
@@ -40,14 +40,15 @@
   right: 30px;
 }
 .booking-tickets__content {
+  min-width: 1440px;
   display: flex;
   flex-direction: row;
- // flex-wrap: wrap;
+  flex-wrap: wrap;
   column-gap: 40px;
   justify-content: center;
   padding: 91px 0;
   position: relative;
-
+  background-color: white;
 }
 .info-input {
     max-width: 400px;
@@ -78,7 +79,7 @@
     bottom: -13px;
     left: 0;
     height: 3px;
-    width: 400px;
+    width: 100%;
     background-color: $dark-red;
   }
 .info-input__form {
@@ -88,7 +89,7 @@
     row-gap: 20px;
 }
 .info-input__form > input, select  {
-  width: 400px;
+  max-width: 400px;
   height: 45px;
   border: solid 1px $bg-dark;
 }
@@ -192,7 +193,7 @@
     bottom: -7px;
     left: 0;
     height: 2px;
-    width: 370px;
+    width: 100%;
     background-color: $dark-red;
   }
   .ticket-price {
@@ -252,7 +253,7 @@
   bottom: -7px;
   left: 0;
   height: 2px;
-  width: 370px;
+  width: 100%;
   background-color: $dark-red;
 }
 .card-input__date-time {
@@ -290,14 +291,20 @@
   height: 117px;
   margin-bottom: 10px;
 }
-.ticket-num > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  position: relative;
+.ticket-num {
+  font-size: 22px;
+  line-height: 26px;
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+  }
 }
 .ticket-num__type {
-
+ font-size: 22px;
+ line-height: 26px;
+ padding-bottom: 5px;
   span {
     color: $bg-white;
     background-color: $bg-dark;
@@ -311,6 +318,12 @@
     line-height: 22px;
     font-size: $font4;
   }
+  span:last-child {
+    margin-bottom: 0;
+  }
+}
+.ticket-num__type:last-child {
+  padding-bottom: 0;
 }
 .ticket-num__total {
   padding-top: 21px;
@@ -325,7 +338,7 @@
     top: 6px;
     left: 0;
     height: 2px;
-    width: 470px;
+    width: 100%;
     background-color: $dark-red;
 }
 .card-input__card {
@@ -375,7 +388,7 @@
 .card__backend > hr {
   background-color: $bg-dark;
   height: 45px;
-  width: 360px;
+  max-width: 360px;
   border: none;
   margin: 0;
   margin-top: 25px;
