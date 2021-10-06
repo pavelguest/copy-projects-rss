@@ -90,7 +90,9 @@
     align-items: center;
   }
 .welcome__slider {
- width: calc(100% - 40px);
+  max-width: 728px;
+  max-height: 546px;
+  width: 100%;
 }
   .slide::after {
     content:'';

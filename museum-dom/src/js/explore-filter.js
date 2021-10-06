@@ -41,7 +41,7 @@ function initComparisons() {
       slide(pos);
     }
     function getCursorPos(e) {
-      var a, x = 0;
+      let a, x = 0;
       e = e || window.event;
       a = img.getBoundingClientRect();
       x = e.pageX - a.left;

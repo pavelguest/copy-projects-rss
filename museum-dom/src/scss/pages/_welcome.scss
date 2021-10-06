@@ -97,14 +97,13 @@
       transition: 0.3s;
       opacity: 1;
     }
-  }
-  .swiper-pagination-bullet-active {
-    background: #D2B183 !important;
-    opacity: 1;
-  }
-  .dot.active:hover {
-    filter: brightness(60%)
-
+    .swiper-pagination-bullet-active {
+      background: #D2B183 !important;
+      opacity: 1;
+    }
+    .swiper-pagination-bullet:hover {
+      background: rgb(71, 22, 22);
+    }
   }
   .slider-nav__button {
     display: flex;
