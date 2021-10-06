@@ -1,0 +1,29 @@
+@import './fonts';
+@import './base/normalize';
+@import './base/base';
+@import './theme';
+
+@import '../../node_modules/swiper/swiper.scss';
+@import '../../node_modules/swiper/modules/navigation/navigation.scss';
+@import '../../node_modules/swiper/modules/pagination/pagination.scss';
+
+
+@import './layout/header';
+@import './pages/welcome';
+@import './pages/visiting';
+@import './pages/explore';
+@import './pages/video';
+@import './pages/gallery';
+@import './pages/ticket';
+@import './pages/parallax';
+@import './pages/contacts';
+@import './layout/footer';
+@import './pages/booking-tickets';
+
+@import './media/media1024.scss';
+@import './media/media768.scss';
+@import './media/media420.scss';
+
+@import './swiper.scss';
+
+

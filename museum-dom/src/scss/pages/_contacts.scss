@@ -1,0 +1,46 @@
+.contacts__title {
+  font-family: $forum;
+  font-size: $font1;
+  color: $font-gold;
+  font-weight: $font-weight4;
+  letter-spacing: 5px;
+  line-height: 90px;
+  text-transform: uppercase;
+  position: relative;
+}
+.contacts__title::after {
+  content: "";
+  position: absolute;
+  bottom: -28px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: $dark-red;
+}
+.contacts-content__map {
+  max-width: 960px;
+  max-height: 620px;
+  .map-img {
+   width: 100%;
+   height: 100%;
+  }
+}
+.contacts-content {
+  padding-top: 103px;
+  display: flex;
+  justify-content: space-between;
+}
+.contacts-main__subtitle {
+  font-weight: $font-weight5;
+  font-size: $font3;
+  line-height: 33px;
+  margin-bottom: 50px;
+}
+.contacts-info__info-item {
+  font-weight: $font-weight3;
+  line-height: 26px;
+  padding-bottom: 25px;
+  a:hover {
+    color: $font-gold;
+  }
+}

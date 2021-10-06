@@ -1,0 +1,454 @@
+.booking-tickets {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  top: 0;
+  z-index: 15;
+  transition: all 0.5s ease 0s;
+}
+.booking-tickets.open {
+  left: 0;
+}
+.booking-tickets__bg {
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: .6s all ease-in-out;
+    z-index: 14;
+}
+.booking-tickets__container {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  .container {
+    max-width: 1440px;
+    padding: 0;
+  }
+}
+.booking-tickets__close {
+  background: transparent url(../assets/svg/booking-ticket/Close.svg) no-repeat;
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.booking-tickets__content {
+  min-width: 1440px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 40px;
+  justify-content: center;
+  padding: 91px 0;
+  position: relative;
+  background-color: white;
+}
+.info-input {
+    max-width: 400px;
+    background: url("../assets/svg/logo-booking.svg") no-repeat;
+}
+.info-input__title {
+    display: block;
+    font-family: $forum;
+    font-size: 50px;
+    font-weight: $font-weight4;
+    line-height: 55px;
+    text-transform: uppercase;
+    color: $font-gold;
+    padding-top: 41px;
+}
+.info-input__subtitle {
+    padding-top: 15px;
+    font-size: $font4;
+    font-family: $roboto;
+    color: $dark-red;
+    line-height: 19px;
+    position: relative;
+    font-weight: $font-weight4;
+}
+.info-input__subtitle::after {
+    content: "";
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: $dark-red;
+  }
+.info-input__form {
+    margin-top: 73px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.info-input__form > input, select  {
+  max-width: 400px;
+  height: 45px;
+  border: solid 1px $bg-dark;
+}
+.form__value {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    input {
+      border: solid 1px $bg-dark;
+      font-family: 'Roboto';
+      font-size: 18px;
+      line-height: 21px;
+      padding-inline-start: 44px;
+    }
+}
+#date {
+  background: url(../assets/svg/booking-ticket/date.svg) calc(15px) no-repeat,
+              url("../assets/svg/booking-ticket/arrow.svg") right 15px top 50% no-repeat;
+}
+#time {
+  background: url(../assets/svg/booking-ticket/time.svg) calc(15px) no-repeat,
+              url("../assets/svg/booking-ticket/arrow.svg") right 15px top 50% no-repeat;
+}
+#name {
+  background: url(../assets/svg/booking-ticket/name.svg) calc(15px) no-repeat;
+}
+#email {
+  background: url(../assets/svg/booking-ticket/email.svg) calc(15px) no-repeat;
+}
+#phone {
+  background: url(../assets/svg/booking-ticket/tel.svg) calc(15px) no-repeat;
+}
+#ticket-type {
+  background: url(../assets/svg/booking-ticket/tiket-type.svg) calc(15px) no-repeat,
+              url("../assets/svg/booking-ticket/arrow.svg") right 14px top 50% no-repeat;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-family: 'Roboto';
+  font-size: 18px;
+  line-height: 21px;
+  padding-inline-start: 44px;
+}
+#card-ico, #ico-card {
+  background: transparent url("../assets/svg/booking-ticket/ico-card.svg") right top 50% no-repeat;
+  border: solid 1px #A4A4A3;
+  background-color: white;
+}
+.info-input__form > input[placeholder] {
+  font-family: 'Roboto';
+  font-size: 18px;
+  line-height: 21px;
+  padding-inline-start: 44px;
+}
+::-webkit-calendar-picker-indicator {
+  background: none;
+}
+::-webkit-datetime-edit {
+  opacity: 0;
+}
+::-webkit-input-placeholder {
+  color: $bg-dark;
+}
+.value__select {
+    width: 190px;
+    height: 45px;
+    border: solid 1px ;
+}
+.value__date, .value__time {
+  position: relative;
+  span{
+    position: absolute;
+    top: 12px;
+    left: 44px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    line-height: 21px;
+  }
+  input {
+    border: solid 1px $bg-dark;
+  }
+}
+.entry-ticket {
+    margin-top: 20px;
+    padding: 10px 15px 15px 15px;
+    border: solid 1px $bg-dark;
+    height: 135px;
+}
+.entry-ticket__subtitle {
+  font-family: $forum;
+  font-size: $font4;
+  font-weight: $font-weight4;
+  line-height: 19px;
+  color: $font-gold;
+  position: relative;
+  margin-bottom: 25px;
+}
+.entry-ticket__subtitle::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: $dark-red;
+  }
+  .ticket-price {
+    display: flex;
+    justify-content: space-between;
+    font-size: $font4;
+    line-height: 21px;
+    margin-bottom: 18px;
+  }
+  .entry-ticket__button {
+    border: 1px solid $bg-dark;
+    display: flex;
+    justify-content: space-between;
+    font-family: $roboto;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .entry-ticket__number {
+      all: unset;
+      width: 35px;
+      text-align: center;
+      font-weight: 300;
+  }
+  .entry-ticket__button button {
+    width: 35px;
+    background-color: $bg-dark;
+    color: $bg-white;
+    font-size: $font4;
+    font-weight: $font-weight4;
+  }
+.card-input {
+  width: 530px;
+  border: solid 1px $bg-dark;
+  padding: 25px 30px 25px 30px;
+  background-image: url(../assets/img/museum-small.png) ;
+  background-repeat: no-repeat;
+  background-size: 150px 120px;
+  background-position: top 25px right 30px;
+}
+.card-input__title {
+  font-family: $roboto;
+  font-size: $font2;
+  font-weight: $font-weight5;
+  line-height: 38px;
+  margin-bottom: 2px;
+}
+.card-input__subtitle {
+  font-family: $roboto;
+  font-weight: $font-weight5;
+  line-height: 25px;
+  color: $dark-red;
+  margin-bottom: 9px;
+}
+.card-input__subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: $dark-red;
+}
+.card-input__date-time {
+  height: 151px;
+  margin-bottom: 22px;
+}
+.date-time {
+  font-size: $font4;
+  font-weight: $font-weight3;
+  line-height: 21px;
+  margin-bottom: 5px;
+}
+.date-time > .date::before {
+  content: '';
+  display: inline-block;
+  height: 1em;  width: 1em;
+  background: url(../assets/svg/booking-ticket/date.svg) no-repeat bottom;
+  margin-right: 12px;
+}
+.date-time > .time::before {
+  content: '';
+  display: inline-block;
+  height: 1em;  width: 1em;
+  background: url(../assets/svg/booking-ticket/time.svg) no-repeat bottom;
+  margin-right: 12px;
+}
+.date-time > .ok::before {
+  content: '';
+  display: inline-block;
+  height: 1em;  width: 1em;
+  background: url(../assets/svg/booking-ticket/check_circle_outline.svg) no-repeat bottom;
+  margin-right: 12px;
+}
+.card-input__price {
+  height: 117px;
+  margin-bottom: 10px;
+}
+.ticket-num {
+  font-size: 22px;
+  line-height: 26px;
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+  }
+}
+.ticket-num__type {
+ font-size: 22px;
+ line-height: 26px;
+ padding-bottom: 5px;
+  span {
+    color: $bg-white;
+    background-color: $bg-dark;
+    border-radius: 20%;
+    width: 32px;
+    height: 21px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    line-height: 22px;
+    font-size: $font4;
+  }
+  span:last-child {
+    margin-bottom: 0;
+  }
+}
+.ticket-num__type:last-child {
+  padding-bottom: 0;
+}
+.ticket-num__total {
+  padding-top: 21px;
+  font-size: $font2;
+  font-weight: 400;
+  line-height: 37px;
+  position: relative;
+}
+.ticket-num__total::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background-color: $dark-red;
+}
+.card-input__card {
+  height: 241px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  position: relative;
+  font-size: 12px;
+  input {
+    border: solid 1px #A4A4A3;
+  }
+}
+.card__front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: 211px;
+  padding: 15px 20px;
+  z-index: 1;
+  border-radius: 1%;
+  background: url(../assets/svg/booking-ticket/Visa.png) top 34px right 20px no-repeat,
+              url(../assets/svg/booking-ticket/Mastercard.png) top 65px right 20px no-repeat,
+              #BCBCBC;
+}
+.card__backend {
+  width: 360px;
+  height: 211px;
+  background-color: #939393;
+  position: relative;
+  border-radius: 1%;
+}
+.card-fournum {
+  position: absolute;
+  right: 20px;
+  top: 85px;
+}
+.card-fournum > p {
+  margin-left: 10px;
+}
+.card-fournum__font {
+  margin-top: 6px;
+  font-size: 10px;
+  line-height: 12px;
+}
+.card__backend > hr {
+  background-color: $bg-dark;
+  height: 45px;
+  max-width: 360px;
+  border: none;
+  margin: 0;
+  margin-top: 25px;
+}
+.cvc {
+  margin-top: 5px;
+  width: 75px;
+  height: 35px;
+}
+.cc-number {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 215px;
+  height: 35px;
+}
+.cc-date > input {
+  margin-top: 5px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+.cardholder-name {
+  margin-top: 5px;
+  width: 320px;
+  height: 35px;
+}
+.cc-date input {
+ width: 100px;
+ height: 35px;
+}
+.book-button {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.book__btn {
+  margin-top: 25px;
+  width: 220px;
+  height: 45px;
+  background-color: $dark-red;
+  color: $bg-white;
+  font-family: $roboto;
+  font-weight: $font-weight4;
+  position: relative;
+  overflow: hidden;
+}
+.book-btn:focus {
+  outline: none;
+}
+.circle {
+  position: absolute;
+  background-color: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: scale 0.5s ease-out;
+}
+@keyframes scale {
+  to {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}

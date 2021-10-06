@@ -1,0 +1,19 @@
+.container {
+  margin: 0 auto;
+  max-width: 1480px;
+  padding: 0 20px;
+  overflow: hidden;
+}
+.dark-section {
+  background-color: $bg-dark;
+  color: white;
+}
+.section {
+  padding: 75px 0;
+}
+.video-section {
+  padding: 75px 0 75px;
+}
+.welcome-section {
+  padding: 59px 0 58px 0;
+}
