@@ -77,7 +77,7 @@ const videoPoster = [
     let videoSrc = document.querySelector('.v-slide');
     videoSrc.setAttribute('src', videoArray[currentVideoSlide]);
     videoSrc.setAttribute('poster', videoPoster[currentVideoSlide]);
-
+   
   });
 
 

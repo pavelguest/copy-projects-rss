@@ -22,7 +22,6 @@
   .video-content {
     margin-top: 75px;
     position: relative;
-    width: 100%;
     line-height: 0;
   }
   .v-slider {
@@ -31,17 +30,11 @@
     overflow: hidden;
   }
   .v-slide {
-    position: absolute;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-  .v-slide.active {
-    position: relative;
-    opacity: 1;
     width: 100%;
+    height: 100%;
   }
   .panel {
-    max-width: 1440px;
+    width: 100%;
     height: 85px;
     display: flex;
     align-items: center;
@@ -88,7 +81,7 @@
     height: 36px;
   }
   .container__progress-video {
-    width: 929px;
+    width: 65%;
     height: 8px;
 
   }
@@ -201,4 +194,21 @@
 }
 .video-slider__btn-back:hover, .video-slider__btn-next:hover {
   filter: invert(7%) sepia(91%) saturate(10010%) hue-rotate(12deg) brightness(50%) contrast(112%);
+}
+.fullscreen-window {
+  width: 100%;
+  max-height: 100%;
+}
+.video-alert {
+  position: absolute;
+  padding: 25px;
+  border-radius: 5%;
+  color: #FFFFFF;
+  top: 10%;
+  left: 50%;
+  transform:translate(-50%, 0%);
+  font-size: 30px;
+  background-color: rgba($color: #00000038, $alpha: 0.5);
+  opacity: 0;
+  transition: ease 0.5s;
 }

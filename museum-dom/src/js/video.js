@@ -1,148 +1,75 @@
+const videoPlay = document.querySelector('.v-slide')
+const videoContainer = document.querySelector('.v-slider');
+const videoFull = document.querySelector('.video-content');
+const videoAlert = document.querySelector('.video-alert');
 const panel = document.querySelector('.panel');
 const toggle = panel.querySelector('.toggle');
 const toggleLarge = document.querySelector('.player__play-large');
-const progress = document.querySelector('.progress');
-const progressVol = document.querySelector('.progress-vol');
-
-
-
-
-/*let active = 0;
-addActiveV();
-nextButton.addEventListener('click', () => {
-  removeActiveV();
-  active++;
-  toggleLarge.style.display = 'block';
-  if (active > slidesV.length - 1) active = 0;
-  addActiveV();
-});
-backButton.addEventListener('click', () => {
-  removeActiveV();
-  active--;
-  if (active < 0) active = slidesV.length - 1;
-  addActiveV();
-});
-function addActiveV() {
-  slidesV[active].classList.add('active');
-  slidesV[active].addEventListener('click', togglePlay);
-  add(slidesV[active]);
-};
-function removeActiveV() {
-  slidesV[active].pause();
-  slidesV[active].currentTime = 0;
-  toggleLarge.style.display = 'block';
-  progressVideoTime();
-  remove(slidesV[active]);
- // slidesV.forEach((slide) => slide.classList.remove('active'));
-};
-
-function add (video) {
-  toggle.addEventListener('click', togglePlay);
-  toggleLarge.addEventListener('click', togglePlay);
-  video.addEventListener('click', togglePlay);
-};
-function remove (video) {
-  toggle.removeEventListener('click', togglePlay);
-  toggleLarge.removeEventListener('click', togglePlay);
-  video.removeEventListener('click', togglePlay);
-};
-function togglePlay() {
-  if (slidesV[active].paused) {
-    toggle.setAttribute('class', 'panel__play');
-    toggleLarge.style.display = 'none';
-    slidesV[active].play();
-  } else {
-    toggle.setAttribute('class', 'panel__pause');
-    toggleLarge.style.display = 'block';
-    slidesV[active].pause();
-  }
-};
-function change() {
-  const value = this.value;
-  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, white 100%)`;
-}
-progress.addEventListener('input', change);
-progressVol.addEventListener('input', change);
-
-/*const body = document.body;
-const progressBar = panel.querySelector('.panel__progress-video');
-const skipButtons = panel.querySelectorAll('[data-skip]');
+const progressBar = panel.querySelector('.progress');
+const progressVolume = panel.querySelector('.progress-vol');
 const rangesVolume = panel.querySelectorAll('.panel__progress-volume');
 const fullscreen = panel.querySelector('.fullscreen');
 const muteVol = panel.querySelector('.mute-volume');
 
-
-
-
-
-
-
-nextButton.addEventListener('click', () => {
-  removeActive();
-  active++;
-  toggleLarge.style.display = 'block';
-  if (active > slides.length - 1) active = 0;
-  addActive();
-});
-backButton.addEventListener('click', () => {
-  removeActive();
-  active--;
-  if (active < 0) active = slides.length - 1;
-  addActive();
-});
-function addActive() {
-  slides[active].classList.add('active');
-  slides[active].addEventListener('click', togglePlay);
-  add(slides[active]);
-  body.style.backgroundColor = slides[active].style.backgroundColor;
-};
-function removeActive() {
-  slides[active].pause();
-  slides[active].currentTime = 0;
-  progressVideoTime();
-  remove(slides[active]);
-  slides.forEach((slide) => slide.classList.remove('active'));
-};
+videoPlay.volume = 0.45;
+videoPlay.onended = function() {
+  toggle.setAttribute('class', 'panel__pause');
+    toggleLarge.style.display = 'block';
+}
 function togglePlay() {
-  if (slides[active].paused) {
+  if (videoPlay.paused) {
     toggle.setAttribute('class', 'panel__play');
     toggleLarge.style.display = 'none';
-    slides[active].play();
+    videoPlay.play();
   } else {
     toggle.setAttribute('class', 'panel__pause');
     toggleLarge.style.display = 'block';
-    slides[active].pause();
+    videoPlay.pause();
   }
 };
-function handleRangeUpdate() {
-  slides[active][this.name] = this.value;
-  const value = (this.value - this.min)/(this.max - this.min) * 100;
-  this.style.background = `linear-gradient(to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, #C4C4C4 100%)`;
-};
+
 function progressVideo(e) {
-  slides[active].currentTime = (e.offsetX / progressBar.offsetWidth) * slides[active].duration;
+  videoPlay.currentTime = (e.offsetX / progressBar.offsetWidth) * videoPlay.duration;
 };
 function progressVideoTime() {
-  const value = (slides[active].currentTime / slides[active].duration) * 100;
+  const value = (videoPlay.currentTime / videoPlay.duration) * 100;
   progressBar.value = value;
-  progressBar.style.background = `linear-gradient( to right, #24809E 0%, #24809E ${value}%, #C4C4C4 ${value}%, #C4C4C4 100%)`;
+  progressBar.style.background = `linear-gradient( to right, #710707 0%, #710707 ${value}%, #fff ${value}%, #fff 100%)`;
+};
+function handleRangeUpdate() {
+  if (videoPlay.muted) {
+    videoPlay.muted = false;
+    videoPlay.volume = progressVolume.value;
+  }
+  videoPlay[this.name] = this.value;
+  const value = (this.value - this.min)/(this.max - this.min) * 100;
+  this.style.background = `linear-gradient(to right, #710707 0%, #710707 ${value}%, #fff ${value}%, #fff 100%)`;
+  if (videoPlay.volume === 0) {
+    muteVol.setAttribute('class', 'panel__unmute');
+  } else muteVol.setAttribute('class', 'panel__volume');
 };
 function videoMute() {
-  if (slides[active].muted) {
-    slides[active].muted = false;
+  if (videoPlay.muted) {
+    videoPlay.muted = false;
     muteVol.setAttribute('class', 'panel__volume');
+    progressVolume.value = videoPlay.volume;
   } else {
     muteVol.setAttribute('class', 'panel__unmute');
-    slides[active].muted = true;
+    videoPlay.muted = true;
+    progressVolume.value = 0;
   }
+  progressVolume.style.background = `linear-gradient(to right, #710707 0%, #710707 ${progressVolume.value * 100}%, #fff ${progressVolume.value * 100}%, #fff 100%)`;
 };
+
 function toggleFullscreen() {
   if (document.fullscreenElement === null) {
-    slider.classList.add('fullscreen-window');
-    slider.requestFullscreen();
+    videoFull.classList.add('fullscreen-window');
+    videoContainer.classList.add('fullscreen-window');
+    videoFull.requestFullscreen();
   } else {
     if (document.fullscreenEnabled) {
-      slider.classList.remove('fullscreen-window');
+      videoFull.classList.remove('fullscreen-window');
+      videoContainer.classList.remove('fullscreen-window');
       document.exitFullscreen();
     }
   }
@@ -150,6 +77,7 @@ function toggleFullscreen() {
 function keysPush(e) {
   switch (e.keyCode) {
     case 32:
+      e.preventDefault();
       togglePlay();
       break;
     case 77:
@@ -159,37 +87,36 @@ function keysPush(e) {
       toggleFullscreen();
       break;
     case 39:
-      slides[active].currentTime += 5;
+      videoPlay.currentTime += 5;
       break;
     case 37:
-      slides[active].currentTime -= 5;
+      videoPlay.currentTime -= 5;
+      break;
+    case 188:
+      if (e.shiftKey)
+        videoPlay.playbackRate -= 0.25;
+        videoAlert.style.opacity = '1'
+        videoAlert.textContent = `${videoPlay.playbackRate}x`;
+        setTimeout(() => {videoAlert.style.opacity = '0'}, 700);
+      break;
+    case 190:
+      if (e.shiftKey)
+        videoPlay.playbackRate += 0.25;
+        videoAlert.style.opacity = '1'
+        videoAlert.textContent = `${videoPlay.playbackRate}x`;
+        setTimeout(() => {videoAlert.style.opacity = '0'}, 700);
       break;
   }
 };
-function add (video) {
-  toggle.addEventListener('click', togglePlay);
-  toggleLarge.addEventListener('click', togglePlay);
-  video.addEventListener('click', togglePlay);
-  video.addEventListener('timeupdate', progressVideoTime);
-  rangesVolume.forEach(range => range.addEventListener('change', handleRangeUpdate));
-  rangesVolume.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
-  progressBar.addEventListener('click', progressVideo);
-  progressBar.addEventListener('input', progressVideoTime);
-  fullscreen.addEventListener('click', toggleFullscreen);
-  muteVol.addEventListener('click', videoMute);
-};
-function remove (video) {
-  toggle.removeEventListener('click', togglePlay);
-  toggleLarge.removeEventListener('click', togglePlay);
-  video.removeEventListener('click', togglePlay);
-  video.removeEventListener('timeupdate', progressVideoTime);
-  rangesVolume.forEach(range => range.removeEventListener('change', handleRangeUpdate));
-  rangesVolume.forEach(range => range.removeEventListener('mousemove', handleRangeUpdate));
-  progressBar.removeEventListener('click', progressVideo);
-  progressBar.removeEventListener('input', progressVideoTime);
-  fullscreen.removeEventListener('click', toggleFullscreen);
-  muteVol.removeEventListener('click', videoMute);
-};
 
+toggle.addEventListener('click', togglePlay);
+toggleLarge.addEventListener('click', togglePlay);
+videoPlay.addEventListener('click', togglePlay);
+videoPlay.addEventListener('timeupdate', progressVideoTime);
+rangesVolume.forEach(range => range.addEventListener('change', handleRangeUpdate));
+rangesVolume.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
+progressBar.addEventListener('click', progressVideo);
+progressBar.addEventListener('input', progressVideoTime);
+fullscreen.addEventListener('click', toggleFullscreen);
+muteVol.addEventListener('click', videoMute);
 window.addEventListener('keydown', keysPush);
-*/

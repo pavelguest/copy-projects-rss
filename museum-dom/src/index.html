@@ -197,9 +197,10 @@
         </div>
         <div class="video-content">
           <div class="v-slider">
-            <video class="player v-slide active" src="./assets/video/video0.mp4" poster="./assets/video//poster0.jpg"></video>
+            <video class="player v-slide" src="./assets/video/video0.mp4" poster="./assets/video//poster0.jpg"></video>
             <button class="player__play-large btn-hover"></button>
           </div>
+          <div class="video-alert"></div>
           <div class="panel">
             <button class="panel__play toggle btn-hover" title="Toggle Play"></button>
             <div class="container__progress-video">
@@ -207,9 +208,8 @@
             </div>
             <button class="panel__volume mute-volume btn-hover"></button>
             <div class="container__progress-volume">
-              <input type="range" name="volume" min="0" max="100" step="1" value="42" class="panel__progress-volume progress-vol">
+              <input type="range" name="volume" min="0" max="1" step="0.05" value="0.45" class="panel__progress-volume progress-vol">
             </div>
-
             <button class="panel__fullscreen fullscreen btn-hover"></button>
           </div>
         </div>
