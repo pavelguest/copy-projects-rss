@@ -1,5 +1,49 @@
 const pictureInnerContainer = document.querySelector('.picture-inner-container');
 
+
+
+
+function debounce(func, wait=20, immediate=true) {
+  let timeout;
+
+  return function executedFunction() {
+    const context = this;
+    const args = arguments;
+
+    const later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+
+    const callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+  };
+};
+
+const galleryScroll = document.querySelectorAll('.gallery-img');
+
+function checkGallery(e) {
+  galleryScroll.forEach(imgGallery => {
+    const imageInAt = (window.scrollY + window.innerHeight) - imgGallery.height / 2;
+    const imageBottom = imgGallery.offsetTop + imgGallery.height;
+    const centerImage = imageInAt > imgGallery.offsetTop;
+    const isNotScrollPast = window.scrollY < imageBottom;
+    if (centerImage && isNotScrollPast) {
+      imgGallery.classList.add('active-img');
+    } else {
+      imgGallery.classList.remove('active-img');
+    }
+  });
+}
+
+window.addEventListener('scroll', debounce(checkGallery));
+
+
 let array = [
   'assets/img/gallery/galery1.jpg',
   'assets/img/gallery/galery2.jpg',
@@ -29,3 +73,5 @@ let array = [
   };
 
 shuffle(array);
+
+//------------------------------------//

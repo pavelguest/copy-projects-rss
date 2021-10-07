@@ -68,3 +68,11 @@
   order: 2;
 }
 
+.gallery-img {
+  opacity: 1;
+//  transition: all 0.5s;
+
+}
+.active-img {
+  opacity: 0;
+}
