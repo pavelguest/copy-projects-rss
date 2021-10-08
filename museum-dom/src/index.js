@@ -5,3 +5,4 @@ import './js/explore-filter.js';
 import './js/header-nav.js';
 import './js/active-slider.js';
 import './js/video.js';
+import './js/tickets.js';

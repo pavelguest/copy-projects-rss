@@ -13,16 +13,16 @@ const muteVol = panel.querySelector('.mute-volume');
 
 videoPlay.volume = 0.45;
 videoPlay.onended = function() {
-  toggle.setAttribute('class', 'panel__pause');
+  toggle.setAttribute('class', 'panel__play');
     toggleLarge.style.display = 'block';
 }
 function togglePlay() {
   if (videoPlay.paused) {
-    toggle.setAttribute('class', 'panel__play');
+    toggle.setAttribute('class', 'panel__pause');
     toggleLarge.style.display = 'none';
     videoPlay.play();
   } else {
-    toggle.setAttribute('class', 'panel__pause');
+    toggle.setAttribute('class', 'panel__play');
     toggleLarge.style.display = 'block';
     videoPlay.pause();
   }

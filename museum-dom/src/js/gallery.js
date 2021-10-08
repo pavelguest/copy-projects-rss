@@ -1,49 +1,5 @@
 const pictureInnerContainer = document.querySelector('.picture-inner-container');
 
-
-
-
-function debounce(func, wait=20, immediate=true) {
-  let timeout;
-
-  return function executedFunction() {
-    const context = this;
-    const args = arguments;
-
-    const later = function() {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-
-    const callNow = immediate && !timeout;
-
-    clearTimeout(timeout);
-
-    timeout = setTimeout(later, wait);
-
-    if (callNow) func.apply(context, args);
-  };
-};
-
-const galleryScroll = document.querySelectorAll('.gallery-img');
-
-function checkGallery(e) {
-  galleryScroll.forEach(imgGallery => {
-    const imageInAt = (window.scrollY + window.innerHeight) - imgGallery.height / 2;
-    const imageBottom = imgGallery.offsetTop + imgGallery.height;
-    const centerImage = imageInAt > imgGallery.offsetTop;
-    const isNotScrollPast = window.scrollY < imageBottom;
-    if (centerImage && isNotScrollPast) {
-      imgGallery.classList.add('active-img');
-    } else {
-      imgGallery.classList.remove('active-img');
-    }
-  });
-}
-
-window.addEventListener('scroll', debounce(checkGallery));
-
-
 let array = [
   'assets/img/gallery/galery1.jpg',
   'assets/img/gallery/galery2.jpg',
@@ -75,3 +31,38 @@ let array = [
 shuffle(array);
 
 //------------------------------------//
+
+const galleryItems = document.querySelectorAll('.gallery-img');
+
+if (galleryItems.length > 0) {
+  window.addEventListener('scroll', animOn);
+  function animOn(params) {
+    for (let index = 0; index < galleryItems.length; index++) {
+      const galleryItem = galleryItems[index];
+      const galleryItemHeight = galleryItem.offsetHeight;
+      const galleryItemOffset = offset(galleryItem).top;
+      const animStart = 4;
+
+      let galleryItemPoint = window.innerHeight - galleryItemHeight / animStart;
+
+      if (galleryItemHeight > window.innerHeight) {
+        galleryItemPoint = window.innerHeight - window.innerHeight / animStart;
+      }
+      if ((pageYOffset > galleryItemOffset - galleryItemPoint) && pageYOffset < (galleryItemOffset + galleryItemHeight)) {
+        galleryItem.classList.add('active-img')
+      } else {
+        galleryItem.classList.remove('active-img')
+      }
+    }
+  }
+  function offset(el) {
+    const rect = el.getBoundingClientRect();
+    const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+  }
+}
+setTimeout(() => {
+  animOn();
+}, 300);
+

@@ -69,10 +69,12 @@
 }
 
 .gallery-img {
-  opacity: 1;
-//  transition: all 0.5s;
+  transform: translate(0px, 120%) scale(0.85);
+  opacity: 0;
+  transition: all 0.9s ease 0s;
 
 }
-.active-img {
-  opacity: 0;
+.gallery-img.active-img {
+  transform: translate(0px, 0px) scale(1);
+  opacity: 1;
 }

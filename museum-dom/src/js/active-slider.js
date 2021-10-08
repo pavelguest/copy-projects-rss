@@ -7,7 +7,7 @@ import Swiper, { Navigation, Pagination } from 'swiper';
   Swiper.use([Navigation, Pagination]);
 
 const welcomeSwiper = new Swiper('.swiper', {
-  speed: 1000,
+  speed: 400,
   // Optional parameters
   direction: 'horizontal',
   loop: true,
@@ -77,7 +77,7 @@ const videoPoster = [
     let videoSrc = document.querySelector('.v-slide');
     videoSrc.setAttribute('src', videoArray[currentVideoSlide]);
     videoSrc.setAttribute('poster', videoPoster[currentVideoSlide]);
-   
+
   });
 
 

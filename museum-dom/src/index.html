@@ -265,15 +265,15 @@
             <div class="ticket-type">
               <h3 class="ticket-type__title">Ticket Type</h3>
               <label class="type-container">Permanent exhibition
-                <input type="radio" checked="checked" name="radio">
+                <input type="radio" checked="checked" name="radio" value = "20" id="price-one" class="ticket-type__radio">
                 <span class="checkmark"></span>
               </label>
               <label class="type-container">Temporary exhibition
-                <input type="radio" name="radio">
+                <input type="radio" name="radio" value = "25" id="price-two" class="ticket-type__radio">
                 <span class="checkmark"></span>
               </label>
               <label class="type-container">Combined Admission
-                <input type="radio" name="radio">
+                <input type="radio" name="radio" value = "40" id="price-three" class="ticket-type__radio">
                 <span class="checkmark"></span>
               </label>
             </div>
@@ -281,17 +281,17 @@
               <h3 class="amount__title">Amount</h3>
               <p class="amount__subtitle">Basic 18+</p>
               <div class="amount-button">
-                <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                <input type="number" min="0" max="100" value="1" readonly class="amount__number">
-                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" onclick="this.nextElementSibling.stepDown()" class="amount-buttons">&ndash;</button>
+                <input type="number" min="0" max="100" value="1" readonly class="amount__number" id="count-basic">
+                <button type="button" onclick="this.previousElementSibling.stepUp()" class="amount-buttons">+</button>
               </div>
               <p class="amount__subtitle">Senior 65+</p>
               <div class="amount-button">
-                <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                <input type="number" min="0" max="100" value="1" readonly class="amount__number">
-                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                <button type="button" onclick="this.nextElementSibling.stepDown()" class="amount-buttons">&ndash;</button>
+                <input type="number" min="0" max="100" value="1" readonly class="amount__number" id="count-senior">
+                <button type="button" onclick="this.previousElementSibling.stepUp()" class="amount-buttons">+</button>
               </div>
-              <p class="amount__total">Total &#8364;<span class="total-price">220</span></p>
+              <p class="amount__total">Total &#8364;<span class="total-price">30</span></p>
               <button class="amount__buy">Buy Now</button>
             </div>
           </div>
