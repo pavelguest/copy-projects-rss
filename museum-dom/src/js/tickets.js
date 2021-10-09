@@ -28,6 +28,5 @@ function totalTickets() {
 };
 
 
-
 buttonsTickets.forEach(buttonTickets => buttonTickets.addEventListener('click', totalTickets));
 ticketsPrice.forEach(price => price.addEventListener('click', totalTickets));

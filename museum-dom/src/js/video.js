@@ -66,11 +66,13 @@ function toggleFullscreen() {
     videoFull.classList.add('fullscreen-window');
     videoContainer.classList.add('fullscreen-window');
     videoFull.requestFullscreen();
+    fullscreen.setAttribute('class', 'panel__fullscreen-exit');
   } else {
     if (document.fullscreenEnabled) {
       videoFull.classList.remove('fullscreen-window');
       videoContainer.classList.remove('fullscreen-window');
       document.exitFullscreen();
+      fullscreen.setAttribute('class', 'panel__fullscreen');
     }
   }
 };
