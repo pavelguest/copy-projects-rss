@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.css' rel='stylesheet' />
   <link rel="stylesheet" href="./style.css">
   <link rel="icon" href="./assets/svg/favicon.ico" type="image/x-icon">
   <title>museum</title>
@@ -311,10 +312,7 @@
               <li class="contacts-info__info-item">mail: <a href="mailto:info@louvre.fr">info@louvre.fr</a></li>
             </ul>
           </div>
-          <div class="contacts-content__map">
-            <img src="./assets/img/map-img.png" alt="google map" class="map-img" loading="lazy">
-          </div>
-
+          <div id="map" class="contacts-content__map"></div>
         </div>
       </div>
     </section>
@@ -481,5 +479,6 @@
 
   </div>
   <div class="booking-tickets__bg"></div>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js'></script>
 </body>
 </html>
