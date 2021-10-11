@@ -305,7 +305,7 @@
  font-size: 22px;
  line-height: 26px;
  padding-bottom: 5px;
-  span {
+ .count-type__tickets {
     color: $bg-white;
     background-color: $bg-dark;
     border-radius: 20%;
@@ -318,7 +318,7 @@
     line-height: 22px;
     font-size: $font4;
   }
-  span:last-child {
+  .count-type__tickets:last-child {
     margin-bottom: 0;
   }
 }

@@ -283,13 +283,13 @@
               <p class="amount__subtitle">Basic 18+</p>
               <div class="amount-button">
                 <button type="button" onclick="this.nextElementSibling.stepDown()" class="amount-buttons">&ndash;</button>
-                <input type="number" min="0" max="100" value="1" readonly class="amount__number" id="count-basic">
+                <input type="number" min="0" max="20" value="1" readonly class="amount__number" id="count-basic">
                 <button type="button" onclick="this.previousElementSibling.stepUp()" class="amount-buttons">+</button>
               </div>
               <p class="amount__subtitle">Senior 65+</p>
               <div class="amount-button">
                 <button type="button" onclick="this.nextElementSibling.stepDown()" class="amount-buttons">&ndash;</button>
-                <input type="number" min="0" max="100" value="1" readonly class="amount__number" id="count-senior">
+                <input type="number" min="0" max="20" value="1" readonly class="amount__number" id="count-senior">
                 <button type="button" onclick="this.previousElementSibling.stepUp()" class="amount-buttons">+</button>
               </div>
               <p class="amount__total">Total &#8364;<span class="total-price">30</span></p>
@@ -392,9 +392,8 @@
               <input type="text" name="name" id="name" placeholder = "Name">
               <input type="email" name="email" id="email" placeholder = "E-mail">
               <input type="tel" name="tel" id="phone" placeholder = "Phone">
-              <select name="ticket-type" id="ticket-type">
-                <option style="display: none;">Ticket Type</option>
-                <option>Permanent exhibition</option>
+              <select name="ticket-type" id="ticket-type" class="form__selected">
+                <option selected>Permanent exhibition</option>
                 <option>Temporary exhibition</option>
                 <option>Combined Admission</option>
               </select>
@@ -402,19 +401,19 @@
             <div class="entry-ticket">
               <h5 class="entry-ticket__subtitle">Entry Ticket</h5>
               <div class="ticket-price">
-                <p>Basic 18+ (20 &#8364;)</p>
+                <p>Basic 18+ (<span class="basic-price">20</span> &#8364;)</p>
                 <div class="entry-ticket__button">
-                  <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                  <input type="number" min="0" max="20" value="2" readonly class="entry-ticket__number">
-                  <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                  <button type="button" onclick="this.nextElementSibling.stepDown()" class="amount-buttons">&ndash;</button>
+                  <input type="number" min="0" max="20" value="1" readonly class="entry-ticket__number" id="count-basic__form">
+                  <button type="button" onclick="this.previousElementSibling.stepUp()" class="amount-buttons">+</button>
                 </div>
               </div>
               <div class="ticket-price">
-                <p>Senior 65+ (10 &#8364;)</p>
+                <p>Senior 65+ (<span class="senior-price">10</span> &#8364;)</p>
                 <div class="entry-ticket__button">
-                  <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                  <input type="number" min="0" max="20" value="2" readonly class="entry-ticket__number">
-                  <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                  <button type="button" onclick="this.nextElementSibling.stepDown()" class="amount-buttons">&ndash;</button>
+                  <input type="number" min="0" max="20" value="1" readonly class="entry-ticket__number"id="count-senior__form">
+                  <button type="button" onclick="this.previousElementSibling.stepUp()" class="amount-buttons">+</button>
                 </div>
               </div>
             </div>
@@ -425,21 +424,21 @@
               <p class="card-input__subtitle">Tour to Louvre</p>
               <p class="date-time"><span class="date"></span>Friday, August 19</p>
               <p class="date-time"><span class="time"></span>16 : 30</p>
-              <p class="date-time"><span class="ok"></span>Temporary exhibition</p>
+              <p class="date-time type-tickets__buy"><span class="ok"></span>Permanent exhibition</p>
             </div>
             <div class="card-input__price">
               <div class="ticket-num">
                 <div>
-                  <p class="ticket-num__type"><span>2</span>Basic (20 &#8364;)</p>
-                  <p>40 &#8364;</p>
+                  <p class="ticket-num__type"><span class="count-type__tickets count-basic__type">1</span>Basic (<span class="basic-price">20</span> &#8364;)</p>
+                  <p><span class="count-price__basic">40</span> &#8364;</p>
                 </div>
                 <div>
-                  <p class="ticket-num__type"><span>2</span>Senior (10 &#8364;)</p>
-                  <p>20 &#8364;</p>
+                  <p class="ticket-num__type"><span class="count-type__tickets count-senior__type">1</span>Senior (<span class="senior-price">10</span> &#8364;)</p>
+                  <p><span class="count-price__senior">20</span> &#8364;</p>
                 </div>
                 <div class="ticket-num__total">
                   <p>Total:</p>
-                  <p>60 &#8364;</p>
+                  <p><span class="total-price__form">60</span> &#8364;</p>
                 </div>
               </div>
             </div>

@@ -41,7 +41,7 @@ if (galleryItems.length > 0) {
       const galleryItem = galleryItems[index];
       const galleryItemHeight = galleryItem.offsetHeight;
       const galleryItemOffset = offset(galleryItem).top;
-      const animStart = 4;
+      const animStart = 30;
 
       let galleryItemPoint = window.innerHeight - galleryItemHeight / animStart;
 
