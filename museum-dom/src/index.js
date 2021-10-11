@@ -7,3 +7,4 @@ import './js/active-slider.js';
 import './js/video.js';
 import './js/tickets.js';
 import './js/mapbox.js';
+import './js/scrolltotop';
