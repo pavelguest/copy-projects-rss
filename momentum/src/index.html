@@ -15,8 +15,31 @@
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
         <button class="play-next player-icon"></button>
+        <div class="audio-player">
+          <div class="container__progress-audio">
+            <input type="range" name="progress" min="0" max="100" step="1" value="0" class="panel__progress-audio progress-audio">
+          </div>
+          <div class="time-play">
+            <div class="current">0:00</div>
+            <div class="divider">/</div>
+            <div class="length">0:00</div>
+          </div>
+          <div class="volume-container">
+            <button class="volume volume-ico"></button>
+            <div class="container__progress-volume">
+              <input type="range" name="volume" min="0" max="1" step="0.05" value="0.75" class="panel__progress-volume progress-vol">
+            </div>
+          </div>
+          <div class="name-audio"></div>
+        </div>
       </div>
-      <ul class="play-list"></ul>
+
+      <ul class="play-list">
+        <li class="play-item"><span class="span-svg"></span> Aqua Caelestis</li>
+        <li class="play-item"><span class="span-svg"></span> River Flows In You</li>
+        <li class="play-item"><span class="span-svg"></span> Ennio Morricone</li>
+        <li class="play-item"><span class="span-svg"></span> Summer Wind</li>
+      </ul>
     </div>
     <div class="weather">
       <input type="text" class="city" placeholder="Enter city" value="Minsk"/>
