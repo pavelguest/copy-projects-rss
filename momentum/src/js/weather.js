@@ -12,18 +12,21 @@ async function getWeather() {
   const data = await res.json();
 
   weatherIco.className = 'weather-icon owf';
-  weatherIco.classList.add(`owf-${data.weather[0].id}`);
-  temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
-  weatherDescription.textContent = data.weather[0].description;
-  wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-  humidity.textContent = `Humidity: ${data.main.humidity}%`;
-  if(data.message === 'city not found') {
-    weatherError.textContent = `error`;
+
+  if(data.message !== 'city not found') {
+    weatherIco.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+  } else {
+    weatherError.textContent = `Error. City "${inputCity.value}" not found`;
     temperature.textContent = '';
     weatherDescription.textContent = '';
     wind.textContent = '';
     humidity.textContent = '';
   }
+
 }
 
 function changeCity(event) {
