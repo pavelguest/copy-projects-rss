@@ -3,14 +3,13 @@ import playList from './play-list.js';
 const play = document.querySelector('.play');
 const playPrev = document.querySelector('.play-prev');
 const playNext = document.querySelector('.play-next');
-const playListContainer = document.querySelector('.play-list');
 const audioPlayer = document.querySelector('.audio-player');
 const nameAudio = audioPlayer.querySelector('.name-audio');
 const progressBar = audioPlayer.querySelector('.progress-audio');
 const progressVolume = audioPlayer.querySelector('.progress-vol');
 const muteVol = audioPlayer.querySelector('.volume');
-const listAudio = document.querySelectorAll('.play-item');
-const listAudioSpan = document.querySelectorAll('.span-svg');
+const listAudio = document.querySelector('.play-list');
+const listAudioSpan = document.querySelectorAll('.play-item');
 
 let isPlay = false;
 let playNum = 0;
@@ -92,9 +91,7 @@ function audioMute() {
 audio.addEventListener(
   "loadeddata",
   () => {
-    audioPlayer.querySelector(".length").textContent = getTimeCode(
-      audio.duration
-    );
+    audioPlayer.querySelector(".length").textContent = getTimeCode(audio.duration);
     audio.volume = .75;
   },
   false
@@ -112,17 +109,25 @@ function getTimeCode(num) {
   minutes -= hours * 60;
 
   if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
-  return `${String(hours).padStart(2, 0)}:${minutes}:${String(
-    seconds % 60
-  ).padStart(2, 0)}`;
+  return `${String(hours).padStart(2, 0)}:${minutes}:${String(seconds % 60).padStart(2, 0)}`;
 }
 //---------------------------------------------------//
-
-listAudioSpan.forEach((elem, index) => {
-  playNum = index;
-  elem.addEventListener('click', playAudio);
-  });
-
+listAudio.addEventListener('click', (e) => {
+  const arrList = Array.from(listAudioSpan);
+  const itemList = arrList.indexOf(e.target);
+  listAudioSpan[playNum].classList.remove('item-active');
+  if(itemList === playNum && isPlay) {
+    isPlay = true;
+  } else if (itemList === playNum && !isPlay) {
+    isPlay = false;
+  } else {
+    playNum = itemList;
+    isPlay = false;
+  }
+  console.log(playNum)
+  audio.src = playList[playNum].src;
+  playAudio()
+})
 
 play.addEventListener('click', playAudio);
 playPrev.addEventListener('click', playPrevAudio);
@@ -133,5 +138,3 @@ progressBar.addEventListener('input', progressAudioTime);
 progressVolume.addEventListener('change', progressAudioVolume);
 progressVolume.addEventListener('mousemove', progressAudioVolume);
 muteVol.addEventListener('click', audioMute);
-
-
