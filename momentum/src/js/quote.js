@@ -5,7 +5,7 @@ const author = document.querySelector('.author');
 const changeQuote = document.querySelector('.change-quote');
 
 async function getQuotes() {
-  const quotes = '../js/data.json';
+  const quotes = './js/data.json';
   const res = await fetch(quotes);
   const data = await res.json();
   let randomQuoteNum = getRandomNum(0, Object.keys(data).length);

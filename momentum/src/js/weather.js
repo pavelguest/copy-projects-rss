@@ -14,6 +14,7 @@ async function getWeather() {
   weatherIco.className = 'weather-icon owf';
 
   if(data.message !== 'city not found') {
+    weatherError.textContent = '';
     weatherIco.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
     weatherDescription.textContent = data.weather[0].description;
