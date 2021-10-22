@@ -1,3 +1,4 @@
+
 const timeNow = document.querySelector('.time');
 const dateNow = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
