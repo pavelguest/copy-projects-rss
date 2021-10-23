@@ -44,50 +44,65 @@ export var settingsObject = {
 function hideElem() {
   if(!timeHide.checked) {
     document.querySelector('.time').classList.add('input-hidden');
-    settingsObject.time = 1;
+    settingsObject.time = 0;
   } else {
     document.querySelector('.time').classList.remove('input-hidden');
-    settingsObject.time = 0;
+    settingsObject.time = 1;
   }
   if(!dateHide.checked) {
     document.querySelector('.date').classList.add('input-hidden');
-    settingsObject.date = 1;
+    settingsObject.date = 0;
   } else {
     document.querySelector('.date').classList.remove('input-hidden');
-    settingsObject.date = 0;
+    settingsObject.date = 1;
   }
   if(!greetHide.checked) {
     document.querySelector('.greeting-container').classList.add('input-hidden');
-    settingsObject.greet = 1;
+    settingsObject.greet = 0;
   } else {
     document.querySelector('.greeting-container').classList.remove('input-hidden');
-    settingsObject.greet = 0;
+    settingsObject.greet = 1;
   }
   if(!quoteHide.checked) {
     document.querySelector('.footer').classList.add('input-hidden');
-    settingsObject.quote = 1;
+    settingsObject.quote = 0;
   } else {
     document.querySelector('.footer').classList.remove('input-hidden');
-    settingsObject.quote = 0;
+    settingsObject.quote = 1;
   }
   if(!weatherHide.checked) {
     document.querySelector('.weather').classList.add('input-hidden');
-    settingsObject.weather = 1;
+    settingsObject.weather = 0;
   } else {
     document.querySelector('.weather').classList.remove('input-hidden');
-    settingsObject.weather = 0;
+    settingsObject.weather = 1;
   }
   if(!audioHide.checked) {
     document.querySelector('.player').classList.add('input-hidden');
-    settingsObject.audio = 1;
+    settingsObject.audio = 0;
   } else {
     document.querySelector('.player').classList.remove('input-hidden');
-    settingsObject.audio = 0;
+    settingsObject.audio = 1;
   }
   localStorage.setItem('settings', JSON.stringify(settingsObject));
-
+  console.log(timeHide.checked)
 }
 
+function getLocalStor() {
+  if(localStorage.getItem('settings')) {
+    settingsObject = JSON.parse(localStorage.getItem('settings'));
+    console.log(settingsObject)
+    if(timeHide.checked && settingsObject.time === 0) timeHide.checked = false;
+    if(dateHide.checked && settingsObject.date === 0) dateHide.checked = false;
+    if(greetHide.checked && settingsObject.greet === 0) greetHide.checked = false;
+    if(quoteHide.checked && settingsObject.quote === 0) quoteHide.checked = false;
+    if(weatherHide.checked && settingsObject.weather === 0) weatherHide.checked = false;
+    if(audioHide.checked && settingsObject.audio === 0) audioHide.checked = false;
+
+    hideElem()
+  }
+}
+window.addEventListener('load', getLocalStor)
 timeHide.addEventListener('change', hideElem);
 dateHide.addEventListener('change', hideElem);
 greetHide.addEventListener('change', hideElem);
@@ -98,18 +113,6 @@ audioHide.addEventListener('change', hideElem);
 //-------------------------save-hide--------------------//
 
 
-function getLocalStor() {
-  if(localStorage.getItem('settings')) {
-    settingsObject = JSON.parse(localStorage.getItem('settings'));
-    console.log(settingsObject)
-    if(timeHide === 1) {
-      timeHide.checked = false;
-    }
-    let event = new Event ('change');
-    checkBoxAll.forEach(e => {
-      e.dispatchEvent(event)
-    })
-    console.log(event)
-  }
-}
-window.addEventListener('load', getLocalStor)
+
+
+
