@@ -6,8 +6,13 @@ const humidity = document.querySelector('.humidity');
 const inputCity = document.querySelector('.city');
 const weatherError = document.querySelector('.weather-error');
 
-async function getWeather() {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=en&appid=116cf96821b5cad9a9f4a3cb96dbf6bb&units=metric`;
+export async function getWeather() {
+  let url;
+  if(localStorage.lang === 'en') {
+    url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=en&appid=116cf96821b5cad9a9f4a3cb96dbf6bb&units=metric`;
+  } else {
+    url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&appid=116cf96821b5cad9a9f4a3cb96dbf6bb&units=metric`;
+  }
   const res = await fetch(url);
   const data = await res.json();
 
@@ -18,10 +23,30 @@ async function getWeather() {
     weatherIco.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
     weatherDescription.textContent = data.weather[0].description;
-    wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-    humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    if(localStorage.lang === 'en') {
+      wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+      humidity.textContent = `Humidity: ${data.main.humidity}%`;
+    } else {
+      wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
+      humidity.textContent = `Влажность: ${data.main.humidity}%`;
+    }
+
+  } else if(inputCity.value === '') {
+    if(localStorage.lang === 'en') {
+      weatherError.textContent = `Error. Enter city`;
+    } else {
+      weatherError.textContent = `Ошибка. Введите город`;
+    }
+    temperature.textContent = '';
+    weatherDescription.textContent = '';
+    wind.textContent = '';
+    humidity.textContent = '';
   } else {
-    weatherError.textContent = `Error. City "${inputCity.value}" not found`;
+    if(localStorage.lang === 'en') {
+      weatherError.textContent = `Error. City "${inputCity.value}" not found`;
+    } else {
+      weatherError.textContent = `Ошибка. Город "${inputCity.value}" не найден`;
+    }
     temperature.textContent = '';
     weatherDescription.textContent = '';
     wind.textContent = '';
@@ -39,3 +64,18 @@ function changeCity(event) {
 
 document.addEventListener('DOMContentLoaded', getWeather);
 inputCity.addEventListener('keypress', changeCity);
+
+
+function setLocal() {
+  localStorage.setItem('city', inputCity.value);
+}
+
+function getLocal() {
+  if(localStorage.getItem('city')) {
+    inputCity.value = localStorage.getItem('city');
+    getWeather();
+  }
+}
+
+window.addEventListener('beforeunload', setLocal)
+window.addEventListener('load', getLocal)

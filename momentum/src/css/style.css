@@ -400,7 +400,7 @@ body {
 }
 .popap-container {
   position: fixed;
-  width: 500px;
+  width: 50%;
   height: 100%;
   right: -100%;
   top: 0;

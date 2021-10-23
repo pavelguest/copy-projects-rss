@@ -48,61 +48,61 @@
         <button class="settings__button-close">X</button>
         <div class="settings">
           <div class="settings__lang">
-            <h3 class="settings__subtitle">language</h3>
+            <h3 class="settings__subtitle subtitle-one">language</h3>
             <ul class="settings__list">
               <li class="settings__item">
-                <input type="checkbox" name="en" id="en">
+                <input type="radio" name="lang" id="en" value="en" checked="checked" class="check-lang">
                 <label for="en">En</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="rus" id="rus">
+                <input type="radio" name="lang" id="rus" value="ru" class="check-lang">
                 <label for="rus">Rus</label>
               </li>
             </ul>
           </div>
           <div class="settings__image">
-            <h3 class="settings__subtitle">image</h3>
+            <h3 class="settings__subtitle subtitle-two">image</h3>
             <ul class="settings__list">
               <li class="settings__item">
-                <input type="checkbox" name="github" id="github" checked>
+                <input type="radio" name="image-load" value="github" id="github" class="check" checked="checked">
                 <label for="github">Github</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="unsplash" id="unsplash">
+                <input type="radio" name="image-load" id="unsplash" value="unsplash" class="check">
                 <label for="unsplash">Unsplash API</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="flickr" id="flickr">
+                <input type="radio" name="image-load" id="flickr" value="flickr" class="check">
                 <label for="flickr">Flickr API</label>
               </li>
             </ul>
           </div>
           <div class="settings__hide">
-            <h3 class="settings__subtitle">hide elements</h3>
+            <h3 class="settings__subtitle subtitle-three">hide elements</h3>
             <ul class="settings__list">
               <li class="settings__item">
-                <input type="checkbox" name="time" id="time" class="check" checked>
-                <label for="time">Time</label>
+                <input type="checkbox" name="time" id="time" checked>
+                <label class="time-ru" for="time">Time</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="date" id="date" class="check" checked>
-                <label for="date">Date</label>
+                <input type="checkbox" name="date" id="date" checked>
+                <label class="date-ru" for="date">Date</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="greet" id="greet" class="check" checked>
-                <label for="greet">Greeting</label>
+                <input type="checkbox" name="greet" id="greet" checked>
+                <label class="greet-ru" for="greet">Greeting</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="quote" id="quote" class="check" checked>
-                <label for="quote">Quote</label>
+                <input type="checkbox" name="quote" id="quote" checked>
+                <label class="quote-ru" for="quote">Quote</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="weather" id="weather" class="check" checked>
-                <label for="weather">Weather</label>
+                <input type="checkbox" name="weather" id="weather" checked>
+                <label class="weather-ru" for="weather">Weather</label>
               </li>
               <li class="settings__item">
-                <input type="checkbox" name="audio" id="audio" class="check" checked>
-                <label for="audio">Audio player</label>
+                <input type="checkbox" name="audio" id="audio" checked>
+                <label class="audio-ru" for="audio">Audio player</label>
               </li>
             </ul>
           </div>
@@ -131,7 +131,7 @@
     <date class="date"></date>
     <div class="greeting-container">
       <span class="greeting"></span>
-      <input type="text" class="name" placeholder="Enter name"/>
+      <input type="text" class="name placeholder" placeholder="Enter name"/>
     </div>
   </main>
   <footer class="footer">

@@ -1,3 +1,5 @@
+import {getQuotes} from './quote.js';
+import {getWeather} from './weather.js';
 const settingsButton = document.querySelector('.settings__button');
 const closeButton = document.querySelector('.settings__button-close');
 const settingsPopap = document.querySelector('.popap-container');
@@ -38,9 +40,7 @@ export var settingsObject = {
   'quote': 1,
   'weather': 1,
   'audio': 1,
-  'github': 1,
-  'unsplash': 1,
-  'flickr': 1,
+
 }
 
 
@@ -91,29 +91,7 @@ function hideElem() {
   console.log(timeHide.checked)
 }
 
-//---------------------------change-image-load----------///
-const githubLoad = document.getElementById('github');
-const unsplashLoad = document.getElementById('unsplash');
-const flickrLoad = document.getElementById('flickr');
-
-function changeLoadImage() {
-  if(githubLoad.checked) {
-    unsplashLoad.checked = false;
-    flickrLoad.checked = false;
-  }
-  if(unsplashLoad.checked) {
-    githubLoad.checked = false;
-    flickrLoad.checked = false;
-  }
-  if(flickrLoad.checked) {
-    unsplashLoad.checked = false;
-    githubLoad.checked = false;
-  }
-}
-
-githubLoad.addEventListener('change', changeLoadImage);
-unsplashLoad.addEventListener('change', changeLoadImage);
-flickrLoad.addEventListener('change', changeLoadImage);
+//-------------------------save-hide--------------------//
 
 function getLocalStor() {
   if(localStorage.getItem('settings')) {
@@ -130,7 +108,7 @@ function getLocalStor() {
     hideElem()
   }
 }
-window.addEventListener('load', getLocalStor)
+window.addEventListener('load', getLocalStor);
 timeHide.addEventListener('change', hideElem);
 dateHide.addEventListener('change', hideElem);
 greetHide.addEventListener('change', hideElem);
@@ -138,9 +116,51 @@ quoteHide.addEventListener('change', hideElem);
 weatherHide.addEventListener('change', hideElem);
 audioHide.addEventListener('change', hideElem);
 
-//-------------------------save-hide--------------------//
 
+//------------------------------function-change-lang-----------//
 
+const langEn = document.getElementById('en');
+const langRu = document.getElementById('ru');
+const langAll = document.querySelectorAll('.check-lang')
+
+function changeLangSettings() {
+  if(localStorage.lang === 'en') {
+    document.querySelector('.settings__button').textContent = 'Settings';
+    document.querySelector('.settings__title').textContent = 'Settings';
+    document.querySelector('.subtitle-one').textContent = 'language';
+    document.querySelector('.subtitle-two').textContent = 'image';
+    document.querySelector('.subtitle-three').textContent = 'hide elements';
+    document.querySelector('.time-ru').textContent = 'Time';
+    document.querySelector('.date-ru').textContent = 'Date';
+    document.querySelector('.greet-ru').textContent = 'Greeting';
+    document.querySelector('.quote-ru').textContent = 'Quote';
+    document.querySelector('.weather-ru').textContent = 'Weather';
+    document.querySelector('.audio-ru').textContent = 'Audio player';
+  } else {
+    document.querySelector('.settings__button').textContent = 'Настройки';
+    document.querySelector('.settings__title').textContent = 'Настройки';
+    document.querySelector('.subtitle-one').textContent = 'язык';
+    document.querySelector('.subtitle-two').textContent = 'изображение';
+    document.querySelector('.subtitle-three').textContent = 'скрытие элементов';
+    document.querySelector('.time-ru').textContent = 'Время';
+    document.querySelector('.date-ru').textContent = 'Дата';
+    document.querySelector('.greet-ru').textContent = 'Приветствие';
+    document.querySelector('.quote-ru').textContent = 'Цитаты';
+    document.querySelector('.weather-ru').textContent = 'Погода';
+    document.querySelector('.audio-ru').textContent = 'Аудио плеер';
+  }
+}
+changeLangSettings()
+langAll.forEach(el => {
+  if (localStorage.getItem(el.name) == el.value)
+  el.checked = true;
+  el.addEventListener("change", el => {
+    localStorage.setItem(el.path[0].name, el.path[0].value);
+    getQuotes();
+    getWeather();
+    changeLangSettings();
+  });
+});
 
 
 

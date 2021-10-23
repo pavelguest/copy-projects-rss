@@ -17,26 +17,49 @@ function showTime() {
 
 function showDate() {
   const date = new Date();
-  const options = {weekday:'long', month: 'long', day: 'numeric'};
-  const currentDate = date.toLocaleDateString('en-US', options);
-  dateNow.textContent = currentDate;
+  if(localStorage.lang === 'en') {
+    const options = {weekday:'long', month: 'long', day: 'numeric'};
+    const currentDate = date.toLocaleDateString('en-US', options);
+    dateNow.textContent = currentDate;
+  } else {
+    const options = {weekday:'long', month: 'long', day: 'numeric'};
+    const currentDate = date.toLocaleDateString('ru-RU', options);
+    dateNow.textContent = currentDate;
+  }
+
 }
 
 export function getTimeOfDay() {
   const time = new Date();
   const hours = time.getHours();
-
-  if (hours >= 6 && hours < 12) {
-    partDay = 'Morning';
-  } else if (hours >= 12 && hours < 18) {
-    partDay = 'Afternoon';
-  } else if (hours >= 18 && hours < 24) {
-    partDay = 'Evening';
+  if(localStorage.lang === 'en') {
+    if (hours >= 6 && hours < 12) {
+      partDay = 'Morning';
+    } else if (hours >= 12 && hours < 18) {
+      partDay = 'Afternoon';
+    } else if (hours >= 18 && hours < 24) {
+      partDay = 'Evening';
+    } else {
+      partDay = 'Night';
+    }
+    greeting.textContent = `Good ${partDay}`;
+  //  document.querySelector('.city').placeholder='Enter city';
+    document.querySelector('.name').placeholder='Enter name';
   } else {
-    partDay = 'Night';
+    if (hours >= 6 && hours < 12) {
+      partDay = 'Доброе Утро';
+    } else if (hours >= 12 && hours < 18) {
+      partDay = 'Добрый День';
+    } else if (hours >= 18 && hours < 24) {
+      partDay = 'Добрый Вечер';
+    } else {
+      partDay = 'Доброй Ночи';
+    }
+    greeting.textContent = `${partDay}`
+   // document.querySelector('.city').placeholder='Введите город';
+    document.querySelector('.name').placeholder='Введите имя';
   }
 
-  greeting.textContent = `Good ${partDay}`
   return partDay;
 }
 
