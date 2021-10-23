@@ -30,6 +30,9 @@ body {
   min-height: 220px;
   padding: 20px;
 }
+.player {
+  transition: 1s ease;
+}
 
 .player-controls {
   display: flex;
@@ -218,6 +221,7 @@ body {
   width: 180px;
   min-height: 180px;
   text-align: left;
+  transition: 1s ease;
 }
 
 .weather-error {
@@ -290,12 +294,14 @@ body {
   font-family: 'Arial-MT';
   font-size: 100px;
   letter-spacing: -4px;
+  transition: 1s ease;
 }
 
 .date {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  transition: 1s ease;
 }
 
 .greeting-container {
@@ -306,6 +312,7 @@ body {
   min-height: 48px;
   width: 100vw;
   font-size: 40px;
+  transition: 1s ease;
 }
 
 .greeting {
@@ -340,6 +347,7 @@ body {
   height: 30vh;
   min-height: 160px;
   padding: 20px;
+  transition: 1s ease;
 }
 
 .change-quote {
@@ -392,7 +400,7 @@ body {
 }
 .popap-container {
   position: fixed;
-  width: 500px;
+  width: 50%;
   height: 100%;
   right: -100%;
   top: 0;
@@ -457,6 +465,12 @@ body {
 }
 .settings__item input:checked::before {
     opacity: 1;
+}
+.input-hidden {
+  visibility: hidden;
+}
+.animation-transition {
+  transition: none;
 }
 
 
