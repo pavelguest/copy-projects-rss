@@ -38,6 +38,9 @@ export var settingsObject = {
   'quote': 1,
   'weather': 1,
   'audio': 1,
+  'github': 1,
+  'unsplash': 1,
+  'flickr': 1,
 }
 
 
@@ -88,10 +91,35 @@ function hideElem() {
   console.log(timeHide.checked)
 }
 
+//---------------------------change-image-load----------///
+const githubLoad = document.getElementById('github');
+const unsplashLoad = document.getElementById('unsplash');
+const flickrLoad = document.getElementById('flickr');
+
+function changeLoadImage() {
+  if(githubLoad.checked) {
+    unsplashLoad.checked = false;
+    flickrLoad.checked = false;
+  }
+  if(unsplashLoad.checked) {
+    githubLoad.checked = false;
+    flickrLoad.checked = false;
+  }
+  if(flickrLoad.checked) {
+    unsplashLoad.checked = false;
+    githubLoad.checked = false;
+  }
+}
+
+githubLoad.addEventListener('change', changeLoadImage);
+unsplashLoad.addEventListener('change', changeLoadImage);
+flickrLoad.addEventListener('change', changeLoadImage);
+
 function getLocalStor() {
   if(localStorage.getItem('settings')) {
     settingsObject = JSON.parse(localStorage.getItem('settings'));
     console.log(settingsObject)
+    document.querySelector('.time').classList.add('animation-transition');
     if(timeHide.checked && settingsObject.time === 0) timeHide.checked = false;
     if(dateHide.checked && settingsObject.date === 0) dateHide.checked = false;
     if(greetHide.checked && settingsObject.greet === 0) greetHide.checked = false;

@@ -469,6 +469,9 @@ body {
 .input-hidden {
   visibility: hidden;
 }
+.animation-transition {
+  transition: none;
+}
 
 
 @media (max-width: 1024px) {
