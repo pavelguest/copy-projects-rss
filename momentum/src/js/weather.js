@@ -1,3 +1,5 @@
+import {langEn} from './settings-page.js';
+
 const weatherIco = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');
 const weatherDescription = document.querySelector('.weather-description');
@@ -8,7 +10,7 @@ const weatherError = document.querySelector('.weather-error');
 
 export async function getWeather() {
   let url;
-  if(localStorage.lang === 'en') {
+  if(localStorage.lang === 'en' || langEn.checked) {
     url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=en&appid=116cf96821b5cad9a9f4a3cb96dbf6bb&units=metric`;
   } else {
     url = `https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&appid=116cf96821b5cad9a9f4a3cb96dbf6bb&units=metric`;
@@ -23,7 +25,7 @@ export async function getWeather() {
     weatherIco.classList.add(`owf-${data.weather[0].id}`);
     temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
     weatherDescription.textContent = data.weather[0].description;
-    if(localStorage.lang === 'en') {
+    if(localStorage.lang === 'en' || langEn.checked) {
       inputCity.value = 'Minsk';
       wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
       humidity.textContent = `Humidity: ${data.main.humidity}%`;
@@ -33,7 +35,7 @@ export async function getWeather() {
       humidity.textContent = `Влажность: ${data.main.humidity}%`;
     }
   } else {
-    if(localStorage.lang === 'en') {
+    if(localStorage.lang === 'en' || langEn.checked) {
       weatherError.textContent = `Error. City "${inputCity.value}" not found`;
     } else {
       weatherError.textContent = `Ошибка. Город "${inputCity.value}" не найден`;
@@ -43,7 +45,7 @@ export async function getWeather() {
     wind.textContent = '';
     humidity.textContent = '';
   }
- 
+
 }
 
 function changeCity(event) {

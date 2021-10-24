@@ -1,3 +1,4 @@
+import {langEn} from './settings-page.js';
 
 const timeNow = document.querySelector('.time');
 const dateNow = document.querySelector('.date');
@@ -17,7 +18,7 @@ function showTime() {
 
 function showDate() {
   const date = new Date();
-  if(localStorage.lang === 'en') {
+  if(localStorage.lang === 'en' || langEn.checked) {
     const options = {weekday:'long', month: 'long', day: 'numeric'};
     const currentDate = date.toLocaleDateString('en-US', options);
     dateNow.textContent = currentDate;
@@ -32,7 +33,7 @@ function showDate() {
 export function getTimeOfDay() {
   const time = new Date();
   const hours = time.getHours();
-  if(localStorage.lang === 'en') {
+  if(localStorage.lang === 'en' || langEn.checked) {
     if (hours >= 6 && hours < 12) {
       partDay = 'Morning';
     } else if (hours >= 12 && hours < 18) {
@@ -43,7 +44,6 @@ export function getTimeOfDay() {
       partDay = 'Night';
     }
     greeting.textContent = `Good ${partDay}`;
-  //  document.querySelector('.city').placeholder='Enter city';
     document.querySelector('.name').placeholder='Enter name';
   } else {
     if (hours >= 6 && hours < 12) {
@@ -56,7 +56,6 @@ export function getTimeOfDay() {
       partDay = 'Доброй Ночи';
     }
     greeting.textContent = `${partDay}`
-   // document.querySelector('.city').placeholder='Введите город';
     document.querySelector('.name').placeholder='Введите имя';
   }
 

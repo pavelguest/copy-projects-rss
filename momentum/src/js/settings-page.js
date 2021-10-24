@@ -88,7 +88,6 @@ function hideElem() {
     settingsObject.audio = 1;
   }
   localStorage.setItem('settings', JSON.stringify(settingsObject));
-  console.log(timeHide.checked)
 }
 
 //-------------------------save-hide--------------------//
@@ -119,12 +118,12 @@ audioHide.addEventListener('change', hideElem);
 
 //------------------------------function-change-lang-----------//
 
-const langEn = document.getElementById('en');
+export const langEn = document.getElementById('en');
 const langRu = document.getElementById('ru');
-const langAll = document.querySelectorAll('.check-lang')
+const langAll = document.querySelectorAll('.check-lang');
 
 function changeLangSettings() {
-  if(localStorage.lang === 'en') {
+  if(localStorage.lang === 'en' || langEn.checked) {
     document.querySelector('.settings__button').textContent = 'Settings';
     document.querySelector('.settings__title').textContent = 'Settings';
     document.querySelector('.subtitle-one').textContent = 'language';
@@ -154,7 +153,6 @@ function changeLangSettings() {
     document.querySelector('.rus-en').textContent = 'Русский';
   }
 }
-changeLangSettings()
 langAll.forEach(el => {
   if (localStorage.getItem(el.name) == el.value)
   el.checked = true;
@@ -166,5 +164,6 @@ langAll.forEach(el => {
   });
 });
 
+changeLangSettings()
 
 

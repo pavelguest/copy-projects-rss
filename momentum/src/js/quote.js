@@ -1,4 +1,5 @@
 import {getRandomNum} from './slider.js';
+import {langEn} from './settings-page.js';
 
 const quote = document.querySelector('.quote');
 const author = document.querySelector('.author');
@@ -9,7 +10,7 @@ export async function getQuotes() {
   const res = await fetch(quotes);
   const data = await res.json();
   let randomQuoteNum = getRandomNum(0, Object.keys(data).length);
-  if(localStorage.lang === 'en') {
+  if(localStorage.lang === 'en' || langEn.checked) {
     quote.textContent = `${data[randomQuoteNum].textEn}`;
     author.textContent = `${data[randomQuoteNum].authorEn}`;
   } else {
