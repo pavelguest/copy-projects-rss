@@ -136,6 +136,8 @@ function changeLangSettings() {
     document.querySelector('.quote-ru').textContent = 'Quote';
     document.querySelector('.weather-ru').textContent = 'Weather';
     document.querySelector('.audio-ru').textContent = 'Audio player';
+    document.querySelector('.en-ru').textContent = 'English';
+    document.querySelector('.rus-en').textContent = 'Russian';
   } else {
     document.querySelector('.settings__button').textContent = 'Настройки';
     document.querySelector('.settings__title').textContent = 'Настройки';
@@ -148,6 +150,8 @@ function changeLangSettings() {
     document.querySelector('.quote-ru').textContent = 'Цитаты';
     document.querySelector('.weather-ru').textContent = 'Погода';
     document.querySelector('.audio-ru').textContent = 'Аудио плеер';
+    document.querySelector('.en-ru').textContent = 'Английский';
+    document.querySelector('.rus-en').textContent = 'Русский';
   }
 }
 changeLangSettings()

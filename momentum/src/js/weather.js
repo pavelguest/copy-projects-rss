@@ -24,23 +24,14 @@ export async function getWeather() {
     temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
     weatherDescription.textContent = data.weather[0].description;
     if(localStorage.lang === 'en') {
+      inputCity.value = 'Minsk';
       wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
       humidity.textContent = `Humidity: ${data.main.humidity}%`;
     } else {
+      inputCity.value = 'Минск';
       wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
       humidity.textContent = `Влажность: ${data.main.humidity}%`;
     }
-
-  } else if(inputCity.value === '') {
-    if(localStorage.lang === 'en') {
-      weatherError.textContent = `Error. Enter city`;
-    } else {
-      weatherError.textContent = `Ошибка. Введите город`;
-    }
-    temperature.textContent = '';
-    weatherDescription.textContent = '';
-    wind.textContent = '';
-    humidity.textContent = '';
   } else {
     if(localStorage.lang === 'en') {
       weatherError.textContent = `Error. City "${inputCity.value}" not found`;
@@ -52,7 +43,7 @@ export async function getWeather() {
     wind.textContent = '';
     humidity.textContent = '';
   }
-
+ 
 }
 
 function changeCity(event) {
