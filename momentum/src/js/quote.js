@@ -5,7 +5,11 @@ const quote = document.querySelector('.quote');
 const author = document.querySelector('.author');
 const changeQuote = document.querySelector('.change-quote');
 
+let rotateCurr = 0;
 export async function getQuotes() {
+  rotateCurr += 180;
+  changeQuote.style.transform = `rotate(${rotateCurr}deg)`;
+  //changeQuote.classList.toggle('rotate');
   const quotes = './js/data.json';
   const res = await fetch(quotes);
   const data = await res.json();

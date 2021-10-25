@@ -3,21 +3,25 @@ import {getWeather} from './weather.js';
 const settingsButton = document.querySelector('.settings__button');
 const closeButton = document.querySelector('.settings__button-close');
 const settingsPopap = document.querySelector('.popap-container');
+const settingsBlock = document.querySelector('.settings-container');
 
 
 function open() {
   settingsPopap.classList.add('open');
-   settingsPopap.addEventListener('click', function (e) {
-     if (!e.target.closest('.settings-container')) {
-      settingsPopap.classList.remove('open');
-     }
-   })
+
 }
 function close() {
   settingsPopap.classList.remove('open');
 }
+window.addEventListener('click', function (e) {
+  if (!e.target.closest('.settings-container')) {
+    settingsPopap.classList.remove('open');
+  }
+})
 settingsButton.addEventListener('click', open);
 closeButton.addEventListener('click', close);
+
+
 
 //----------------hide-input--------------//
 
@@ -142,7 +146,7 @@ function changeLangSettings() {
     document.querySelector('.settings__title').textContent = 'Настройки';
     document.querySelector('.subtitle-one').textContent = 'язык';
     document.querySelector('.subtitle-two').textContent = 'изображение';
-    document.querySelector('.subtitle-three').textContent = 'скрытие элементов';
+    document.querySelector('.subtitle-three').textContent = 'спрятать блок';
     document.querySelector('.time-ru').textContent = 'Время';
     document.querySelector('.date-ru').textContent = 'Дата';
     document.querySelector('.greet-ru').textContent = 'Приветствие';
