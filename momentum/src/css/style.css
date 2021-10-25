@@ -142,7 +142,7 @@ body {
   position: absolute;
   width: 25px;
   height: 25px;
-  top: 5px;
+  top: 3px;
   left: 0;
   background: no-repeat center/contain url("../assets/svg/play.svg");
 
@@ -150,7 +150,10 @@ body {
 .play-item:hover {
   opacity: 1;
 }
-
+.item-active {
+  color: rgb(165, 162, 16);
+  text-decoration: underline;
+}
 .item-active:before {
   background: no-repeat center/contain url("../assets/svg/pause.svg");
   filter: invert(56%) sepia(68%) saturate(4640%) hue-rotate(268deg) brightness(87%) contrast(105%);
@@ -480,7 +483,27 @@ body {
 .animation-transition {
   transition: none;
 }
-
+.footer__link {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+.footer__link-item {
+  box-shadow: 0 2px 10px 0 #0008;
+  border-radius: 10%;
+  padding: 0 5px;
+}
+.footer__link-item img {
+  width: 80px;
+  height: 40px;
+}
+.footer__link-item:hover {
+  border: 1px solid #fff;
+  cursor: pointer;
+}
 
 @media (max-width: 1024px) {
   .player-controls {
@@ -563,7 +586,7 @@ body {
   }
 
   .greeting {
-    
+
   }
 
   .name {

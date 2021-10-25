@@ -30,6 +30,7 @@ function playAudio() {
     play.classList.remove('pause')
     listAudioSpan[playNum].classList.remove('item-active')
   }
+
 }
 
 function playNextAudio() {
@@ -61,6 +62,9 @@ function progressAudioTime() {
   } else value = 0;
   progressBar.value = value;
   progressBar.style.background = `linear-gradient( to right, rgb(180, 56, 164) 0%, rgb(180, 56, 164) ${value}%, #fff ${value}%, #fff 100%)`;
+  if(audio.ended) {
+    playNextAudio()
+  }
 };
 function progressAudioVolume() {
   if (audio.muted) {

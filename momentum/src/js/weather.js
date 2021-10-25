@@ -20,32 +20,39 @@ export async function getWeather() {
 
   weatherIco.className = 'weather-icon owf';
 
-  if(data.message !== 'city not found') {
-    weatherError.textContent = '';
-    weatherIco.classList.add(`owf-${data.weather[0].id}`);
-    temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
-    weatherDescription.textContent = data.weather[0].description;
+  if(data.message === 'city not found' || inputCity.value == '') {
     if(localStorage.lang === 'en' || langEn.checked) {
-      inputCity.value = 'Minsk';
-      wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-      humidity.textContent = `Humidity: ${data.main.humidity}%`;
-    } else {
-      inputCity.value = 'Минск';
-      wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
-      humidity.textContent = `Влажность: ${data.main.humidity}%`;
-    }
-  } else {
-    if(localStorage.lang === 'en' || langEn.checked) {
+      inputCity.placeholder = 'Enter City';
       weatherError.textContent = `Error. City "${inputCity.value}" not found`;
     } else {
+      inputCity.placeholder = 'Введите город';
       weatherError.textContent = `Ошибка. Город "${inputCity.value}" не найден`;
     }
     temperature.textContent = '';
     weatherDescription.textContent = '';
     wind.textContent = '';
     humidity.textContent = '';
+  } else {
+    weatherError.textContent = '';
+    weatherIco.classList.add(`owf-${data.weather[0].id}`);
+    temperature.textContent = `${Math.round(data.main.temp.toFixed(0))}°C`;
+    weatherDescription.textContent = data.weather[0].description;
+    if(localStorage.lang === 'en' || langEn.checked) {
+      if(inputCity.value === 'Минск') {
+        inputCity.value = 'Minsk';
+      }
+      inputCity.placeholder = 'Enter City';
+      wind.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+      humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`;
+    } else {
+      if(inputCity.value === 'Minsk') {
+        inputCity.value = 'Минск';
+      }
+      inputCity.placeholder = 'Введите город';
+      wind.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
+      humidity.textContent = `Влажность: ${Math.round(data.main.humidity)}%`;
+    }
   }
-
 }
 
 function changeCity(event) {
