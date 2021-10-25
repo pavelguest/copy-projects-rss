@@ -128,7 +128,6 @@ listAudio.addEventListener('click', (e) => {
     playNum = itemList;
     isPlay = false;
   }
-  console.log(playNum)
   audio.src = playList[playNum].src;
   playAudio()
 })

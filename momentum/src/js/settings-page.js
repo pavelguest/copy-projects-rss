@@ -99,7 +99,6 @@ function hideElem() {
 function getLocalStor() {
   if(localStorage.getItem('settings')) {
     settingsObject = JSON.parse(localStorage.getItem('settings'));
-    console.log(settingsObject)
     document.querySelector('.time').classList.add('animation-transition');
     if(timeHide.checked && settingsObject.time === 0) timeHide.checked = false;
     if(dateHide.checked && settingsObject.date === 0) dateHide.checked = false;

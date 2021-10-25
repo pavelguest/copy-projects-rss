@@ -66,13 +66,11 @@ function getSlideNext() {
   randomNum += 1;
   if(randomNum > 20) randomNum = 1;
   getLoadTypeImage()
-  console.log(randomNum)
 }
 function getSlidePrev() {
   randomNum -= 1;
   if(randomNum < 1) randomNum = 20;
   getLoadTypeImage()
-  console.log(randomNum)
 }
 
 const imageLoadType = document.querySelectorAll('.check');
