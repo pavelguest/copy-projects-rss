@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>art-quiz</title>
+</head>
+<body>
+  <main>
+    <div class="wrapper">
+      <div class="main-menu">
+        <div class="main-menu__settings-ico"><span></span></div>
+        <h1 class="main-menu__title">Art Quiz</h1>
+        <div class="main-menu__buttons">
+          <button class="main-menu__btn play-artist">Artist quiz</button>
+          <button class="main-menu__btn play-pictures">Pictures quiz</button>
+        </div>
+      </div>
+      <div class="settings-menu">
+        <div class="settings-menu__container">
+          <div class="settings-menu__ico-back"><span></span></div>
+          <h2 class="settings-menu__subtitle">Settings</h2>
+          <div class="settings-menu__ico-close"><span></span></div>
+        </div>
+        <div class="settings-menu__wrapper">
+          <div class="volume-container">
+            <h2 class="settings-menu__subtitle">Volume</h2>
+            <div class="volume__buttons">
+              <button class="volume__mute"></button>
+              <div class="container__progress-volume">
+                <input type="range" name="volume" min="0" max="1" step="0.05" value="0.75" class="volume__progress">
+              </div>
+            </div>
+          </div>
+          <div class="time-container">
+            <label class="settings-menu__subtitle" for="time">Time game</label>
+            <input type="checkbox" name="time" id="time" checked>
+          </div>
+          <div class="time-answer__container">
+            <h2 class="settings-menu__subtitle">Time to answer</h2>
+            <div class="time-answer__buttons">
+              <button type="button" onclick="this.nextElementSibling.stepDown()">-</button>
+              <input type="number" min="5" max="30" value="5" step="5">
+              <button type="button" onclick="this.previousElementSibling.stepUp()" >+</button>
+            </div>
+          </div>
+          <div class="settings-save__container">
+            <button class="default-settings">Default</button>
+            <button class="save-settings">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="wrapper footer-container">
+      <a class="footer-ico__github" href="https://github.com/pavelguest/"></a>
+      <a class ="footer-ico__school" href="https://rs.school/js/"></a>
+      <h5 class="footer__subtitle">&#169; <time>2021</time></h5>
+    </div>
+  </footer>
+</body>
+</html>

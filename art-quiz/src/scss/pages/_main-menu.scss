@@ -1,0 +1,45 @@
+.wrapper {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+ 
+}
+.main-menu__title {
+  font-size: 42px;
+  letter-spacing: 2px;
+}
+.main-menu__settings-ico {
+  position: absolute;
+  top: 18px;
+  right: 0;
+  cursor: pointer;
+  span {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    background: url('../assets/svg/settings.svg') no-repeat;
+    transition: transform 1s ease;
+  }
+}
+.main-menu__buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.main-menu__btn {
+  width: 250px;
+  height: 50px;
+  box-shadow: 2px 2px 20px 2px #000a;
+  background: none;
+  border-radius: 10px;
+  font-size: 24px;
+  color: white;
+}
