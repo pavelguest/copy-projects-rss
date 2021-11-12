@@ -1,8 +1,8 @@
-const openSettingsMenu = document.querySelector('.main-menu__settings-ico');
-const backSettingsMenu = document.querySelector('.settings-menu__ico-back');
-const closeSettingsMenu = document.querySelector('.settings-menu__ico-close');
-const mainMenu = document.querySelector('.main-menu');
-const settingsMenu = document.querySelector('.settings-menu');
+export const openSettingsMenu = document.querySelector('.main-menu__settings-ico');
+export const backSettingsMenu = document.querySelector('.settings-menu__ico-back');
+export const closeSettingsMenu = document.querySelector('.settings-menu__ico-close');
+export const mainMenu = document.querySelector('.main-menu');
+export const settingsMenu = document.querySelector('.settings-menu');
 
 
 
