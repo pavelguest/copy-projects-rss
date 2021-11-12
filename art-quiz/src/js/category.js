@@ -37,7 +37,7 @@ function createCategoryContainer(a, b) {
     const img = document.createElement('img');
     const div = document.createElement('div');
     img.classList.add('category__img');
-    img.src = `../assets/image-data/img/${numCategory.questions[0].imageNum}.jpg`;
+    img.src = `../assets/images/img/${numCategory.questions[0].imageNum}.jpg`;
     img.alt = `category`;
     categoryContainer.append(div);
     div.textContent = `${count}`;
