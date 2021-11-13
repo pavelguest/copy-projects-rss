@@ -1,5 +1,7 @@
 import images from './images';
 import { mainMenu } from './menu';
+import { QuestionAuthor } from './questionsAuthor';
+import { QuestionPictures } from './questionsPic';
 
 const playArtist = document.querySelector('.play-artist');
 const playPictures = document.querySelector('.play-pictures');
@@ -7,18 +9,42 @@ const categoryMenu = document.querySelector('.category-menu');
 export const categoryContainer = document.querySelector('.category-container');
 const playType = document.querySelector('.main-menu__buttons');
 const backCategoryMenu = document.querySelector('.category-menu__ico-back');
-
-
 export class Category {
   constructor(type, questions) {
     this.type = type;
-    this.questions = questions.slice(type*10, type*10+10)
+    this.questions = questions.slice(type*10, type*10+10);
+    this.score = 0;
+    this.current = 0;
   }
-
+  next() {
+    if (this.current > 9) {
+        this.end()
+    } else {
+        return this.current++;
+    }
+  }
+  score(index) {
+    let value = this.questions[this.current].answerCheck(index);
+    this.score += value;
+    let correct = -1;
+    if (value >= 1) {
+      correct = index;
+    }
+    else {
+      for (let i = 0; i < this.questions[this.current].answers.length; i++) {
+        if (this.questions[this.current].answers[i] === this.questions[this.current].answerRight) {
+          correct = i;
+          break;
+        }
+      }
+    }
+    this.next()
+    return correct;
+  }
+  end() {
+    console.log('End')
+  }
 }
-
-let b = new Category(5, images)
-console.log(b)
 
 function openCategory() {
   mainMenu.style.display = 'none';

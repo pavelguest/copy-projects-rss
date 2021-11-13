@@ -1,0 +1,11 @@
+.questions-menu {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  overflow: auto;
+ // display: none;
+  row-gap: 30px;
+  padding-top: 20px;
+  height: 100vh;
+}
+
