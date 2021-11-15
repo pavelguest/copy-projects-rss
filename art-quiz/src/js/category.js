@@ -5,7 +5,7 @@ import { QuestionPictures } from './questionsPic';
 
 const playArtist = document.querySelector('.play-artist');
 const playPictures = document.querySelector('.play-pictures');
-const categoryMenu = document.querySelector('.category-menu');
+export const categoryMenu = document.querySelector('.category-menu');
 export const categoryContainer = document.querySelector('.category-container');
 const playType = document.querySelector('.main-menu__buttons');
 const backCategoryMenu = document.querySelector('.category-menu__ico-back');
@@ -62,11 +62,15 @@ function createCategoryContainer(a, b) {
     const numCategory = new Category(i, images);
     const img = document.createElement('img');
     const div = document.createElement('div');
+    const p = document.createElement('p');
+    div.classList.add('category-container__img')
+    p.classList.add('category__type')
     img.classList.add('category__img');
     img.src = `../assets/images/img/${numCategory.questions[0].imageNum}.jpg`;
     img.alt = `category`;
     categoryContainer.append(div);
-    div.textContent = `${count}`;
+    div.append(p);
+    p.textContent = `${count}`;
     div.append(img);
     count++;
   }

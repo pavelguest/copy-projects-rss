@@ -15,7 +15,24 @@ function closeSettings() {
   mainMenu.style.display = 'flex';
   settingsMenu.style.display = 'none';
 }
-
+export function timerQuestions(progressTime, progressBar, time) {
+  let start = 100;
+  let interval = Math.round(100/time);
+  let intervalId = setInterval(() => {
+    if(start < 0) {
+    clearInterval(intervalId)
+    progressBar.value = 0;
+    } else {
+      progressTime.textContent = `${time}`;
+      progressBar.value = start;
+    }
+    start = start - interval;
+    time--;
+  }, 1000)
+  return () => {
+    clearInterval(intervalId);
+  }
+}
 
 openSettingsMenu.addEventListener('click', openSettings);
 backSettingsMenu.addEventListener('click', closeSettings);

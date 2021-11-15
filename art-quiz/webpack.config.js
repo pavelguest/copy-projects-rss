@@ -11,8 +11,10 @@ const srcPath = path.resolve(__dirname, 'src');
 
 const devServer = (isDev) => !isDev ? {} : {
   devServer: {
-    open: true,
+    // open: true,
     port: 'auto',
+    host: '0.0.0.0',
+    open: 'http://localhost:8080',
     static: {
       directory: srcPath,
       watch: true,

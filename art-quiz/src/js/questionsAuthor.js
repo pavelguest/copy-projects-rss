@@ -12,6 +12,8 @@ export function randomAuthors(min, max, noRepeat) {
   let result = authorArr[Math.round(Math.random() * (max- min) + min)];
   if(!noRepeat.includes(result)) {
     return result;
+  } else {
+    return randomAuthors(min, max, noRepeat);
   }
 }
 

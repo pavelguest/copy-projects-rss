@@ -16,8 +16,15 @@
   column-gap: 10px;
   row-gap: 10px;
   margin-bottom: 50px;
+  padding: 10px;
+}
+.category-container__img {
+  position: relative;
 }
 .category__type {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   font-size: 24px;
 }
 .category__img {
@@ -25,6 +32,7 @@
   width: 140px;
   height: 140px;
   cursor: pointer;
+  border: 5px solid white;
 }
 .category-menu__ico-back {
   position: absolute;

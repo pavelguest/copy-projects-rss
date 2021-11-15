@@ -71,7 +71,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  box-shadow: 2px 2px 20px 2px #000a;
+  box-shadow: 1px 1px 10px 1px #000a;
 
 }
 .container__progress-volume {
@@ -79,23 +79,27 @@
   align-items: center;
   width: 150px;
   height: 10px;
-  box-shadow: 2px 2px 20px 2px #000a;
+  box-shadow: 1px 1px 10px 1px #000a;
+  border-radius: 3px;
 }
 .volume__progress {
   display: block;
-  background: linear-gradient(to right, rgb(180, 56, 164) 0%, rgb(180, 56, 164) 75%, #fff 75%, #fff 100%);
+  background: linear-gradient(to right, rgb(137, 178, 212) 0%, rgb(137, 178, 212) 75%, #fff 75%, #fff 100%);
   width: 100%;
   height: 100%;
   outline: none;
   transition: background 450ms ease-in;
   -webkit-appearance: none;
+  border-radius: 3px;
 }
 .volume__progress::-webkit-slider-thumb {
   width: 25px;
   height: 15px;
   -webkit-appearance: none;
   cursor: ew-resize;
-  background: rgb(214, 114, 201);
+  background: rgb(74, 129, 173);
+  box-shadow: 1px 1px 10px 1px #000a;
+  border-radius: 10%;
 }
 .time-container {
   height: 50px;
@@ -112,11 +116,11 @@
     height: 30px;
     cursor: pointer;
     position: relative;
-    box-shadow: 2px 2px 20px 2px #000a;
+    box-shadow: 1px 1px 10px 1px #000a;
   }
   input::before {
     content: "🗸";
-    color: rgb(178, 32, 178);
+    color: rgb(74, 129, 173);
     font-size: 25px;
     position: absolute;
     right: 50%;
@@ -135,7 +139,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    box-shadow: 2px 2px 20px 2px #000a;
+    box-shadow: 1px 1px 10px 1px #000a;
     background: none;
     font-size: 24px;
     color: white;
@@ -155,7 +159,7 @@
   button {
     width: 130px;
     height: 50px;
-    box-shadow: 2px 2px 20px 2px #000a;
+    box-shadow: 1px 1px 10px 1px #000a;
     background: none;
     border-radius: 10px;
     font-size: 24px;
