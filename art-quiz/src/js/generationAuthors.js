@@ -1,42 +1,52 @@
-import images from './images';
-import { categoryContainer, categoryMenu } from './category';
-import { Category } from './category';
-import { QuestionAuthor } from './questionsAuthor';
-import { QuestionPictures } from './questionsPic';
+import { categoryMenu } from './category';
 import { timerQuestions } from './menu';
 
 const questionsContainer = document.querySelector('.questions-container');
 const questionsMenu = document.querySelector('.questions-menu');
-const answersContainer = document.querySelector('.answers-container');
 const progressTime = document.querySelector('.timer-progress');
 const progressBar = document.getElementById('use-progress');
-const timeGameValue = document.querySelector('.time-game');
+export const timeGameValue = document.querySelector('.time-game');
+export const timeGameChecked = document.getElementById('time');
+const settingsTimeButtonsContainer = document.querySelector('.time-answer__container');
 
-let questions = [];
-let category = [];
-for (let i = 0; i < 120; i++) {
-  questions.push(new QuestionAuthor(i));
-}
-for (let i = 0; i < 12; i++) {
-  category.push(new Category(i, questions));
-}
-
-console.log(category)
-
-function openQuestions() {
+export function openQuestions() {
   categoryMenu.style.display = 'none';
   questionsMenu.style.display = 'flex';
 }
+
 function closeQuestions() {
 
 }
 
+function exitQuestionsToCategories() {
+  questionsContainer.innerHTML = '';
+  questionsMenu.style.display = 'none';
+  categoryMenu.style.display = 'flex';
+}
 
-function getGenerationQuestions(arr) {
-  timerQuestions(progressTime, progressBar, timeGameValue.value);
+changeCheckbox()
+
+timeGameChecked.addEventListener('change', changeCheckbox);
+function changeCheckbox() {
+  if(timeGameChecked.checked == true) {
+    settingsTimeButtonsContainer.classList.remove('time-buttons__hide');
+    localStorage.setItem('checkedTimer', 1);
+  } else {
+    settingsTimeButtonsContainer.classList.add('time-buttons__hide');
+    localStorage.setItem('checkedTimer', 0);
+    console.log(localStorage.getItem('checkedTimer'))
+  }
+}
+export function getGenerationQuestions(arr) {
+  let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
+  progressBar.addEventListener('change', () => {
+    if(progressBar.value == 0 && arr.current < 10) {
+      resultAnswer(arr, undefined)
+    }
+  });
+
 
   questionsContainer.innerHTML = '';
-
   let div = document.createElement('div');
   let img = document.createElement('img');
   let h2 = document.createElement('h2');
@@ -46,7 +56,6 @@ function getGenerationQuestions(arr) {
   indicatorContainer.classList.add('indicator-container');
   img.classList.add('questions__img');
   h2.classList.add('questions-title');
-
   img.src = `../assets/images/img/${arr.questions[arr.current].question}.jpg`;
   img.alt = `question`;
   questionsContainer.append(h2);
@@ -60,33 +69,27 @@ function getGenerationQuestions(arr) {
     indicatorContainer.append(indicator);
   }
   questionsContainer.append(answersDiv);
-  console.log(arr.questions[arr.current].answers.length)
   for (let i = 0; i < arr.questions[arr.current].answers.length; i++) {
     let button = document.createElement('button');
     button.classList.add('answers__button')
     button.addEventListener('click', e => {
-      // getIndicators(arr, i);
+      arr.scoreQuiz(i)
+      getPaintIndication(arr, i)
       resultAnswer(arr, i);
+      cancelTimer();
     })
     answersDiv.append(button);
     button.textContent = arr.questions[arr.current].answers[i];
   }
 }
-
-function getIndicators(arr, i) {
-  const indicatorContainer = document.querySelectorAll('.indicator-answer');
-  console.log(indicatorContainer)
-  if(arr.questions[arr.current].answerCheck(i)) {
-    indicatorContainer.forEach((e, i) => {
-      if(i == arr.questions[arr.current].question)
-      e.classList.add('right-answer');
-    })
-  } else {
-    indicatorContainer.forEach((e, i) => {
-      if(i == arr.questions[arr.current].question)
-      e.classList.add('wrong-answer');
-    })
-  }
+function getPaintIndication(arr, i) {
+  document.querySelectorAll('.indicator-answer').forEach(e => {
+    if(arr.questions[arr.current].answerCheck(i)) {
+      e.classList.add('right-answer__button');
+    } else {
+      e.classList.add('wrong-answer__button');
+    }
+  })
 }
 
 function resultAnswer(arr, i) {
@@ -123,18 +126,50 @@ function resultAnswer(arr, i) {
   })
 }
 
-function nextAnswer(arr) {
-  arr.next();
-  getGenerationQuestions(arr);
+function scoreResult(score) {
+  document.querySelector('.answer-popup').innerHTML = '';
+
+  let scoreContainer = document.createElement('div');
+  let scoreTitle = document.createElement('h2');
+  let scoreSubtitle = document.createElement('p');
+  let scoreResult = document.createElement('p');
+  let scoreButton = document.createElement('button');
+
+  scoreContainer.classList.add('popup-score');
+  scoreTitle.classList.add('popup-score__title');
+  scoreSubtitle.classList.add('popup-score__subtitle');
+  scoreResult.classList.add('popup-score__result');
+  scoreButton.classList.add('popup-score__button');
+
+  questionsContainer.append(scoreContainer);
+  scoreContainer.append(scoreTitle);
+  scoreTitle.textContent = 'Игра завершена';
+  scoreContainer.append(scoreSubtitle);
+  scoreSubtitle.textContent = 'Ваш результат:';
+  scoreContainer.append(scoreResult);
+  scoreResult.textContent = `${score} / 10`;
+  scoreContainer.append(scoreButton);
+  scoreButton.textContent = 'Продолжить';
+  scoreButton.addEventListener('click', () => {
+    exitQuestionsToCategories();
+  })
 }
 
+function nextAnswer(arr) {
+  if(arr.current > 8) {
+    scoreResult(arr.score);
+    document.querySelectorAll('.category-score__result').forEach((e, i) => {
+      if(arr.type === i)
+      e.textContent = `Результат: ${arr.score}`;
+    })
 
-categoryContainer.addEventListener('click', e => {
-  const arrList = Array.from(document.querySelectorAll('.category__img'));
-  const listItem = arrList.indexOf(e.target);
-  if(listItem || listItem == 0) {
-    openQuestions()
-    getGenerationQuestions(category[listItem])
+  } else {
+    arr.next();
+    getGenerationQuestions(arr);
   }
-})
 
+}
+
+function saveGameAuthors() {
+
+}

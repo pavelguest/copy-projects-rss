@@ -20,6 +20,10 @@
 }
 .category-container__img {
   position: relative;
+  filter: grayscale(100%);
+}
+.active__category {
+  filter: grayscale(0%);
 }
 .category__type {
   position: absolute;
@@ -45,4 +49,10 @@
     background: url('../assets/svg/settings-back.svg') no-repeat;
     transition: transform 1s ease;
   }
+}
+.category-score__result {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 20px;
 }
