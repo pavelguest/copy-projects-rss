@@ -56,7 +56,7 @@ export function getGenerationQuestions(arr) {
   indicatorContainer.classList.add('indicator-container');
   img.classList.add('questions__img');
   h2.classList.add('questions-title');
-  img.src = `../assets/images/img/${arr.questions[arr.current].question}.jpg`;
+  img.src = `./assets/images/img/${arr.questions[arr.current].question}.jpg`;
   img.alt = `question`;
   questionsContainer.append(h2);
   h2.textContent = 'Кто автор этой картины?';
@@ -103,7 +103,7 @@ function resultAnswer(arr, i) {
   submitImg.classList.add('submit-img');
   submitAnswer.classList.add('submit-button');
   submitAnswer.addEventListener('click', () => nextAnswer(arr));
-  submitImg.src = `../assets/images/img/${arr.questions[arr.current].question}.jpg`;
+  submitImg.src = `./assets/images/img/${arr.questions[arr.current].question}.jpg`;
   submitImg.alt = `question`;
   questionsContainer.append(divPopup);
   divPopup.append(p);

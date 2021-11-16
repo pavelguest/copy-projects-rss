@@ -93,7 +93,7 @@ function getCategoryAuthorsContainer() {
     div.classList.add('category-container__img')
     nameCategory.classList.add('category__type')
     img.classList.add('category__img');
-    img.src = `../assets/images/img/${categoryAuthors[i].questions[0].question}.jpg`;
+    img.src = `./assets/images/img/${categoryAuthors[i].questions[0].question}.jpg`;
     img.alt = `category`;
     categoryContainer.append(div);
     div.append(nameCategory);
@@ -127,7 +127,7 @@ function getCategoryPicContainer() {
     div.classList.add('category-container__img')
     p.classList.add('category__type')
     img.classList.add('category__img');
-    img.src = `../assets/images/img/${categoryPic[i].questions[0].answerRight}.jpg`;
+    img.src = `./assets/images/img/${categoryPic[i].questions[0].answerRight}.jpg`;
     img.alt = `category`;
     categoryContainer.append(div);
     div.append(p);
