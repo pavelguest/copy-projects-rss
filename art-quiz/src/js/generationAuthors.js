@@ -1,13 +1,15 @@
 import { categoryMenu } from './category';
 import { timerQuestions } from './menu';
+import { saveOptions } from './saveOptions';
 
 const questionsContainer = document.querySelector('.questions-container');
 const questionsMenu = document.querySelector('.questions-menu');
 const progressTime = document.querySelector('.timer-progress');
 const progressBar = document.getElementById('use-progress');
+export const timerContainer = document.querySelector('.timer-container');
 export const timeGameValue = document.querySelector('.time-game');
 export const timeGameChecked = document.getElementById('time');
-const settingsTimeButtonsContainer = document.querySelector('.time-answer__container');
+export const settingsTimeButtonsContainer = document.querySelector('.time-answer__container');
 
 export function openQuestions() {
   categoryMenu.style.display = 'none';
@@ -24,27 +26,14 @@ function exitQuestionsToCategories() {
   categoryMenu.style.display = 'flex';
 }
 
-changeCheckbox()
-
-timeGameChecked.addEventListener('change', changeCheckbox);
-function changeCheckbox() {
-  if(timeGameChecked.checked == true) {
-    settingsTimeButtonsContainer.classList.remove('time-buttons__hide');
-    localStorage.setItem('checkedTimer', 1);
-  } else {
-    settingsTimeButtonsContainer.classList.add('time-buttons__hide');
-    localStorage.setItem('checkedTimer', 0);
-    console.log(localStorage.getItem('checkedTimer'))
-  }
-}
 export function getGenerationQuestions(arr) {
+
   let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', () => {
     if(progressBar.value == 0 && arr.current < 10) {
       resultAnswer(arr, undefined)
     }
   });
-
 
   questionsContainer.innerHTML = '';
   let div = document.createElement('div');
@@ -170,6 +159,4 @@ function nextAnswer(arr) {
 
 }
 
-function saveGameAuthors() {
 
-}
