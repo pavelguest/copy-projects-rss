@@ -27,15 +27,16 @@ function exitQuestionsToCategories() {
 }
 
 export function getGenerationQuestions(arr) {
-
-  let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
-  progressBar.addEventListener('change', () => {
-    if(progressBar.value == 0 && arr.current < 10) {
-      resultAnswer(arr, undefined)
-    }
-  });
-
   questionsContainer.innerHTML = '';
+  function listenerTimer() {
+    if(progressBar.value == 0 && arr.current < 10) {
+      console.log('create')
+      resultAnswer(arr, undefined);
+    }
+  }
+  let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
+  progressBar.addEventListener('change', listenerTimer, {once: true});
+
   let div = document.createElement('div');
   let img = document.createElement('img');
   let h2 = document.createElement('h2');
@@ -66,6 +67,8 @@ export function getGenerationQuestions(arr) {
       getPaintIndication(arr, i)
       resultAnswer(arr, i);
       cancelTimer();
+      progressBar.removeEventListener('change', listenerTimer);
+
     })
     answersDiv.append(button);
     button.textContent = arr.questions[arr.current].answers[i];
@@ -82,6 +85,7 @@ function getPaintIndication(arr, i) {
 }
 
 function resultAnswer(arr, i) {
+
   let divPopup = document.createElement('div');
   let submitAnswer = document.createElement('button');
   let submitImg = document.createElement('img');
@@ -146,6 +150,7 @@ function scoreResult(score) {
 
 function nextAnswer(arr) {
   if(arr.current > 8) {
+    console.log(arr.current)
     scoreResult(arr.score);
     document.querySelectorAll('.category-score__result').forEach((e, i) => {
       if(arr.type === i)
