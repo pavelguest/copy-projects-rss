@@ -1,3 +1,4 @@
+import { rightAudio, victoryAudio, wrongAudio } from './audioGameSupport';
 import { categoryMenu } from './category';
 import { timerQuestions } from './menu';
 import { saveOptions } from './saveOptions';
@@ -110,9 +111,11 @@ function resultAnswer(arr, i) {
   if(arr.questions[arr.current].answerCheck(i)) {
     divPopup.append(divIco);
     divIco.classList.add('right-answer__ico');
+    rightAudio.play();
   } else {
     divPopup.append(divIco);
     divIco.classList.add('wrong-answer__ico');
+    wrongAudio.play();
   }
   document.querySelectorAll('.answers__button').forEach(e=> {
     e.style.pointerEvents = 'none';
@@ -120,6 +123,7 @@ function resultAnswer(arr, i) {
 }
 
 function scoreResult(score) {
+  victoryAudio.play();
   document.querySelector('.answer-popup').innerHTML = '';
 
   let scoreContainer = document.createElement('div');

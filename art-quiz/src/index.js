@@ -9,3 +9,4 @@ import './js/category';
 import './js/generationAuthors';
 import './js/questionsPic';
 import './js/saveOptions';
+import './js/audioGameSupport';
