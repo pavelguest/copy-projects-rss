@@ -1,14 +1,14 @@
 export let rightAudio = new Audio();
 rightAudio.preload = 'audio';
-rightAudio.src = '../assets/audio/right.mp3';
+rightAudio.src = './assets/audio/right.mp3';
 
 export let wrongAudio = new Audio;
 wrongAudio.preload = 'audio';
-wrongAudio.src = '../assets/audio/wrong.mp3';
+wrongAudio.src = './assets/audio/wrong.mp3';
 
 export let victoryAudio = new Audio;
 victoryAudio.preload = 'audio';
-victoryAudio.src = '../assets/audio/victory.mp3';
+victoryAudio.src = './assets/audio/victory.mp3';
 
 export const volumeProgress = document.querySelector('.volume__progress');
 const volumeButtonMute = document.querySelector('.volume__mute');
