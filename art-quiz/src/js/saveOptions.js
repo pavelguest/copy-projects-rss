@@ -10,6 +10,8 @@ export class SaveOptions {
     this.timer = timer;
     this.timerDuration = timerDuration;
     this.volumeDuration = volumeDuration;
+    this.scoreCategoryAuthors = Array(12).fill(0);
+    this.scoreCategoryPic = Array(12).fill(0);
   }
   save() {
     localStorage.setItem('optionsGame', JSON.stringify(this));
@@ -19,9 +21,12 @@ export class SaveOptions {
     if(localStorage.getItem('optionsGame')) {
       let options = JSON.parse(localStorage.getItem('optionsGame'));
 
-      this.timer = options.timer;
+      saveOptions.timer = options.timer;
+      console.log(saveOptions.timer)
       this.timerDuration = options.timerDuration;
       this.volumeDuration = options.volumeDuration;
+      saveOptions.scoreCategoryAuthors = options.scoreCategoryAuthors;
+      saveOptions.scoreCategoryPic = options.scoreCategoryPic;
 
       timeGameChecked.checked = !!this.timer;
       timeGameValue.value = this.timerDuration;
@@ -42,8 +47,6 @@ export class SaveOptions {
 }
 
 export let saveOptions = new SaveOptions(1, 5, 0.75);
-console.log(saveOptions)
-window.addEventListener('load', saveOptions.load);
 
 buttonSaveOptions.addEventListener('click', () => {
   saveOptions.timer = +timeGameChecked.checked;
@@ -52,3 +55,5 @@ buttonSaveOptions.addEventListener('click', () => {
   saveOptions.save()
 });
 buttonDefaultOptions.addEventListener('click', () => saveOptions.default())
+
+window.addEventListener('load', saveOptions.load);

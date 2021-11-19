@@ -3,10 +3,10 @@ import { categoryMenu } from './category';
 import { timerQuestions } from './menu';
 import { saveOptions } from './saveOptions';
 
-const questionsContainer = document.querySelector('.questions-container');
-const questionsMenu = document.querySelector('.questions-menu');
-const progressTime = document.querySelector('.timer-progress');
-const progressBar = document.getElementById('use-progress');
+export const questionsContainer = document.querySelector('.questions-container');
+export const questionsMenu = document.querySelector('.questions-menu');
+export const progressTime = document.querySelector('.timer-progress');
+export const progressBar = document.getElementById('use-progress');
 export const timerContainer = document.querySelector('.timer-container');
 export const timeGameValue = document.querySelector('.time-game');
 export const timeGameChecked = document.getElementById('time');
@@ -21,7 +21,7 @@ function closeQuestions() {
 
 }
 
-function exitQuestionsToCategories() {
+export function exitQuestionsToCategories() {
   questionsContainer.innerHTML = '';
   questionsMenu.style.display = 'none';
   categoryMenu.style.display = 'flex';
@@ -35,6 +35,7 @@ export function getGenerationQuestions(arr) {
       resultAnswer(arr, undefined);
     }
   }
+  console.log(saveOptions.timer)
   let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
 
@@ -122,7 +123,7 @@ function resultAnswer(arr, i) {
   })
 }
 
-function scoreResult(score) {
+export function scoreResult(score) {
   victoryAudio.play();
   document.querySelector('.answer-popup').innerHTML = '';
 
@@ -157,8 +158,11 @@ function nextAnswer(arr) {
     console.log(arr.current)
     scoreResult(arr.score);
     document.querySelectorAll('.category-score__result').forEach((e, i) => {
-      if(arr.type === i)
-      e.textContent = `Результат: ${arr.score}`;
+      if(arr.type === i) {
+      saveOptions.scoreCategoryAuthors[i] = arr.score;
+      saveOptions.save();
+      e.textContent = `${arr.score} / 10`;
+      }
     })
 
   } else {

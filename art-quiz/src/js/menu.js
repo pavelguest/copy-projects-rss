@@ -19,8 +19,10 @@ function closeSettings() {
 }
 
 export function timerQuestions(progressTime, progressBar, time) {
-  if(!saveOptions.timer) {
-    return
+  console.log(saveOptions.timer)
+  if(saveOptions.timer === 0) {
+    console.log('lol')
+    return;
   } else {
     let start = 100;
     let interval = Math.round(100/time);

@@ -19,7 +19,7 @@ export class QuestionPictures {
     this.thirdIncorrectAnswer = randomPic(0, images.length - 1, [+this.answerRight, +this.firstIncorrectAnswer, +this.secondIncorrectAnswer]);
     this.answers = shuffle([this.answerRight, this.firstIncorrectAnswer, this.secondIncorrectAnswer, this.thirdIncorrectAnswer]);
   }
-  checkAnswer(i) {
+  answerCheck(i) {
     return this.answers[i] === this.answerRight ? 1 : 0;
   }
 }
