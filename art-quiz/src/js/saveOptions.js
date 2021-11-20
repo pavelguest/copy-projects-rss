@@ -29,7 +29,7 @@ export class SaveOptions {
       saveOptions.scoreCategoryPic = options.scoreCategoryPic;
       saveOptions.rightQuestion = options.rightQuestion;
 
-      timeGameChecked.checked = !!this.timer;
+      timeGameChecked.checked = !!saveOptions.timer;
       timeGameValue.value = this.timerDuration;
       volumeProgress.value = this.volumeDuration;
 

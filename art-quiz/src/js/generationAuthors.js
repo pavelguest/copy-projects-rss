@@ -11,6 +11,7 @@ export const timerContainer = document.querySelector('.timer-container');
 export const timeGameValue = document.querySelector('.time-game');
 export const timeGameChecked = document.getElementById('time');
 export const settingsTimeButtonsContainer = document.querySelector('.time-answer__container');
+export const indicatorContainer = document.querySelectorAll('.indicators-container__item');
 
 export function openQuestions() {
   categoryMenu.style.display = 'none';
@@ -31,6 +32,7 @@ export function getGenerationQuestions(arr) {
   questionsContainer.innerHTML = '';
   function listenerTimer() {
     if(progressBar.value == 0 && arr.current < 10) {
+      getPaintIndicators(arr, undefined);
       resultAnswer(arr, undefined);
     }
   }
@@ -41,9 +43,7 @@ export function getGenerationQuestions(arr) {
   let img = document.createElement('img');
   let h2 = document.createElement('h2');
   let answersDiv = document.createElement('div');
-  let indicatorContainer = document.createElement('div');
   answersDiv.classList.add('answers-container');
-  indicatorContainer.classList.add('indicator-container');
   img.classList.add('questions__img');
   h2.classList.add('questions-title');
   img.src = `./assets/images/img/${arr.questions[arr.current].question}.jpg`;
@@ -52,36 +52,40 @@ export function getGenerationQuestions(arr) {
   h2.textContent = 'Кто автор этой картины?';
   questionsContainer.append(div);
   div.append(img);
-  questionsContainer.append(indicatorContainer);
-  for (let index = 0; index < arr.questions.length; index++) {
-    let indicator = document.createElement('div');
-    indicator.classList.add('indicator-answer')
-    indicatorContainer.append(indicator);
-  }
   questionsContainer.append(answersDiv);
   for (let i = 0; i < arr.questions[arr.current].answers.length; i++) {
     let button = document.createElement('button');
     button.classList.add('answers__button')
     button.addEventListener('click', e => {
       arr.scoreQuiz(i)
-      getPaintIndication(arr, i)
+      getPaintIndicators(arr, i);
       resultAnswer(arr, i);
       if(timeGameChecked.checked) {
         cancelTimer();
       }
       progressBar.removeEventListener('change', listenerTimer);
-
     })
+
     answersDiv.append(button);
     button.textContent = arr.questions[arr.current].answers[i];
   }
 }
-function getPaintIndication(arr, i) {
-  document.querySelectorAll('.indicator-answer').forEach(e => {
-    if(arr.questions[arr.current].answerCheck(i)) {
-      e.classList.add('right-answer__button');
-    } else {
-      e.classList.add('wrong-answer__button');
+
+export function getPaintDefaultColorIndicators() {
+  indicatorContainer.forEach(e => {
+    e.classList.remove('right-answer__button');
+    e.classList.remove('wrong-answer__button');
+  })
+}
+
+export function getPaintIndicators(arr, i) {
+  indicatorContainer.forEach((e, index) => {
+    if(index === arr.current) {
+      if(arr.questions[arr.current].answerCheck(i)) {
+          e.classList.add('right-answer__button');
+      } else {
+          e.classList.add('wrong-answer__button');
+      }
     }
   })
 }
@@ -108,21 +112,16 @@ function resultAnswer(arr, i) {
   divPopup.append(submitImg);
   divPopup.append(submitAnswer);
   submitAnswer.textContent = `Продолжить`;
-  console.log(`номер вопроса: ${arr.questions[arr.current].question}`)
   if(arr.questions[arr.current].answerCheck(i)) {
     divPopup.append(divIco);
     divIco.classList.add('right-answer__ico');
     rightAudio.play();
-    console.log(`type:${arr.type}`);
-    console.log(`current:${arr.current}`);
     saveOptions.rightQuestion[+arr.questions[arr.current].question] = 1;
     saveOptions.save()
   } else {
     divPopup.append(divIco);
     divIco.classList.add('wrong-answer__ico');
     wrongAudio.play();
-    console.log(`type:${arr.type}`);
-    console.log(`current:${arr.current}`);
     saveOptions.rightQuestion[+arr.questions[arr.current].question] = 0;
     saveOptions.save();
   }

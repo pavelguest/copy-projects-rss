@@ -1,7 +1,7 @@
 import { QuestionAuthor } from './questionsAuthor';
 import { QuestionPictures } from './questionsPic';
 import { mainMenu } from './menu';
-import { getGenerationQuestions, openQuestions } from './generationAuthors';
+import { getGenerationQuestions, getPaintDefaultColorIndicators, openQuestions } from './generationAuthors';
 import { saveOptions } from './saveOptions';
 import { getGenerationQuestionsPic } from './generationPic';
 import { getCategoryResultAuthors, getCategoryResultPic, resultMenu } from './resultCategory';
@@ -100,6 +100,7 @@ function getCategoryAuthorsContainer() {
     const nameCategory = document.createElement('p');
     const categoryScoreResult = document.createElement('p');
     const buttonsScore = document.createElement('button');
+
     buttonsScore.classList.add('category-container__button-score');
     categoryScoreResult.classList.add('category-score__result');
     div.classList.add('category-container__img');
@@ -112,23 +113,27 @@ function getCategoryAuthorsContainer() {
     div.append(nameCategory);
     div.append(categoryScoreResult);
     div.append(buttonsScore);
+
     buttonsScore.textContent = `Результаты`;
     nameCategory.textContent = `${count}`;
     categoryScoreResult.textContent = `${categoryAuthors[i].score} / 10`;
     if(saveOptions.scoreCategoryAuthors[i] > 0) {
       img.classList.add('active__category');
+      buttonsScore.classList.add('active__button-score');
     }
 
+    buttonsScore.addEventListener('click', () => {
+      openCategoryResult();
+      getCategoryResultAuthors(categoryAuthors[i], i+1);
+    })
     img.addEventListener('click', e => {
       openQuestions()
       categoryAuthors[i].current = 0;
       categoryAuthors[i].score = 0;
       img.classList.add('active__category');
+      buttonsScore.classList.add('active__button-score');
+      getPaintDefaultColorIndicators()
       getGenerationQuestions(categoryAuthors[i])
-    })
-    buttonsScore.addEventListener('click', () => {
-      openCategoryResult();
-      getCategoryResultAuthors(categoryAuthors[i], i+1);
     })
     count++;
   }
@@ -162,9 +167,9 @@ function getCategoryPicContainer() {
     buttonsScore.textContent = `Результаты`;
     nameCategory.textContent = `${count}`;
     categoryScoreResult.textContent = `${categoryPic[i].score} / 10`;
-    console.log(i)
     if(saveOptions.scoreCategoryPic[i] > 0) {
       img.classList.add('active__category');
+      buttonsScore.classList.add('active__button-score');
     }
 
     img.addEventListener('click', e => {
@@ -172,6 +177,8 @@ function getCategoryPicContainer() {
       categoryPic[i].current = 0;
       categoryPic[i].score = 0;
       img.classList.add('active__category');
+      buttonsScore.classList.add('active__button-score');
+      getPaintDefaultColorIndicators()
       getGenerationQuestionsPic(categoryPic[i])
     })
     buttonsScore.addEventListener('click', () => {

@@ -1,5 +1,5 @@
 import { rightAudio, wrongAudio } from "./audioGameSupport";
-import { progressBar, progressTime, questionsContainer, scoreResult, timeGameValue } from "./generationAuthors";
+import { indicatorContainer, progressBar, progressTime, questionsContainer, scoreResult, timeGameChecked, timeGameValue } from "./generationAuthors";
 import { timerQuestions } from "./menu";
 import { saveOptions } from "./saveOptions";
 
@@ -7,11 +7,10 @@ export function getGenerationQuestionsPic(arr) {
   questionsContainer.innerHTML = '';
   function listenerTimer() {
     if(progressBar.value == 0 && arr.current < 10) {
-      console.log('create')
+      getPaintIndicatorsPic(arr, undefined);
       resultAnswerPic(arr, undefined);
     }
   }
-  console.log(saveOptions.timer)
   let cancelTimerPic = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
 
@@ -33,14 +32,26 @@ export function getGenerationQuestionsPic(arr) {
     answerDiv.append(img);
     answerDiv.addEventListener('click', () => {
       arr.scoreQuiz(i);
+      getPaintIndicatorsPic(arr, i);
       resultAnswerPic(arr, i);
-      cancelTimerPic();
+      if(timeGameChecked.checked) {
+        cancelTimerPic();
+      }
       progressBar.removeEventListener('change', listenerTimer);
     })
   });
-  console.log(arr.questions[arr.current].answers)
+}
 
-
+export function getPaintIndicatorsPic(arr, i) {
+  indicatorContainer.forEach((e, index) => {
+    if(index === arr.current) {
+      if(arr.questions[arr.current].answerCheck(i)) {
+          e.classList.add('right-answer__button');
+      } else {
+          e.classList.add('wrong-answer__button');
+      }
+    }
+  })
 }
 
 function resultAnswerPic(arr, i) {

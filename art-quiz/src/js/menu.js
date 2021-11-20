@@ -19,7 +19,7 @@ function closeSettings() {
 }
 
 export function timerQuestions(progressTime, progressBar, time) {
-  if(saveOptions.timer === 0) {
+  if(!saveOptions.timer) {
     console.log('lol')
     return;
   } else {

@@ -13,38 +13,30 @@ function closeResultMenu () {
   categoryMenu.style.display = 'flex';
 }
 
-function getInfoQuestion(img, div, divImgContainer) {
-  // img.style.display = 'none';
-  // div.style.display = 'flex';
-  divImgContainer.classList.toggle('flip')
-}
-
-// function leaveInfoQuestion(img, div) {
-//   img.style.display = 'flex';
-//   div.style.display = 'none';
-// }
-
 export function getCategoryResultAuthors(arr, count) {
   resultMenuContainer.innerHTML = '';
 
   const imgCategory = document.createElement('img');
-  imgCategory.src = `./assets/images/img/${arr.questions[0].question}.jpg`;
+  imgCategory.src = `./assets/images/full/${arr.questions[0].question}full.jpg`;
   imgCategory.alt = 'category';
   resultMenuImage.append(imgCategory);
   resultMenuTitle.textContent = `${count}`;
   for (let i = 0; i < arr.questions.length; i++) {
+    const divCardContainer = document.createElement('div');
     const divImgContainer = document.createElement('div');
     const img = document.createElement('img');
     const divInfo = document.createElement('div');
     const name = document.createElement('p');
     const author = document.createElement('p');
     const year = document.createElement('p');
+    divCardContainer.classList.add('image-card__container')
     divImgContainer.classList.add('image-question__container');
     img.classList.add('image-question__container-img')
     divInfo.classList.add('image-question__container-info');
     img.src = `./assets/images/img/${arr.questions[i].question}.jpg`;
     img.alt = 'question';
-    resultMenuContainer.append(divImgContainer);
+    resultMenuContainer.append(divCardContainer);
+    divCardContainer.append(divImgContainer);
     divImgContainer.append(img);
     divImgContainer.append(divInfo);
     divInfo.append(name);
@@ -55,11 +47,8 @@ export function getCategoryResultAuthors(arr, count) {
     year.textContent = `${images[arr.questions[i].question].year}`;
 
     divImgContainer.addEventListener('click', () => {
-      getInfoQuestion(img, divInfo, divImgContainer)
+      divCardContainer.classList.toggle('flip');
     })
-    // divImgContainer.addEventListener('mouseleave', () => {
-    //   leaveInfoQuestion(img, divInfo)
-    // })
     if(saveOptions.rightQuestion[+arr.questions[i].question]) {
       img.classList.add('active__category-result')
     }
@@ -70,23 +59,26 @@ export function getCategoryResultPic(arr, count) {
   resultMenuContainer.innerHTML = '';
 
   const imgCategory = document.createElement('img');
-  imgCategory.src = `./assets/images/img/${arr.questions[0].answerRight}.jpg`;
+  imgCategory.src = `./assets/images/full/${arr.questions[0].answerRight}full.jpg`;
   imgCategory.alt = 'category';
   resultMenuImage.append(imgCategory);
   resultMenuTitle.textContent = `${count}`;
   for (let i = 0; i < arr.questions.length; i++) {
+    const divCardContainer = document.createElement('div');
     const divImgContainer = document.createElement('div');
     const img = document.createElement('img');
     const divInfo = document.createElement('div');
     const name = document.createElement('p');
     const author = document.createElement('p');
     const year = document.createElement('p');
+    divCardContainer.classList.add('image-card__container')
     divImgContainer.classList.add('image-question__container');
     img.classList.add('image-question__container-img')
     divInfo.classList.add('image-question__container-info');
     img.src = `./assets/images/img/${arr.questions[i].answerRight}.jpg`;
     img.alt = 'question';
-    resultMenuContainer.append(divImgContainer);
+    resultMenuContainer.append(divCardContainer);
+    divCardContainer.append(divImgContainer);
     divImgContainer.append(img);
     divImgContainer.append(divInfo);
     divInfo.append(name);
@@ -95,11 +87,9 @@ export function getCategoryResultPic(arr, count) {
     name.textContent = `${images[arr.questions[i].answerRight].name}`;
     author.textContent = `${images[arr.questions[i].answerRight].author}`;
     year.textContent = `${images[arr.questions[i].answerRight].year}`;
+
     divImgContainer.addEventListener('click', () => {
-      getInfoQuestion(img, divInfo)
-    })
-    divImgContainer.addEventListener('mouseleave', () => {
-      leaveInfoQuestion(img, divInfo)
+      divCardContainer.classList.toggle('flip');
     })
     if(saveOptions.rightQuestion[+arr.questions[i].answerRight]) {
       img.classList.add('active__category-result')

@@ -70,5 +70,8 @@ button:hover {
   left: 10px;
   font-size: 24px;
   background: rgb(137, 178, 212);
-
+  display: none;
+}
+.active__button-score {
+  display: block;
 }
