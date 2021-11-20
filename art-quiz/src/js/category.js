@@ -115,9 +115,7 @@ function getCategoryAuthorsContainer() {
     buttonsScore.textContent = `Результаты`;
     nameCategory.textContent = `${count}`;
     categoryScoreResult.textContent = `${categoryAuthors[i].score} / 10`;
-    console.log(i)
     if(saveOptions.scoreCategoryAuthors[i] > 0) {
-      console.log(saveOptions.scoreCategoryAuthors)
       img.classList.add('active__category');
     }
 
@@ -166,7 +164,6 @@ function getCategoryPicContainer() {
     categoryScoreResult.textContent = `${categoryPic[i].score} / 10`;
     console.log(i)
     if(saveOptions.scoreCategoryPic[i] > 0) {
-      console.log(saveOptions.scoreCategoryPic)
       img.classList.add('active__category');
     }
 

@@ -12,21 +12,22 @@ export class SaveOptions {
     this.volumeDuration = volumeDuration;
     this.scoreCategoryAuthors = Array(12).fill(0);
     this.scoreCategoryPic = Array(12).fill(0);
+    this.rightQuestion = Array(240).fill(0);
+
   }
   save() {
     localStorage.setItem('optionsGame', JSON.stringify(this));
-    console.log(this);
   }
   load() {
     if(localStorage.getItem('optionsGame')) {
       let options = JSON.parse(localStorage.getItem('optionsGame'));
 
       saveOptions.timer = options.timer;
-      console.log(saveOptions.timer)
       this.timerDuration = options.timerDuration;
       this.volumeDuration = options.volumeDuration;
       saveOptions.scoreCategoryAuthors = options.scoreCategoryAuthors;
       saveOptions.scoreCategoryPic = options.scoreCategoryPic;
+      saveOptions.rightQuestion = options.rightQuestion;
 
       timeGameChecked.checked = !!this.timer;
       timeGameValue.value = this.timerDuration;

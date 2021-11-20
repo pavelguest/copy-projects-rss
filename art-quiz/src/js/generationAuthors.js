@@ -31,11 +31,9 @@ export function getGenerationQuestions(arr) {
   questionsContainer.innerHTML = '';
   function listenerTimer() {
     if(progressBar.value == 0 && arr.current < 10) {
-      console.log('create')
       resultAnswer(arr, undefined);
     }
   }
-  console.log(saveOptions.timer)
   let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
 
@@ -68,7 +66,9 @@ export function getGenerationQuestions(arr) {
       arr.scoreQuiz(i)
       getPaintIndication(arr, i)
       resultAnswer(arr, i);
-      cancelTimer();
+      if(timeGameChecked.checked) {
+        cancelTimer();
+      }
       progressBar.removeEventListener('change', listenerTimer);
 
     })
@@ -108,15 +108,23 @@ function resultAnswer(arr, i) {
   divPopup.append(submitImg);
   divPopup.append(submitAnswer);
   submitAnswer.textContent = `Продолжить`;
-
+  console.log(`номер вопроса: ${arr.questions[arr.current].question}`)
   if(arr.questions[arr.current].answerCheck(i)) {
     divPopup.append(divIco);
     divIco.classList.add('right-answer__ico');
     rightAudio.play();
+    console.log(`type:${arr.type}`);
+    console.log(`current:${arr.current}`);
+    saveOptions.rightQuestion[+arr.questions[arr.current].question] = 1;
+    saveOptions.save()
   } else {
     divPopup.append(divIco);
     divIco.classList.add('wrong-answer__ico');
     wrongAudio.play();
+    console.log(`type:${arr.type}`);
+    console.log(`current:${arr.current}`);
+    saveOptions.rightQuestion[+arr.questions[arr.current].question] = 0;
+    saveOptions.save();
   }
   document.querySelectorAll('.answers__button').forEach(e=> {
     e.style.pointerEvents = 'none';
@@ -155,7 +163,6 @@ export function scoreResult(score) {
 
 function nextAnswer(arr) {
   if(arr.current > 8) {
-    console.log(arr.current)
     scoreResult(arr.score);
     document.querySelectorAll('.category-score__result').forEach((e, i) => {
       if(arr.type === i) {
@@ -164,7 +171,6 @@ function nextAnswer(arr) {
       e.textContent = `${arr.score} / 10`;
       }
     })
-
   } else {
     arr.next();
     getGenerationQuestions(arr);

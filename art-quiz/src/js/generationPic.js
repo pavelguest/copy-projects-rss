@@ -66,10 +66,14 @@ function resultAnswerPic(arr, i) {
     divPopup.append(divIco);
     divIco.classList.add('right-answer__ico');
     rightAudio.play();
+    saveOptions.rightQuestion[+arr.questions[arr.current].answerRight] = 1;
+    saveOptions.save()
   } else {
     divPopup.append(divIco);
     divIco.classList.add('wrong-answer__ico');
     wrongAudio.play();
+    saveOptions.rightQuestion[+arr.questions[arr.current].answerRight] = 0;
+    saveOptions.save()
   }
   document.querySelectorAll('.answers__button').forEach(e=> {
     e.style.pointerEvents = 'none';

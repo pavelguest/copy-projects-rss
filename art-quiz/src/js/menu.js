@@ -19,7 +19,6 @@ function closeSettings() {
 }
 
 export function timerQuestions(progressTime, progressBar, time) {
-  console.log(saveOptions.timer)
   if(saveOptions.timer === 0) {
     console.log('lol')
     return;
