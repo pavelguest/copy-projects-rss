@@ -1,5 +1,6 @@
 import { categoryMenu } from "./category";
 import images from "./images";
+import { mainMenu } from "./menu";
 import { saveOptions } from "./saveOptions";
 
 export const resultMenu = document.querySelector('.result-menu');
@@ -7,10 +8,34 @@ export const resultMenuContainer = document.querySelector('.result-menu__contain
 const resultMenuImage = document.querySelector('.result-menu__image-category');
 const resultMenuTitle = document.querySelector('.image-category__title');
 const backResultMenu = document.querySelector('.result-menu__back-ico');
+const backResultMenuToHome = document.querySelector('.result-menu__ico-home')
 
 function closeResultMenu () {
-  resultMenu.style.display = 'none';
-  categoryMenu.style.display = 'flex';
+  resultMenu.classList.add('pt-page-rotatePushBottom');
+  categoryMenu.classList.add('pt-page-ontop');
+  categoryMenu.classList.add('pt-page-current');
+  categoryMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    resultMenu.classList.remove('pt-page-current');
+    categoryMenu.classList.remove('pt-page-ontop');
+    categoryMenu.classList.remove('pt-page-rotatePushTop');
+    resultMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
+  resultMenuContainer.innerHTML = '';
+}
+
+function closeResultMenuToHome () {
+  resultMenu.classList.add('pt-page-rotatePushBottom');
+  mainMenu.classList.add('pt-page-ontop');
+  mainMenu.classList.add('pt-page-current');
+  mainMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    resultMenu.classList.remove('pt-page-current');
+    mainMenu.classList.remove('pt-page-ontop');
+    mainMenu.classList.remove('pt-page-rotatePushTop');
+    resultMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
+  resultMenuContainer.innerHTML = '';
 }
 
 export function getCategoryResultAuthors(arr, count) {
@@ -99,3 +124,4 @@ export function getCategoryResultPic(arr, count) {
 
 
 backResultMenu.addEventListener('click', closeResultMenu);
+backResultMenuToHome.addEventListener('click', closeResultMenuToHome);

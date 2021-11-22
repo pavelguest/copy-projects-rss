@@ -9,8 +9,8 @@
 </head>
 <body>
   <main>
-    <div class="wrapper">
-      <div class="main-menu">
+    <div class="wrapper pt-perspective">
+      <div class="main-menu pt-page pt-page-1 pt-page-current">
         <div class="main-menu__settings-ico"><span></span></div>
         <h1 class="main-menu__title">Викторина</h1>
         <div class="main-menu__buttons">
@@ -18,7 +18,7 @@
           <button class="main-menu__btn play-pictures">Картины</button>
         </div>
       </div>
-      <div class="settings-menu">
+      <div class="settings-menu pt-page pt-page-2">
         <div class="settings-menu__container">
           <div class="settings-menu__ico-back"><span></span></div>
           <h2 class="settings-menu__subtitle">Настройки</h2>
@@ -52,13 +52,15 @@
           </div>
         </div>
       </div>
-      <div class="category-menu">
+      <div class="category-menu pt-page pt-page-3">
         <div class="category-menu__ico-back"><span></span></div>
         <h2 class="settings-menu__subtitle">Категории</h2>
         <div class="category-container">
         </div>
       </div>
-      <div class="questions-menu">
+      <div class="questions-menu pt-page pt-page-4">
+        <div class="questions-menu__ico-back"><span></span></div>
+        <div class="questions-menu__ico-home"><span></span></div>
         <div class="timer-container">
           <progress id="use-progress" value="100" max="100"></progress>
           <span class="timer-progress"></span>
@@ -78,8 +80,9 @@
           <div class="indicators-container__item"></div>
         </div>
       </div>
-      <div class="result-menu">
+      <div class="result-menu pt-page pt-page-5">
         <div class="result-menu__back-ico"><span></span></div>
+        <div class="result-menu__ico-home"><span></span></div>
         <h2>Результаты</h2>
         <div class="result-menu__image-category">
           <p class="image-category__title"></p>

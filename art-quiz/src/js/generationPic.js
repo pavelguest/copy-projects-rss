@@ -1,6 +1,7 @@
 import { rightAudio, wrongAudio } from "./audioGameSupport";
-import { indicatorContainer, progressBar, progressTime, questionsContainer, scoreResult, timeGameChecked, timeGameValue } from "./generationAuthors";
-import { timerQuestions } from "./menu";
+import { categoryMenu } from "./category";
+import { backQuestionsMenu, backQuestionsMenuToHome, indicatorContainer, progressBar, progressTime, questionsContainer, questionsMenu, scoreResult, timeGameChecked, timeGameValue } from "./generationAuthors";
+import { mainMenu, timerQuestions } from "./menu";
 import { saveOptions } from "./saveOptions";
 
 export function getGenerationQuestionsPic(arr) {
@@ -13,6 +14,41 @@ export function getGenerationQuestionsPic(arr) {
   }
   let cancelTimerPic = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
+
+  function closeQuestionsPic() {
+    questionsContainer.innerHTML = '';
+    cancelTimerPic();
+    questionsMenu.classList.add('pt-page-rotatePushBottom');
+    categoryMenu.classList.add('pt-page-ontop');
+    categoryMenu.classList.add('pt-page-current');
+    categoryMenu.classList.add('pt-page-rotatePushTop');
+    window.setTimeout(() => {
+      questionsMenu.classList.remove('pt-page-current');
+      categoryMenu.classList.remove('pt-page-ontop');
+      categoryMenu.classList.remove('pt-page-rotatePushTop');
+      questionsMenu.classList.remove('pt-page-rotatePushBottom');
+    }, 1000)
+  }
+
+  function closeQuestionsPicOpenMainMenu() {
+    questionsContainer.innerHTML = '';
+    cancelTimerPic();
+    questionsMenu.classList.add('pt-page-rotatePushBottom');
+    mainMenu.classList.add('pt-page-ontop');
+    mainMenu.classList.add('pt-page-current');
+    mainMenu.classList.add('pt-page-rotatePushTop');
+    window.setTimeout(() => {
+      questionsMenu.classList.remove('pt-page-current');
+      mainMenu.classList.remove('pt-page-ontop');
+      mainMenu.classList.remove('pt-page-rotatePushTop');
+      questionsMenu.classList.remove('pt-page-rotatePushBottom');
+    }, 1000)
+  }
+
+  if(saveOptions.timer) {
+    backQuestionsMenu.addEventListener('click', closeQuestionsPic);
+    backQuestionsMenuToHome.addEventListener('click', closeQuestionsPicOpenMainMenu);
+  }
 
   let h2 = document.createElement('h2');
   let div = document.createElement('div');

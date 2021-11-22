@@ -1,6 +1,6 @@
 import { rightAudio, victoryAudio, wrongAudio } from './audioGameSupport';
 import { categoryMenu } from './category';
-import { timerQuestions } from './menu';
+import { mainMenu, timerQuestions } from './menu';
 import { saveOptions } from './saveOptions';
 
 export const questionsContainer = document.querySelector('.questions-container');
@@ -12,20 +12,35 @@ export const timeGameValue = document.querySelector('.time-game');
 export const timeGameChecked = document.getElementById('time');
 export const settingsTimeButtonsContainer = document.querySelector('.time-answer__container');
 export const indicatorContainer = document.querySelectorAll('.indicators-container__item');
+export const backQuestionsMenu = document.querySelector('.questions-menu__ico-back');
+export const backQuestionsMenuToHome = document.querySelector('.questions-menu__ico-home');
 
 export function openQuestions() {
-  categoryMenu.style.display = 'none';
-  questionsMenu.style.display = 'flex';
+  categoryMenu.classList.add('pt-page-rotatePushBottom');
+  questionsMenu.classList.add('pt-page-ontop');
+  questionsMenu.classList.add('pt-page-current');
+  questionsMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    categoryMenu.classList.remove('pt-page-current');
+    questionsMenu.classList.remove('pt-page-ontop');
+    questionsMenu.classList.remove('pt-page-rotatePushTop');
+    categoryMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
-function closeQuestions() {
-
-}
 
 export function exitQuestionsToCategories() {
   questionsContainer.innerHTML = '';
-  questionsMenu.style.display = 'none';
-  categoryMenu.style.display = 'flex';
+  questionsMenu.classList.add('pt-page-rotatePushBottom');
+  categoryMenu.classList.add('pt-page-ontop');
+  categoryMenu.classList.add('pt-page-current');
+  categoryMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    questionsMenu.classList.remove('pt-page-current');
+    categoryMenu.classList.remove('pt-page-ontop');
+    categoryMenu.classList.remove('pt-page-rotatePushTop');
+    questionsMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
 export function getGenerationQuestions(arr) {
@@ -38,6 +53,41 @@ export function getGenerationQuestions(arr) {
   }
   let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
+
+  function closeQuestions() {
+    questionsContainer.innerHTML = '';
+    cancelTimer();
+    questionsMenu.classList.add('pt-page-rotatePushBottom');
+    categoryMenu.classList.add('pt-page-ontop');
+    categoryMenu.classList.add('pt-page-current');
+    categoryMenu.classList.add('pt-page-rotatePushTop');
+    window.setTimeout(() => {
+      questionsMenu.classList.remove('pt-page-current');
+      categoryMenu.classList.remove('pt-page-ontop');
+      categoryMenu.classList.remove('pt-page-rotatePushTop');
+      questionsMenu.classList.remove('pt-page-rotatePushBottom');
+    }, 1000)
+  }
+
+  function closeQuestionsOpenMainMenu() {
+    questionsContainer.innerHTML = '';
+    cancelTimer();
+    questionsMenu.classList.add('pt-page-rotatePushBottom');
+    mainMenu.classList.add('pt-page-ontop');
+    mainMenu.classList.add('pt-page-current');
+    mainMenu.classList.add('pt-page-rotatePushTop');
+    window.setTimeout(() => {
+      questionsMenu.classList.remove('pt-page-current');
+      mainMenu.classList.remove('pt-page-ontop');
+      mainMenu.classList.remove('pt-page-rotatePushTop');
+      questionsMenu.classList.remove('pt-page-rotatePushBottom');
+    }, 1000)
+  }
+
+  if(saveOptions.timer) {
+    backQuestionsMenu.addEventListener('click', closeQuestions);
+    backQuestionsMenuToHome.addEventListener('click', closeQuestionsOpenMainMenu);
+  }
 
   let div = document.createElement('div');
   let img = document.createElement('img');

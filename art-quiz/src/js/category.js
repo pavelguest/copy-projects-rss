@@ -74,22 +74,46 @@ function setCategoryPic() {
 }
 
 function openCategory() {
-  mainMenu.style.display = 'none';
-  categoryMenu.style.display = 'flex';
+  mainMenu.classList.add('pt-page-rotatePushBottom');
+  categoryMenu.classList.add('pt-page-ontop');
+  categoryMenu.classList.add('pt-page-current');
+  categoryMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    mainMenu.classList.remove('pt-page-current');
+    categoryMenu.classList.remove('pt-page-ontop');
+    categoryMenu.classList.remove('pt-page-rotatePushTop');
+    mainMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
 function closeCategory() {
-  categoryMenu.style.display = 'none';
-  mainMenu.style.display = 'flex';
-  categoryContainer.innerHTML = '';
+  categoryMenu.classList.add('pt-page-rotatePushBottom');
+  mainMenu.classList.add('pt-page-ontop');
+  mainMenu.classList.add('pt-page-current');
+  mainMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    categoryMenu.classList.remove('pt-page-current');
+    mainMenu.classList.remove('pt-page-ontop');
+    mainMenu.classList.remove('pt-page-rotatePushTop');
+    categoryMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
 function openCategoryResult() {
-  categoryMenu.style.display = 'none';
-  resultMenu.style.display = 'flex';
+  categoryMenu.classList.add('pt-page-rotatePushBottom');
+  resultMenu.classList.add('pt-page-ontop');
+  resultMenu.classList.add('pt-page-current');
+  resultMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    categoryMenu.classList.remove('pt-page-current');
+    resultMenu.classList.remove('pt-page-ontop');
+    resultMenu.classList.remove('pt-page-rotatePushTop');
+    categoryMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
 function getCategoryAuthorsContainer() {
+  categoryContainer.innerHTML = '';
   questionsAuthors = [];
   categoryAuthors = [];
   setCategoryAuthors()
@@ -141,10 +165,10 @@ function getCategoryAuthorsContainer() {
 }
 
 function getCategoryPicContainer() {
+  categoryContainer.innerHTML = '';
   questionsPic = [];
   categoryPic = [];
   setCategoryPic()
-  console.log(categoryPic)
   let count = 1;
   for (let i = 0; i < categoryPic.length; i++) {
     const img = document.createElement('img');

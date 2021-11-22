@@ -6,16 +6,35 @@ export const backSettingsMenu = document.querySelector('.settings-menu__ico-back
 export const closeSettingsMenu = document.querySelector('.settings-menu__ico-close');
 export const mainMenu = document.querySelector('.main-menu');
 export const settingsMenu = document.querySelector('.settings-menu');
+export const footerContainer = document.querySelector('.footer-container');
 
 
 function openSettings() {
-  mainMenu.style.display = 'none';
-  settingsMenu.style.display = 'flex';
+  // mainMenu.style.display = 'none';
+  // settingsMenu.style.display = 'flex';
+  mainMenu.classList.add('pt-page-rotatePushBottom');
+  settingsMenu.classList.add('pt-page-ontop');
+  settingsMenu.classList.add('pt-page-current');
+  settingsMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    mainMenu.classList.remove('pt-page-current');
+    settingsMenu.classList.remove('pt-page-ontop');
+    settingsMenu.classList.remove('pt-page-rotatePushTop');
+    mainMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
 function closeSettings() {
-  mainMenu.style.display = 'flex';
-  settingsMenu.style.display = 'none';
+  settingsMenu.classList.add('pt-page-rotatePushBottom');
+  mainMenu.classList.add('pt-page-ontop');
+  mainMenu.classList.add('pt-page-current');
+  mainMenu.classList.add('pt-page-rotatePushTop');
+  window.setTimeout(() => {
+    settingsMenu.classList.remove('pt-page-current');
+    mainMenu.classList.remove('pt-page-ontop');
+    mainMenu.classList.remove('pt-page-rotatePushTop');
+    settingsMenu.classList.remove('pt-page-rotatePushBottom');
+  }, 1000)
 }
 
 export function timerQuestions(progressTime, progressBar, time) {
@@ -59,3 +78,4 @@ timeGameChecked.addEventListener('change', changeSettingsTimer)
 openSettingsMenu.addEventListener('click', openSettings);
 backSettingsMenu.addEventListener('click', closeSettings);
 closeSettingsMenu.addEventListener('click', closeSettings);
+
