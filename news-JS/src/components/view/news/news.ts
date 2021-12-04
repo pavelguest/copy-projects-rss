@@ -1,6 +1,6 @@
 import './news.css';
 
-interface INews {
+export interface INews {
   author: string
   publishedAt: string
   title: string
