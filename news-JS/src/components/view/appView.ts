@@ -1,7 +1,7 @@
 import News, { INews } from './news/news';
 import Sources, { ISources } from './sources/sources';
 
-interface Data {
+export interface Data {
   articles: INews[];
   sources: ISources[];
 }
