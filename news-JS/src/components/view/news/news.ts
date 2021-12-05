@@ -9,6 +9,7 @@ export interface INews {
   urlToImage: string
   source: {
     name: string
+    id: string
   }
 }
 class News {

@@ -3,6 +3,11 @@ import './sources.css';
 export interface ISources {
   id: string
   name: string
+  category: string
+  country: string
+  language: string
+  url: string
+  description: string
 }
 class Sources {
     draw(data: ISources[]) {

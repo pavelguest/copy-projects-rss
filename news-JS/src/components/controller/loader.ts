@@ -1,10 +1,9 @@
-import { Data } from "components/view/appView";
 
 type Options = {
   [key: string]: string;
 };
 
-export type Callback<T> = (data?: T) => void;
+export type Callback<T> = (data: T) => void;
 class Loader {
    public baseLink: string;
    public options: Options;
@@ -14,13 +13,13 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    getResp<Data>(
         { endpoint = 'string', options = {} },
-        callback = () => {
+        callback: Callback<Data> = () => {
             console.error('No callback for GET response');
         }
     ) {
-        this.load('GET', endpoint, callback, options);
+        this.load<Data>('GET', endpoint, callback, options);
     }
 
     errorHandler(res: Response) {
@@ -44,7 +43,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: Callback<Data>, options = {}) {
+    load<Data>(method: string, endpoint: string, callback: Callback<Data>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
