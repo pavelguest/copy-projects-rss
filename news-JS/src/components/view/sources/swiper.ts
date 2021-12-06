@@ -9,8 +9,13 @@ Swiper.use([Navigation, Scrollbar]);
 
 const newSwiper = new Swiper('.swiper', {
   // speed: 200,
-  slidesPerView: 7,
+  slidesPerView: 3,
   spaceBetween: 20,
+  breakpoints: {
+    769: {
+      slidesPerView: 7,
+    },
+  },
   // Optional parameters
   direction: 'horizontal',
   loop: true,

@@ -36,3 +36,9 @@
     font-weight: 400;
     white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+  .source__item {
+    font-size: 14px;
+  }
+}
