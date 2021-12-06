@@ -17,7 +17,7 @@ class Loader {
     { endpoint = 'string', options = {} },
     callback: Callback<Data> = () => {
       console.error('No callback for GET response');
-    }
+    },
   ) {
     this.load<Data>('GET', endpoint, callback, options);
   }

@@ -1,4 +1,3 @@
-
 import './sources.css';
 
 export interface ISources {

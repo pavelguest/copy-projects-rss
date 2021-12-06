@@ -4,8 +4,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 //import 'swiper/css/pagination';
 
-  // configure Swiper to use modules
-  Swiper.use([Navigation, Scrollbar]);
+// configure Swiper to use modules
+Swiper.use([Navigation, Scrollbar]);
 
 const newSwiper = new Swiper('.swiper', {
   // speed: 200,
