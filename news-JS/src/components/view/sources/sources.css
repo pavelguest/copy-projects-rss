@@ -3,9 +3,9 @@
     flex-wrap: nowrap;
     width: 100%;
     height: 120px;
-    overflow: auto;
     align-items: center;
     font: 300 1em 'Fira Sans', sans-serif;
+    padding: 20px 0;
 }
 
 .source__item {
@@ -18,6 +18,10 @@
     color: #70d6ff;
     transition: 0.25s;
     cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .source__item:hover,

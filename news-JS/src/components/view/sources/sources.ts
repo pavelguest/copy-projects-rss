@@ -1,3 +1,4 @@
+
 import './sources.css';
 
 export interface ISources {
@@ -19,6 +20,7 @@ class Sources {
 
       const itemName = sourceClone.querySelector('.source__item-name');
       const itemId = sourceClone.querySelector('.source__item');
+      itemId?.classList.add('swiper-slide');
 
       if (itemName === null || itemId === null) return;
 
@@ -33,3 +35,4 @@ class Sources {
 }
 
 export default Sources;
+import './swiper';
