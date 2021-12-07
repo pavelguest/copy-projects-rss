@@ -1,8 +1,10 @@
-@media(min-width: 1000px) {
+@media (min-width: 1000px) {
   .category-container__img {
     width: 15%;
   }
-  .image-card__container, .image-question__container-img, .image-question__container-info {
+  .image-card__container,
+  .image-question__container-img,
+  .image-question__container-info {
     width: 160px;
     height: 160px;
   }

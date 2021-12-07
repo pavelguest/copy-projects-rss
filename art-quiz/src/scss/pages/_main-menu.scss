@@ -23,7 +23,7 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url('../assets/svg/settings.svg') no-repeat;
+    background: url("../assets/svg/settings.svg") no-repeat;
     transition: transform 1s ease;
   }
 }
@@ -42,8 +42,14 @@
   // color: white;
 }
 
-.main-menu__settings-ico:hover, .settings-menu__ico-back:hover, .settings-menu__ico-close:hover, .category-menu__ico-back:hover, .questions-menu__ico-back:hover, .questions-menu__ico-home:hover
-, .result-menu__back-ico:hover, .result-menu__back-home:hover {
+.main-menu__settings-ico:hover,
+.settings-menu__ico-back:hover,
+.settings-menu__ico-close:hover,
+.category-menu__ico-back:hover,
+.questions-menu__ico-back:hover,
+.questions-menu__ico-home:hover,
+.result-menu__back-ico:hover,
+.result-menu__back-home:hover {
   filter: invert(77%) sepia(0%) saturate(1046%) hue-rotate(239deg) brightness(79%) contrast(50%);
 }
 

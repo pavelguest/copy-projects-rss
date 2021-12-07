@@ -1,18 +1,16 @@
-@import './fonts';
-@import './base/normalize';
-@import './base/base';
+@import "./fonts";
+@import "./base/normalize";
+@import "./base/base";
 
-@import './pages/animation-page';
-@import './pages/main-menu';
-@import './pages/settings-menu';
-@import './pages/category-menu';
-@import './pages/questions-menu';
-@import './pages/result-menu';
+@import "./pages/animation-page";
+@import "./pages/main-menu";
+@import "./pages/settings-menu";
+@import "./pages/category-menu";
+@import "./pages/questions-menu";
+@import "./pages/result-menu";
 
+@import "./layout/footer";
 
-@import './layout/footer';
-
-
-@import './media/520px';
-@import './media/768px';
-@import './media/1000px';
+@import "./media/520px";
+@import "./media/768px";
+@import "./media/1000px";

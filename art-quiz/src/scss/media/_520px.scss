@@ -5,7 +5,8 @@
   .main-menu__title {
     font-size: 81px;
   }
-  .volume-container, .settings-menu__wrapper {
+  .volume-container,
+  .settings-menu__wrapper {
     align-items: flex-start;
   }
 
@@ -20,5 +21,4 @@
   .category-container__img {
     width: 30%;
   }
-
 }

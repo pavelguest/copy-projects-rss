@@ -50,20 +50,20 @@
   transition: 1s all ease;
   z-index: 1;
 }
-.answers__button::before{
+.answers__button::before {
   background: #316b91;
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   transition: all 0.6s ease;
   z-index: -1;
   width: 0%;
   height: 100%;
 }
 
-.answers__button:hover::before{
+.answers__button:hover::before {
   width: 100%;
 }
 .indicators-container {
@@ -84,9 +84,9 @@
 }
 .timer-progress {
   position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 20px;
   color: rgb(73, 73, 73);
 }
@@ -107,9 +107,9 @@
 .answer-popup {
   position: absolute;
   width: 250px;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   background-color: white;
   color: black;
@@ -148,10 +148,10 @@
   position: relative;
   padding: 10px;
   z-index: 1;
-  }
+}
 
 .submit-button::before {
-  content: '';
+  content: "";
   min-width: calc(180px + 12px);
   min-height: calc(60px + 12px);
   border: 3px solid rgb(137, 178, 212);
@@ -161,21 +161,24 @@
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
-  transition: all .3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
 }
 
-.submit-button:hover, .submit-button:focus {
+.submit-button:hover,
+.submit-button:focus {
   color: #313133;
   transform: translateY(-6px);
 }
 
-.submit-button:hover::before, .submit-button:focus::before {
+.submit-button:hover::before,
+.submit-button:focus::before {
   opacity: 1;
 }
 
 .submit-button::after {
-  content: '';
-  width: 30px; height: 30px;
+  content: "";
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   border: 6px solid rgb(137, 178, 212);
   position: absolute;
@@ -186,7 +189,8 @@
   animation: ring 1.5s infinite;
 }
 
-.submit-button:hover::after, .submit-button:focus::after {
+.submit-button:hover::after,
+.submit-button:focus::after {
   animation: none;
   display: none;
 }
@@ -205,25 +209,25 @@
 }
 .right-answer__ico {
   position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
   width: 100px;
   height: 100px;
-  background: url('../assets/svg/right-answer.svg');
+  background: url("../assets/svg/right-answer.svg");
   background-size: cover;
   transition: transform 1s ease;
 }
 .wrong-answer__ico {
   position: absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: inline-block;
   width: 100px;
   height: 100px;
-  background: url('../assets/svg/wrong-answer.svg');
+  background: url("../assets/svg/wrong-answer.svg");
   background-size: cover;
   transition: transform 1s ease;
 }
@@ -236,9 +240,9 @@
 .popup-score {
   position: absolute;
   width: 250px;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
   background-color: white;
   color: black;
@@ -280,7 +284,7 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url('../assets/svg/settings-back.svg') no-repeat;
+    background: url("../assets/svg/settings-back.svg") no-repeat;
     transition: transform 1s ease;
   }
 }
@@ -292,7 +296,7 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url('../assets/svg/home.svg') no-repeat;
+    background: url("../assets/svg/home.svg") no-repeat;
     transition: transform 1s ease;
   }
 }

@@ -39,7 +39,6 @@
   cursor: pointer;
   filter: grayscale(100%);
   border: 5px solid white;
-
 }
 .active__category {
   filter: grayscale(0%);
@@ -52,7 +51,7 @@
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url('../assets/svg/settings-back.svg') no-repeat;
+    background: url("../assets/svg/settings-back.svg") no-repeat;
     transition: transform 1s ease;
   }
 }

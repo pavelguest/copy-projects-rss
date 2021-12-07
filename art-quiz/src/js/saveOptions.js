@@ -1,9 +1,8 @@
 import { volumeProgress } from "./audioGameSupport";
 import { timeGameChecked, timeGameValue } from "./generationAuthors";
 
-const buttonSaveOptions = document.querySelector('.save-settings');
-const buttonDefaultOptions = document.querySelector('.default-settings');
-
+const buttonSaveOptions = document.querySelector(".save-settings");
+const buttonDefaultOptions = document.querySelector(".default-settings");
 
 export class SaveOptions {
   constructor(timer, timerDuration, volumeDuration) {
@@ -13,16 +12,15 @@ export class SaveOptions {
     this.scoreCategoryAuthors = Array(12).fill(0);
     this.scoreCategoryPic = Array(12).fill(0);
     this.rightQuestion = Array(240).fill(0);
-
   }
 
   save() {
-    localStorage.setItem('optionsGame', JSON.stringify(this));
+    localStorage.setItem("optionsGame", JSON.stringify(this));
   }
 
   load() {
-    if(localStorage.getItem('optionsGame')) {
-      const options = JSON.parse(localStorage.getItem('optionsGame'));
+    if (localStorage.getItem("optionsGame")) {
+      const options = JSON.parse(localStorage.getItem("optionsGame"));
 
       saveOptions.timer = options.timer;
       this.timerDuration = options.timerDuration;
@@ -35,7 +33,7 @@ export class SaveOptions {
       timeGameValue.value = this.timerDuration;
       volumeProgress.value = this.volumeDuration;
 
-      const event = new Event('change');
+      const event = new Event("change");
       timeGameChecked.dispatchEvent(event);
       volumeProgress.dispatchEvent(event);
     }
@@ -52,12 +50,12 @@ export class SaveOptions {
 
 export const saveOptions = new SaveOptions(1, 5, 0.75);
 
-buttonSaveOptions.addEventListener('click', () => {
+buttonSaveOptions.addEventListener("click", () => {
   saveOptions.timer = +timeGameChecked.checked;
   saveOptions.timerDuration = timeGameValue.value;
   saveOptions.volumeDuration = volumeProgress.value;
   saveOptions.save();
 });
-buttonDefaultOptions.addEventListener('click', () => saveOptions.default());
+buttonDefaultOptions.addEventListener("click", () => saveOptions.default());
 
-window.addEventListener('load', saveOptions.load);
+window.addEventListener("load", saveOptions.load);
