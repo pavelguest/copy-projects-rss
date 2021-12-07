@@ -15,12 +15,14 @@ export class SaveOptions {
     this.rightQuestion = Array(240).fill(0);
 
   }
+
   save() {
     localStorage.setItem('optionsGame', JSON.stringify(this));
   }
+
   load() {
     if(localStorage.getItem('optionsGame')) {
-      let options = JSON.parse(localStorage.getItem('optionsGame'));
+      const options = JSON.parse(localStorage.getItem('optionsGame'));
 
       saveOptions.timer = options.timer;
       this.timerDuration = options.timerDuration;
@@ -33,11 +35,12 @@ export class SaveOptions {
       timeGameValue.value = this.timerDuration;
       volumeProgress.value = this.volumeDuration;
 
-      let event = new Event('change');
+      const event = new Event('change');
       timeGameChecked.dispatchEvent(event);
       volumeProgress.dispatchEvent(event);
     }
   }
+
   default() {
     this.timer = 1;
     this.timerDuration = 5;
@@ -47,14 +50,14 @@ export class SaveOptions {
   }
 }
 
-export let saveOptions = new SaveOptions(1, 5, 0.75);
+export const saveOptions = new SaveOptions(1, 5, 0.75);
 
 buttonSaveOptions.addEventListener('click', () => {
   saveOptions.timer = +timeGameChecked.checked;
   saveOptions.timerDuration = timeGameValue.value;
   saveOptions.volumeDuration = volumeProgress.value;
-  saveOptions.save()
+  saveOptions.save();
 });
-buttonDefaultOptions.addEventListener('click', () => saveOptions.default())
+buttonDefaultOptions.addEventListener('click', () => saveOptions.default());
 
 window.addEventListener('load', saveOptions.load);

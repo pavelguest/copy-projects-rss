@@ -25,7 +25,7 @@ export function openQuestions() {
     questionsMenu.classList.remove('pt-page-ontop');
     questionsMenu.classList.remove('pt-page-rotatePushTop');
     categoryMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 
@@ -40,18 +40,18 @@ export function exitQuestionsToCategories() {
     categoryMenu.classList.remove('pt-page-ontop');
     categoryMenu.classList.remove('pt-page-rotatePushTop');
     questionsMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 export function getGenerationQuestions(arr) {
   questionsContainer.innerHTML = '';
   function listenerTimer() {
-    if(progressBar.value == 0 && arr.current < 10) {
+    if(progressBar.value === 0 && arr.current < 10) {
       getPaintIndicators(arr, undefined);
       resultAnswer(arr, undefined);
     }
   }
-  let cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
+  const cancelTimer = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
 
   function closeQuestions() {
@@ -66,7 +66,7 @@ export function getGenerationQuestions(arr) {
       categoryMenu.classList.remove('pt-page-ontop');
       categoryMenu.classList.remove('pt-page-rotatePushTop');
       questionsMenu.classList.remove('pt-page-rotatePushBottom');
-    }, 1000)
+    }, 1000);
   }
 
   function closeQuestionsOpenMainMenu() {
@@ -81,7 +81,7 @@ export function getGenerationQuestions(arr) {
       mainMenu.classList.remove('pt-page-ontop');
       mainMenu.classList.remove('pt-page-rotatePushTop');
       questionsMenu.classList.remove('pt-page-rotatePushBottom');
-    }, 1000)
+    }, 1000);
   }
 
   if(saveOptions.timer) {
@@ -89,10 +89,10 @@ export function getGenerationQuestions(arr) {
     backQuestionsMenuToHome.addEventListener('click', closeQuestionsOpenMainMenu);
   }
 
-  let div = document.createElement('div');
-  let img = document.createElement('img');
-  let h2 = document.createElement('h2');
-  let answersDiv = document.createElement('div');
+  const div = document.createElement('div');
+  const img = document.createElement('img');
+  const h2 = document.createElement('h2');
+  const answersDiv = document.createElement('div');
   answersDiv.classList.add('answers-container');
   img.classList.add('questions__img');
   h2.classList.add('questions-title');
@@ -104,17 +104,17 @@ export function getGenerationQuestions(arr) {
   div.append(img);
   questionsContainer.append(answersDiv);
   for (let i = 0; i < arr.questions[arr.current].answers.length; i++) {
-    let button = document.createElement('button');
-    button.classList.add('answers__button')
+    const button = document.createElement('button');
+    button.classList.add('answers__button');
     button.addEventListener('click', e => {
-      arr.scoreQuiz(i)
+      arr.scoreQuiz(i);
       getPaintIndicators(arr, i);
       resultAnswer(arr, i);
       if(timeGameChecked.checked) {
         cancelTimer();
       }
       progressBar.removeEventListener('change', listenerTimer);
-    })
+    });
 
     answersDiv.append(button);
     button.textContent = arr.questions[arr.current].answers[i];
@@ -125,7 +125,7 @@ export function getPaintDefaultColorIndicators() {
   indicatorContainer.forEach(e => {
     e.classList.remove('right-answer__button');
     e.classList.remove('wrong-answer__button');
-  })
+  });
 }
 
 export function getPaintIndicators(arr, i) {
@@ -137,17 +137,17 @@ export function getPaintIndicators(arr, i) {
           e.classList.add('wrong-answer__button');
       }
     }
-  })
+  });
 }
 
 function resultAnswer(arr, i) {
 
-  let divPopup = document.createElement('div');
-  let submitAnswer = document.createElement('button');
-  let submitImg = document.createElement('img');
-  let p = document.createElement('p');
-  let textRightAnswer = document.createElement('p');
-  let divIco = document.createElement('div');
+  const divPopup = document.createElement('div');
+  const submitAnswer = document.createElement('button');
+  const submitImg = document.createElement('img');
+  const p = document.createElement('p');
+  const textRightAnswer = document.createElement('p');
+  const divIco = document.createElement('div');
   divPopup.classList.add('answer-popup');
   submitImg.classList.add('submit-img');
   submitAnswer.classList.add('submit-button');
@@ -167,7 +167,7 @@ function resultAnswer(arr, i) {
     divIco.classList.add('right-answer__ico');
     rightAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].question] = 1;
-    saveOptions.save()
+    saveOptions.save();
   } else {
     divPopup.append(divIco);
     divIco.classList.add('wrong-answer__ico');
@@ -177,23 +177,23 @@ function resultAnswer(arr, i) {
   }
   document.querySelectorAll('.answers__button').forEach(e=> {
     e.style.pointerEvents = 'none';
-  })
+  });
 }
 
 export function scoreResult(score) {
   victoryAudio.play();
   document.querySelector('.answer-popup').innerHTML = '';
 
-  let scoreContainer = document.createElement('div');
-  let scoreTitle = document.createElement('h2');
-  let scoreSubtitle = document.createElement('p');
-  let scoreResult = document.createElement('p');
-  let scoreButton = document.createElement('button');
+  const scoreContainer = document.createElement('div');
+  const scoreTitle = document.createElement('h2');
+  const scoreSubtitle = document.createElement('p');
+  const scoreResultP = document.createElement('p');
+  const scoreButton = document.createElement('button');
 
   scoreContainer.classList.add('popup-score');
   scoreTitle.classList.add('popup-score__title');
   scoreSubtitle.classList.add('popup-score__subtitle');
-  scoreResult.classList.add('popup-score__result');
+  scoreResultP.classList.add('popup-score__result');
   scoreButton.classList.add('popup-score__button');
 
   questionsContainer.append(scoreContainer);
@@ -201,13 +201,13 @@ export function scoreResult(score) {
   scoreTitle.textContent = 'Игра завершена';
   scoreContainer.append(scoreSubtitle);
   scoreSubtitle.textContent = 'Ваш результат:';
-  scoreContainer.append(scoreResult);
-  scoreResult.textContent = `${score} / 10`;
+  scoreContainer.append(scoreResultP);
+  scoreResultP.textContent = `${score} / 10`;
   scoreContainer.append(scoreButton);
   scoreButton.textContent = 'Продолжить';
   scoreButton.addEventListener('click', () => {
     exitQuestionsToCategories();
-  })
+  });
 }
 
 function nextAnswer(arr) {
@@ -219,7 +219,7 @@ function nextAnswer(arr) {
       saveOptions.save();
       e.textContent = `${arr.score} / 10`;
       }
-    })
+    });
   } else {
     arr.next();
     getGenerationQuestions(arr);

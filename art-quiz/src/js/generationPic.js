@@ -7,12 +7,12 @@ import { saveOptions } from "./saveOptions";
 export function getGenerationQuestionsPic(arr) {
   questionsContainer.innerHTML = '';
   function listenerTimer() {
-    if(progressBar.value == 0 && arr.current < 10) {
+    if(progressBar.value === 0 && arr.current < 10) {
       getPaintIndicatorsPic(arr, undefined);
       resultAnswerPic(arr, undefined);
     }
   }
-  let cancelTimerPic = timerQuestions(progressTime, progressBar, timeGameValue.value);
+  const cancelTimerPic = timerQuestions(progressTime, progressBar, timeGameValue.value);
   progressBar.addEventListener('change', listenerTimer, {once: true});
 
   function closeQuestionsPic() {
@@ -27,7 +27,7 @@ export function getGenerationQuestionsPic(arr) {
       categoryMenu.classList.remove('pt-page-ontop');
       categoryMenu.classList.remove('pt-page-rotatePushTop');
       questionsMenu.classList.remove('pt-page-rotatePushBottom');
-    }, 1000)
+    }, 1000);
   }
 
   function closeQuestionsPicOpenMainMenu() {
@@ -42,7 +42,7 @@ export function getGenerationQuestionsPic(arr) {
       mainMenu.classList.remove('pt-page-ontop');
       mainMenu.classList.remove('pt-page-rotatePushTop');
       questionsMenu.classList.remove('pt-page-rotatePushBottom');
-    }, 1000)
+    }, 1000);
   }
 
   if(saveOptions.timer) {
@@ -50,8 +50,8 @@ export function getGenerationQuestionsPic(arr) {
     backQuestionsMenuToHome.addEventListener('click', closeQuestionsPicOpenMainMenu);
   }
 
-  let h2 = document.createElement('h2');
-  let div = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const div = document.createElement('div');
 
   h2.classList.add('questions-title');
   div.classList.add('answers-container');
@@ -59,10 +59,10 @@ export function getGenerationQuestionsPic(arr) {
   h2.textContent = arr.questions[arr.current].question;
   questionsContainer.append(div);
   arr.questions[arr.current].answers.forEach((e, i) => {
-    let answerDiv = document.createElement('div');
-    let img = document.createElement('img');
+    const answerDiv = document.createElement('div');
+    const img = document.createElement('img');
     answerDiv.classList.add('image-answer__container');
-    img.src = `./assets/images/img/${arr.questions[arr.current].answers[i]}.jpg`
+    img.src = `./assets/images/img/${arr.questions[arr.current].answers[i]}.jpg`;
     img.alt = 'question';
     div.append(answerDiv);
     answerDiv.append(img);
@@ -74,7 +74,7 @@ export function getGenerationQuestionsPic(arr) {
         cancelTimerPic();
       }
       progressBar.removeEventListener('change', listenerTimer);
-    })
+    });
   });
 }
 
@@ -87,15 +87,15 @@ export function getPaintIndicatorsPic(arr, i) {
           e.classList.add('wrong-answer__button');
       }
     }
-  })
+  });
 }
 
 function resultAnswerPic(arr, i) {
-  let divPopup = document.createElement('div');
-  let submitAnswer = document.createElement('button');
-  let submitImg = document.createElement('img');
-  let p = document.createElement('p');
-  let divIco = document.createElement('div');
+  const divPopup = document.createElement('div');
+  const submitAnswer = document.createElement('button');
+  const submitImg = document.createElement('img');
+  const p = document.createElement('p');
+  const divIco = document.createElement('div');
   divPopup.classList.add('answer-popup');
   submitImg.classList.add('submit-img');
   submitAnswer.classList.add('submit-button');
@@ -114,22 +114,22 @@ function resultAnswerPic(arr, i) {
     divIco.classList.add('right-answer__ico');
     rightAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].answerRight] = 1;
-    saveOptions.save()
+    saveOptions.save();
   } else {
     divPopup.append(divIco);
     divIco.classList.add('wrong-answer__ico');
     wrongAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].answerRight] = 0;
-    saveOptions.save()
+    saveOptions.save();
   }
   document.querySelectorAll('.answers__button').forEach(e=> {
     e.style.pointerEvents = 'none';
-  })
+  });
 }
 
 function nextAnswerPic(arr) {
   if(arr.current > 8) {
-    console.log(arr.current)
+    console.log(arr.current);
     scoreResult(arr.score);
     document.querySelectorAll('.category-score__result').forEach((e, i) => {
       if(arr.type === i) {
@@ -137,7 +137,7 @@ function nextAnswerPic(arr) {
       saveOptions.save();
       e.textContent = `${arr.score} / 10`;
       }
-    })
+    });
 
   } else {
     arr.next();

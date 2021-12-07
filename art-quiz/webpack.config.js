@@ -23,7 +23,7 @@ const devServer = (isDev) => !isDev ? {} : {
 };
 
 const getRelative = (absolutePath) => path.relative(srcPath, absolutePath);
-const makePath = (relativePath) => './' + relativePath.replace(/\\+/g, '/');
+const makePath = (relativePath) => `./${  relativePath.replace(/\\+/g, '/')}`;
 
 const getPages = (dir, n) => {
   const dirContent = fs.readdirSync(dir);
@@ -126,4 +126,4 @@ module.exports = ({ development }) => {
     },
     ...devServer(development)
   };
-}
+};

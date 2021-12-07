@@ -19,15 +19,18 @@ export class Category {
     this.score = 0;
     this.current = 0;
   }
+
   next() {
     if (this.current > 9) {
-      this.end()
+      this.end();
     } else {
-      return this.current++;
+      this.current += 1;
+      return this.current;
     }
   }
+
   scoreQuiz(index) {
-    let value = this.questions[this.current].answerCheck(index);
+    const value = this.questions[this.current].answerCheck(index);
     this.score += value;
     let correct = -1;
     if (value >= 1) {
@@ -43,15 +46,16 @@ export class Category {
     }
     return correct;
   }
+
   end() {
-    console.log(score)
+    console.log(this.score);
   }
 }
 
-export let questionsAuthors = [];
-export let categoryAuthors = [];
-export let questionsPic = [];
-export let categoryPic = [];
+export const questionsAuthors = [];
+export const categoryAuthors = [];
+export const questionsPic = [];
+export const categoryPic = [];
 
 function setCategoryAuthors() {
   for (let i = 0; i < 120; i++) {
@@ -83,7 +87,7 @@ function openCategory() {
     categoryMenu.classList.remove('pt-page-ontop');
     categoryMenu.classList.remove('pt-page-rotatePushTop');
     mainMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 function closeCategory() {
@@ -96,7 +100,7 @@ function closeCategory() {
     mainMenu.classList.remove('pt-page-ontop');
     mainMenu.classList.remove('pt-page-rotatePushTop');
     categoryMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 function openCategoryResult() {
@@ -109,14 +113,14 @@ function openCategoryResult() {
     resultMenu.classList.remove('pt-page-ontop');
     resultMenu.classList.remove('pt-page-rotatePushTop');
     categoryMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 function getCategoryAuthorsContainer() {
   categoryContainer.innerHTML = '';
-  questionsAuthors = [];
-  categoryAuthors = [];
-  setCategoryAuthors()
+  questionsAuthors.length = 0;
+  categoryAuthors.length = 0;
+  setCategoryAuthors();
   let count = 1;
   for (let i = 0; i < categoryAuthors.length; i++) {
     const img = document.createElement('img');
@@ -149,26 +153,26 @@ function getCategoryAuthorsContainer() {
     buttonsScore.addEventListener('click', () => {
       openCategoryResult();
       getCategoryResultAuthors(categoryAuthors[i], i+1);
-    })
+    });
     img.addEventListener('click', e => {
-      openQuestions()
+      openQuestions();
       categoryAuthors[i].current = 0;
       categoryAuthors[i].score = 0;
       img.classList.add('active__category');
       buttonsScore.classList.add('active__button-score');
-      getPaintDefaultColorIndicators()
-      getGenerationQuestions(categoryAuthors[i])
-    })
-    count++;
+      getPaintDefaultColorIndicators();
+      getGenerationQuestions(categoryAuthors[i]);
+    });
+    count += 1;
   }
   openCategory();
 }
 
 function getCategoryPicContainer() {
   categoryContainer.innerHTML = '';
-  questionsPic = [];
-  categoryPic = [];
-  setCategoryPic()
+  questionsPic.length = 0;
+  categoryPic.length = 0;
+  setCategoryPic();
   let count = 1;
   for (let i = 0; i < categoryPic.length; i++) {
     const img = document.createElement('img');
@@ -178,8 +182,8 @@ function getCategoryPicContainer() {
     categoryScoreResult.classList.add('category-score__result');
     const buttonsScore = document.createElement('button');
     buttonsScore.classList.add('category-container__button-score');
-    div.classList.add('category-container__img')
-    nameCategory.classList.add('category__type')
+    div.classList.add('category-container__img');
+    nameCategory.classList.add('category__type');
     img.classList.add('category__img');
     img.src = `./assets/images/img/${categoryPic[i].questions[0].answerRight}.jpg`;
     img.alt = `category`;
@@ -197,19 +201,19 @@ function getCategoryPicContainer() {
     }
 
     img.addEventListener('click', e => {
-      openQuestions()
+      openQuestions();
       categoryPic[i].current = 0;
       categoryPic[i].score = 0;
       img.classList.add('active__category');
       buttonsScore.classList.add('active__button-score');
-      getPaintDefaultColorIndicators()
-      getGenerationQuestionsPic(categoryPic[i])
-    })
+      getPaintDefaultColorIndicators();
+      getGenerationQuestionsPic(categoryPic[i]);
+    });
     buttonsScore.addEventListener('click', () => {
       openCategoryResult();
       getCategoryResultPic(categoryPic[i], i+1);
-    })
-    count++;
+    });
+    count += 1;
   }
   openCategory();
 }

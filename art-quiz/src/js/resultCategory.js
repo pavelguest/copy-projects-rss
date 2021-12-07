@@ -8,7 +8,7 @@ export const resultMenuContainer = document.querySelector('.result-menu__contain
 const resultMenuImage = document.querySelector('.result-menu__image-category');
 const resultMenuTitle = document.querySelector('.image-category__title');
 const backResultMenu = document.querySelector('.result-menu__back-ico');
-const backResultMenuToHome = document.querySelector('.result-menu__ico-home')
+const backResultMenuToHome = document.querySelector('.result-menu__ico-home');
 
 function closeResultMenu () {
   resultMenu.classList.add('pt-page-rotatePushBottom');
@@ -20,7 +20,7 @@ function closeResultMenu () {
     categoryMenu.classList.remove('pt-page-ontop');
     categoryMenu.classList.remove('pt-page-rotatePushTop');
     resultMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
   resultMenuContainer.innerHTML = '';
 }
 
@@ -34,7 +34,7 @@ function closeResultMenuToHome () {
     mainMenu.classList.remove('pt-page-ontop');
     mainMenu.classList.remove('pt-page-rotatePushTop');
     resultMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
   resultMenuContainer.innerHTML = '';
 }
 
@@ -54,9 +54,9 @@ export function getCategoryResultAuthors(arr, count) {
     const name = document.createElement('p');
     const author = document.createElement('p');
     const year = document.createElement('p');
-    divCardContainer.classList.add('image-card__container')
+    divCardContainer.classList.add('image-card__container');
     divImgContainer.classList.add('image-question__container');
-    img.classList.add('image-question__container-img')
+    img.classList.add('image-question__container-img');
     divInfo.classList.add('image-question__container-info');
     img.src = `./assets/images/img/${arr.questions[i].question}.jpg`;
     img.alt = 'question';
@@ -73,9 +73,9 @@ export function getCategoryResultAuthors(arr, count) {
 
     divImgContainer.addEventListener('click', () => {
       divCardContainer.classList.toggle('flip');
-    })
+    });
     if(saveOptions.rightQuestion[+arr.questions[i].question]) {
-      img.classList.add('active__category-result')
+      img.classList.add('active__category-result');
     }
   }
 }
@@ -96,9 +96,9 @@ export function getCategoryResultPic(arr, count) {
     const name = document.createElement('p');
     const author = document.createElement('p');
     const year = document.createElement('p');
-    divCardContainer.classList.add('image-card__container')
+    divCardContainer.classList.add('image-card__container');
     divImgContainer.classList.add('image-question__container');
-    img.classList.add('image-question__container-img')
+    img.classList.add('image-question__container-img');
     divInfo.classList.add('image-question__container-info');
     img.src = `./assets/images/img/${arr.questions[i].answerRight}.jpg`;
     img.alt = 'question';
@@ -115,9 +115,9 @@ export function getCategoryResultPic(arr, count) {
 
     divImgContainer.addEventListener('click', () => {
       divCardContainer.classList.toggle('flip');
-    })
+    });
     if(saveOptions.rightQuestion[+arr.questions[i].answerRight]) {
-      img.classList.add('active__category-result')
+      img.classList.add('active__category-result');
     }
   }
 }

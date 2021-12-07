@@ -21,7 +21,7 @@ function openSettings() {
     settingsMenu.classList.remove('pt-page-ontop');
     settingsMenu.classList.remove('pt-page-rotatePushTop');
     mainMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 function closeSettings() {
@@ -34,37 +34,37 @@ function closeSettings() {
     mainMenu.classList.remove('pt-page-ontop');
     mainMenu.classList.remove('pt-page-rotatePushTop');
     settingsMenu.classList.remove('pt-page-rotatePushBottom');
-  }, 1000)
+  }, 1000);
 }
 
 export function timerQuestions(progressTime, progressBar, time) {
   if(!saveOptions.timer) {
-    console.log('lol')
-    return;
+    console.log('lol');
+
   } else {
     let start = 100;
-    let interval = Math.round(100/time);
-    let intervalId = setInterval(() => {
+    const interval = Math.round(100/time);
+    const intervalId = setInterval(() => {
       if(start < 0) {
-      clearInterval(intervalId)
+      clearInterval(intervalId);
       progressBar.value = 0;
-      let event = new Event('change');
+      const event = new Event('change');
       progressBar.dispatchEvent(event);
       } else {
         progressTime.textContent = `${time}`;
         progressBar.value = start;
       }
-      start = start - interval;
-      time--;
-    }, 1000)
+      start -= interval;
+      time -= 1;
+    }, 1000);
     return () => {
       clearInterval(intervalId);
-    }
+    };
   }
 }
 
 function changeSettingsTimer() {
-  if(timeGameChecked.checked == true) {
+  if(timeGameChecked.checked === true) {
     settingsTimeButtonsContainer.style.opacity = '1';
     timerContainer.style.opacity = '1';
   } else {
@@ -73,7 +73,7 @@ function changeSettingsTimer() {
   }
 }
 
-timeGameChecked.addEventListener('change', changeSettingsTimer)
+timeGameChecked.addEventListener('change', changeSettingsTimer);
 
 openSettingsMenu.addEventListener('click', openSettings);
 backSettingsMenu.addEventListener('click', closeSettings);
