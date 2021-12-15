@@ -1,15 +1,15 @@
-import { app, Idata } from "./CreateElement";
+import { createElement, Idata } from "./CreateElement";
 import data from "./data";
 
 class Sort {
-  sortType: any;
+  sortType: HTMLSelectElement;
   sortArr: [] | Idata[];
   constructor() {
-    this.sortType = document.querySelector('.sort-select');
+    this.sortType = document.querySelector('.sort-select') as HTMLSelectElement;
     this.sortArr = [];
   }
   sortData(data: Idata[]) {
-    this.sortType.addEventListener('change', ()=> {
+    this.sortType && this.sortType.addEventListener('change', ()=> {
       console.log(this.sortType.value)
       if(this.sortType.value === 'sort-count__max') {
         this.sortArr = data.sort((a, b) => +a.count - +b.count);
@@ -20,7 +20,7 @@ class Sort {
       } else if(this.sortType.value === 'sort-name__min') {
         this.sortArr = data.sort((a, b) => b.name.localeCompare(a.name));
       }
-      app.renderCard(this.sortArr);
+      createElement.renderCards(this.sortArr);
     })
   }
 }

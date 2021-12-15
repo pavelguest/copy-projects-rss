@@ -10,44 +10,35 @@ export interface Idata {
   size: string;
   favorite: boolean;
 }
-
 class CreateElement {
-  static container = document.querySelector('.cards') as HTMLElement;
+  container: HTMLElement;
 
-  static renderElement(container: HTMLElement, elem: string, className: string, text: string) {
-    let element: HTMLImageElement | HTMLElement = document.createElement(elem);
-    element.classList.add(className);
-    if(element instanceof HTMLImageElement) {
-      element.src = `../assets/toys/${text}.png`;
-      element.alt = 'ball'
-    } else {
-      element.textContent = text;
-    }
-    container.append(element);
+  constructor() {
+    this.container = document.querySelector('.cards') as HTMLElement;
   }
-  renderCard(data: Idata[]) {
-    CreateElement.container.innerHTML = '';
-    data.forEach(e=> {
-      let cardsItem = document.createElement('div');
-      let textContainer = document.createElement('div');
-      textContainer.classList.add('cards__text-container');
-      cardsItem.classList.add('cards__item');
-      CreateElement.container.append(cardsItem);
-      let favorite = e.favorite? 'да' : 'нет';
-      CreateElement.renderElement(cardsItem, 'h3', 'cards__subtitle', e.name);
-      CreateElement.renderElement(cardsItem, 'img', 'cards__img', e.num);
-      cardsItem.append(textContainer)
-      CreateElement.renderElement(textContainer, 'p', 'cards__text', `Количество: ${e.count}`);
-      CreateElement.renderElement(textContainer, 'p', 'cards__text', `Год покупки: ${e.year}`);
-      CreateElement.renderElement(textContainer, 'p', 'cards__text', `Форма: ${e.shape}`);
-      CreateElement.renderElement(textContainer, 'p', 'cards__text', `Цвет: ${e.color}`);
-      CreateElement.renderElement(textContainer, 'p', 'cards__text', `Размер: ${e.size}`);
-      CreateElement.renderElement(textContainer, 'p', 'cards__text', `Любимый: ${favorite}`);
+
+  renderCards(data: Idata[]) {
+    this.container.innerHTML = '';
+    data.forEach(e => {
+      this.container.insertAdjacentHTML('beforeend', `
+        <div class="cards__item">
+          <h3 class="cards__subtitle">${e.name}</h3>
+          <img class="cards__img" src="../assets/toys/${e.num}.png" alt="decoration">
+          <div class="cards__text-container">
+            <p class="cards__text">Количество: ${e.count}</p>
+            <p class="cards__text">Год покупки: ${e.year}</p>
+            <p class="cards__text">Форма: ${e.shape}</p>
+            <p class="cards__text">Цвет: ${e.color}</p>
+            <p class="cards__text">Размер: ${e.size}</p>
+            <p class="cards__text">Любимый: ${e.favorite? 'да' : 'нет'}</p>
+          </div>
+        </div>
+      `)
     })
   }
 }
 
-export const app = new CreateElement();
-app.renderCard(data);
+export const createElement = new CreateElement();
+createElement.renderCards(data);
 
 export default CreateElement;
