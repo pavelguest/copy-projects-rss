@@ -171,6 +171,13 @@
   button:hover {
     border-color: #ccc;
   }
+  .active::before {
+    content: '\2713';
+    font-size: 20px;
+    font-weight: 900;
+    color: rgb(0, 255, 191);
+
+  }
 }
 .size {
   button {

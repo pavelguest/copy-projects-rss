@@ -1,6 +1,6 @@
 import data from "./data";
 
-interface Idata {
+export interface Idata {
   num: string;
   name: string;
   count: string;
@@ -26,6 +26,7 @@ class CreateElement {
     container.append(element);
   }
   renderCard(data: Idata[]) {
+    CreateElement.container.innerHTML = '';
     data.forEach(e=> {
       let cardsItem = document.createElement('div');
       let textContainer = document.createElement('div');
@@ -46,7 +47,7 @@ class CreateElement {
   }
 }
 
-const app = new CreateElement();
+export const app = new CreateElement();
 app.renderCard(data);
 
 export default CreateElement;
