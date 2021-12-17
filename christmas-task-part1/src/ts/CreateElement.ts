@@ -1,4 +1,6 @@
 import data from "./data";
+import Filters, { filters } from "./Filters";
+import { sortSelect } from "./Sort";
 
 export interface Idata {
   num: string;
@@ -36,9 +38,46 @@ class CreateElement {
       `)
     })
   }
+
+  addListenerForButtons() {
+      document.querySelector<HTMLElement>('.color')!.onclick = (event) => {
+      if(event.target instanceof HTMLElement) {
+        event.target.classList.toggle('active');
+        filters.hasKeysColor(event.target);
+        filters.filterColor();
+
+      }
+    }
+    document.querySelector<HTMLElement>('.size')!.onclick = (event) => {
+      if(event.target instanceof HTMLElement) {
+        event.target.classList.toggle('active');
+        filters.hasKeysSize(event.target);
+        filters.filterSize();
+
+      }
+    }
+    document.querySelector<HTMLElement>('.shape')!.onclick = (event) => {
+      if(event.target instanceof HTMLElement) {
+        event.target.classList.toggle('active');
+        filters.hasKeysShape(event.target);
+        filters.filterShape();
+      
+      }
+    }
+    // document.querySelector<HTMLSelectElement>('.sort-select')!.onchange = (event) => {
+    //   if(event.target instanceof HTMLSelectElement) {
+    //     sortSelect.sortData(data, event.target);
+    //   }
+    // }
+    // document.querySelector<HTMLInputElement>('.favorite__input')!.onchange = (event) => {
+    //   if(event.target instanceof HTMLInputElement) {
+    //     filters.filterFavorite(data, event.target)
+    //   }
+    // }
+  }
 }
 
 export const createElement = new CreateElement();
 createElement.renderCards(data);
-
+createElement.addListenerForButtons();
 export default CreateElement;

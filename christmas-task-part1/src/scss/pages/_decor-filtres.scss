@@ -139,6 +139,9 @@
   button:hover {
     filter: invert(20%);
   }
+  .active {
+    filter: invert(62%) sepia(72%) saturate(357%) hue-rotate(357deg) brightness(92%) contrast(87%);
+  }
 }
 
 .color {
@@ -206,6 +209,9 @@
   }
   button:hover {
     filter: invert(20%);
+  }
+  .active {
+    filter: invert(62%) sepia(72%) saturate(357%) hue-rotate(357deg) brightness(92%) contrast(87%);
   }
 }
 .favorite-container,
