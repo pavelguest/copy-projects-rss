@@ -1,7 +1,7 @@
 .cards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   column-gap: 20px;
   row-gap: 20px;
 }
@@ -31,4 +31,7 @@
 .cards__img {
   width: 100px;
   height: 100px;
+}
+.error__subtitle {
+  font-size: 40px;
 }

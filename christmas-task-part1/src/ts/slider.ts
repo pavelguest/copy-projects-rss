@@ -2,8 +2,8 @@
 import noUiSlider, { target } from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 
-var rangeYear = <target>document.getElementById('range-year');
-var rangeCount = <target>document.getElementById('range-count');
+export var rangeYear = <target>document.getElementById('range-year');
+export var rangeCount = <target>document.getElementById('range-count');
 
 noUiSlider.create(rangeYear, {
     range: {
@@ -17,12 +17,13 @@ noUiSlider.create(rangeYear, {
 });
 
 noUiSlider.create(rangeCount, {
-    range: {
-        'min': 1,
-        'max': 12
-    },
-    step: 1,
-    start: [1, 12],
-    connect: true,
+  range: {
+    'min': 1,
+    'max': 12
+  },
+  step: 1,
+  start: [1, 12],
+  connect: true,
 
 });
+

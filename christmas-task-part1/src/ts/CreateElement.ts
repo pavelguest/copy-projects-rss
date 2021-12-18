@@ -1,7 +1,7 @@
+import { buttons } from "./Buttons";
 import data from "./data";
-import Filters, { filters } from "./Filters";
+import { otherFilters } from "./OtherFilters";
 import { sortSelect } from "./Sort";
-
 export interface Idata {
   num: string;
   name: string;
@@ -14,13 +14,18 @@ export interface Idata {
 }
 class CreateElement {
   container: HTMLElement;
+  data: Idata[];
+  filterArr: [] | Idata[];
 
   constructor() {
     this.container = document.querySelector('.cards') as HTMLElement;
+    this.data = [ ...data ];
+    this.filterArr = [ ...data ];
   }
 
   renderCards(data: Idata[]) {
     this.container.innerHTML = '';
+    if(!data.length) this.container.insertAdjacentHTML('beforeend', `<h3 class="error__subtitle">Извините, совпадений не обнаружено</h3>`)
     data.forEach(e => {
       this.container.insertAdjacentHTML('beforeend', `
         <div class="cards__item">
@@ -38,46 +43,76 @@ class CreateElement {
       `)
     })
   }
-
   addListenerForButtons() {
-      document.querySelector<HTMLElement>('.color')!.onclick = (event) => {
-      if(event.target instanceof HTMLElement) {
+    buttons.color!.onclick = (event) => {
+      if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         event.target.classList.toggle('active');
-        filters.hasKeysColor(event.target);
-        filters.filterColor();
+        otherFilters.hasKeysColor(event.target);
+        this.filtration();
+      }
+    }
+    buttons.size!.onclick = (event) => {
+      if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
+        event.target.classList.toggle('active');
+        otherFilters.hasKeysSize(event.target);
+        this.filtration();
+      }
+    }
+    buttons.shape!.onclick = (event) => {
+      if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
+        event.target.classList.toggle('active');
+        otherFilters.hasKeysShape(event.target);
+        this.filtration();
+      }
+    }
+    buttons.favorite!.onclick = (event) => {
+      console.log(event.target)
+      this.filtration();
+        }
+    buttons.select!.onchange = (event) => {
+      if(event.target instanceof HTMLSelectElement) {
+        if(!this.filterArr.length){
+          this.filterArr = [ ...data ];
+        }
+        sortSelect.sortData(this.filterArr, event.target);
+      }
+    }
+    buttons.rangeYear.on('update', (values: string[]) => {
+      otherFilters.hasKeysYear(values);
+      this.filtration()
+    })
+    buttons.rangeCount.on('update', (values: string[]) => {
+      otherFilters.hasKeysCount(values);
+      this.filtration()
+    })
 
-      }
-    }
-    document.querySelector<HTMLElement>('.size')!.onclick = (event) => {
-      if(event.target instanceof HTMLElement) {
-        event.target.classList.toggle('active');
-        filters.hasKeysSize(event.target);
-        filters.filterSize();
+  }
+  filtration() {
+    let [minYear, maxYear] = otherFilters.keysYear;
+    let [minCount, maxCount] = otherFilters.keysCount;
+    buttons.inputCountMin!.textContent = ((+minCount * 100) / 100).toString();
+    buttons.inputCountMax!.textContent = ((+maxCount * 100) / 100).toString();
+    buttons.inputYearMin!.textContent = ((+minYear * 100) / 100).toString();
+    buttons.inputYearMax!.textContent = ((+maxYear * 100) / 100).toString();
+    this.filterArr = this.data.filter(elem => +elem.year >= +minYear && +elem.year <= +maxYear && +elem.count >= +minCount && +elem.count <= +maxCount);
 
-      }
-    }
-    document.querySelector<HTMLElement>('.shape')!.onclick = (event) => {
-      if(event.target instanceof HTMLElement) {
-        event.target.classList.toggle('active');
-        filters.hasKeysShape(event.target);
-        filters.filterShape();
-      
-      }
-    }
-    // document.querySelector<HTMLSelectElement>('.sort-select')!.onchange = (event) => {
-    //   if(event.target instanceof HTMLSelectElement) {
-    //     sortSelect.sortData(data, event.target);
-    //   }
-    // }
-    // document.querySelector<HTMLInputElement>('.favorite__input')!.onchange = (event) => {
-    //   if(event.target instanceof HTMLInputElement) {
-    //     filters.filterFavorite(data, event.target)
-    //   }
-    // }
+    if(otherFilters.isFilterClear()) {
+      this.filterArr = [ ...this.filterArr ];
+    } else this.filterArr = this.filterArr.filter(elem => {
+      return otherFilters.filterColor(elem)
+          && otherFilters.filterSize(elem)
+          && otherFilters.filterShape(elem)
+          && otherFilters.filterFavorite(elem)
+
+        });
+        this.renderCards(this.filterArr);
   }
 }
 
 export const createElement = new CreateElement();
+
 createElement.renderCards(data);
 createElement.addListenerForButtons();
+
 export default CreateElement;
+
