@@ -4,6 +4,9 @@
   justify-content: flex-start;
   column-gap: 20px;
   row-gap: 20px;
+  .active {
+    border: 3px solid rgb(255, 153, 0);
+  }
 }
 .cards__item {
   display: flex;
@@ -15,6 +18,7 @@
   background-color: rgba(16, 85, 97, 0.3);
   border: 3px solid rgba(35, 164, 187, 0.3);
   box-shadow: 2px 2px 20px 2px #000a;
+  cursor: pointer;
 }
 .cards__subtitle {
   font-size: 18px;
@@ -34,4 +38,14 @@
 }
 .error__subtitle {
   font-size: 40px;
+}
+.alert-window {
+  padding: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(59, 137, 255, 0.932);
+  color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 20px 2px #000a;
 }

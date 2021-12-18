@@ -1,3 +1,4 @@
+import { createElement } from "./CreateElement";
 import { rangeCount, rangeYear } from "./slider";
 
 class Buttons {
@@ -12,6 +13,7 @@ class Buttons {
   inputYearMax: HTMLOutputElement |null;
   inputCountMin: HTMLOutputElement |null;
   inputCountMax: HTMLOutputElement |null;
+  favoriteCountSpan: HTMLElement | null;
 
   constructor() {
     this.color = document.querySelector('.color');
@@ -25,6 +27,25 @@ class Buttons {
     this.inputYearMax = document.querySelector('.year-max');
     this.inputCountMin = document.querySelector('.count-min');
     this.inputCountMax = document.querySelector('.count-max');
+    this.favoriteCountSpan = document.querySelector('.header-buttons__count span')
+  }
+  changeInputValues(minCount: string, maxCount: string, minYear: string, maxYear: string) {
+    this.inputCountMin!.textContent = ((+minCount * 100) / 100).toString();
+    this.inputCountMax!.textContent = ((+maxCount * 100) / 100).toString();
+    this.inputYearMin!.textContent = ((+minYear * 100) / 100).toString();
+    this.inputYearMax!.textContent = ((+maxYear * 100) / 100).toString();
+  }
+  changeFavoriteSpanValue(arrLength: string[]) {
+    this.favoriteCountSpan!.textContent = `${arrLength.length}`;
+  }
+  createAlertWindow() {
+    let alertWindow = document.createElement('div');
+    alertWindow.classList.add('alert-window');
+    alertWindow.textContent = `Извините, все слоты заполнены`;
+    createElement.container.append(alertWindow);
+    setTimeout(() => {
+      alertWindow.remove();
+    }, 1000);
   }
 }
 

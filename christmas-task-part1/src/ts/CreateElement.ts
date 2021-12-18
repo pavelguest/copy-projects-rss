@@ -85,15 +85,28 @@ class CreateElement {
       otherFilters.hasKeysCount(values);
       this.filtration()
     })
+    document.querySelectorAll('.cards__item').forEach((card, index) => {
+      card.addEventListener('click', () => {
+        if(otherFilters.favoriteArr.length <= 19) {
+          otherFilters.hasFavorite(index);
+          card.classList.toggle('active');
+          buttons.changeFavoriteSpanValue(otherFilters.favoriteArr)
+          console.log(otherFilters.favoriteArr);
+        } else {
+          card.classList.remove('active');
+          otherFilters.deleteKey(otherFilters.favoriteArr, index.toString());
+          if(otherFilters.favoriteArr.length > 19) {
+            buttons.createAlertWindow();
+          }
+        }
 
+      })
+    })
   }
   filtration() {
     let [minYear, maxYear] = otherFilters.keysYear;
     let [minCount, maxCount] = otherFilters.keysCount;
-    buttons.inputCountMin!.textContent = ((+minCount * 100) / 100).toString();
-    buttons.inputCountMax!.textContent = ((+maxCount * 100) / 100).toString();
-    buttons.inputYearMin!.textContent = ((+minYear * 100) / 100).toString();
-    buttons.inputYearMax!.textContent = ((+maxYear * 100) / 100).toString();
+    buttons.changeInputValues(minCount, maxCount, minYear, maxYear);
     this.filterArr = this.data.filter(elem => +elem.year >= +minYear && +elem.year <= +maxYear && +elem.count >= +minCount && +elem.count <= +maxCount);
 
     if(otherFilters.isFilterClear()) {

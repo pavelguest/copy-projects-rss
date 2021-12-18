@@ -4,6 +4,7 @@ class Filters {
   keysShape: string[];
   keysYear: string[];
   keysCount: string[];
+  favoriteArr: string[];
   input: HTMLElement | null;
 
   constructor() {
@@ -12,6 +13,7 @@ class Filters {
     this.keysShape = [];
     this.keysYear = [];
     this.keysCount = [];
+    this.favoriteArr = [];
     this.input = document.getElementById('favorite');
   }
 
@@ -30,6 +32,11 @@ class Filters {
         && !this.keysShape.length
         && !this.keysSize.length
         && !(this.input as HTMLInputElement).checked
+  }
+  hasFavorite(index: number) {
+    if(!this.isKeys(this.favoriteArr, index.toString())) {
+      this.addKey(this.favoriteArr, index.toString())
+    } else this.deleteKey(this.favoriteArr, index.toString());
   }
 }
 
