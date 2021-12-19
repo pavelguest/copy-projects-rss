@@ -28,20 +28,22 @@ class CreateElement {
     if(!data.length) this.container.insertAdjacentHTML('beforeend', `<h3 class="error__subtitle">Извините, совпадений не обнаружено</h3>`)
     data.forEach(e => {
       this.container.insertAdjacentHTML('beforeend', `
-        <div class="cards__item">
-          <h3 class="cards__subtitle">${e.name}</h3>
-          <img class="cards__img" src="../assets/toys/${e.num}.png" alt="decoration">
-          <div class="cards__text-container">
-            <p class="cards__text">Количество: ${e.count}</p>
-            <p class="cards__text">Год покупки: ${e.year}</p>
-            <p class="cards__text">Форма: ${e.shape}</p>
-            <p class="cards__text">Цвет: ${e.color}</p>
-            <p class="cards__text">Размер: ${e.size}</p>
-            <p class="cards__text">Любимый: ${e.favorite? 'да' : 'нет'}</p>
-          </div>
-        </div>
+      <div class="cards__item ${otherFilters.loadFavoriteCard(e)}">
+      <h3 class="cards__subtitle">${e.name}</h3>
+      <img class="cards__img" src="../assets/toys/${e.num}.png" alt="decoration">
+      <div class="cards__text-container">
+      <p class="cards__text">Количество: ${e.count}</p>
+      <p class="cards__text">Год покупки: ${e.year}</p>
+      <p class="cards__text">Форма: ${e.shape}</p>
+      <p class="cards__text">Цвет: ${e.color}</p>
+      <p class="cards__text">Размер: ${e.size}</p>
+      <p class="cards__text">Любимый: ${e.favorite? 'да' : 'нет'}</p>
+      </div>
+      </div>
       `)
     })
+    this.addListenerForCards();
+
   }
   addListenerForButtons() {
     buttons.color!.onclick = (event) => {
@@ -85,16 +87,21 @@ class CreateElement {
       otherFilters.hasKeysCount(values);
       this.filtration()
     })
+
+  }
+  addListenerForCards() {
     document.querySelectorAll('.cards__item').forEach((card, index) => {
+      let cardNum = this.filterArr[index];
+
       card.addEventListener('click', () => {
         if(otherFilters.favoriteArr.length <= 19) {
-          otherFilters.hasFavorite(index);
+          otherFilters.hasFavorite(cardNum.num);
           card.classList.toggle('active');
           buttons.changeFavoriteSpanValue(otherFilters.favoriteArr)
           console.log(otherFilters.favoriteArr);
         } else {
           card.classList.remove('active');
-          otherFilters.deleteKey(otherFilters.favoriteArr, index.toString());
+          otherFilters.deleteKey(otherFilters.favoriteArr, cardNum.num);
           if(otherFilters.favoriteArr.length > 19) {
             buttons.createAlertWindow();
           }
@@ -126,6 +133,7 @@ export const createElement = new CreateElement();
 
 createElement.renderCards(data);
 createElement.addListenerForButtons();
+// createElement.addListenerForCards();
 
 export default CreateElement;
 

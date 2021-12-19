@@ -1,3 +1,5 @@
+import { Idata } from "./CreateElement";
+
 class Filters {
   keysColor: string[];
   keysSize: string[];
@@ -33,10 +35,13 @@ class Filters {
         && !this.keysSize.length
         && !(this.input as HTMLInputElement).checked
   }
-  hasFavorite(index: number) {
-    if(!this.isKeys(this.favoriteArr, index.toString())) {
-      this.addKey(this.favoriteArr, index.toString())
-    } else this.deleteKey(this.favoriteArr, index.toString());
+  hasFavorite(index: string) {
+    if(!this.isKeys(this.favoriteArr, index)) {
+      this.addKey(this.favoriteArr, index)
+    } else this.deleteKey(this.favoriteArr, index);
+  }
+  loadFavoriteCard(num: Idata) {
+    return this.favoriteArr.length && this.favoriteArr.includes(num.num) ? 'active' : '';
   }
 }
 
