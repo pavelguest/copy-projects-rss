@@ -14,6 +14,7 @@ class Buttons {
   inputCountMin: HTMLOutputElement |null;
   inputCountMax: HTMLOutputElement |null;
   favoriteCountSpan: HTMLElement | null;
+  defaultSettings: HTMLElement | null;
 
   constructor() {
     this.color = document.querySelector('.color');
@@ -27,7 +28,8 @@ class Buttons {
     this.inputYearMax = document.querySelector('.year-max');
     this.inputCountMin = document.querySelector('.count-min');
     this.inputCountMax = document.querySelector('.count-max');
-    this.favoriteCountSpan = document.querySelector('.header-buttons__count span')
+    this.favoriteCountSpan = document.querySelector('.header-buttons__count span');
+    this.defaultSettings = document.querySelector('.apply-buttons__default');
   }
   changeInputValues(minCount: string, maxCount: string, minYear: string, maxYear: string) {
     this.inputCountMin!.textContent = ((+minCount * 100) / 100).toString();
@@ -46,6 +48,16 @@ class Buttons {
     setTimeout(() => {
       alertWindow.remove();
     }, 1000);
+  }
+  cancelTargetButtons() {
+    document.querySelectorAll('.color button, .size button, .shape button').forEach(button => {
+      button.classList.remove('active')
+    })
+    if(this.favorite instanceof HTMLInputElement) {
+      this.favorite.checked = false;
+    }
+
+
   }
 }
 

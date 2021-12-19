@@ -1,6 +1,7 @@
 import { buttons } from "./Buttons";
 import data from "./data";
 import { otherFilters } from "./OtherFilters";
+import { rangeCount } from "./slider";
 import { sortSelect } from "./Sort";
 export interface Idata {
   num: string;
@@ -73,10 +74,8 @@ class CreateElement {
         }
     buttons.select!.onchange = (event) => {
       if(event.target instanceof HTMLSelectElement) {
-        if(!this.filterArr.length){
-          this.filterArr = [ ...data ];
-        }
-        sortSelect.sortData(this.filterArr, event.target);
+        sortSelect.sortData(this.data, event.target);
+        console.log(buttons.select!.options[buttons.select!.selectedIndex].value);
       }
     }
     buttons.rangeYear.on('update', (values: string[]) => {
@@ -87,7 +86,14 @@ class CreateElement {
       otherFilters.hasKeysCount(values);
       this.filtration()
     })
+    buttons.defaultSettings!.onclick = (event) => {
+      if(event.target instanceof HTMLElement) {
+        otherFilters.clearKeysFiltration();
+        buttons.cancelTargetButtons();
 
+        this.filtration()
+      }
+    }
   }
   addListenerForCards() {
     document.querySelectorAll('.cards__item').forEach((card, index) => {
@@ -136,4 +142,3 @@ createElement.addListenerForButtons();
 // createElement.addListenerForCards();
 
 export default CreateElement;
-

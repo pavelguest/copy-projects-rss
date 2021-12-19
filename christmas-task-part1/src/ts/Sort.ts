@@ -1,7 +1,7 @@
 import { createElement, Idata } from "./CreateElement";
 
 class Sort {
-  
+
   constructor() {
   }
   sortData(data: Idata[], select: HTMLSelectElement | null) {
@@ -19,6 +19,7 @@ class Sort {
     }
       createElement.renderCards(data);
   }
+  
 }
 
 export let sortSelect = new Sort();

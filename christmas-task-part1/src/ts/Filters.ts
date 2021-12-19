@@ -1,4 +1,5 @@
 import { Idata } from "./CreateElement";
+import { rangeCount, rangeYear } from "./slider";
 
 class Filters {
   keysColor: string[];
@@ -43,6 +44,20 @@ class Filters {
   loadFavoriteCard(num: Idata) {
     return this.favoriteArr.length && this.favoriteArr.includes(num.num) ? 'active' : '';
   }
+  clearKeysFiltration() {
+    this.keysColor = [];
+    this.keysSize = [];
+    this.keysShape = [];
+    rangeCount.noUiSlider!.updateOptions({
+      start: [1, 12],
+    }, true
+    );
+    rangeYear.noUiSlider!.updateOptions({
+      start: [1940, 2020],
+    }, true
+    );
+  }
 }
 
 export default Filters
+
