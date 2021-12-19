@@ -11,7 +11,10 @@
   <div class="wrapper">
     <header class="header">
       <div class="header-buttons">
-        <input class="header-buttons__search" type="text">
+        <div class="header-buttons__search">
+          <input class="search__input" type="text" required="required" placeholder="название игрушки" autocomplete="off" autofocus>
+          <button type="reset" class="search__cancel-ico">&times;</button>
+        </div>
         <button class="header-buttons__count"><span>0</span></button>
       </div>
       <div class="header-nav">

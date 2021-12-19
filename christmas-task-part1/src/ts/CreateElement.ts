@@ -17,11 +17,14 @@ class CreateElement {
   container: HTMLElement;
   data: Idata[];
   filterArr: [] | Idata[];
+  searchArr: Idata[];
+  previousElementSibling: any;
 
   constructor() {
     this.container = document.querySelector('.cards') as HTMLElement;
     this.data = [ ...data ];
     this.filterArr = [ ...data ];
+    this.searchArr = [ ...data ];
   }
 
   renderCards(data: Idata[]) {
@@ -90,9 +93,20 @@ class CreateElement {
       if(event.target instanceof HTMLElement) {
         otherFilters.clearKeysFiltration();
         buttons.cancelTargetButtons();
-
+        buttons.searchInput!.value = '';
         this.filtration()
       }
+    }
+    buttons.searchInput!.oninput = (event) => {
+      if(event.target instanceof HTMLInputElement) {
+        let regExp: RegExp = new RegExp(`${event.target.value}`, 'gi')
+        this.searchArr = this.filterArr.filter(card => card.name.match(regExp))
+        this.renderCards(this.searchArr);
+      }
+    }
+    buttons.searchCancel!.onclick = (event) => {
+      buttons.searchInput!.value = '';
+      this.filtration();
     }
   }
   addListenerForCards() {

@@ -15,6 +15,8 @@ class Buttons {
   inputCountMax: HTMLOutputElement |null;
   favoriteCountSpan: HTMLElement | null;
   defaultSettings: HTMLElement | null;
+  searchInput: HTMLInputElement | null;
+  searchCancel: HTMLElement | null;
 
   constructor() {
     this.color = document.querySelector('.color');
@@ -30,6 +32,9 @@ class Buttons {
     this.inputCountMax = document.querySelector('.count-max');
     this.favoriteCountSpan = document.querySelector('.header-buttons__count span');
     this.defaultSettings = document.querySelector('.apply-buttons__default');
+    this.searchInput = document.querySelector('.search__input');
+    this.searchCancel = document.querySelector('.search__cancel-ico');
+    this.searchInput!.focus();
   }
   changeInputValues(minCount: string, maxCount: string, minYear: string, maxYear: string) {
     this.inputCountMin!.textContent = ((+minCount * 100) / 100).toString();
@@ -56,8 +61,6 @@ class Buttons {
     if(this.favorite instanceof HTMLInputElement) {
       this.favorite.checked = false;
     }
-
-
   }
 }
 

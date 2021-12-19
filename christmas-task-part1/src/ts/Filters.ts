@@ -1,4 +1,4 @@
-import { Idata } from "./CreateElement";
+import { createElement, Idata } from "./CreateElement";
 import { rangeCount, rangeYear } from "./slider";
 
 class Filters {
