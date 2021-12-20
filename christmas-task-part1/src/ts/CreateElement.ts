@@ -99,8 +99,13 @@ class CreateElement {
     }
     buttons.searchInput!.oninput = (event) => {
       if(event.target instanceof HTMLInputElement) {
-        let regExp: RegExp = new RegExp(`${event.target.value}`, 'gi')
-        this.searchArr = this.filterArr.filter(card => card.name.match(regExp))
+        let pattern = event.target.value.split(" ").map((elem) => {
+          return `(.*${elem})`
+        }).join('');
+        let regex = new RegExp(`${pattern}`, "gi")
+        this.searchArr = this.filterArr.filter(card => card.name.match(regex))
+        // let regExp: RegExp = new RegExp(`${event.target.value}`, 'gi')
+        // this.searchArr = this.filterArr.filter(card => card.name.match(regExp))
         this.renderCards(this.searchArr);
       }
     }
