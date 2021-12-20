@@ -1,14 +1,21 @@
-import { app } from "./CreateElement";
-import { otherFilters } from "./OtherFilters";
+import { app } from './CreateElement';
+import { otherFilters } from './OtherFilters';
 
 class SaveLocal {
   keysColor: string[];
+
   keysSize: string[];
+
   keysShape: string[];
+
   keysYear: string[];
+
   keysCount: string[];
+
   favoriteArr: string[];
+
   isFavorite: boolean;
+
   keyOptionSelect: number;
 
   constructor() {
@@ -21,12 +28,14 @@ class SaveLocal {
     this.isFavorite = false;
     this.keyOptionSelect = 0;
   }
+
   save() {
     localStorage.setItem('options', JSON.stringify(this));
   }
+
   load() {
     if (localStorage.getItem('options')) {
-      const options = JSON.parse(localStorage.getItem('options') || "{}");
+      const options = JSON.parse(localStorage.getItem('options') || '{}');
       this.keysColor = options.keysColor;
       this.keysSize = options.keysSize;
       this.keysShape = options.keysShape;
@@ -36,10 +45,11 @@ class SaveLocal {
       this.isFavorite = options.isFavorite;
       this.keyOptionSelect = options.keyOptionSelect;
 
-      return options
+      return options;
 
     }
   }
+
   default() {
     this.keysColor = [];
     this.keysSize = [];
@@ -52,7 +62,7 @@ class SaveLocal {
   }
 }
 
-export let saveLocal = new SaveLocal;
+export const saveLocal = new SaveLocal;
 
 export default SaveLocal;
 

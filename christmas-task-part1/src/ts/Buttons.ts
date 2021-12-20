@@ -1,22 +1,34 @@
-import { app } from "./CreateElement";
-import { otherFilters } from "./OtherFilters";
-import { saveLocal } from "./SaveLocalStorage";
-import { rangeCount, rangeYear } from "./slider";
+import { app } from './CreateElement';
+import { otherFilters } from './OtherFilters';
+import { saveLocal } from './SaveLocalStorage';
 
 class Buttons {
   color: HTMLElement | null;
-  size: HTMLElement| null;
-  shape: HTMLElement| null;
+
+  size: HTMLElement | null;
+
+  shape: HTMLElement | null;
+
   favorite: HTMLElement | null;
+
   select: HTMLSelectElement | null;
-  inputYearMin: HTMLOutputElement |null;
-  inputYearMax: HTMLOutputElement |null;
-  inputCountMin: HTMLOutputElement |null;
-  inputCountMax: HTMLOutputElement |null;
+
+  inputYearMin: HTMLOutputElement | null;
+
+  inputYearMax: HTMLOutputElement | null;
+
+  inputCountMin: HTMLOutputElement | null;
+
+  inputCountMax: HTMLOutputElement | null;
+
   favoriteCountSpan: HTMLElement | null;
+
   defaultSettings: HTMLElement | null;
+
   resetLocal: HTMLElement | null;
+
   searchInput: HTMLInputElement | null;
+
   searchCancel: HTMLElement | null;
 
 
@@ -37,47 +49,51 @@ class Buttons {
     this.resetLocal = document.querySelector('.apply-buttons__reset-local');
     this.searchInput = document.querySelector('.search__input');
     this.searchCancel = document.querySelector('.search__cancel-ico');
-    this.searchInput!.focus();
   }
+
   changeInputValues(minCount: string, maxCount: string, minYear: string, maxYear: string) {
-    this.inputCountMin!.textContent = ((+minCount * 100) / 100).toString();
-    this.inputCountMax!.textContent = ((+maxCount * 100) / 100).toString();
-    this.inputYearMin!.textContent = ((+minYear * 100) / 100).toString();
-    this.inputYearMax!.textContent = ((+maxYear * 100) / 100).toString();
+    (this.inputCountMin as HTMLOutputElement).textContent = ((+minCount * 100) / 100).toString();
+    (this.inputCountMax as HTMLOutputElement).textContent = ((+maxCount * 100) / 100).toString();
+    (this.inputYearMin as HTMLOutputElement).textContent = ((+minYear * 100) / 100).toString();
+    (this.inputYearMax as HTMLOutputElement).textContent = ((+maxYear * 100) / 100).toString();
   }
+
   changeFavoriteSpanValue(arrLength: string[]) {
-    this.favoriteCountSpan!.textContent = `${arrLength.length}`;
+    (this.favoriteCountSpan as HTMLElement).textContent = `${arrLength.length}`;
   }
+
   createAlertWindow() {
-    let alertWindow = document.createElement('div');
+    const alertWindow = document.createElement('div');
     alertWindow.classList.add('alert-window');
-    alertWindow.textContent = `Извините, все слоты заполнены`;
+    alertWindow.textContent = 'Извините, все слоты заполнены';
     app.container.append(alertWindow);
     setTimeout(() => {
       alertWindow.remove();
     }, 1000);
   }
+
   cancelTargetButtons() {
     document.querySelectorAll('.color button, .size button, .shape button').forEach(button => {
-      button.classList.remove('active')
-    })
-    if(this.favorite instanceof HTMLInputElement) {
+      button.classList.remove('active');
+    });
+    if (this.favorite instanceof HTMLInputElement) {
       this.favorite.checked = false;
       saveLocal.isFavorite = false;
     }
   }
+
   loadTargetButtons() {
     document.querySelectorAll('.color button, .size button, .shape button').forEach(button => {
-      if(button instanceof HTMLElement) {
-        if(otherFilters.keysColor.includes(button.dataset.filter as string)) button.classList.add('active');
-        if(otherFilters.keysSize.includes(button.dataset.filter as string)) button.classList.add('active');
-        if(otherFilters.keysShape.includes(button.dataset.filter as string)) button.classList.add('active');
+      if (button instanceof HTMLElement) {
+        if (otherFilters.keysColor.includes(button.dataset.filter as string)) button.classList.add('active');
+        if (otherFilters.keysSize.includes(button.dataset.filter as string)) button.classList.add('active');
+        if (otherFilters.keysShape.includes(button.dataset.filter as string)) button.classList.add('active');
       }
-    })
+    });
   }
 }
 
-export let buttons = new Buttons();
+export const buttons = new Buttons();
 
 
 

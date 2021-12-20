@@ -1,15 +1,22 @@
-import { app, Idata } from "./CreateElement";
-import { saveLocal } from "./SaveLocalStorage";
-import { rangeCount, rangeYear } from "./slider";
-import { sortSelect } from "./Sort";
+import { API } from 'nouislider';
+import { app, Idata } from './CreateElement';
+import { saveLocal } from './SaveLocalStorage';
+import { rangeCount, rangeYear } from './slider';
+import { sortSelect } from './Sort';
 
 class Filters {
   keysColor: string[];
+
   keysSize: string[];
+
   keysShape: string[];
+
   keysYear: string[];
+
   keysCount: string[];
+
   favoriteArr: string[];
+
   input: HTMLElement | null;
 
   constructor() {
@@ -25,31 +32,37 @@ class Filters {
   isKeys(keys: string[], key: string) {
     return keys.length ? keys.includes(key) : false;
   }
+
   addKey(keys: string[], key: string) {
-    keys.push(key)
+    keys.push(key);
   }
+
   deleteKey(keys: string[], key: string) {
-    let deleteIndex = keys.indexOf(key);
+    const deleteIndex = keys.indexOf(key);
     if (deleteIndex > -1) keys.splice(deleteIndex, 1);
   }
+
   isFilterClear() {
     return !this.keysColor.length
         && !this.keysShape.length
         && !this.keysSize.length
-        && !(this.input as HTMLInputElement).checked
+        && !(this.input as HTMLInputElement).checked;
   }
+
   hasFavorite(index: string) {
-    if(this.isKeys(this.favoriteArr, index)) {
+    if (this.isKeys(this.favoriteArr, index)) {
       this.deleteKey(this.favoriteArr, index);
     } else {
-      this.addKey(this.favoriteArr, index)
+      this.addKey(this.favoriteArr, index);
     }
     saveLocal.favoriteArr = [ ...this.favoriteArr ];
     saveLocal.save();
   }
+
   loadFavoriteCard(num: Idata) {
     return this.favoriteArr.length && this.favoriteArr.includes(num.num) ? 'active' : '';
   }
+
   clearKeysFiltration() {
     this.keysColor = [];
     this.keysSize = [];
@@ -57,27 +70,28 @@ class Filters {
     saveLocal.keysColor = [ ...this.keysColor ];
     saveLocal.keysShape = [ ...this.keysShape ];
     saveLocal.keysSize = [ ...this.keysSize ];
-    rangeCount.noUiSlider!.updateOptions({
+    (rangeCount.noUiSlider as API).updateOptions({
       start: [1, 12],
-    }, true
+    }, true,
     );
-    rangeYear.noUiSlider!.updateOptions({
+    (rangeYear.noUiSlider as API).updateOptions({
       start: [1940, 2020],
-    }, true
+    }, true,
     );
-    sortSelect.sortData(app.data, saveLocal.keyOptionSelect)
+    sortSelect.sortData(app.data, saveLocal.keyOptionSelect);
   }
+
   loadRangeSlider(minCount: string, maxCount: string, minYear: string, maxYear: string) {
-    rangeCount.noUiSlider!.updateOptions({
+    (rangeCount.noUiSlider as API).updateOptions({
       start: [minCount, maxCount],
-    }, true
+    }, true,
     );
-    rangeYear.noUiSlider!.updateOptions({
+    (rangeYear.noUiSlider as API).updateOptions({
       start: [minYear, maxYear],
-    }, true
+    }, true,
     );
   }
 }
 
-export default Filters
+export default Filters;
 
