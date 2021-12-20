@@ -1,3 +1,4 @@
+import { API, target } from "nouislider";
 import { buttons } from "./Buttons";
 import data from "./data";
 import { otherFilters } from "./OtherFilters";
@@ -19,7 +20,6 @@ class Application {
   data: Idata[];
   filterArr: [] | Idata[];
   searchArr: Idata[];
-  previousElementSibling: any;
 
   constructor() {
     this.container = document.querySelector('.cards') as HTMLElement;
@@ -35,7 +35,7 @@ class Application {
       this.container.insertAdjacentHTML('beforeend', `
       <div class="cards__item ${otherFilters.loadFavoriteCard(e)}">
       <h3 class="cards__subtitle">${e.name}</h3>
-      <img class="cards__img" src="../assets/toys/${e.num}.png" alt="decoration">
+      <img class="cards__img" src="./assets/toys/${e.num}.png" alt="decoration">
       <div class="cards__text-container">
       <p class="cards__text">Количество: ${e.count}</p>
       <p class="cards__text">Год покупки: ${e.year}</p>
@@ -80,23 +80,24 @@ class Application {
         }
     buttons.select!.onchange = (event) => {
       if(event.target instanceof HTMLSelectElement) {
-        let sortData = sortSelect.sortData(this.filterArr, event.target);
+        let sortData = sortSelect.sortData(this.filterArr, event.target.options.selectedIndex);
         this.renderCards(sortData);
-        console.log(buttons.select!.options[buttons.select!.selectedIndex].value);
         saveLocal.keyOptionSelect = event.target.selectedIndex;
         saveLocal.save();
       }
-    }
-    buttons.rangeYear.on('update', (values: string[]) => {
-      saveLocal.keysYear = [ ...values ]
+    };
+    (<API>rangeYear.noUiSlider).on('update', (values: (string | number)[]) => {
+      let [ minYear, maxYear ] = values;
+      saveLocal.keysYear = [ (minYear as string), (maxYear as string) ]
       saveLocal.save();
-      otherFilters.hasKeysYear(values);
+      otherFilters.hasKeysYear(minYear, maxYear);
       this.filtration()
-    })
-    buttons.rangeCount.on('update', (values: string[]) => {
-      saveLocal.keysCount = [ ...values ]
+    });
+    (<API>rangeCount.noUiSlider).on('update', (values: (string | number)[]) => {
+      let [ minCount, maxCount ] = values;
+      saveLocal.keysCount = [ (minCount as string), (maxCount as string) ]
       saveLocal.save();
-      otherFilters.hasKeysCount(values);
+      otherFilters.hasKeysCount(minCount, maxCount);
       this.filtration()
     })
     buttons.defaultSettings!.onclick = (event) => {
@@ -104,6 +105,7 @@ class Application {
         otherFilters.clearKeysFiltration();
         buttons.cancelTargetButtons();
         buttons.searchInput!.value = '';
+        saveLocal.keyOptionSelect = 0;
         saveLocal.save();
         this.filtration();
       }
@@ -122,10 +124,15 @@ class Application {
       buttons.searchInput!.value = '';
       this.filtration();
     }
+    buttons.resetLocal!.onclick = (event) => {
+      saveLocal.default();
+      saveLocal.save();
+    }
   }
   addListenerForCards() {
     document.querySelectorAll('.cards__item').forEach((card, index) => {
       let cardNum = this.filterArr[index];
+      console.log(index);
 
       card.addEventListener('click', () => {
         if(otherFilters.favoriteArr.length <= 19) {
@@ -170,12 +177,9 @@ class Application {
       otherFilters.keysShape = saveData.keysShape;
       otherFilters.favoriteArr = saveData.favoriteArr;
       if(saveData.keyOptionSelect !== 0) {
-        // this.filterArr = sortSelect.sortData(this.filterArr, (buttons.select.options[saveData.keyOptionSelect]))
-        console.log(buttons.select!.options);
-        console.log(buttons.select!.options[saveData.keyOptionSelect])
-
+        this.filterArr = sortSelect.sortData(this.data, saveData.keyOptionSelect);
       }
-      // this.keySort = saveData.keySort;
+      buttons.favoriteCountSpan!.textContent = `${otherFilters.favoriteArr.length}`;
 
       buttons.loadTargetButtons();
       let [minYear, maxYear] = saveData.keysYear;
@@ -191,7 +195,6 @@ export const app = new Application();
 app.setData();
 app.filtration();
 app.addListenerForButtons();
-app.addListenerForCards();
 
 
 

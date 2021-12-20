@@ -1,19 +1,20 @@
+import { buttons } from "./Buttons";
 import { app, Idata } from "./CreateElement";
 
 class Sort {
 
   constructor() {
   }
-  sortData(data: Idata[], select: HTMLSelectElement | null) {
-    if(select) {
-      console.log(select.value)
-      if(select.value === 'sort-count__max') {
+  sortData(data: Idata[], indexOption: number | null) {
+    if(indexOption) {
+      let value = buttons.select!.options[indexOption].value;
+      if(value === 'sort-count__max') {
         data.sort((a, b) => +a.count - +b.count);
-      } else if(select.value === 'sort-count__min') {
+      } else if(value === 'sort-count__min') {
         data.sort((a, b) => +b.count - +a.count);
-      } else if(select.value === 'sort-name__max') {
+      } else if(value === 'sort-name__max') {
         data.sort((a, b) => a.name.localeCompare(b.name));
-      } else if(select.value === 'sort-name__min') {
+      } else if(value === 'sort-name__min') {
         data.sort((a, b) => b.name.localeCompare(a.name));
       }
     }

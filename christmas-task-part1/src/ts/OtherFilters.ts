@@ -39,11 +39,11 @@ class OtherFilters extends Filters {
       saveLocal.save();
     }
   }
-  hasKeysYear(values: string[]) {
-    this.keysYear = [ ...values ];
+  hasKeysYear(minYear: string | number, maxYear:string | number) {
+    this.keysYear = [(minYear as string), (maxYear as string)];
   }
-  hasKeysCount(values: string[]) {
-    this.keysCount = [ ...values ];
+  hasKeysCount(minCount:string | number, maxCount:string | number) {
+    this.keysCount = [(minCount as string), (maxCount as string)];
   }
   filterColor(elem: { color: string; }) {
     return (this.keysColor.length > 0) ? this.keysColor.includes(elem!.color) : true;

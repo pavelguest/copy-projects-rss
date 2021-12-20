@@ -23,8 +23,6 @@ class SaveLocal {
   }
   save() {
     localStorage.setItem('options', JSON.stringify(this));
-    console.log(`ss`);
-
   }
   load() {
     if (localStorage.getItem('options')) {
@@ -41,6 +39,16 @@ class SaveLocal {
       return options
 
     }
+  }
+  default() {
+    this.keysColor = [];
+    this.keysSize = [];
+    this.keysShape = [];
+    this.keysYear = ['1940', '2020'];
+    this.keysCount = ['1', '12'];
+    this.favoriteArr = [];
+    this.isFavorite = false;
+    this.keyOptionSelect = 0;
   }
 }
 

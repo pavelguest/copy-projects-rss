@@ -1,6 +1,7 @@
 import { app, Idata } from "./CreateElement";
 import { saveLocal } from "./SaveLocalStorage";
 import { rangeCount, rangeYear } from "./slider";
+import { sortSelect } from "./Sort";
 
 class Filters {
   keysColor: string[];
@@ -64,6 +65,7 @@ class Filters {
       start: [1940, 2020],
     }, true
     );
+    sortSelect.sortData(app.data, saveLocal.keyOptionSelect)
   }
   loadRangeSlider(minCount: string, maxCount: string, minYear: string, maxYear: string) {
     rangeCount.noUiSlider!.updateOptions({
