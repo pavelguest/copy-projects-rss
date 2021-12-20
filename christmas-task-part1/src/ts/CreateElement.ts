@@ -1,7 +1,8 @@
 import { buttons } from "./Buttons";
 import data from "./data";
 import { otherFilters } from "./OtherFilters";
-import { rangeCount } from "./slider";
+import { saveLocal } from "./SaveLocalStorage";
+import { rangeCount, rangeYear } from "./slider";
 import { sortSelect } from "./Sort";
 export interface Idata {
   num: string;
@@ -13,7 +14,7 @@ export interface Idata {
   size: string;
   favorite: boolean;
 }
-class CreateElement {
+class Application {
   container: HTMLElement;
   data: Idata[];
   filterArr: [] | Idata[];
@@ -72,20 +73,29 @@ class CreateElement {
       }
     }
     buttons.favorite!.onclick = (event) => {
-      console.log(event.target)
+      console.log(event.target);
+      saveLocal.isFavorite = (event.target as HTMLInputElement).checked;
+      saveLocal.save()
       this.filtration();
         }
     buttons.select!.onchange = (event) => {
       if(event.target instanceof HTMLSelectElement) {
-        sortSelect.sortData(this.data, event.target);
+        let sortData = sortSelect.sortData(this.filterArr, event.target);
+        this.renderCards(sortData);
         console.log(buttons.select!.options[buttons.select!.selectedIndex].value);
+        saveLocal.keyOptionSelect = event.target.selectedIndex;
+        saveLocal.save();
       }
     }
     buttons.rangeYear.on('update', (values: string[]) => {
+      saveLocal.keysYear = [ ...values ]
+      saveLocal.save();
       otherFilters.hasKeysYear(values);
       this.filtration()
     })
     buttons.rangeCount.on('update', (values: string[]) => {
+      saveLocal.keysCount = [ ...values ]
+      saveLocal.save();
       otherFilters.hasKeysCount(values);
       this.filtration()
     })
@@ -94,7 +104,8 @@ class CreateElement {
         otherFilters.clearKeysFiltration();
         buttons.cancelTargetButtons();
         buttons.searchInput!.value = '';
-        this.filtration()
+        saveLocal.save();
+        this.filtration();
       }
     }
     buttons.searchInput!.oninput = (event) => {
@@ -104,8 +115,6 @@ class CreateElement {
         }).join('');
         let regex = new RegExp(`${pattern}`, "gi")
         this.searchArr = this.filterArr.filter(card => card.name.match(regex))
-        // let regExp: RegExp = new RegExp(`${event.target.value}`, 'gi')
-        // this.searchArr = this.filterArr.filter(card => card.name.match(regExp))
         this.renderCards(this.searchArr);
       }
     }
@@ -152,12 +161,39 @@ class CreateElement {
         });
         this.renderCards(this.filterArr);
   }
+  setData() {
+    let saveData = saveLocal.load();
+    console.log(saveLocal)
+    if(saveData) {
+      otherFilters.keysColor = saveData.keysColor;
+      otherFilters.keysSize = saveData.keysSize;
+      otherFilters.keysShape = saveData.keysShape;
+      otherFilters.favoriteArr = saveData.favoriteArr;
+      if(saveData.keyOptionSelect !== 0) {
+        // this.filterArr = sortSelect.sortData(this.filterArr, (buttons.select.options[saveData.keyOptionSelect]))
+        console.log(buttons.select!.options);
+        console.log(buttons.select!.options[saveData.keyOptionSelect])
+
+      }
+      // this.keySort = saveData.keySort;
+
+      buttons.loadTargetButtons();
+      let [minYear, maxYear] = saveData.keysYear;
+      let [minCount, maxCount] = saveData.keysCount;
+      otherFilters.loadRangeSlider(minCount, maxCount, minYear, maxYear);
+      (otherFilters.input as HTMLInputElement).checked = saveData.isFavorite;
+    }
+  }
 }
 
-export const createElement = new CreateElement();
+export const app = new Application();
 
-createElement.renderCards(data);
-createElement.addListenerForButtons();
-// createElement.addListenerForCards();
+app.setData();
+app.filtration();
+app.addListenerForButtons();
+app.addListenerForCards();
 
-export default CreateElement;
+
+
+
+export default Application;

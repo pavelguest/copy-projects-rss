@@ -1,4 +1,6 @@
-import { createElement } from "./CreateElement";
+import { app } from "./CreateElement";
+import { otherFilters } from "./OtherFilters";
+import { saveLocal } from "./SaveLocalStorage";
 import { rangeCount, rangeYear } from "./slider";
 
 class Buttons {
@@ -15,6 +17,7 @@ class Buttons {
   inputCountMax: HTMLOutputElement |null;
   favoriteCountSpan: HTMLElement | null;
   defaultSettings: HTMLElement | null;
+  resetLocal: HTMLElement | null;
   searchInput: HTMLInputElement | null;
   searchCancel: HTMLElement | null;
 
@@ -32,6 +35,7 @@ class Buttons {
     this.inputCountMax = document.querySelector('.count-max');
     this.favoriteCountSpan = document.querySelector('.header-buttons__count span');
     this.defaultSettings = document.querySelector('.apply-buttons__default');
+    this.resetLocal = document.querySelector('.apply-buttons__reset-local');
     this.searchInput = document.querySelector('.search__input');
     this.searchCancel = document.querySelector('.search__cancel-ico');
     this.searchInput!.focus();
@@ -49,7 +53,7 @@ class Buttons {
     let alertWindow = document.createElement('div');
     alertWindow.classList.add('alert-window');
     alertWindow.textContent = `Извините, все слоты заполнены`;
-    createElement.container.append(alertWindow);
+    app.container.append(alertWindow);
     setTimeout(() => {
       alertWindow.remove();
     }, 1000);
@@ -60,7 +64,17 @@ class Buttons {
     })
     if(this.favorite instanceof HTMLInputElement) {
       this.favorite.checked = false;
+      saveLocal.isFavorite = false;
     }
+  }
+  loadTargetButtons() {
+    document.querySelectorAll('.color button, .size button, .shape button').forEach(button => {
+      if(button instanceof HTMLElement) {
+        if(otherFilters.keysColor.includes(button.dataset.filter as string)) button.classList.add('active');
+        if(otherFilters.keysSize.includes(button.dataset.filter as string)) button.classList.add('active');
+        if(otherFilters.keysShape.includes(button.dataset.filter as string)) button.classList.add('active');
+      }
+    })
   }
 }
 

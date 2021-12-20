@@ -1,4 +1,4 @@
-import { createElement, Idata } from "./CreateElement";
+import { app, Idata } from "./CreateElement";
 
 class Sort {
 
@@ -17,9 +17,9 @@ class Sort {
         data.sort((a, b) => b.name.localeCompare(a.name));
       }
     }
-      createElement.renderCards(data);
+      return data;
   }
-  
+
 }
 
 export let sortSelect = new Sort();

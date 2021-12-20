@@ -1,4 +1,5 @@
-import { createElement, Idata } from "./CreateElement";
+import { app, Idata } from "./CreateElement";
+import { saveLocal } from "./SaveLocalStorage";
 import { rangeCount, rangeYear } from "./slider";
 
 class Filters {
@@ -37,9 +38,13 @@ class Filters {
         && !(this.input as HTMLInputElement).checked
   }
   hasFavorite(index: string) {
-    if(!this.isKeys(this.favoriteArr, index)) {
+    if(this.isKeys(this.favoriteArr, index)) {
+      this.deleteKey(this.favoriteArr, index);
+    } else {
       this.addKey(this.favoriteArr, index)
-    } else this.deleteKey(this.favoriteArr, index);
+    }
+    saveLocal.favoriteArr = [ ...this.favoriteArr ];
+    saveLocal.save();
   }
   loadFavoriteCard(num: Idata) {
     return this.favoriteArr.length && this.favoriteArr.includes(num.num) ? 'active' : '';
@@ -48,12 +53,25 @@ class Filters {
     this.keysColor = [];
     this.keysSize = [];
     this.keysShape = [];
+    saveLocal.keysColor = [ ...this.keysColor ];
+    saveLocal.keysShape = [ ...this.keysShape ];
+    saveLocal.keysSize = [ ...this.keysSize ];
     rangeCount.noUiSlider!.updateOptions({
       start: [1, 12],
     }, true
     );
     rangeYear.noUiSlider!.updateOptions({
       start: [1940, 2020],
+    }, true
+    );
+  }
+  loadRangeSlider(minCount: string, maxCount: string, minYear: string, maxYear: string) {
+    rangeCount.noUiSlider!.updateOptions({
+      start: [minCount, maxCount],
+    }, true
+    );
+    rangeYear.noUiSlider!.updateOptions({
+      start: [minYear, maxYear],
     }, true
     );
   }

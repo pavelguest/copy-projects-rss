@@ -266,9 +266,10 @@
   display: flex;
   column-gap: 20px;
 }
-.apply-buttons__default {
+.apply-buttons__default,
+.apply-buttons__reset-local {
   width: 150px;
-  height: 40px;
+  height: 60px;
   border: 1px solid #278D9F;
   background-color: rgba(31, 112, 127, .3);
   cursor: pointer;

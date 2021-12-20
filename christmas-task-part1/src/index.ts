@@ -7,3 +7,4 @@ import './ts/Buttons';
 import './ts/Filters';
 import './ts/OtherFilters';
 import './ts/Sort';
+import './ts/SaveLocalStorage';

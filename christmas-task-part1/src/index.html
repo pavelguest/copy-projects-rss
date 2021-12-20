@@ -30,7 +30,8 @@
         <div class="sort controls__item">
           <h2 class="controls__title">Сортировка</h2>
           <select class="sort-select">
-            <option value="sort-name__max" selected>По названию от «А» до «Я»</option>
+            <option value="" style="display: none;">Выберите тип сортировки</option>
+            <option value="sort-name__max">По названию от «А» до «Я»</option>
             <option value="sort-name__min">По названию от «Я» до «А»</option>
             <option value="sort-count__max">По количеству по возрастанию</option>
             <option value="sort-count__min">По количеству по убыванию</option>
@@ -94,7 +95,8 @@
           </div>
         </div>
         <div class="apply-buttons">
-          <button class="apply-buttons__default">Сбросить</button>
+          <button class="apply-buttons__default">Сброс фильтров</button>
+          <button class="apply-buttons__reset-local">Сброс хранилища</button>
         </div>
       </section>
       <section class="cards"></section>
