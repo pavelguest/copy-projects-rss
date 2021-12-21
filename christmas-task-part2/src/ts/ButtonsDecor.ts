@@ -2,7 +2,7 @@ import { app } from './CreateElement';
 import { otherFilters } from './OtherFilters';
 import { saveLocal } from './SaveLocalStorage';
 
-class Buttons {
+class ButtonsDecor {
   color: HTMLElement | null;
 
   size: HTMLElement | null;
@@ -99,7 +99,7 @@ class Buttons {
   }
 }
 
-export const buttons = new Buttons();
+export const buttonsDecor = new ButtonsDecor();
 
 
 

@@ -1,4 +1,4 @@
-import { buttons } from "./Buttons";
+import { buttonsDecor } from "./ButtonsDecor";
 import { buttonsNav } from "./ButtonsNav";
 import { app } from "./CreateElement";
 
@@ -16,8 +16,8 @@ class Pages {
   }
   goToDecorPage() {
     this.decorPage!.style.display = 'flex';
-    buttons.search!.style.display = 'block';
-    buttons.favoriteCount!.style.display = 'block';
+    buttonsDecor.search!.style.display = 'block';
+    buttonsDecor.favoriteCount!.style.display = 'block';
     buttonsNav.toMainPage!.style.display = 'block';
     buttonsNav.toTreePage!.style.display = 'block';
     this.treePage!.style.display = 'none';
@@ -31,8 +31,8 @@ class Pages {
   goToMainPage() {
     this.decorPage!.style.display = 'none';
     this.treePage!.style.display = 'none';
-    buttons.search!.style.display = 'none';
-    buttons.favoriteCount!.style.display = 'none';
+    buttonsDecor.search!.style.display = 'none';
+    buttonsDecor.favoriteCount!.style.display = 'none';
     buttonsNav.toMainPage!.style.display = 'none';
     buttonsNav.toDecorPage!.style.display = 'block';
     buttonsNav.toTreePage!.style.display = 'block';
@@ -43,8 +43,8 @@ class Pages {
     buttonsNav.toMainPage!.style.display = 'block';
     buttonsNav.toDecorPage!.style.display = 'block';
     this.decorPage!.style.display = 'none';
-    buttons.search!.style.display = 'none';
-    buttons.favoriteCount!.style.display = 'none';
+    buttonsDecor.search!.style.display = 'none';
+    buttonsDecor.favoriteCount!.style.display = 'none';
     buttonsNav.toTreePage!.style.display = 'none';
     this.mainPage!.style.display = 'none';
   }

@@ -1,10 +1,10 @@
-import { buttons } from './Buttons';
+import { buttonsDecor } from './ButtonsDecor';
 import { Idata } from './CreateElement';
 
 class Sort {
   sortData(data: Idata[], indexOption: number | null) {
     if (indexOption) {
-      const value = (buttons.select as HTMLSelectElement).options[indexOption].value;
+      const value = (buttonsDecor.select as HTMLSelectElement).options[indexOption].value;
       if (value === 'sort-count__max') {
         data.sort((a, b) => +a.count - +b.count);
       } else if (value === 'sort-count__min') {

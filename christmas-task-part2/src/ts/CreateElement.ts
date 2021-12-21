@@ -1,5 +1,5 @@
 import { API } from 'nouislider';
-import { buttons } from './Buttons';
+import { buttonsDecor } from './ButtonsDecor';
 import data from './data';
 import { otherFilters } from './OtherFilters';
 import { saveLocal } from './SaveLocalStorage';
@@ -55,33 +55,33 @@ class Application {
   }
 
   addListenerForButtons() {
-    (buttons.color as HTMLElement).onclick = (event) => {
+    (buttonsDecor.color as HTMLElement).onclick = (event) => {
       if (event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         event.target.classList.toggle('active');
         otherFilters.hasKeysColor(event.target);
         this.filtration();
       }
     };
-    (buttons.size as HTMLElement).onclick = (event) => {
+    (buttonsDecor.size as HTMLElement).onclick = (event) => {
       if (event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         event.target.classList.toggle('active');
         otherFilters.hasKeysSize(event.target);
         this.filtration();
       }
     };
-    (buttons.shape as HTMLElement).onclick = (event) => {
+    (buttonsDecor.shape as HTMLElement).onclick = (event) => {
       if (event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         event.target.classList.toggle('active');
         otherFilters.hasKeysShape(event.target);
         this.filtration();
       }
     };
-    (buttons.favorite as HTMLElement).onclick = (event) => {
+    (buttonsDecor.favorite as HTMLElement).onclick = (event) => {
       saveLocal.isFavorite = (event.target as HTMLInputElement).checked;
       saveLocal.save();
       this.filtration();
     };
-    (buttons.select as HTMLSelectElement).onchange = (event) => {
+    (buttonsDecor.select as HTMLSelectElement).onchange = (event) => {
       if (event.target instanceof HTMLSelectElement) {
         const sortData = sortSelect.sortData(this.filterArr, event.target.options.selectedIndex);
         this.renderCards(sortData);
@@ -103,17 +103,17 @@ class Application {
       otherFilters.hasKeysCount(minCount, maxCount);
       this.filtration();
     });
-    (buttons.defaultSettings as HTMLElement).onclick = (event) => {
+    (buttonsDecor.defaultSettings as HTMLElement).onclick = (event) => {
       if (event.target instanceof HTMLElement) {
         otherFilters.clearKeysFiltration();
-        buttons.cancelTargetButtons();
-        (buttons.searchInput as HTMLInputElement).value = '';
+        buttonsDecor.cancelTargetButtons();
+        (buttonsDecor.searchInput as HTMLInputElement).value = '';
         saveLocal.keyOptionSelect = 0;
         saveLocal.save();
         this.filtration();
       }
     };
-    (buttons.searchInput as HTMLInputElement).oninput = (event) => {
+    (buttonsDecor.searchInput as HTMLInputElement).oninput = (event) => {
       if (event.target instanceof HTMLInputElement) {
         const pattern = event.target.value.split(' ').map((elem) => {
           return `(.*${elem})`;
@@ -123,15 +123,15 @@ class Application {
         this.renderCards(this.searchArr);
       }
     };
-    (buttons.searchCancel as HTMLElement).onclick = (event) => {
-      (buttons.searchInput as HTMLInputElement).value = '';
+    (buttonsDecor.searchCancel as HTMLElement).onclick = (event) => {
+      (buttonsDecor.searchInput as HTMLInputElement).value = '';
       this.filtration();
     };
-    (buttons.resetLocal  as HTMLElement).onclick = (event) => {
+    (buttonsDecor.resetLocal  as HTMLElement).onclick = (event) => {
       saveLocal.default();
       saveLocal.save();
     };
-    buttons.searchInput?.focus();
+    buttonsDecor.searchInput?.focus();
   }
 
   addListenerForCards() {
@@ -146,10 +146,10 @@ class Application {
           card.classList.remove('active');
           otherFilters.deleteKey(otherFilters.favoriteArr, cardNum.num);
           if (otherFilters.favoriteArr.length > 19) {
-            buttons.createAlertWindow();
+            buttonsDecor.createAlertWindow();
           }
         }
-        buttons.changeFavoriteSpanValue(otherFilters.favoriteArr);
+        buttonsDecor.changeFavoriteSpanValue(otherFilters.favoriteArr);
       });
     });
   }
@@ -157,7 +157,7 @@ class Application {
   filtration() {
     const [minYear, maxYear] = otherFilters.keysYear;
     const [minCount, maxCount] = otherFilters.keysCount;
-    buttons.changeInputValues(minCount, maxCount, minYear, maxYear);
+    buttonsDecor.changeInputValues(minCount, maxCount, minYear, maxYear);
     this.filterArr = this.data.filter(elem => +elem.year >= +minYear && +elem.year <= +maxYear && +elem.count >= +minCount && +elem.count <= +maxCount);
 
     if (otherFilters.isFilterClear()) {
@@ -182,9 +182,9 @@ class Application {
       if (saveData.keyOptionSelect !== 0) {
         this.filterArr = sortSelect.sortData(this.data, saveData.keyOptionSelect);
       }
-      (buttons.favoriteCountSpan as HTMLElement).textContent = `${otherFilters.favoriteArr.length}`;
+      (buttonsDecor.favoriteCountSpan as HTMLElement).textContent = `${otherFilters.favoriteArr.length}`;
 
-      buttons.loadTargetButtons();
+      buttonsDecor.loadTargetButtons();
       const [minYear, maxYear] = saveData.keysYear;
       const [minCount, maxCount] = saveData.keysCount;
       otherFilters.loadRangeSlider(minCount, maxCount, minYear, maxYear);
