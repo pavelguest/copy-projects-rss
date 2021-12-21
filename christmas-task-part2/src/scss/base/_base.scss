@@ -54,12 +54,30 @@ a:active {
 }
 .main {
   flex: 1 1 auto;
-  display: flex;
-  column-gap: 20px;
 }
 .footer {
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.decorations-page {
+  display: flex;
+  column-gap: 20px;
+  display: none;
+}
+.main-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 180px);
+  background: url("./../assets/bg.jpg");
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 100px;
+}
+.tree-page {
+
 }

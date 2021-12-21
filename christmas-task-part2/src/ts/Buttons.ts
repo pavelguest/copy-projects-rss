@@ -31,6 +31,10 @@ class Buttons {
 
   searchCancel: HTMLElement | null;
 
+  search: HTMLElement | null;
+
+  favoriteCount: HTMLElement | null;
+
 
 
   constructor() {
@@ -49,6 +53,8 @@ class Buttons {
     this.resetLocal = document.querySelector('.apply-buttons__reset-local');
     this.searchInput = document.querySelector('.search__input');
     this.searchCancel = document.querySelector('.search__cancel-ico');
+    this.search = document.querySelector('.header-buttons__search');
+    this.favoriteCount = document.querySelector('.header-buttons__count');
   }
 
   changeInputValues(minCount: string, maxCount: string, minYear: string, maxYear: string) {

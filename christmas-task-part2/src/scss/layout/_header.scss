@@ -15,6 +15,9 @@
   display: flex;
   column-gap: 15px;
 }
+.header-nav__main-menu {
+  display: none;
+}
 .header-nav__main-menu,
 .header-nav__decorations-menu,
 .header-nav__tree-menu {
@@ -32,6 +35,7 @@
   }
 }
 .header-buttons__count {
+  display: none;
   width: 48px;
   height: 60px;
   background-image: url(../assets/svg/ball-2.svg);
@@ -53,6 +57,7 @@
   }
 }
 .header-buttons__search {
+  display: none;
   position: relative;
   margin: 0;
   padding: 0;

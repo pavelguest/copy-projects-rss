@@ -142,7 +142,6 @@ class Application {
         if (otherFilters.favoriteArr.length <= 19) {
           otherFilters.hasFavorite(cardNum.num);
           card.classList.toggle('active');
-          buttons.changeFavoriteSpanValue(otherFilters.favoriteArr);
         } else {
           card.classList.remove('active');
           otherFilters.deleteKey(otherFilters.favoriteArr, cardNum.num);
@@ -150,7 +149,7 @@ class Application {
             buttons.createAlertWindow();
           }
         }
-
+        buttons.changeFavoriteSpanValue(otherFilters.favoriteArr);
       });
     });
   }
@@ -196,11 +195,7 @@ class Application {
 
 export const app = new Application();
 
-app.setData();
-app.filtration();
-app.addListenerForButtons();
-
-
 
 
 export default Application;
+

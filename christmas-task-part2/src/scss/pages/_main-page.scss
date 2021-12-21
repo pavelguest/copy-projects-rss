@@ -1,0 +1,64 @@
+.title-container {
+  z-index: 1;
+}
+.main__title {
+  text-transform: uppercase;
+  padding: 50px 80px;
+  border: 2px solid #278D9F;
+  background-color: rgba(31, 112, 127, .3);
+  box-shadow: 2px 2px 20px 2px #000a;
+}
+.main__button {
+  padding: 15px 50px;
+  border: 1px solid #278D9F;
+  background-color: rgba(31, 112, 127, .3);
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  box-shadow: 2px 2px 20px 2px #000a;
+  &:hover {
+    background-color: rgba(51, 149, 167, 0.3);
+  }
+  z-index: 1;
+}
+.main__decor {
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: #aaa;
+  }
+}
+.decor-one {
+  top: 130px;
+  left: 100px;
+  background: url("./../assets/ball/1.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  &::before {
+    top: -130px;
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 136px;
+    width: 5px;
+  }
+}
+.decor-two {
+  top: 180px;
+  right: 120px;
+  background: url("./../assets/ball/2.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  &::before {
+    top: -180px;
+    left: calc(50% - 3px);
+    width: 4px;
+    height: 186px;
+    width: 5px;
+  }
+}
+
+
