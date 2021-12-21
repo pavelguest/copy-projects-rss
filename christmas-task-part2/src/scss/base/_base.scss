@@ -1,0 +1,65 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  font-family: "roboto";
+  font-size: 16px;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-color: #192F2D;
+}
+h1, h2, h3, h4, h5, p, ul {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color:inherit;
+  text-decoration: none;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+button {
+  border: none;
+  outline: none;
+}
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+.wrapper {
+  padding: 0 20px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main {
+  flex: 1 1 auto;
+  display: flex;
+  column-gap: 20px;
+}
+.footer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
