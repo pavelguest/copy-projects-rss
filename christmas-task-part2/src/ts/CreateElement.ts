@@ -123,11 +123,11 @@ class Application {
         this.renderCards(this.searchArr);
       }
     };
-    (buttonsDecor.searchCancel as HTMLElement).onclick = (event) => {
+    (buttonsDecor.searchCancel as HTMLElement).onclick = () => {
       (buttonsDecor.searchInput as HTMLInputElement).value = '';
       this.filtration();
     };
-    (buttonsDecor.resetLocal  as HTMLElement).onclick = (event) => {
+    (buttonsDecor.resetLocal  as HTMLElement).onclick = () => {
       saveLocal.default();
       saveLocal.save();
     };
@@ -139,17 +139,18 @@ class Application {
       const cardNum = this.filterArr[index];
 
       card.addEventListener('click', () => {
-        if (otherFilters.favoriteArr.length <= 19) {
-          otherFilters.hasFavorite(cardNum.num);
+        if (otherFilters.favoriteObj.num.length <= 19 && otherFilters.favoriteObj.count.length <= 19) {
+          otherFilters.hasFavorite(cardNum.num, cardNum.count);
           card.classList.toggle('active');
         } else {
           card.classList.remove('active');
-          otherFilters.deleteKey(otherFilters.favoriteArr, cardNum.num);
-          if (otherFilters.favoriteArr.length > 19) {
+          otherFilters.deleteKey(otherFilters.favoriteObj.num, cardNum.num);
+          otherFilters.deleteKey(otherFilters.favoriteObj.count, cardNum.count);
+          if (otherFilters.favoriteObj.num.length > 19) {
             buttonsDecor.createAlertWindow();
           }
         }
-        buttonsDecor.changeFavoriteSpanValue(otherFilters.favoriteArr);
+        buttonsDecor.changeFavoriteSpanValue(otherFilters.favoriteObj.num);
       });
     });
   }
@@ -174,15 +175,20 @@ class Application {
 
   setData() {
     const saveData = saveLocal.load();
+    console.log(saveData);
+
     if (saveData) {
       otherFilters.keysColor = saveData.keysColor;
       otherFilters.keysSize = saveData.keysSize;
       otherFilters.keysShape = saveData.keysShape;
-      otherFilters.favoriteArr = saveData.favoriteArr;
+      otherFilters.favoriteObj.num = [ ...saveData.favoriteObj.num ];
+      otherFilters.favoriteObj.count = [ ...saveData.favoriteObj.count ];
+      console.log(otherFilters.favoriteObj);
+
       if (saveData.keyOptionSelect !== 0) {
         this.filterArr = sortSelect.sortData(this.data, saveData.keyOptionSelect);
       }
-      (buttonsDecor.favoriteCountSpan as HTMLElement).textContent = `${otherFilters.favoriteArr.length}`;
+      (buttonsDecor.favoriteCountSpan as HTMLElement).textContent = `${otherFilters.favoriteObj.num.length}`;
 
       buttonsDecor.loadTargetButtons();
       const [minYear, maxYear] = saveData.keysYear;
@@ -196,6 +202,4 @@ class Application {
 export const app = new Application();
 
 
-
 export default Application;
-

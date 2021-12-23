@@ -8,3 +8,29 @@
   background-color: rgba(16, 85, 97, 0.3);
   box-shadow: 2px 2px 20px 2px #000a;
 }
+.decor-container {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 5px;
+  row-gap: 5px;
+  width: 255px;
+}
+.decor__img-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(199, 204, 194, 0.568);
+  .decor__img {
+    width: 100%;
+    height: auto;
+  }
+  .decor__count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: crimson;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+  }
+}

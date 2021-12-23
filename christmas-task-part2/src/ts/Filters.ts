@@ -4,6 +4,11 @@ import { saveLocal } from './SaveLocalStorage';
 import { rangeCount, rangeYear } from './slider';
 import { sortSelect } from './Sort';
 
+export interface Ifavorite {
+  num: string[],
+  count: string[],
+}
+
 class Filters {
   keysColor: string[];
 
@@ -15,7 +20,7 @@ class Filters {
 
   keysCount: string[];
 
-  favoriteArr: string[];
+  favoriteObj: Ifavorite;
 
   input: HTMLElement | null;
 
@@ -25,7 +30,10 @@ class Filters {
     this.keysShape = [];
     this.keysYear = [];
     this.keysCount = [];
-    this.favoriteArr = [];
+    this.favoriteObj = {
+      num: [],
+      count: [],
+    };
     this.input = document.getElementById('favorite');
   }
 
@@ -49,18 +57,25 @@ class Filters {
         && !(this.input as HTMLInputElement).checked;
   }
 
-  hasFavorite(index: string) {
-    if (this.isKeys(this.favoriteArr, index)) {
-      this.deleteKey(this.favoriteArr, index);
+  hasFavorite(num: string, count: string) {
+    if (this.isKeys(this.favoriteObj.num, num) && this.isKeys(this.favoriteObj.count, count)) {
+      this.deleteKey(this.favoriteObj.num, num);
+      this.deleteKey(this.favoriteObj.count, count);
     } else {
-      this.addKey(this.favoriteArr, index);
+      this.addKey(this.favoriteObj.num, num);
+      this.addKey(this.favoriteObj.count, count);
     }
-    saveLocal.favoriteArr = [ ...this.favoriteArr ];
+    saveLocal.favoriteObj = {
+      num: [ ...this.favoriteObj.num ],
+      count: [ ...this.favoriteObj.count ],
+    };
     saveLocal.save();
+    console.log(saveLocal.favoriteObj);
+
   }
 
   loadFavoriteCard(num: Idata) {
-    return this.favoriteArr.length && this.favoriteArr.includes(num.num) ? 'active' : '';
+    return this.favoriteObj.num.length && this.favoriteObj.num.includes(num.num) ? 'active' : '';
   }
 
   clearKeysFiltration() {

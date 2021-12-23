@@ -2,11 +2,7 @@ import Filters from './Filters';
 import { saveLocal } from './SaveLocalStorage';
 
 class OtherFilters extends Filters {
-  constructor() {
-    super();
-  }
-
-  hasKeysColor(button: HTMLElement | null) {
+    hasKeysColor(button: HTMLElement | null) {
     if (button) {
       if (this.isKeys(this.keysColor, (button.dataset.filter as string))) {
         this.deleteKey(this.keysColor, (button.dataset.filter as string));

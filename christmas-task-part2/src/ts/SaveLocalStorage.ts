@@ -1,4 +1,5 @@
 import { app } from './CreateElement';
+import { Ifavorite } from './Filters';
 import { otherFilters } from './OtherFilters';
 
 class SaveLocal {
@@ -12,7 +13,7 @@ class SaveLocal {
 
   keysCount: string[];
 
-  favoriteArr: string[];
+  favoriteObj: Ifavorite;
 
   isFavorite: boolean;
 
@@ -24,9 +25,14 @@ class SaveLocal {
     this.keysShape = [];
     this.keysYear = [];
     this.keysCount = [];
-    this.favoriteArr = [];
+    this.favoriteObj = {
+      num: [],
+      count: [],
+    };
     this.isFavorite = false;
     this.keyOptionSelect = 0;
+    console.log(this.favoriteObj);
+
   }
 
   save() {
@@ -41,7 +47,8 @@ class SaveLocal {
       this.keysShape = options.keysShape;
       this.keysYear = options.keysYear;
       this.keysCount = options.keysCount;
-      this.favoriteArr = options.favoriteArr;
+      this.favoriteObj.num = [ ...options.favoriteObj.num ];
+      this.favoriteObj.count = [ ...options.favoriteObj.count ];
       this.isFavorite = options.isFavorite;
       this.keyOptionSelect = options.keyOptionSelect;
 
@@ -56,7 +63,10 @@ class SaveLocal {
     this.keysShape = [];
     this.keysYear = ['1940', '2020'];
     this.keysCount = ['1', '12'];
-    this.favoriteArr = [];
+    this.favoriteObj = {
+      num: [],
+      count: [],
+    };
     this.isFavorite = false;
     this.keyOptionSelect = 0;
   }

@@ -1,6 +1,7 @@
 import { buttonsDecor } from "./ButtonsDecor";
 import { buttonsNav } from "./ButtonsNav";
 import { app } from "./CreateElement";
+import { filterDecor } from "./FilterDecor";
 
 class Pages {
   mainPage: HTMLElement | null;
@@ -9,10 +10,13 @@ class Pages {
 
   treePage: HTMLElement | null;
 
+  decorContainer: HTMLElement | null;
+
   constructor() {
     this.mainPage = document.querySelector('.main-page');
     this.decorPage = document.querySelector('.decorations-page');
     this.treePage = document.querySelector('.tree-page');
+    this.decorContainer = document.querySelector('.decor-container');
   }
   goToDecorPage() {
     this.decorPage!.style.display = 'flex';
@@ -47,6 +51,10 @@ class Pages {
     buttonsDecor.favoriteCount!.style.display = 'none';
     buttonsNav.toTreePage!.style.display = 'none';
     this.mainPage!.style.display = 'none';
+
+    app.setData();
+    this.decorContainer!.innerHTML = '';
+    filterDecor.filter();
   }
 }
 
