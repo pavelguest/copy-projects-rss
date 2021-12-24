@@ -12,11 +12,17 @@ class Pages {
 
   decorContainer: HTMLElement | null;
 
+  treeContainer: HTMLElement | null;
+
+  treeImg: HTMLImageElement | null;
+
   constructor() {
     this.mainPage = document.querySelector('.main-page');
     this.decorPage = document.querySelector('.decorations-page');
     this.treePage = document.querySelector('.tree-page');
     this.decorContainer = document.querySelector('.decor-container');
+    this.treeContainer = document.querySelector('.tree-container');
+    this.treeImg = document.querySelector('.tree__img');
   }
   goToDecorPage() {
     this.decorPage!.style.display = 'flex';

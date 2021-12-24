@@ -40,6 +40,9 @@
   height: 40px;
   background-image: url("../assets/svg/snow.svg");
   @include add-bg();
+  &.active {
+    filter: invert(62%) sepia(72%) saturate(357%) hue-rotate(357deg) brightness(92%) contrast(87%);
+  }
 }
 
 .audio-control {
@@ -48,6 +51,21 @@
   margin-right: 40px;
   background-image: url("../assets/svg/audio.svg");
   @include add-bg();
+  &.active {
+    filter: invert(62%) sepia(72%) saturate(357%) hue-rotate(357deg) brightness(92%) contrast(87%);
+  }
+}
+.fa-snowflake {
+	color: #fff;
+	position: absolute;
+	top: -20px;
+	animation: fall linear forwards;
+}
+
+@keyframes fall {
+	to {
+		transform: translateY(105vh);
+	}
 }
 .bg__item {
   width: 65px;

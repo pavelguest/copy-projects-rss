@@ -13,3 +13,4 @@ import './ts/SaveLocalStorage';
 import './ts/ButtonsTree';
 import './ts/RenderDecor';
 import './ts/FilterDecor';
+import './ts/RenderSnow';
