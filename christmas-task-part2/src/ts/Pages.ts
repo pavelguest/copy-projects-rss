@@ -1,7 +1,9 @@
 import { buttonsDecor } from "./ButtonsDecor";
 import { buttonsNav } from "./ButtonsNav";
+import { buttonsTree } from "./ButtonsTree";
 import { app } from "./CreateElement";
 import { filterDecor } from "./FilterDecor";
+import { renderGarland } from "./RenderGarland";
 
 class Pages {
   mainPage: HTMLElement | null;
@@ -61,6 +63,8 @@ class Pages {
     app.setData();
     this.decorContainer!.innerHTML = '';
     filterDecor.filter();
+    renderGarland.addListener();
+    buttonsTree.addListener();
   }
 }
 

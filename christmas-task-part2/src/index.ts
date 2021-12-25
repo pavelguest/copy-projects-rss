@@ -14,3 +14,4 @@ import './ts/ButtonsTree';
 import './ts/RenderDecor';
 import './ts/FilterDecor';
 import './ts/RenderSnow';
+import './ts/RenderGarland';
