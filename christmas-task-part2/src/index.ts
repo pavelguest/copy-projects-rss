@@ -15,3 +15,4 @@ import './ts/RenderDecor';
 import './ts/FilterDecor';
 import './ts/RenderSnow';
 import './ts/RenderGarland';
+import './ts/DragDecors';

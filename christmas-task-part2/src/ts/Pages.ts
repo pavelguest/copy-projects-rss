@@ -2,6 +2,7 @@ import { buttonsDecor } from "./ButtonsDecor";
 import { buttonsNav } from "./ButtonsNav";
 import { buttonsTree } from "./ButtonsTree";
 import { app } from "./CreateElement";
+import { dragDecors } from "./DragDecors";
 import { filterDecor } from "./FilterDecor";
 import { renderGarland } from "./RenderGarland";
 
@@ -65,6 +66,7 @@ class Pages {
     filterDecor.filter();
     renderGarland.addListener();
     buttonsTree.addListener();
+    dragDecors.addListener();
   }
 }
 

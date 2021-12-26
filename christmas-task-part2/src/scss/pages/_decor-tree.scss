@@ -16,14 +16,14 @@
   width: 255px;
 }
 .decor__img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   background-color: rgba(199, 204, 194, 0.568);
-  .decor__img {
-    width: 100%;
-    height: auto;
-  }
+
   .decor__count {
     position: absolute;
     bottom: 0;
@@ -32,5 +32,13 @@
     width: 20px;
     height: 20px;
     text-align: center;
+    z-index: 1;
   }
 }
+.decor__img {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  cursor: move;
+}
+
