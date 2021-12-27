@@ -32,6 +32,12 @@ class SaveSettingsTree {
       return options;
     }
   }
+  default() {
+    this.isPlay = false;
+    this.isSnow = false;
+    this.bg = '1';
+    this.tree = '1';
+  }
 }
 
 export const saveSettingsTree = new SaveSettingsTree()

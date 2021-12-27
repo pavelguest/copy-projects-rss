@@ -13,6 +13,7 @@ class ButtonsTree {
   isPlay: boolean;
   audio: HTMLAudioElement | null;
   isSnow: boolean;
+  defaultButton: HTMLElement | null;
 
   constructor() {
     this.bgButtons = document.querySelector('.bg__container');
@@ -25,6 +26,7 @@ class ButtonsTree {
     this.audio = new Audio();
     this.audio.src = `./assets/audio/christmas-trap.mp3`;
     this.isSnow = false;
+    this.defaultButton = document.querySelector('.controls__default-button');
 
   }
   stopMusic() {
@@ -38,6 +40,10 @@ class ButtonsTree {
     }
   }
   addListener() {
+    this.defaultButton!.onclick = (event) => {
+      saveSettingsTree.default();
+      saveSettingsTree.save();
+    }
     this.bgButtons!.onclick = (event) => {
       if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         pages.treeContainer!.style.background = `center / cover no-repeat url('./assets/bg/${event.target.dataset.bg}.jpg')`;
