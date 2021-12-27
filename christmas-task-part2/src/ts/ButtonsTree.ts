@@ -40,14 +40,14 @@ class ButtonsTree {
   addListener() {
     this.bgButtons!.onclick = (event) => {
       if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
-        pages.treeContainer!.style.background = `center / cover no-repeat url('../../assets/bg/${event.target.dataset.bg}.jpg')`;
+        pages.treeContainer!.style.background = `center / cover no-repeat url('./assets/bg/${event.target.dataset.bg}.jpg')`;
         saveSettingsTree.bg = event.target.dataset.bg;
         saveSettingsTree.save()
       }
     }
     this.treeButtons!.onclick = (event) => {
       if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
-        pages.treeImg!.src = `../assets/tree/${event.target.dataset.tree}.png`;
+        pages.treeImg!.src = `./assets/tree/${event.target.dataset.tree}.png`;
         saveSettingsTree.tree = event.target.dataset.tree;
         saveSettingsTree.save()
       }
@@ -109,8 +109,8 @@ class ButtonsTree {
         this.audio!.play();
         this.audioButton!.classList.add('active');
       }
-      pages.treeContainer!.style.background = `center / cover no-repeat url('../../assets/bg/${saveDataTree.bg}.jpg')`;
-      pages.treeImg!.src = `../assets/tree/${saveDataTree.tree}.png`;
+      pages.treeContainer!.style.background = `center / cover no-repeat url('./assets/bg/${saveDataTree.bg}.jpg')`;
+      pages.treeImg!.src = `./assets/tree/${saveDataTree.tree}.png`;
     }
   }
 }
