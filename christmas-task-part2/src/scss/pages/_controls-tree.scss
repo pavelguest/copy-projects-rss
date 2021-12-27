@@ -244,11 +244,11 @@
     &.red { animation-name: red; }
     &.green { animation-name: green; }
     &.blue { animation-name: blue; }
-    &.yellow { animation-name: rgb(245, 245, 4); }
+    &.yellow { animation-name: rgba(255, 255, 0, 1); }
     &.multicolor:nth-child(1n + 1) { animation-name: red; }
     &:nth-child(2n + 2).multicolor { animation-name: green; }
     &:nth-child(3n + 3).multicolor { animation-name: blue; }
-    &:nth-child(4n + 4).multicolor { animation-name: rgb(245, 245, 4); }
+    &:nth-child(4n + 4).multicolor { animation-name: rgba(255, 255, 0, 1); }
     &:nth-child(2n + 1) {
       animation-duration: 1.8s;
     }
