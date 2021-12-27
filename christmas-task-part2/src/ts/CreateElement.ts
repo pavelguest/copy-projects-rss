@@ -175,7 +175,6 @@ class Application {
 
   setData() {
     const saveData = saveLocal.load();
-    console.log(saveData);
 
     if (saveData) {
       otherFilters.keysColor = saveData.keysColor;
@@ -183,7 +182,6 @@ class Application {
       otherFilters.keysShape = saveData.keysShape;
       otherFilters.favoriteObj.num = [ ...saveData.favoriteObj.num ];
       otherFilters.favoriteObj.count = [ ...saveData.favoriteObj.count ];
-      console.log(otherFilters.favoriteObj);
 
       if (saveData.keyOptionSelect !== 0) {
         this.filterArr = sortSelect.sortData(this.data, saveData.keyOptionSelect);

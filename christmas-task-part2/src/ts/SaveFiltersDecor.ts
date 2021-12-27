@@ -29,8 +29,6 @@ class SaveLocal {
     };
     this.isFavorite = false;
     this.keyOptionSelect = 0;
-    console.log(this.favoriteObj);
-
   }
 
   save() {

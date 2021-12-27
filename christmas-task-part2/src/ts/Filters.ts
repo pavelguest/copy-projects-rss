@@ -70,8 +70,6 @@ class Filters {
       count: [ ...this.favoriteObj.count ],
     };
     saveLocal.save();
-    console.log(saveLocal.favoriteObj);
-
   }
 
   loadFavoriteCard(num: Idata) {
