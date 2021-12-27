@@ -1,4 +1,4 @@
-import { pages } from "./Pages";
+import { pages } from './Pages';
 
 class ButtonsNav {
   startGame: HTMLElement | null;
@@ -15,18 +15,21 @@ class ButtonsNav {
     this.toDecorPage = document.querySelector('.header-nav__decorations-menu');
     this.toTreePage = document.querySelector('.header-nav__tree-menu');
   }
+
   addListener() {
-    this.startGame!.onclick = (event) => {
-      pages.goToDecorPage();
-    }
-    this.toMainPage!.onclick = (event) => {
-      pages.goToMainPage();
-    }
-    this.toDecorPage!.onclick = (event) => {
-      pages.goToDecorPage();
-    }
-    this.toTreePage!.onclick = (event) => {
-      pages.goToTreePage();
+    if (this.startGame && this.toMainPage && this.toDecorPage && this.toTreePage) {
+      this.startGame.onclick = () => {
+        pages.goToDecorPage();
+      };
+      this.toMainPage.onclick = () => {
+        pages.goToMainPage();
+      };
+      this.toDecorPage.onclick = () => {
+        pages.goToDecorPage();
+      };
+      this.toTreePage.onclick = () => {
+        pages.goToTreePage();
+      };
     }
   }
 }

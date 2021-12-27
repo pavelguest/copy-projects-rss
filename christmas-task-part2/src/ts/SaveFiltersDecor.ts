@@ -1,6 +1,4 @@
-import { app } from './CreateElement';
 import { Ifavorite } from './Filters';
-import { otherFilters } from './OtherFilters';
 
 class SaveLocal {
   keysColor: string[];

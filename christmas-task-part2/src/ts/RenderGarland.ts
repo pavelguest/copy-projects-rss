@@ -1,5 +1,4 @@
-import { buttonsDecor } from "./ButtonsDecor";
-import { buttonsTree } from "./ButtonsTree";
+import { buttonsTree } from './ButtonsTree';
 
 class RenderGarland {
   container: HTMLElement | null;
@@ -7,13 +6,14 @@ class RenderGarland {
   constructor() {
     this.container = document.querySelector('.tree-container__garland');
   }
+
   render(count: number, height: number, color: string | undefined, gap: number) {
     const ul = document.createElement('ul');
-    ul.classList.add('lightrope')
+    ul.classList.add('lightrope');
     for (let index = 0; index < count; index++) {
       const li = document.createElement('li');
-      li.classList.add(color!)
-      if(index === 1) {
+      li.classList.add(color as string);
+      if (index === 1) {
         li.style.transform = `rotate(${index * 12 + 65}deg) translate(${height * 60}px) rotate(-${index * 12 + 65}deg)`;
       } else if (index === count) {
         li.style.transform = `rotate(${index * 12 + 110}deg) translate(${height * 60}px) rotate(-${index * 12 + 110}deg)`;
@@ -21,11 +21,12 @@ class RenderGarland {
       li.style.transform = `rotate(${index * gap + 65}deg) translate(${height * 60}px) rotate(-${index * gap + 65}deg)`;
       ul.append(li);
     }
-    this.container!.append(ul);
+    (this.container as HTMLElement).append(ul);
   }
+
   addListener() {
-    buttonsTree.garlandButtons!.onclick = (event) => {
-      this.container!.innerHTML = '';
+    (buttonsTree.garlandButtons as HTMLElement).onclick = (event) => {
+      (this.container as HTMLElement).innerHTML = '';
       (buttonsTree.garlandCheckbox as HTMLInputElement).checked = true;
       let color;
       if (event.target instanceof HTMLElement && event.target !== event.currentTarget) {
@@ -36,7 +37,7 @@ class RenderGarland {
       this.render(9, 5, color, 6);
       this.render(12, 7, color, 4.5);
       this.render(15, 9, color, 3.5);
-    }
+    };
   }
 }
 

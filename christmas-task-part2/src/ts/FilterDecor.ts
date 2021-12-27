@@ -1,8 +1,7 @@
-import { Idata } from "./CreateElement";
-import data from "./data";
-import { otherFilters } from "./OtherFilters";
-import { renderDecor } from "./RenderDecor";
-import { saveLocal } from "./SaveFiltersDecor";
+import { Idata } from './CreateElement';
+import data from './data';
+import { renderDecor } from './RenderDecor';
+import { saveLocal } from './SaveFiltersDecor';
 
 class FilterDecor {
   data: Idata[];
@@ -10,16 +9,17 @@ class FilterDecor {
   constructor() {
     this.data = [ ...data ];
   }
+
   filter() {
-    if(saveLocal.favoriteObj.num.length) {
+    if (saveLocal.favoriteObj.num.length) {
       saveLocal.favoriteObj.num.forEach((elem, index) => {
-        let count = saveLocal.favoriteObj.count[index];
+        const count = saveLocal.favoriteObj.count[index];
         renderDecor.render(elem, count);
-      })
+      });
     } else {
       this.data.forEach((elem, index) => {
-        if(index <= 19) renderDecor.render(elem.num, elem.count)
-      })
+        if (index <= 19) renderDecor.render(elem.num, elem.count);
+      });
     }
   }
 }

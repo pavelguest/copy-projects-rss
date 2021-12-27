@@ -7,8 +7,11 @@ export interface ISaveSettingsTree {
 
 class SaveSettingsTree {
   isPlay: boolean;
+
   isSnow: boolean;
+
   bg: string | undefined;
+
   tree: string | undefined;
 
   constructor() {
@@ -17,6 +20,7 @@ class SaveSettingsTree {
     this.bg = '1';
     this.tree = '1';
   }
+
   save() {
     localStorage.setItem('optionsTree', JSON.stringify(this));
   }
@@ -32,6 +36,7 @@ class SaveSettingsTree {
       return options;
     }
   }
+
   default() {
     this.isPlay = false;
     this.isSnow = false;
@@ -40,4 +45,4 @@ class SaveSettingsTree {
   }
 }
 
-export const saveSettingsTree = new SaveSettingsTree()
+export const saveSettingsTree = new SaveSettingsTree();

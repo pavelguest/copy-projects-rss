@@ -1,20 +1,20 @@
-import { pages } from "./Pages";
+import { pages } from './Pages';
 
 class RenderDecor {
   render(num: string, count: string) {
-    let imgContainer = document.createElement('div');
+    const imgContainer = document.createElement('div');
     imgContainer.classList.add('decor__img-container');
     imgContainer.id = num;
 
-    let countSpan = document.createElement('span');
+    const countSpan = document.createElement('span');
     countSpan.classList.add('decor__count');
     countSpan.textContent = count;
 
-    pages.decorContainer!.append(imgContainer);
+    (pages.decorContainer as HTMLElement).append(imgContainer);
     imgContainer.append(countSpan);
 
     for (let index = 0; index < +count; index++) {
-      let img = document.createElement('img');
+      const img = document.createElement('img');
       img.classList.add('decor__img');
       img.src = `./assets/toys/${num}.png`;
       img.alt = 'decoration';
