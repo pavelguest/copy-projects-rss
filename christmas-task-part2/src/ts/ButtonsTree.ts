@@ -49,6 +49,13 @@ class ButtonsTree {
       }
     }
   }
+  stopSnow() {
+    if (this.isSnow) {
+      this.isSnow = false;
+      renderSnow.cancelIntervalSnow();
+    }
+    (this.snowButton as HTMLElement).classList.remove('active');
+  }
 
   addListener() {
     (this.defaultButton as HTMLElement).onclick = () => {

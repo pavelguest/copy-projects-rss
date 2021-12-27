@@ -47,6 +47,7 @@ class Pages {
       this.mainPage.style.display = 'none';
     }
     buttonsTree.stopMusic();
+    buttonsTree.stopSnow();
 
     app.setData();
     app.filtration();
@@ -72,6 +73,7 @@ class Pages {
       this.mainPage.style.display = 'flex';
     }
     buttonsTree.stopMusic();
+    buttonsTree.stopSnow();
   }
 
   goToTreePage() {
