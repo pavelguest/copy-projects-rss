@@ -1,6 +1,6 @@
 import { app } from './CreateElement';
 import { otherFilters } from './OtherFilters';
-import { saveLocal } from './SaveLocalStorage';
+import { saveLocal } from './SaveFiltersDecor';
 
 class ButtonsDecor {
   color: HTMLElement | null;

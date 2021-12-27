@@ -31,8 +31,8 @@ class DragDecors {
         this.isDrag = false;
         this.mapTree!.ondrop = (event) => {
           if(toy instanceof HTMLImageElement) {
-            toy.style.left = event.pageX - this.treeContainer!.offsetLeft - +coordX + 'px';
-            toy.style.top = event.pageY - this.treeContainer!.offsetTop - +coordY + 'px';
+            toy.style.left = ((event.pageX - this.treeContainer!.offsetLeft - +coordX) * 100) / this.treeContainer!.offsetWidth + '%';
+            toy.style.top = ((event.pageY - this.treeContainer!.offsetTop - +coordY) * 100) / this.treeContainer!.offsetHeight + '%';
             this.mapTree!.append(toy);
             this.isDrag = true;
           }

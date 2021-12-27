@@ -2,7 +2,7 @@ import { API } from 'nouislider';
 import { buttonsDecor } from './ButtonsDecor';
 import data from './data';
 import { otherFilters } from './OtherFilters';
-import { saveLocal } from './SaveLocalStorage';
+import { saveLocal } from './SaveFiltersDecor';
 import { rangeCount, rangeYear } from './slider';
 import { sortSelect } from './Sort';
 export interface Idata {

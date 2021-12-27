@@ -1,6 +1,7 @@
 import { pages } from "./Pages";
 import { renderGarland } from "./RenderGarland";
 import { renderSnow } from "./RenderSnow";
+import { ISaveSettingsTree, saveSettingsTree } from "./SaveSettingsTree";
 
 class ButtonsTree {
   bgButtons: HTMLElement | null;
@@ -26,15 +27,29 @@ class ButtonsTree {
     this.isSnow = false;
 
   }
+  stopMusic() {
+    if(this.audio instanceof HTMLAudioElement) {
+      if(this.isPlay) {
+        this.audio.pause();
+        this.audio.currentTime = 0;
+        this.isPlay = false;
+        (this.audioButton as HTMLElement).classList.remove('active');
+      }
+    }
+  }
   addListener() {
     this.bgButtons!.onclick = (event) => {
       if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         pages.treeContainer!.style.background = `center / cover no-repeat url('./../assets/bg/${event.target.dataset.bg}.jpg')`;
+        saveSettingsTree.bg = event.target.dataset.bg;
+        saveSettingsTree.save()
       }
     }
     this.treeButtons!.onclick = (event) => {
       if(event.target instanceof HTMLElement && event.target !== event.currentTarget) {
         pages.treeImg!.src = `./assets/tree/${event.target.dataset.tree}.png`;
+        saveSettingsTree.tree = event.target.dataset.tree;
+        saveSettingsTree.save()
       }
     }
     this.audioButton!.onclick = (event) => {
@@ -47,6 +62,8 @@ class ButtonsTree {
           this.audio!.play();
           this.isPlay = true;
         }
+        saveSettingsTree.isPlay = this.isPlay;
+        saveSettingsTree.save();
       }
     }
     this.snowButton!.onclick = (event) => {
@@ -59,6 +76,8 @@ class ButtonsTree {
           this.isSnow = true;
           renderSnow.createSnow();
         }
+        saveSettingsTree.isSnow = this.isSnow;
+        saveSettingsTree.save();
       }
     }
     this.garlandCheckbox!.onchange = (event) => {
@@ -72,6 +91,26 @@ class ButtonsTree {
       } else {
         renderGarland.container!.innerHTML = '';
       }
+    }
+  }
+  setData() {
+    const saveDataTree = saveSettingsTree.load();
+    console.log(saveDataTree);
+
+
+    if(saveDataTree) {
+      this.isPlay = saveDataTree.isPlay;
+      this.isSnow = saveDataTree.isSnow;
+      if(this.isSnow) {
+        renderSnow.createSnow();
+        this.snowButton!.classList.add('active');
+      }
+      if(this.isPlay) {
+        this.audio!.play();
+        this.audioButton!.classList.add('active');
+      }
+      pages.treeContainer!.style.background = `center / cover no-repeat url('./../assets/bg/${saveDataTree.bg}.jpg')`;
+      pages.treeImg!.src = `./assets/tree/${saveDataTree.tree}.png`;
     }
   }
 }

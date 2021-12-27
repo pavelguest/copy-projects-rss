@@ -1,6 +1,6 @@
 import { API } from 'nouislider';
 import { app, Idata } from './CreateElement';
-import { saveLocal } from './SaveLocalStorage';
+import { saveLocal } from './SaveFiltersDecor';
 import { rangeCount, rangeYear } from './slider';
 import { sortSelect } from './Sort';
 

@@ -1,5 +1,5 @@
 import Filters from './Filters';
-import { saveLocal } from './SaveLocalStorage';
+import { saveLocal } from './SaveFiltersDecor';
 
 class OtherFilters extends Filters {
     hasKeysColor(button: HTMLElement | null) {

@@ -36,6 +36,7 @@ class Pages {
     this.treePage!.style.display = 'none';
     buttonsNav.toDecorPage!.style.display = 'none';
     this.mainPage!.style.display = 'none';
+    buttonsTree.stopMusic();
 
     app.setData();
     app.filtration();
@@ -50,6 +51,7 @@ class Pages {
     buttonsNav.toDecorPage!.style.display = 'block';
     buttonsNav.toTreePage!.style.display = 'block';
     this.mainPage!.style.display = 'flex';
+    buttonsTree.stopMusic();
   }
   goToTreePage() {
     this.treePage!.style.display = 'flex';
@@ -62,6 +64,7 @@ class Pages {
     this.mainPage!.style.display = 'none';
 
     app.setData();
+    buttonsTree.setData();
     this.decorContainer!.innerHTML = '';
     filterDecor.filter();
     renderGarland.addListener();

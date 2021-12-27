@@ -2,7 +2,7 @@ import { Idata } from "./CreateElement";
 import data from "./data";
 import { otherFilters } from "./OtherFilters";
 import { renderDecor } from "./RenderDecor";
-import { saveLocal } from "./SaveLocalStorage";
+import { saveLocal } from "./SaveFiltersDecor";
 
 class FilterDecor {
   data: Idata[];
