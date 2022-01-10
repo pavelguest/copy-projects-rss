@@ -1,7 +1,7 @@
 import { buttonsDecor } from './ButtonsDecor';
 import { buttonsNav } from './ButtonsNav';
 import { buttonsTree } from './ButtonsTree';
-import { app } from './CreateElement';
+import { app } from './Application';
 import { dragDecors } from './DragDecors';
 import { filterDecor } from './FilterDecor';
 import { renderGarland } from './RenderGarland';
@@ -28,15 +28,17 @@ class Pages {
     this.treeImg = document.querySelector('.tree__img');
   }
 
-  goToDecorPage() {
-    if (this.decorPage
-      && buttonsDecor.search
-      && buttonsDecor.favoriteCount
-      && buttonsNav.toMainPage
-      && buttonsNav.toTreePage
-      && this.treePage
-      && buttonsNav.toDecorPage
-      && this.mainPage) {
+  goToDecorPage(): void {
+    if (
+      this.decorPage &&
+      buttonsDecor.search &&
+      buttonsDecor.favoriteCount &&
+      buttonsNav.toMainPage &&
+      buttonsNav.toTreePage &&
+      this.treePage &&
+      buttonsNav.toDecorPage &&
+      this.mainPage
+    ) {
       this.decorPage.style.display = 'flex';
       buttonsDecor.search.style.display = 'block';
       buttonsDecor.favoriteCount.style.display = 'block';
@@ -54,15 +56,17 @@ class Pages {
     app.addListenerForButtons();
   }
 
-  goToMainPage() {
-    if (this.decorPage
-      && buttonsDecor.search
-      && buttonsDecor.favoriteCount
-      && buttonsNav.toMainPage
-      && buttonsNav.toTreePage
-      && this.treePage
-      && buttonsNav.toDecorPage
-      && this.mainPage) {
+  goToMainPage(): void {
+    if (
+      this.decorPage &&
+      buttonsDecor.search &&
+      buttonsDecor.favoriteCount &&
+      buttonsNav.toMainPage &&
+      buttonsNav.toTreePage &&
+      this.treePage &&
+      buttonsNav.toDecorPage &&
+      this.mainPage
+    ) {
       this.decorPage.style.display = 'none';
       this.treePage.style.display = 'none';
       buttonsDecor.search.style.display = 'none';
@@ -76,15 +80,17 @@ class Pages {
     buttonsTree.stopSnow();
   }
 
-  goToTreePage() {
-    if (this.decorPage
-      && buttonsDecor.search
-      && buttonsDecor.favoriteCount
-      && buttonsNav.toMainPage
-      && buttonsNav.toTreePage
-      && this.treePage
-      && buttonsNav.toDecorPage
-      && this.mainPage) {
+  goToTreePage(): void {
+    if (
+      this.decorPage &&
+      buttonsDecor.search &&
+      buttonsDecor.favoriteCount &&
+      buttonsNav.toMainPage &&
+      buttonsNav.toTreePage &&
+      this.treePage &&
+      buttonsNav.toDecorPage &&
+      this.mainPage
+    ) {
       this.treePage.style.display = 'flex';
       buttonsNav.toMainPage.style.display = 'block';
       buttonsNav.toDecorPage.style.display = 'block';

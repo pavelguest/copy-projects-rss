@@ -1,66 +1,78 @@
 import Filters from './Filters';
-import { saveLocal } from './SaveFiltersDecor';
+import { dataDecor } from './DataStorageDecor';
+import { Idata } from './Application';
+import { buttonsDecor } from './ButtonsDecor';
 
 class OtherFilters extends Filters {
-  hasKeysColor(button: HTMLElement | null) {
-    if (button) {
-      if (this.isKeys(this.keysColor, (button.dataset.filter as string))) {
-        this.deleteKey(this.keysColor, (button.dataset.filter as string));
+  hasKeysColor(value: string | undefined): void {
+    if (value) {
+      if (this.keysColor.includes(value)) {
+        this.deleteKey(this.keysColor, value);
       } else {
-        this.addKey(this.keysColor, (button.dataset.filter as string));
+        this.keysColor.push(value);
       }
-      saveLocal.keysColor = [ ...this.keysColor ];
-      saveLocal.save();
+      dataDecor.keysColor = [...this.keysColor];
+      dataDecor.save();
     }
   }
 
-  hasKeysSize(button: HTMLElement | null) {
-    if (button) {
-      if (this.isKeys(this.keysSize, (button.dataset.filter as string))) {
-        this.deleteKey(this.keysSize, (button.dataset.filter as string));
+  hasKeysSize(value: string | undefined): void {
+    if (value) {
+      if (this.keysSize.includes(value)) {
+        this.deleteKey(this.keysSize, value);
       } else {
-        this.addKey(this.keysSize, (button.dataset.filter as string));
+        this.keysSize.push(value);
       }
-      saveLocal.keysSize = [ ...this.keysSize ];
-      saveLocal.save();
+      dataDecor.keysSize = [...this.keysSize];
+      dataDecor.save();
     }
   }
 
-  hasKeysShape(button: HTMLElement | null) {
-    if (button) {
-      if (this.isKeys(this.keysShape, (button.dataset.filter as string))) {
-        this.deleteKey(this.keysShape, (button.dataset.filter as string));
+  hasKeysShape(value: string | undefined): void {
+    if (value) {
+      if (this.keysShape.includes(value)) {
+        this.deleteKey(this.keysShape, value);
       } else {
-        this.addKey(this.keysShape, (button.dataset.filter as string));
+        this.keysShape.push(value);
       }
-      saveLocal.keysShape = [ ...this.keysShape ];
-      saveLocal.save();
+      dataDecor.keysShape = [...this.keysShape];
+      dataDecor.save();
     }
   }
 
-  hasKeysYear(minYear: string | number, maxYear:string | number) {
-    this.keysYear = [(minYear as string), (maxYear as string)];
+  hasKeysYear(minYear: string, maxYear: string): void {
+    this.keysYear = [minYear, maxYear];
   }
 
-  hasKeysCount(minCount:string | number, maxCount:string | number) {
-    this.keysCount = [(minCount as string), (maxCount as string)];
+  hasKeysCount(minCount: string, maxCount: string): void {
+    this.keysCount = [minCount, maxCount];
+  }
+  hasActiveFilters(data: Idata): boolean | undefined {
+    return (
+      this.filterColor(data.color) &&
+      this.filterSize(data.size) &&
+      this.filterShape(data.shape) &&
+      this.filterFavorite(data.favorite)
+    );
   }
 
-  filterColor(elem: { color: string; }) {
-    return (this.keysColor.length > 0) ? this.keysColor.includes(elem.color) : true;
+  filterColor(color: string): boolean {
+    return this.keysColor.length > 0 ? this.keysColor.includes(color) : true;
   }
 
-  filterSize(elem: { size: string; }) {
-    return (this.keysSize.length > 0) ? this.keysSize.includes(elem.size) : true;
+  filterSize(size: string): boolean {
+    return this.keysSize.length > 0 ? this.keysSize.includes(size) : true;
   }
 
-  filterShape(elem: { shape: string; }) {
-    return (this.keysShape.length > 0) ? this.keysShape.includes(elem.shape) : true;
+  filterShape(shape: string): boolean {
+    return this.keysShape.length > 0 ? this.keysShape.includes(shape) : true;
   }
 
-  filterFavorite(elem: { favorite: boolean }) {
-    if (this.input) {
-      return ((this.input as HTMLInputElement).checked) ? elem.favorite === true : true;
+  filterFavorite(favorite: boolean): boolean | undefined {
+    if (buttonsDecor.favorite) {
+      return (buttonsDecor.favorite as HTMLInputElement).checked
+        ? favorite === true
+        : true;
     }
   }
 }

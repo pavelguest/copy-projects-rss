@@ -1,10 +1,11 @@
 import { buttonsDecor } from './ButtonsDecor';
-import { Idata } from './CreateElement';
+import { Idata } from './Application';
 
 class Sort {
-  sortData(data: Idata[], indexOption: number | null) {
+  sortData(data: Idata[], indexOption: number | null): Idata[] {
     if (indexOption) {
-      const value = (buttonsDecor.select as HTMLSelectElement).options[indexOption].value;
+      const value =
+        buttonsDecor.select && buttonsDecor.select.options[indexOption].value;
       if (value === 'sort-count__max') {
         data.sort((a, b) => +a.count - +b.count);
       } else if (value === 'sort-count__min') {
@@ -17,7 +18,6 @@ class Sort {
     }
     return data;
   }
-
 }
 
 export const sortSelect = new Sort();

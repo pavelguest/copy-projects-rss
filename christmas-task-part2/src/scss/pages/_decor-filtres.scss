@@ -1,27 +1,28 @@
 .controls {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 20px;
+  height: 100%;
   padding: 20px;
   background-color: rgba(16, 85, 97, 0.3);
   box-shadow: 2px 2px 20px 2px #000a;
+
+  row-gap: 20px;
 }
 .controls__item {
   display: flex;
   flex-direction: column;
 }
 .controls__title {
-  font-size: 20px;
-  font-weight: 400;
-  text-transform: uppercase;
   margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 .controls__subtitle,
 .filters__subtitle {
-  font-size: 18px;
   font-weight: 200;
+  font-size: 18px;
 }
 .shape-container,
 .color-container,
@@ -31,22 +32,23 @@
 }
 // sort section
 .sort-select {
-  appearance: none;
-  border: 0;
-  outline: 0;
   width: 350px;
   height: 35px;
   padding: 5px 25px;
-  background-color: rgba(31, 112, 127, .3);
+  color: #ffffff;
+  background-color: rgba(31, 112, 127, 0.3);
   background-image: url("../assets/svg/arrow-down.svg");
-  background-size: 20px;
   background-repeat: no-repeat;
   background-position: 310px center;
-  color: #fff;
+  background-size: 20px;
+  border: 0;
+  outline: 0;
   box-shadow: 2px 2px 20px 2px #000a;
   cursor: pointer;
+
+  appearance: none;
   option {
-    background-color: #183E42;
+    background-color: #183e42;
   }
 }
 .sort-select:focus {
@@ -56,34 +58,34 @@
 .count-slider,
 .year-slider {
   display: inline-block;
-  height: 6px;
   width: 270px;
+  height: 6px;
 }
 .year-slider__container,
 .count-slider__container {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   column-gap: 20px;
 }
 .count-slider__container {
   margin-bottom: 20px;
 }
 .slider__output {
-  margin: 10px 0;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   min-width: 60px;
   height: 30px;
-  border: 1px solid #278D9F;
+  margin: 10px 0;
+  border: 1px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
 }
 .count-slider,
 .year-slider {
   display: inline-block;
-  height: 6px;
   width: 240px;
+  height: 6px;
 }
 
 .noUi-horizontal .noUi-handle {
@@ -111,18 +113,18 @@
     position: relative;
     width: 40px;
     height: 40px;
-    border: 0;
-    outline: 0;
     background-color: transparent;
-    background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: contain;
+    border: 0;
+    outline: 0;
     cursor: pointer;
-    transition: .3s;
+    transition: 0.3s;
   }
   button:nth-child(1) {
-    background-image: url("../assets/svg/ball.svg");
     margin-left: 20px;
+    background-image: url("../assets/svg/ball.svg");
   }
   button:nth-child(2) {
     background-image: url("../assets/svg/bell.svg");
@@ -146,56 +148,55 @@
 
 .color {
   button {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #278D9F;
-  outline: 0;
-  background-color: transparent;
-  cursor: pointer;
-  transition: .3s;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 1px solid #278d9f;
+    outline: 0;
+    cursor: pointer;
+    transition: 0.3s;
   }
   button:nth-child(1) {
-    background-color: #fff;
     margin-left: 20px;
+    background-color: #ffffff;
   }
   button:nth-child(2) {
-    background-color: #FDD700;
+    background-color: #fdd700;
   }
   button:nth-child(3) {
-    background-color: #FD0000;
+    background-color: #fd0000;
   }
   button:nth-child(4) {
-    background-color: #2199EB;
+    background-color: #2199eb;
   }
   button:nth-child(5) {
-    background-color: #08AA05;
+    background-color: #08aa05;
   }
   button:hover {
-    border-color: #ccc;
+    border-color: #cccccc;
   }
   .active::before {
-    content: '\2713';
-    font-size: 20px;
+    content: "\2713";
     font-weight: 900;
+    font-size: 20px;
     color: rgb(0, 255, 191);
-
   }
 }
 .size {
   button {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border: 0;
-  outline: 0;
-  background-image: url("../assets/svg/ball.svg");
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  cursor: pointer;
-  transition: .3s;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    background-image: url("../assets/svg/ball.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    transition: 0.3s;
   }
   button:nth-child(1) {
     margin-left: 20px;
@@ -204,8 +205,8 @@
     background-size: 40px 40px;
   }
   button:nth-child(3) {
-    background-size: 32px 32px;
     margin-left: 0;
+    background-size: 32px 32px;
   }
   button:hover {
     filter: invert(20%);
@@ -223,9 +224,9 @@
 }
 
 .favorite__input {
+  display: none;
   width: initial;
   height: initial;
-  display: none;
 }
 
 .favorite__label {
@@ -233,30 +234,30 @@
   display: flex;
   width: 30px;
   height: 30px;
-  border: 1px solid #278D9F;
-  padding: 0;
   margin: 0;
   margin-left: 20px;
-  cursor: pointer;
-  transition: .5s;
+  padding: 0;
+  border: 1px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .favorite__label:hover {
-  background-color: #278D9F;
+  background-color: #278d9f;
 }
 
 .favorite__input:checked + .favorite__label {
-  background-color: #278D9F;
-  border-color: #278D9F;
+  background-color: #278d9f;
+  border-color: #278d9f;
 }
 
 .favorite__input:checked + .favorite__label::after {
-  content: '';
-  display: block;
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
+  display: block;
   width: 15px;
   height: 15px;
   background-color: white;
@@ -270,13 +271,13 @@
 .apply-buttons__reset-local {
   width: 150px;
   height: 60px;
-  border: 1px solid #278D9F;
-  background-color: rgba(31, 112, 127, .3);
-  cursor: pointer;
-  color: #fff;
-  font-size: 20px;
   font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgba(31, 112, 127, 0.3);
+  border: 1px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
+  cursor: pointer;
   &:hover {
     background-color: rgba(51, 149, 167, 0.3);
   }

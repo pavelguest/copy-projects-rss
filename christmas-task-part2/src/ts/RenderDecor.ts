@@ -1,7 +1,7 @@
 import { pages } from './Pages';
 
 class RenderDecor {
-  render(num: string, count: string) {
+  render(num: string, count: string): void {
     const imgContainer = document.createElement('div');
     imgContainer.classList.add('decor__img-container');
     imgContainer.id = num;
@@ -12,7 +12,6 @@ class RenderDecor {
 
     (pages.decorContainer as HTMLElement).append(imgContainer);
     imgContainer.append(countSpan);
-
     for (let index = 0; index < +count; index++) {
       const img = document.createElement('img');
       img.classList.add('decor__img');

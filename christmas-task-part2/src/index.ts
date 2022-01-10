@@ -1,22 +1,21 @@
-
 import './ts/slider';
 import './scss/main.scss';
 
 import './ts/ButtonsNav';
 import './ts/Pages';
-import './ts/CreateElement';
+import './ts/Application';
 import './ts/ButtonsDecor';
 import './ts/Filters';
 import './ts/OtherFilters';
 import './ts/Sort';
-import './ts/SaveFiltersDecor';
+import './ts/DataStorageDecor';
 import './ts/ButtonsTree';
 import './ts/RenderDecor';
 import './ts/FilterDecor';
 import './ts/RenderSnow';
 import './ts/RenderGarland';
 import './ts/DragDecors';
-import './ts/SaveSettingsTree';
+import './ts/DataStorageTree';
 
 console.log(`
 Самопроверка(200/220):
@@ -46,4 +45,4 @@ console.log(`
 Дополнительный функционал на выбор (0/20)
 
 Спасибо за проверку! Удачи!
-`)
+`);

@@ -1,11 +1,11 @@
-export interface ISaveSettingsTree {
+export interface IDataStorageTree {
   isPlay: boolean;
   isSnow: boolean;
   bg: string | undefined;
   tree: string | undefined;
 }
 
-class SaveSettingsTree {
+class DataStorageTree {
   isPlay: boolean;
 
   isSnow: boolean;
@@ -21,11 +21,11 @@ class SaveSettingsTree {
     this.tree = '1';
   }
 
-  save() {
+  save(): void {
     localStorage.setItem('optionsTree', JSON.stringify(this));
   }
 
-  load() {
+  load(): IDataStorageTree | undefined {
     if (localStorage.getItem('optionsTree')) {
       const options = JSON.parse(localStorage.getItem('optionsTree') || '{}');
       this.isPlay = options.isPlay;
@@ -37,7 +37,7 @@ class SaveSettingsTree {
     }
   }
 
-  default() {
+  default(): void {
     this.isPlay = false;
     this.isSnow = false;
     this.bg = '1';
@@ -45,4 +45,4 @@ class SaveSettingsTree {
   }
 }
 
-export const saveSettingsTree = new SaveSettingsTree();
+export const saveSettingsTree = new DataStorageTree();

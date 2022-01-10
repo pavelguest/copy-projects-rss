@@ -1,18 +1,19 @@
 @mixin add-bg {
-  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
   cursor: pointer;
 }
 .controls__tree-page {
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 20px;
+  height: 100%;
   padding: 20px;
   background-color: rgba(16, 85, 97, 0.3);
   box-shadow: 2px 2px 20px 2px #000a;
+
+  row-gap: 20px;
 }
 .snow-audio__container {
   display: flex;
@@ -21,16 +22,18 @@
 .bg__container {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 5px;
-  row-gap: 5px;
   width: 350px;
+  column-gap: 5px;
+
+  row-gap: 5px;
 }
 .tree__container {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 5px;
-  row-gap: 5px;
   width: 355px;
+  column-gap: 5px;
+
+  row-gap: 5px;
 }
 .garland__container {
   display: flex;
@@ -39,13 +42,13 @@
 .controls__default-button {
   width: 150px;
   height: 40px;
-  border: 1px solid #278D9F;
-  background-color: rgba(31, 112, 127, .3);
-  cursor: pointer;
-  color: #fff;
-  font-size: 20px;
   font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgba(31, 112, 127, 0.3);
+  border: 1px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
+  cursor: pointer;
   &:hover {
     background-color: rgba(51, 149, 167, 0.3);
   }
@@ -54,6 +57,7 @@
   width: 40px;
   height: 40px;
   background-image: url("../assets/svg/snow.svg");
+
   @include add-bg();
   &.active {
     filter: invert(62%) sepia(72%) saturate(357%) hue-rotate(357deg) brightness(92%) contrast(87%);
@@ -64,28 +68,30 @@
   width: 40px;
   height: 40px;
   background-image: url("../assets/svg/audio.svg");
+
   @include add-bg();
   &.active {
     filter: invert(62%) sepia(72%) saturate(357%) hue-rotate(357deg) brightness(92%) contrast(87%);
   }
 }
 .fa-snowflake {
-	color: #fff;
-	position: absolute;
-	top: -20px;
-	animation: fall linear forwards;
+  position: absolute;
+  top: -20px;
+  color: #ffffff;
+  animation: fall linear forwards;
 }
 
 @keyframes fall {
-	to {
-		transform: translateY(105vh);
-	}
+  to {
+    transform: translateY(105vh);
+  }
 }
 .bg__item {
   width: 65px;
   height: 65px;
-  border: 1px solid #278D9F;
+  border: 1px solid #278d9f;
   cursor: pointer;
+
   @include add-bg();
   &:nth-child(1) {
     background-image: url("../assets/bg/1.jpg");
@@ -121,10 +127,11 @@
 .tree__item {
   width: 115px;
   height: 115px;
-  border: 2px solid #278D9F;
   background-color: rgba(255, 255, 255, 0.829);
-  @include add-bg();
   background-size: contain;
+  border: 2px solid #278d9f;
+
+  @include add-bg();
   &:nth-child(1) {
     background-image: url("../assets/tree/1.png");
   }
@@ -151,103 +158,120 @@
 .garland__button {
   width: 24px;
   height: 24px;
-  border: 1px solid #278D9F;
+  border: 1px solid #278d9f;
 }
 .multicolor-btn {
   background: linear-gradient(150deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8);
 }
 .red-btn {
-  background-color: #F00;
+  background-color: #ff0000;
 }
 .yellow-btn {
-  background-color: #FF0;
+  background-color: #ffff00;
 }
 .green-btn {
-  background-color: #ABFF00;
+  background-color: #abff00;
 }
 .blue-btn {
-  background-color: #24E0FF;
+  background-color: #24e0ff;
 }
 .garland__input {
+  display: none;
   width: initial;
   height: initial;
-  display: none;
 }
 .garland__label {
   position: relative;
   display: flex;
   width: 24px;
   height: 24px;
-  border: 1px solid #278D9F;
-  padding: 0;
   margin: 0;
   margin-left: 20px;
-  cursor: pointer;
-  transition: .5s;
+  padding: 0;
+  border: 1px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
+  cursor: pointer;
+  transition: 0.5s;
 }
 .garland__label:hover {
   background-color: #26a6bd;
 }
 .garland__input:checked + .garland__label {
-  background-color: #278D9F;
-  border-color: #278D9F;
+  background-color: #278d9f;
+  border-color: #278d9f;
 }
 .garland__input:checked + .garland__label::after {
-  content: '';
-  display: block;
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
+  display: block;
   width: 15px;
   height: 15px;
   background-color: white;
   transform: translate(-50%, -50%);
 }
 .tree-container__garland {
-  display: flex;
-  justify-content: center;
-  height: 714px;
-  width: 800px;
   position: absolute;
   top: 30px;
   left: 50%;
-  margin-left: -400px;
-  pointer-events: none;
   z-index: 90;
-  overflow: hidden;
-}
-.lightrope {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  z-index: 1;
-  margin-top: 50px;
-  padding: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  list-style: none;
-  border-radius: 50%;
   display: flex;
   justify-content: center;
+  width: 800px;
+  height: 714px;
+  margin-left: -400px;
+  overflow: hidden;
+  pointer-events: none;
+}
+.lightrope {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 50px;
+  padding: 0;
+  overflow: hidden;
+  list-style: none;
+  white-space: nowrap;
+  border-radius: 50%;
+  pointer-events: none;
   li {
-    list-style: none;
     width: 10px;
     height: 20px;
-    border-radius: 50%;
     margin: -3px;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
+    list-style: none;
+    border-radius: 50%;
     animation-duration: 2s;
-    &.red { animation-name: red; }
-    &.green { animation-name: green; }
-    &.blue { animation-name: blue; }
-    &.yellow { animation-name: orange; }
-    &.multicolor:nth-child(1n + 1) { animation-name: red; }
-    &:nth-child(2n + 2).multicolor { animation-name: green; }
-    &:nth-child(3n + 3).multicolor { animation-name: blue; }
-    &:nth-child(4n + 4).multicolor { animation-name: orange; }
+    animation-iteration-count: infinite;
+
+    animation-fill-mode: both;
+    &.red {
+      animation-name: red;
+    }
+    &.green {
+      animation-name: green;
+    }
+    &.blue {
+      animation-name: blue;
+    }
+    &.yellow {
+      animation-name: orange;
+    }
+    &.multicolor:nth-child(1n + 1) {
+      animation-name: red;
+    }
+    &:nth-child(2n + 2).multicolor {
+      animation-name: green;
+    }
+    &:nth-child(3n + 3).multicolor {
+      animation-name: blue;
+    }
+    &:nth-child(4n + 4).multicolor {
+      animation-name: orange;
+    }
     &:nth-child(2n + 1) {
       animation-duration: 1.8s;
     }
@@ -264,44 +288,43 @@
   0%,
   100% {
     background: rgba(0, 247, 165, 1);
-    box-shadow: 0px 2px 12px 2px rgba(0, 247, 165, 1);
+    box-shadow: 0 2px 12px 2px rgba(0, 247, 165, 1);
   }
   50% {
     background: rgba(0, 247, 165, 0.4);
-    box-shadow: 0px 2px 12px 2px rgba(0, 247, 165, 0.2);
+    box-shadow: 0 2px 12px 2px rgba(0, 247, 165, 0.2);
   }
 }
 @keyframes blue {
   0%,
   100% {
     background: rgba(0, 255, 255, 1);
-    box-shadow: 0px 2px 12px 2px rgba(0, 255, 255, 1);
+    box-shadow: 0 2px 12px 2px rgba(0, 255, 255, 1);
   }
   50% {
     background: rgba(0, 255, 255, 0.4);
-    box-shadow: 0px 2px 12px 2px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 2px 12px 2px rgba(0, 255, 255, 0.2);
   }
 }
 @keyframes red {
   0%,
   100% {
     background: rgba(247, 0, 118, 1);
-    box-shadow: 0px 2px 12px 2px rgba(247, 0, 118, 1);
+    box-shadow: 0 2px 12px 2px rgba(247, 0, 118, 1);
   }
   50% {
     background: rgba(247, 0, 118, 0.4);
-    box-shadow: 0px 2px 12px 2px rgba(247, 0, 118, 0.2);
+    box-shadow: 0 2px 12px 2px rgba(247, 0, 118, 0.2);
   }
 }
 @keyframes orange {
   0%,
   100% {
     background: rgba(255, 255, 0, 1);
-    box-shadow: 0px 2px 12px 2px rgba(255, 255, 0, 1);
+    box-shadow: 0 2px 12px 2px rgba(255, 255, 0, 1);
   }
   50% {
     background: rgba(255, 255, 0, 0.4);
-    box-shadow: 0px 2px 12px 2px rgba(255, 255, 0, 0.2);
+    box-shadow: 0 2px 12px 2px rgba(255, 255, 0, 0.2);
   }
 }
-

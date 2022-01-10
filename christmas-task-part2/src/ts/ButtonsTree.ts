@@ -1,7 +1,7 @@
 import { pages } from './Pages';
 import { renderGarland } from './RenderGarland';
 import { renderSnow } from './RenderSnow';
-import { saveSettingsTree } from './SaveSettingsTree';
+import { saveSettingsTree } from './DataStorageTree';
 
 class ButtonsTree {
   bgButtons: HTMLElement | null;
@@ -36,10 +36,9 @@ class ButtonsTree {
     this.audio.src = './assets/audio/christmas-trap.mp3';
     this.isSnow = false;
     this.defaultButton = document.querySelector('.controls__default-button');
-
   }
 
-  stopMusic() {
+  stopMusic(): void {
     if (this.audio instanceof HTMLAudioElement) {
       if (this.isPlay) {
         this.audio.pause();
@@ -49,7 +48,8 @@ class ButtonsTree {
       }
     }
   }
-  stopSnow() {
+
+  stopSnow(): void {
     if (this.isSnow) {
       this.isSnow = false;
       renderSnow.cancelIntervalSnow();
@@ -57,21 +57,31 @@ class ButtonsTree {
     (this.snowButton as HTMLElement).classList.remove('active');
   }
 
-  addListener() {
+  addListener(): void {
     (this.defaultButton as HTMLElement).onclick = () => {
       saveSettingsTree.default();
       saveSettingsTree.save();
     };
     (this.bgButtons as HTMLElement).onclick = (event) => {
-      if (event.target instanceof HTMLElement && event.target !== event.currentTarget) {
-        (pages.treeContainer as HTMLElement).style.background = `center / cover no-repeat url('./assets/bg/${event.target.dataset.bg}.jpg')`;
+      if (
+        event.target instanceof HTMLElement &&
+        event.target !== event.currentTarget
+      ) {
+        (
+          pages.treeContainer as HTMLElement
+        ).style.background = `center / cover no-repeat url('./assets/bg/${event.target.dataset.bg}.jpg')`;
         saveSettingsTree.bg = event.target.dataset.bg;
         saveSettingsTree.save();
       }
     };
     (this.treeButtons as HTMLElement).onclick = (event) => {
-      if (event.target instanceof HTMLElement && event.target !== event.currentTarget) {
-        (pages.treeImg as HTMLImageElement).src = `./assets/tree/${event.target.dataset.tree}.png`;
+      if (
+        event.target instanceof HTMLElement &&
+        event.target !== event.currentTarget
+      ) {
+        (
+          pages.treeImg as HTMLImageElement
+        ).src = `./assets/tree/${event.target.dataset.tree}.png`;
         saveSettingsTree.tree = event.target.dataset.tree;
         saveSettingsTree.save();
       }
@@ -118,7 +128,7 @@ class ButtonsTree {
     };
   }
 
-  setData() {
+  setData(): void {
     const saveDataTree = saveSettingsTree.load();
 
     if (saveDataTree) {
@@ -132,11 +142,14 @@ class ButtonsTree {
         this.audio.play();
         (this.audioButton as HTMLElement).classList.add('active');
       }
-      (pages.treeContainer as HTMLElement).style.background = `center / cover no-repeat url('./assets/bg/${saveDataTree.bg}.jpg')`;
-      (pages.treeImg as HTMLImageElement).src = `./assets/tree/${saveDataTree.tree}.png`;
+      (
+        pages.treeContainer as HTMLElement
+      ).style.background = `center / cover no-repeat url('./assets/bg/${saveDataTree.bg}.jpg')`;
+      (
+        pages.treeImg as HTMLImageElement
+      ).src = `./assets/tree/${saveDataTree.tree}.png`;
     }
   }
 }
 
 export const buttonsTree = new ButtonsTree();
-

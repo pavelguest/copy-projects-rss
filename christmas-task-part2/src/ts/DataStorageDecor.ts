@@ -1,6 +1,6 @@
 import { Ifavorite } from './Filters';
-
-class SaveLocal {
+export interface IDataStorageDecor {
+  showFavorite: boolean;
   keysColor: string[];
 
   keysSize: string[];
@@ -16,6 +16,24 @@ class SaveLocal {
   isFavorite: boolean;
 
   keyOptionSelect: number;
+}
+
+class DataStorageDecor {
+  keysColor: string[];
+
+  keysSize: string[];
+
+  keysShape: string[];
+
+  keysYear: string[];
+
+  keysCount: string[];
+
+  favoriteObj: Ifavorite;
+
+  showFavorite: boolean;
+
+  keyOptionSelect: number;
 
   constructor() {
     this.keysColor = [];
@@ -27,33 +45,10 @@ class SaveLocal {
       num: [],
       count: [],
     };
-    this.isFavorite = false;
+    this.showFavorite = false;
     this.keyOptionSelect = 0;
   }
-
-  save() {
-    localStorage.setItem('options', JSON.stringify(this));
-  }
-
-  load() {
-    if (localStorage.getItem('options')) {
-      const options = JSON.parse(localStorage.getItem('options') || '{}');
-      this.keysColor = options.keysColor;
-      this.keysSize = options.keysSize;
-      this.keysShape = options.keysShape;
-      this.keysYear = options.keysYear;
-      this.keysCount = options.keysCount;
-      this.favoriteObj.num = [ ...options.favoriteObj.num ];
-      this.favoriteObj.count = [ ...options.favoriteObj.count ];
-      this.isFavorite = options.isFavorite;
-      this.keyOptionSelect = options.keyOptionSelect;
-
-      return options;
-
-    }
-  }
-
-  default() {
+  default(): void {
     this.keysColor = [];
     this.keysSize = [];
     this.keysShape = [];
@@ -63,12 +58,30 @@ class SaveLocal {
       num: [],
       count: [],
     };
-    this.isFavorite = false;
+    this.showFavorite = false;
     this.keyOptionSelect = 0;
+  }
+  save(): void {
+    localStorage.setItem('options', JSON.stringify(this));
+  }
+  load(): IDataStorageDecor | undefined {
+    if (localStorage.getItem('options')) {
+      const options = JSON.parse(localStorage.getItem('options') || '{}');
+      this.keysColor = options.keysColor;
+      this.keysSize = options.keysSize;
+      this.keysShape = options.keysShape;
+      this.keysYear = options.keysYear;
+      this.keysCount = options.keysCount;
+      this.favoriteObj.num = [...options.favoriteObj.num];
+      this.favoriteObj.count = [...options.favoriteObj.count];
+      this.showFavorite = options.showFavorite;
+      this.keyOptionSelect = options.keyOptionSelect;
+
+      return options;
+    }
   }
 }
 
-export const saveLocal = new SaveLocal;
+export const dataDecor = new DataStorageDecor();
 
-export default SaveLocal;
-
+export default DataStorageDecor;

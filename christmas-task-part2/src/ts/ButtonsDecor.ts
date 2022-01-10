@@ -1,6 +1,6 @@
-import { app } from './CreateElement';
+import { app } from './Application';
 import { otherFilters } from './OtherFilters';
-import { saveLocal } from './SaveFiltersDecor';
+import { dataDecor } from './DataStorageDecor';
 
 class ButtonsDecor {
   color: HTMLElement | null;
@@ -35,8 +35,6 @@ class ButtonsDecor {
 
   favoriteCount: HTMLElement | null;
 
-
-
   constructor() {
     this.color = document.querySelector('.color');
     this.size = document.querySelector('.size');
@@ -48,7 +46,9 @@ class ButtonsDecor {
     this.inputYearMax = document.querySelector('.year-max');
     this.inputCountMin = document.querySelector('.count-min');
     this.inputCountMax = document.querySelector('.count-max');
-    this.favoriteCountSpan = document.querySelector('.header-buttons__count span');
+    this.favoriteCountSpan = document.querySelector(
+      '.header-buttons__count span'
+    );
     this.defaultSettings = document.querySelector('.apply-buttons__default');
     this.resetLocal = document.querySelector('.apply-buttons__reset-local');
     this.searchInput = document.querySelector('.search__input');
@@ -57,18 +57,32 @@ class ButtonsDecor {
     this.favoriteCount = document.querySelector('.header-buttons__count');
   }
 
-  changeInputValues(minCount: string, maxCount: string, minYear: string, maxYear: string) {
-    (this.inputCountMin as HTMLOutputElement).textContent = ((+minCount * 100) / 100).toString();
-    (this.inputCountMax as HTMLOutputElement).textContent = ((+maxCount * 100) / 100).toString();
-    (this.inputYearMin as HTMLOutputElement).textContent = ((+minYear * 100) / 100).toString();
-    (this.inputYearMax as HTMLOutputElement).textContent = ((+maxYear * 100) / 100).toString();
+  changeInputValues(
+    minCount: string,
+    maxCount: string,
+    minYear: string,
+    maxYear: string
+  ): void {
+    (this.inputCountMin as HTMLOutputElement).textContent = `${Math.round(
+      +minCount
+    )}`;
+    (this.inputCountMax as HTMLOutputElement).textContent = `${Math.round(
+      +maxCount
+    )}`;
+    (this.inputYearMin as HTMLOutputElement).textContent = `${Math.round(
+      +minYear
+    )}`;
+    (this.inputYearMax as HTMLOutputElement).textContent = `${Math.round(
+      +maxYear
+    )}`;
   }
 
-  changeFavoriteSpanValue(arrLength: string[]) {
-    (this.favoriteCountSpan as HTMLElement).textContent = `${arrLength.length}`;
+  changeFavoriteSpanValue(arrLength: string[]): void {
+    if (this.favoriteCountSpan)
+      this.favoriteCountSpan.textContent = `${arrLength.length}`;
   }
 
-  createAlertWindow() {
+  createAlertWindow(): void {
     const alertWindow = document.createElement('div');
     alertWindow.classList.add('alert-window');
     alertWindow.textContent = 'Извините, все слоты заполнены';
@@ -78,28 +92,32 @@ class ButtonsDecor {
     }, 1000);
   }
 
-  cancelTargetButtons() {
-    document.querySelectorAll('.color button, .size button, .shape button').forEach(button => {
-      button.classList.remove('active');
-    });
+  cancelTargetButtons(): void {
+    document
+      .querySelectorAll('.color button, .size button, .shape button')
+      .forEach((button) => {
+        button.classList.remove('active');
+      });
     if (this.favorite instanceof HTMLInputElement) {
       this.favorite.checked = false;
-      saveLocal.isFavorite = false;
+      dataDecor.showFavorite = false;
     }
   }
 
-  loadTargetButtons() {
-    document.querySelectorAll('.color button, .size button, .shape button').forEach(button => {
-      if (button instanceof HTMLElement) {
-        if (otherFilters.keysColor.includes(button.dataset.filter as string)) button.classList.add('active');
-        if (otherFilters.keysSize.includes(button.dataset.filter as string)) button.classList.add('active');
-        if (otherFilters.keysShape.includes(button.dataset.filter as string)) button.classList.add('active');
-      }
-    });
+  loadTargetButtons(): void {
+    document
+      .querySelectorAll('.color button, .size button, .shape button')
+      .forEach((button) => {
+        if (button instanceof HTMLElement) {
+          if (otherFilters.keysColor.includes(button.dataset.filter as string))
+            button.classList.add('active');
+          if (otherFilters.keysSize.includes(button.dataset.filter as string))
+            button.classList.add('active');
+          if (otherFilters.keysShape.includes(button.dataset.filter as string))
+            button.classList.add('active');
+        }
+      });
   }
 }
 
 export const buttonsDecor = new ButtonsDecor();
-
-
-

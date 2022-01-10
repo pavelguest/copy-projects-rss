@@ -2,34 +2,34 @@
   z-index: 1;
 }
 .main__title {
-  text-transform: uppercase;
   padding: 50px 80px;
-  border: 2px solid #278D9F;
-  background-color: rgba(31, 112, 127, .3);
+  text-transform: uppercase;
+  background-color: rgba(31, 112, 127, 0.3);
+  border: 2px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
 }
 .main__button {
+  z-index: 1;
   padding: 15px 50px;
-  border: 1px solid #278D9F;
-  background-color: rgba(31, 112, 127, .3);
-  cursor: pointer;
-  color: #fff;
-  font-size: 20px;
   font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: rgba(31, 112, 127, 0.3);
+  border: 1px solid #278d9f;
   box-shadow: 2px 2px 20px 2px #000a;
+  cursor: pointer;
   &:hover {
     background-color: rgba(51, 149, 167, 0.3);
   }
-  z-index: 1;
 }
 .main__decor {
+  position: absolute;
   width: 300px;
   height: 400px;
-  position: absolute;
   &::before {
     content: "";
     position: absolute;
-    background-color: #aaa;
+    background-color: #aaaaaa;
   }
 }
 .decor-one {
@@ -42,8 +42,8 @@
     top: -130px;
     left: calc(50% - 2px);
     width: 4px;
-    height: 136px;
     width: 5px;
+    height: 136px;
   }
 }
 .decor-two {
@@ -56,9 +56,7 @@
     top: -180px;
     left: calc(50% - 3px);
     width: 4px;
-    height: 186px;
     width: 5px;
+    height: 186px;
   }
 }
-
-

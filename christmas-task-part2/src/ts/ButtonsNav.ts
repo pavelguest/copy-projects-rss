@@ -17,7 +17,12 @@ class ButtonsNav {
   }
 
   addListener() {
-    if (this.startGame && this.toMainPage && this.toDecorPage && this.toTreePage) {
+    if (
+      this.startGame &&
+      this.toMainPage &&
+      this.toDecorPage &&
+      this.toTreePage
+    ) {
       this.startGame.onclick = () => {
         pages.goToDecorPage();
       };
