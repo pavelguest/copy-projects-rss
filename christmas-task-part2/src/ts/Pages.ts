@@ -103,7 +103,7 @@ class Pages {
 
     app.setData();
     buttonsTree.setData();
-    (this.decorContainer as HTMLElement).innerHTML = '';
+    this.decorContainer!.innerHTML = '';
     filterDecor.filter();
     renderGarland.addListener();
     buttonsTree.addListener();

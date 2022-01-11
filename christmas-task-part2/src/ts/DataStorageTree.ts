@@ -1,26 +1,20 @@
-export interface IDataStorageTree {
-  isPlay: boolean;
-  isSnow: boolean;
-  bg: string | undefined;
-  tree: string | undefined;
-}
+import { IDataStorageTree } from './interface';
 
 class DataStorageTree {
-  isPlay: boolean;
-
-  isSnow: boolean;
-
-  bg: string | undefined;
-
-  tree: string | undefined;
+  storage: IDataStorageTree | undefined;
 
   constructor() {
-    this.isPlay = false;
-    this.isSnow = false;
-    this.bg = '1';
-    this.tree = '1';
+    this.default();
   }
 
+  default(): void {
+    this.storage = {
+      isPlay: false,
+      isSnow: false,
+      bg: '1',
+      tree: '1',
+    };
+  }
   save(): void {
     localStorage.setItem('optionsTree', JSON.stringify(this));
   }
@@ -28,20 +22,10 @@ class DataStorageTree {
   load(): IDataStorageTree | undefined {
     if (localStorage.getItem('optionsTree')) {
       const options = JSON.parse(localStorage.getItem('optionsTree') || '{}');
-      this.isPlay = options.isPlay;
-      this.isSnow = options.isSnow;
-      this.bg = options.bg;
-      this.tree = options.tree;
+      this.storage = { ...options.storage };
 
-      return options;
+      return options.storage;
     }
-  }
-
-  default(): void {
-    this.isPlay = false;
-    this.isSnow = false;
-    this.bg = '1';
-    this.tree = '1';
   }
 }
 

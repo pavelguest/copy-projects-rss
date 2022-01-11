@@ -32,12 +32,12 @@ class RenderGarland {
       }px) rotate(-${index * gap + 65}deg)`;
       ul.append(li);
     }
-    (this.container as HTMLElement).append(ul);
+    this.container!.append(ul);
   }
 
   addListener(): void {
-    (buttonsTree.garlandButtons as HTMLElement).onclick = (event) => {
-      (this.container as HTMLElement).innerHTML = '';
+    buttonsTree.garlandButtons!.onclick = (event) => {
+      this.container!.innerHTML = '';
       (buttonsTree.garlandCheckbox as HTMLInputElement).checked = true;
       let color;
       if (

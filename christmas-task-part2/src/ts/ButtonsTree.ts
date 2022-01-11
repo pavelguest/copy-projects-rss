@@ -54,53 +54,52 @@ class ButtonsTree {
       this.isSnow = false;
       renderSnow.cancelIntervalSnow();
     }
-    (this.snowButton as HTMLElement).classList.remove('active');
+    this.snowButton!.classList.remove('active');
   }
 
   addListener(): void {
-    (this.defaultButton as HTMLElement).onclick = () => {
+    this.defaultButton!.onclick = () => {
       saveSettingsTree.default();
       saveSettingsTree.save();
     };
-    (this.bgButtons as HTMLElement).onclick = (event) => {
+    this.bgButtons!.onclick = (event) => {
       if (
         event.target instanceof HTMLElement &&
         event.target !== event.currentTarget
       ) {
-        (
-          pages.treeContainer as HTMLElement
-        ).style.background = `center / cover no-repeat url('./assets/bg/${event.target.dataset.bg}.jpg')`;
-        saveSettingsTree.bg = event.target.dataset.bg;
+        pages.treeContainer!.style.background = `center / cover no-repeat url('./assets/bg/${event.target.dataset.bg}.jpg')`;
+        if (saveSettingsTree.storage)
+          saveSettingsTree.storage.bg = event.target.dataset.bg;
         saveSettingsTree.save();
       }
     };
-    (this.treeButtons as HTMLElement).onclick = (event) => {
+    this.treeButtons!.onclick = (event) => {
       if (
         event.target instanceof HTMLElement &&
         event.target !== event.currentTarget
       ) {
-        (
-          pages.treeImg as HTMLImageElement
-        ).src = `./assets/tree/${event.target.dataset.tree}.png`;
-        saveSettingsTree.tree = event.target.dataset.tree;
+        pages.treeImg!.src = `./assets/tree/${event.target.dataset.tree}.png`;
+        if (saveSettingsTree.storage)
+          saveSettingsTree.storage.tree = event.target.dataset.tree;
         saveSettingsTree.save();
       }
     };
-    (this.audioButton as HTMLElement).onclick = (event) => {
+    this.audioButton!.onclick = (event) => {
       if (event.target instanceof HTMLElement) {
         event.target.classList.toggle('active');
         if (this.isPlay && this.audio) {
           this.audio.pause();
           this.isPlay = false;
         } else {
-          (this.audio as HTMLAudioElement).play();
+          this.audio!.play();
           this.isPlay = true;
         }
-        saveSettingsTree.isPlay = this.isPlay;
+        if (saveSettingsTree.storage)
+          saveSettingsTree.storage.isPlay = this.isPlay;
         saveSettingsTree.save();
       }
     };
-    (this.snowButton as HTMLElement).onclick = (event) => {
+    this.snowButton!.onclick = (event) => {
       if (event.target instanceof HTMLElement) {
         event.target.classList.toggle('active');
         if (this.isSnow) {
@@ -110,11 +109,12 @@ class ButtonsTree {
           this.isSnow = true;
           renderSnow.createSnow();
         }
-        saveSettingsTree.isSnow = this.isSnow;
+        if (saveSettingsTree.storage)
+          saveSettingsTree.storage.isSnow = this.isSnow;
         saveSettingsTree.save();
       }
     };
-    (this.garlandCheckbox as HTMLElement).onchange = (event) => {
+    this.garlandCheckbox!.onchange = (event) => {
       if (event.target instanceof HTMLInputElement)
         if (event.target.checked) {
           renderGarland.render(5, 1, 'multicolor', 12);
@@ -136,18 +136,14 @@ class ButtonsTree {
       this.isSnow = saveDataTree.isSnow;
       if (this.isSnow) {
         renderSnow.createSnow();
-        (this.snowButton as HTMLElement).classList.add('active');
+        this.snowButton!.classList.add('active');
       }
       if (this.isPlay && this.audio) {
         this.audio.play();
-        (this.audioButton as HTMLElement).classList.add('active');
+        this.audioButton!.classList.add('active');
       }
-      (
-        pages.treeContainer as HTMLElement
-      ).style.background = `center / cover no-repeat url('./assets/bg/${saveDataTree.bg}.jpg')`;
-      (
-        pages.treeImg as HTMLImageElement
-      ).src = `./assets/tree/${saveDataTree.tree}.png`;
+      pages.treeContainer!.style.background = `center / cover no-repeat url('./assets/bg/${saveDataTree.bg}.jpg')`;
+      pages.treeImg!.src = `./assets/tree/${saveDataTree.tree}.png`;
     }
   }
 }

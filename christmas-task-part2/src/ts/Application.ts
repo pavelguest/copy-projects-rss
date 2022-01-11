@@ -1,33 +1,24 @@
 import { API } from 'nouislider';
 import { buttonsDecor } from './ButtonsDecor';
 import data from './data';
-import { otherFilters } from './OtherFilters';
 import { dataDecor } from './DataStorageDecor';
-import { rangeCount, rangeYear } from './slider';
-import { sortSelect } from './Sort';
-export interface Idata {
-  num: string;
-  name: string;
-  count: string;
-  year: string;
-  shape: string;
-  color: string;
-  size: string;
-  favorite: boolean;
-}
+import { slider } from './slider';
+import { Idata } from './interface';
+import { filters } from './Filters';
+
 class Application {
   container: HTMLElement;
 
   data: Idata[];
 
-  filterArr: [] | Idata[];
+  dataForRender: [] | Idata[];
 
   searchArr: Idata[];
 
   constructor() {
     this.container = document.querySelector('.cards') as HTMLElement;
     this.data = [...data];
-    this.filterArr = [...data];
+    this.dataForRender = [...data];
     this.searchArr = [...data];
   }
 
@@ -42,7 +33,7 @@ class Application {
       this.container.insertAdjacentHTML(
         'beforeend',
         `
-      <div class="cards__item ${otherFilters.getActiveClassForCards(e)}">
+      <div class="cards__item ${filters.getActiveClassForCards(e)}">
       <h3 class="cards__subtitle">${e.name}</h3>
       <img class="cards__img" src="./assets/toys/${e.num}.png" alt="decoration">
       <div class="cards__text-container">
@@ -67,166 +58,194 @@ class Application {
         event.target !== event.currentTarget
       ) {
         event.target.classList.toggle('active');
-        otherFilters.hasKeysColor(event.target.dataset.filter);
+        filters.hasKeysColor(event.target.dataset.filter);
         this.filtration();
       }
     };
-    (buttonsDecor.size as HTMLElement).onclick = (event) => {
-      if (
-        event.target instanceof HTMLElement &&
-        event.target !== event.currentTarget
-      ) {
-        event.target.classList.toggle('active');
-        otherFilters.hasKeysSize(event.target.dataset.filter);
-        this.filtration();
-      }
-    };
-    (buttonsDecor.shape as HTMLElement).onclick = (event) => {
-      if (
-        event.target instanceof HTMLElement &&
-        event.target !== event.currentTarget
-      ) {
-        event.target.classList.toggle('active');
-        otherFilters.hasKeysShape(event.target.dataset.filter);
-        this.filtration();
-      }
-    };
-    (buttonsDecor.favorite as HTMLElement).onclick = (event) => {
-      dataDecor.showFavorite = (event.target as HTMLInputElement).checked;
-      dataDecor.save();
-      this.filtration();
-    };
-    (buttonsDecor.select as HTMLSelectElement).onchange = (event) => {
-      if (event.target instanceof HTMLSelectElement) {
-        const sortData = sortSelect.sortData(
-          this.filterArr,
-          event.target.options.selectedIndex
-        );
-        this.renderCards(sortData);
-        dataDecor.keyOptionSelect = event.target.selectedIndex;
+    if (buttonsDecor.size)
+      buttonsDecor.size.onclick = (event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target !== event.currentTarget
+        ) {
+          event.target.classList.toggle('active');
+          filters.hasKeysSize(event.target.dataset.filter);
+          this.filtration();
+        }
+      };
+    if (buttonsDecor.shape)
+      buttonsDecor.shape.onclick = (event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target !== event.currentTarget
+        ) {
+          event.target.classList.toggle('active');
+          filters.hasKeysShape(event.target.dataset.filter);
+          this.filtration();
+        }
+      };
+    if (buttonsDecor.favorite)
+      buttonsDecor.favorite.onclick = (event) => {
+        if (dataDecor.storage)
+          dataDecor.storage.showFavorite = (
+            event.target as HTMLInputElement
+          ).checked;
         dataDecor.save();
+        this.filtration();
+      };
+    if (buttonsDecor.select)
+      buttonsDecor.select.onchange = (event) => {
+        if (event.target instanceof HTMLSelectElement) {
+          this.dataForRender = buttonsDecor.sortData(
+            this.dataForRender,
+            event.target.options.selectedIndex
+          );
+          this.renderCards(this.dataForRender);
+          if (dataDecor.storage)
+            dataDecor.storage.keyOptionSelect = event.target.selectedIndex;
+          dataDecor.save();
+        }
+      };
+    (<API>slider.rangeYear.noUiSlider).on(
+      'update',
+      (values: (string | number)[]) => {
+        const [minYear, maxYear] = values;
+        if (dataDecor.storage)
+          dataDecor.storage.keysYear = [minYear as string, maxYear as string];
+        dataDecor.save();
+        filters.hasKeysYear(minYear.toString(), maxYear.toString());
+        this.filtration();
       }
-    };
-    (<API>rangeYear.noUiSlider).on('update', (values: (string | number)[]) => {
-      const [minYear, maxYear] = values;
-      dataDecor.keysYear = [minYear as string, maxYear as string];
-      dataDecor.save();
-      otherFilters.hasKeysYear(minYear.toString(), maxYear.toString());
-      this.filtration();
-    });
-    (<API>rangeCount.noUiSlider).on('update', (values: (string | number)[]) => {
-      const [minCount, maxCount] = values;
-      dataDecor.keysCount = [minCount as string, maxCount as string];
-      dataDecor.save();
-      otherFilters.hasKeysCount(minCount.toString(), maxCount.toString());
-      this.filtration();
-    });
-    (buttonsDecor.defaultSettings as HTMLElement).onclick = (event) => {
-      if (event.target instanceof HTMLElement) {
-        otherFilters.clearKeysFiltration();
-        buttonsDecor.cancelTargetButtons();
+    );
+    (<API>slider.rangeCount.noUiSlider).on(
+      'update',
+      (values: (string | number)[]) => {
+        const [minCount, maxCount] = values;
+        if (dataDecor.storage)
+          dataDecor.storage.keysCount = [
+            minCount as string,
+            maxCount as string,
+          ];
+        dataDecor.save();
+        filters.hasKeysCount(minCount.toString(), maxCount.toString());
+        this.filtration();
+      }
+    );
+    if (buttonsDecor.defaultSettings)
+      buttonsDecor.defaultSettings.onclick = (event) => {
+        if (event.target instanceof HTMLElement) {
+          filters.clearKeysFiltration();
+          buttonsDecor.cancelTargetButtons();
+          (buttonsDecor.searchInput as HTMLInputElement).value = '';
+          if (dataDecor.storage) dataDecor.storage.keyOptionSelect = 0;
+          dataDecor.save();
+          this.filtration();
+        }
+      };
+    if (buttonsDecor.searchInput)
+      buttonsDecor.searchInput.oninput = (event) => {
+        if (event.target instanceof HTMLInputElement) {
+          const pattern = event.target.value
+            .split(' ')
+            .map((elem) => {
+              return `(.*${elem})`;
+            })
+            .join('');
+          const regex = new RegExp(`${pattern}`, 'gi');
+          this.searchArr = this.dataForRender.filter((card) =>
+            card.name.match(regex)
+          );
+          this.renderCards(this.searchArr);
+        }
+      };
+    if (buttonsDecor.searchCancel)
+      buttonsDecor.searchCancel.onclick = () => {
         (buttonsDecor.searchInput as HTMLInputElement).value = '';
-        dataDecor.keyOptionSelect = 0;
-        dataDecor.save();
         this.filtration();
-      }
-    };
-    (buttonsDecor.searchInput as HTMLInputElement).oninput = (event) => {
-      if (event.target instanceof HTMLInputElement) {
-        const pattern = event.target.value
-          .split(' ')
-          .map((elem) => {
-            return `(.*${elem})`;
-          })
-          .join('');
-        const regex = new RegExp(`${pattern}`, 'gi');
-        this.searchArr = this.filterArr.filter((card) =>
-          card.name.match(regex)
-        );
-        this.renderCards(this.searchArr);
-      }
-    };
-    (buttonsDecor.searchCancel as HTMLElement).onclick = () => {
-      (buttonsDecor.searchInput as HTMLInputElement).value = '';
-      this.filtration();
-    };
-    (buttonsDecor.resetLocal as HTMLElement).onclick = () => {
-      dataDecor.default();
-      dataDecor.save();
-    };
+      };
+    if (buttonsDecor.resetLocal)
+      buttonsDecor.resetLocal.onclick = () => {
+        dataDecor.default();
+        slider.defaultRange();
+        dataDecor.save();
+      };
     buttonsDecor.searchInput?.focus();
   }
 
   addListenerForCards(): void {
     document.querySelectorAll('.cards__item').forEach((card, index) => {
-      const cardNum = this.filterArr[index];
+      const cardNum = this.dataForRender[index];
 
       card.addEventListener('click', () => {
         if (
-          otherFilters.favoriteObj.num.length <= 19 &&
-          otherFilters.favoriteObj.count.length <= 19
+          filters.objKeys.favoriteDecorObj.num.length <= 19 &&
+          filters.objKeys.favoriteDecorObj.count.length <= 19
         ) {
-          otherFilters.setFavoriteCards(cardNum.num, cardNum.count);
+          filters.setFavoriteCards(cardNum.num, cardNum.count);
           card.classList.toggle('active');
         } else {
           card.classList.remove('active');
-          otherFilters.deleteKey(otherFilters.favoriteObj.num, cardNum.num);
-          otherFilters.deleteKey(otherFilters.favoriteObj.count, cardNum.count);
-          if (otherFilters.favoriteObj.num.length > 19) {
+          filters.deleteKey(filters.objKeys.favoriteDecorObj.num, cardNum.num);
+          filters.deleteKey(
+            filters.objKeys.favoriteDecorObj.count,
+            cardNum.count
+          );
+          if (filters.objKeys.favoriteDecorObj.num.length > 19) {
             buttonsDecor.createAlertWindow();
           }
         }
-        buttonsDecor.changeFavoriteSpanValue(otherFilters.favoriteObj.num);
+        buttonsDecor.changeFavoriteSpanValue(
+          filters.objKeys.favoriteDecorObj.num
+        );
       });
     });
   }
 
   filtration(): void {
-    const [minYear, maxYear] = otherFilters.keysYear;
-    const [minCount, maxCount] = otherFilters.keysCount;
+    const [minYear, maxYear] = filters.objKeys.keysYear;
+    const [minCount, maxCount] = filters.objKeys.keysCount;
     buttonsDecor.changeInputValues(minCount, maxCount, minYear, maxYear);
-    this.filterArr = this.data.filter(
+    this.dataForRender = this.data.filter(
       (elem) =>
         +elem.year >= +minYear &&
         +elem.year <= +maxYear &&
         +elem.count >= +minCount &&
         +elem.count <= +maxCount
     );
-    if (!otherFilters.isFilterClear()) {
-      this.filterArr = this.filterArr.filter((elem) => {
-        return otherFilters.hasActiveFilters(elem);
+    if (!filters.isFilterClear()) {
+      this.dataForRender = this.dataForRender.filter((elem) => {
+        return filters.hasActiveFilters(elem);
       });
     }
-    this.renderCards(this.filterArr);
+    this.renderCards(this.dataForRender);
   }
 
   setData() {
     const saveData = dataDecor.load();
-    console.log(saveData);
 
     if (saveData) {
-      otherFilters.keysColor = saveData.keysColor;
-      otherFilters.keysSize = saveData.keysSize;
-      otherFilters.keysShape = saveData.keysShape;
-      otherFilters.favoriteObj.num = [...saveData.favoriteObj.num];
-      otherFilters.favoriteObj.count = [...saveData.favoriteObj.count];
+      filters.objKeys.keysColor = saveData.keysColor;
+      filters.objKeys.keysSize = saveData.keysSize;
+      filters.objKeys.keysShape = saveData.keysShape;
+      filters.objKeys.favoriteDecorObj.num = [...saveData.favoriteDecorObj.num];
+      filters.objKeys.favoriteDecorObj.count = [
+        ...saveData.favoriteDecorObj.count,
+      ];
 
       if (saveData.keyOptionSelect !== 0) {
-        this.filterArr = sortSelect.sortData(
+        this.dataForRender = buttonsDecor.sortData(
           this.data,
           saveData.keyOptionSelect
         );
       }
-      (
-        buttonsDecor.favoriteCountSpan as HTMLElement
-      ).textContent = `${otherFilters.favoriteObj.num.length}`;
-
+      if (buttonsDecor.favoriteCountSpan)
+        buttonsDecor.favoriteCountSpan.textContent = `${filters.objKeys.favoriteDecorObj.num.length}`;
       buttonsDecor.loadTargetButtons();
       const [minYear, maxYear] = saveData.keysYear;
       const [minCount, maxCount] = saveData.keysCount;
-      otherFilters.loadRangeSlider(minCount, maxCount, minYear, maxYear);
-      (buttonsDecor.favorite as HTMLInputElement).checked =
-        saveData.showFavorite;
+      slider.loadRangeSlider(minCount, maxCount, minYear, maxYear);
+      if (buttonsDecor.favorite instanceof HTMLInputElement)
+        buttonsDecor.favorite.checked = saveData.showFavorite;
     }
   }
 }

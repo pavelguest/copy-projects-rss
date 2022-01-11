@@ -1,6 +1,7 @@
 import { app } from './Application';
-import { otherFilters } from './OtherFilters';
 import { dataDecor } from './DataStorageDecor';
+import { filters } from './Filters';
+import { Idata } from './interface';
 
 class ButtonsDecor {
   color: HTMLElement | null;
@@ -63,18 +64,10 @@ class ButtonsDecor {
     minYear: string,
     maxYear: string
   ): void {
-    (this.inputCountMin as HTMLOutputElement).textContent = `${Math.round(
-      +minCount
-    )}`;
-    (this.inputCountMax as HTMLOutputElement).textContent = `${Math.round(
-      +maxCount
-    )}`;
-    (this.inputYearMin as HTMLOutputElement).textContent = `${Math.round(
-      +minYear
-    )}`;
-    (this.inputYearMax as HTMLOutputElement).textContent = `${Math.round(
-      +maxYear
-    )}`;
+    this.inputCountMin!.textContent = `${Math.round(+minCount)}`;
+    this.inputCountMax!.textContent = `${Math.round(+maxCount)}`;
+    this.inputYearMin!.textContent = `${Math.round(+minYear)}`;
+    this.inputYearMax!.textContent = `${Math.round(+maxYear)}`;
   }
 
   changeFavoriteSpanValue(arrLength: string[]): void {
@@ -100,7 +93,7 @@ class ButtonsDecor {
       });
     if (this.favorite instanceof HTMLInputElement) {
       this.favorite.checked = false;
-      dataDecor.showFavorite = false;
+      if (dataDecor.storage) dataDecor.storage.showFavorite = false;
     }
   }
 
@@ -109,14 +102,35 @@ class ButtonsDecor {
       .querySelectorAll('.color button, .size button, .shape button')
       .forEach((button) => {
         if (button instanceof HTMLElement) {
-          if (otherFilters.keysColor.includes(button.dataset.filter as string))
+          if (
+            filters.objKeys.keysColor.includes(button.dataset.filter as string)
+          )
             button.classList.add('active');
-          if (otherFilters.keysSize.includes(button.dataset.filter as string))
+          if (
+            filters.objKeys.keysSize.includes(button.dataset.filter as string)
+          )
             button.classList.add('active');
-          if (otherFilters.keysShape.includes(button.dataset.filter as string))
+          if (
+            filters.objKeys.keysShape.includes(button.dataset.filter as string)
+          )
             button.classList.add('active');
         }
       });
+  }
+  sortData(data: Idata[], indexOption: number | null): Idata[] {
+    if (indexOption) {
+      const value = this.select && this.select.options[indexOption].value;
+      if (value === 'sort-count__max') {
+        data.sort((a, b) => +a.count - +b.count);
+      } else if (value === 'sort-count__min') {
+        data.sort((a, b) => +b.count - +a.count);
+      } else if (value === 'sort-name__max') {
+        data.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (value === 'sort-name__min') {
+        data.sort((a, b) => b.name.localeCompare(a.name));
+      }
+    }
+    return data;
   }
 }
 

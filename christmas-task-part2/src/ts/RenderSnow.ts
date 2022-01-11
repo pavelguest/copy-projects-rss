@@ -12,13 +12,12 @@ class RenderSnow {
       const snow: HTMLElement = document.createElement('i');
       snow.classList.add('fas');
       snow.classList.add('fa-snowflake');
-      snow.style.left =
-        Math.random() * (pages.treeContainer as HTMLElement).clientWidth + 'px';
+      snow.style.left = Math.random() * pages.treeContainer!.clientWidth + 'px';
       snow.style.animationDuration = Math.random() * 3 + 5 + 's'; // between 2 - 5 seconds
       snow.style.opacity = Math.random().toString();
       snow.style.fontSize = Math.random() * 10 + 10 + 'px';
 
-      (pages.treeContainer as HTMLElement).appendChild(snow);
+      pages.treeContainer!.appendChild(snow);
 
       setTimeout(() => {
         snow.remove();

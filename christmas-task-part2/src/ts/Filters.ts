@@ -1,37 +1,23 @@
-import { API } from 'nouislider';
-import { app, Idata } from './Application';
+import { app } from './Application';
 import { buttonsDecor } from './ButtonsDecor';
 import { dataDecor } from './DataStorageDecor';
-import { rangeCount, rangeYear } from './slider';
-import { sortSelect } from './Sort';
-
-export interface Ifavorite {
-  num: string[];
-  count: string[];
-}
+import { Idata, IobjKeys } from './interface';
+import { slider } from './slider';
 
 class Filters {
-  keysColor: string[];
-
-  keysSize: string[];
-
-  keysShape: string[];
-
-  keysYear: string[];
-
-  keysCount: string[];
-
-  favoriteObj: Ifavorite;
+  objKeys: IobjKeys;
 
   constructor() {
-    this.keysColor = [];
-    this.keysSize = [];
-    this.keysShape = [];
-    this.keysYear = [];
-    this.keysCount = [];
-    this.favoriteObj = {
-      num: [],
-      count: [],
+    this.objKeys = {
+      keysColor: [],
+      keysSize: [],
+      keysShape: [],
+      keysYear: [],
+      keysCount: [],
+      favoriteDecorObj: {
+        num: [],
+        count: [],
+      },
     };
   }
 
@@ -42,78 +28,133 @@ class Filters {
 
   isFilterClear(): boolean {
     return (
-      !this.keysColor.length &&
-      !this.keysShape.length &&
-      !this.keysSize.length &&
+      !this.objKeys.keysColor.length &&
+      !this.objKeys.keysShape.length &&
+      !this.objKeys.keysSize.length &&
       !(buttonsDecor.favorite as HTMLInputElement).checked
     );
   }
 
   setFavoriteCards(num: string, count: string): void {
     if (
-      this.favoriteObj.num.includes(num) &&
-      this.favoriteObj.count.includes(count)
+      this.objKeys.favoriteDecorObj.num.includes(num) &&
+      this.objKeys.favoriteDecorObj.count.includes(count)
     ) {
-      this.deleteKey(this.favoriteObj.num, num);
-      this.deleteKey(this.favoriteObj.count, count);
+      this.deleteKey(this.objKeys.favoriteDecorObj.num, num);
+      this.deleteKey(this.objKeys.favoriteDecorObj.count, count);
     } else {
-      this.favoriteObj.num.push(num);
-      this.favoriteObj.count.push(count);
+      this.objKeys.favoriteDecorObj.num.push(num);
+      this.objKeys.favoriteDecorObj.count.push(count);
     }
-    dataDecor.favoriteObj = {
-      num: [...this.favoriteObj.num],
-      count: [...this.favoriteObj.count],
-    };
+    if (dataDecor.storage)
+      dataDecor.storage.favoriteDecorObj = {
+        num: [...this.objKeys.favoriteDecorObj.num],
+        count: [...this.objKeys.favoriteDecorObj.count],
+      };
     dataDecor.save();
   }
 
   getActiveClassForCards(num: Idata): string {
-    return this.favoriteObj.num.length && this.favoriteObj.num.includes(num.num)
+    return this.objKeys.favoriteDecorObj.num.length &&
+      this.objKeys.favoriteDecorObj.num.includes(num.num)
       ? 'active'
       : '';
   }
 
   clearKeysFiltration(): void {
-    this.keysColor = [];
-    this.keysSize = [];
-    this.keysShape = [];
-    dataDecor.keysColor = [];
-    dataDecor.keysShape = [];
-    dataDecor.keysSize = [];
-    (rangeCount.noUiSlider as API).updateOptions(
-      {
-        start: [1, 12],
-      },
-      true
-    );
-    (rangeYear.noUiSlider as API).updateOptions(
-      {
-        start: [1940, 2020],
-      },
-      true
-    );
-    sortSelect.sortData(app.data, dataDecor.keyOptionSelect);
+    this.objKeys.keysColor = [];
+    this.objKeys.keysSize = [];
+    this.objKeys.keysShape = [];
+    if (dataDecor.storage) {
+      dataDecor.storage.keysColor = [];
+      dataDecor.storage.keysShape = [];
+      dataDecor.storage.keysSize = [];
+    }
+    slider.defaultRange();
+    buttonsDecor.sortData(app.data, dataDecor.storage!.keyOptionSelect);
+  }
+  hasKeysColor(value: string | undefined): void {
+    if (value) {
+      if (this.objKeys.keysColor.includes(value)) {
+        this.deleteKey(this.objKeys.keysColor, value);
+      } else {
+        this.objKeys.keysColor.push(value);
+      }
+      if (dataDecor.storage)
+        dataDecor.storage.keysColor = [...this.objKeys.keysColor];
+      dataDecor.save();
+    }
   }
 
-  loadRangeSlider(
-    minCount: string,
-    maxCount: string,
-    minYear: string,
-    maxYear: string
-  ): void {
-    (rangeCount.noUiSlider as API).updateOptions(
-      {
-        start: [minCount, maxCount],
-      },
-      true
-    );
-    (rangeYear.noUiSlider as API).updateOptions(
-      {
-        start: [minYear, maxYear],
-      },
-      true
+  hasKeysSize(value: string | undefined): void {
+    if (value) {
+      if (this.objKeys.keysSize.includes(value)) {
+        this.deleteKey(this.objKeys.keysSize, value);
+      } else {
+        this.objKeys.keysSize.push(value);
+      }
+      if (dataDecor.storage)
+        dataDecor.storage.keysSize = [...this.objKeys.keysSize];
+      dataDecor.save();
+    }
+  }
+
+  hasKeysShape(value: string | undefined): void {
+    if (value) {
+      if (this.objKeys.keysShape.includes(value)) {
+        this.deleteKey(this.objKeys.keysShape, value);
+      } else {
+        this.objKeys.keysShape.push(value);
+      }
+      if (dataDecor.storage)
+        dataDecor.storage.keysShape = [...this.objKeys.keysShape];
+      dataDecor.save();
+    }
+  }
+
+  hasKeysYear(minYear: string, maxYear: string): void {
+    this.objKeys.keysYear = [minYear, maxYear];
+  }
+
+  hasKeysCount(minCount: string, maxCount: string): void {
+    this.objKeys.keysCount = [minCount, maxCount];
+  }
+  hasActiveFilters(data: Idata): boolean | undefined {
+    return (
+      this.filterColor(data.color) &&
+      this.filterSize(data.size) &&
+      this.filterShape(data.shape) &&
+      this.filterFavorite(data.favorite)
     );
   }
+
+  filterColor(color: string): boolean {
+    return this.objKeys.keysColor.length > 0
+      ? this.objKeys.keysColor.includes(color)
+      : true;
+  }
+
+  filterSize(size: string): boolean {
+    return this.objKeys.keysSize.length > 0
+      ? this.objKeys.keysSize.includes(size)
+      : true;
+  }
+
+  filterShape(shape: string): boolean {
+    return this.objKeys.keysShape.length > 0
+      ? this.objKeys.keysShape.includes(shape)
+      : true;
+  }
+
+  filterFavorite(favorite: boolean): boolean | undefined {
+    if (buttonsDecor.favorite) {
+      return (buttonsDecor.favorite as HTMLInputElement).checked
+        ? favorite === true
+        : true;
+    }
+  }
 }
+
+export const filters = new Filters();
 
 export default Filters;

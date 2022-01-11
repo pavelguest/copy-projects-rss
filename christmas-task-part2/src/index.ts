@@ -1,13 +1,12 @@
 import './ts/slider';
 import './scss/main.scss';
 
+import './ts/interface';
 import './ts/ButtonsNav';
 import './ts/Pages';
 import './ts/Application';
 import './ts/ButtonsDecor';
 import './ts/Filters';
-import './ts/OtherFilters';
-import './ts/Sort';
 import './ts/DataStorageDecor';
 import './ts/ButtonsTree';
 import './ts/RenderDecor';

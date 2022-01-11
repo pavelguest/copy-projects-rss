@@ -10,7 +10,7 @@ class RenderDecor {
     countSpan.classList.add('decor__count');
     countSpan.textContent = count;
 
-    (pages.decorContainer as HTMLElement).append(imgContainer);
+    pages.decorContainer!.append(imgContainer);
     imgContainer.append(countSpan);
     for (let index = 0; index < +count; index++) {
       const img = document.createElement('img');

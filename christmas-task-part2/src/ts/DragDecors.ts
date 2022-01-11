@@ -19,7 +19,7 @@ class DragDecors {
 
   addListener(): void {
     const decorDrop = document.querySelectorAll('.decor__img');
-    (this.mapTree as HTMLElement).ondragover = (event) => {
+    this.mapTree!.ondragover = (event) => {
       event.preventDefault();
     };
     decorDrop.forEach((decor, index) => {
@@ -33,17 +33,15 @@ class DragDecors {
             event.dataTransfer.setData('coordX', event.offsetX.toString());
             event.dataTransfer.setData('coordY', event.offsetY.toString());
           }
-          const coordX = (event.dataTransfer as DataTransfer).getData('coordX');
-          const coordY = (event.dataTransfer as DataTransfer).getData('coordY');
+          const coordX = event.dataTransfer!.getData('coordX');
+          const coordY = event.dataTransfer!.getData('coordY');
           const toy = decorDrop[+index];
           const parentToy = document.getElementById(
-            (event.dataTransfer as DataTransfer).getData('dataset')
+            event.dataTransfer!.getData('dataset')
           );
-          const countToy = (parentToy as HTMLElement).querySelector(
-            'span'
-          ) as HTMLSpanElement;
+          const countToy = parentToy!.querySelector('span') as HTMLSpanElement;
           this.isDrag = false;
-          (this.mapTree as HTMLElement).ondrop = (e) => {
+          this.mapTree!.ondrop = (e) => {
             if (
               toy instanceof HTMLImageElement &&
               this.treeContainer &&
@@ -60,7 +58,7 @@ class DragDecors {
               this.mapTree.append(toy);
               this.isDrag = true;
             }
-            countToy.textContent = (parentToy as HTMLElement)
+            countToy.textContent = parentToy!
               .getElementsByClassName('decor__img')
               .length.toString();
           };
@@ -70,9 +68,9 @@ class DragDecors {
                 toy.style.left = 'auto';
                 toy.style.top = 'auto';
               }
-              (parentToy as HTMLElement).append(toy);
+              parentToy!.append(toy);
             }
-            countToy.textContent = (parentToy as HTMLElement)
+            countToy.textContent = parentToy!
               .getElementsByClassName('decor__img')
               .length.toString();
           };
