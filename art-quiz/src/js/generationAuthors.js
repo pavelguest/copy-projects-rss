@@ -1,5 +1,5 @@
 import { rightAudio, victoryAudio, wrongAudio } from "./audioGameSupport";
-import { categoryMenu } from "./category";
+import { categoryMenu } from "./categoryMethods";
 import { mainMenu, timerQuestions } from "./menu";
 import { saveOptions } from "./saveOptions";
 
@@ -102,7 +102,7 @@ export function getGenerationQuestions(arr) {
   questionsContainer.append(div);
   div.append(img);
   questionsContainer.append(answersDiv);
-  for (let i = 0; i < arr.questions[arr.current].answers.length; i++) {
+  arr.questions[arr.current].answers.forEach((elem, i) => {
     const button = document.createElement("button");
     button.classList.add("answers__button");
     button.addEventListener("click", (e) => {
@@ -116,8 +116,8 @@ export function getGenerationQuestions(arr) {
     });
 
     answersDiv.append(button);
-    button.textContent = arr.questions[arr.current].answers[i];
-  }
+    button.textContent = elem;
+  });
 }
 
 export function getPaintDefaultColorIndicators() {
@@ -165,14 +165,13 @@ function resultAnswer(arr, i) {
     divIco.classList.add("right-answer__ico");
     rightAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].question] = 1;
-    saveOptions.save();
   } else {
     divPopup.append(divIco);
     divIco.classList.add("wrong-answer__ico");
     wrongAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].question] = 0;
-    saveOptions.save();
   }
+  saveOptions.save();
   document.querySelectorAll(".answers__button").forEach((e) => {
     e.style.pointerEvents = "none";
   });

@@ -9,8 +9,6 @@ export const settingsMenu = document.querySelector(".settings-menu");
 export const footerContainer = document.querySelector(".footer-container");
 
 function openSettings() {
-  // mainMenu.style.display = 'none';
-  // settingsMenu.style.display = 'flex';
   mainMenu.classList.add("pt-page-rotatePushBottom");
   settingsMenu.classList.add("pt-page-ontop");
   settingsMenu.classList.add("pt-page-current");
@@ -37,28 +35,25 @@ function closeSettings() {
 }
 
 export function timerQuestions(progressTime, progressBar, time) {
-  if (!saveOptions.timer) {
-    console.log("lol");
-  } else {
-    let start = 100;
-    const interval = Math.round(100 / time);
-    const intervalId = setInterval(() => {
-      if (start < 0) {
-        clearInterval(intervalId);
-        progressBar.value = 0;
-        const event = new Event("change");
-        progressBar.dispatchEvent(event);
-      } else {
-        progressTime.textContent = `${time}`;
-        progressBar.value = start;
-      }
-      start -= interval;
-      time -= 1;
-    }, 1000);
-    return () => {
+  if (!saveOptions.timer) return;
+  let start = 100;
+  const interval = Math.round(100 / time);
+  const intervalId = setInterval(() => {
+    if (start < 0) {
       clearInterval(intervalId);
-    };
-  }
+      progressBar.value = 0;
+      const event = new Event("change");
+      progressBar.dispatchEvent(event);
+    } else {
+      progressTime.textContent = `${time}`;
+      progressBar.value = start;
+    }
+    start -= interval;
+    time -= 1;
+  }, 1000);
+  return () => {
+    clearInterval(intervalId);
+  };
 }
 
 function changeSettingsTimer() {

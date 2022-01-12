@@ -1,5 +1,5 @@
 import { rightAudio, wrongAudio } from "./audioGameSupport";
-import { categoryMenu } from "./category";
+import { categoryMenu } from "./categoryMethods";
 import {
   backQuestionsMenu,
   backQuestionsMenuToHome,
@@ -125,14 +125,13 @@ function resultAnswerPic(arr, i) {
     divIco.classList.add("right-answer__ico");
     rightAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].answerRight] = 1;
-    saveOptions.save();
   } else {
     divPopup.append(divIco);
     divIco.classList.add("wrong-answer__ico");
     wrongAudio.play();
     saveOptions.rightQuestion[+arr.questions[arr.current].answerRight] = 0;
-    saveOptions.save();
   }
+  saveOptions.save();
   document.querySelectorAll(".answers__button").forEach((e) => {
     e.style.pointerEvents = "none";
   });
@@ -140,13 +139,13 @@ function resultAnswerPic(arr, i) {
 
 function nextAnswerPic(arr) {
   if (arr.current > 8) {
-    console.log(arr.current);
     scoreResult(arr.score);
     document.querySelectorAll(".category-score__result").forEach((e, i) => {
       if (arr.type === i) {
         saveOptions.scoreCategoryPic[i] = arr.score;
         saveOptions.save();
-        e.textContent = `${arr.score} / 10`;
+        const maxScore = "10";
+        e.textContent = `${arr.score} / ${maxScore}`;
       }
     });
   } else {

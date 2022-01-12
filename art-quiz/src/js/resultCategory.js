@@ -1,4 +1,4 @@
-import { categoryMenu } from "./category";
+import { categoryMenu } from "./categoryMethods";
 import images from "./images";
 import { mainMenu } from "./menu";
 import { saveOptions } from "./saveOptions";

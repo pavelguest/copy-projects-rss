@@ -14,6 +14,10 @@ export const volumeProgress = document.querySelector(".volume__progress");
 const volumeButtonMute = document.querySelector(".volume__mute");
 const audioArr = [rightAudio, wrongAudio, victoryAudio];
 
+function getBackgroundGradient(value) {
+  return `linear-gradient(to right, rgb(137, 178, 212) 0%, rgb(137, 178, 212) ${value}%, #fff ${value}%, #fff 100%)`;
+}
+
 function getAudioVolume() {
   audioArr.forEach((e) => {
     if (e.muted) {
@@ -22,7 +26,7 @@ function getAudioVolume() {
     }
     e[this.name] = this.value;
     const value = ((this.value - this.min) / (this.max - this.min)) * 100;
-    this.style.background = `linear-gradient(to right, rgb(137, 178, 212) 0%, rgb(137, 178, 212) ${value}%, #fff ${value}%, #fff 100%)`;
+    this.style.background = getBackgroundGradient(value);
     if (e.volume === 0) {
       volumeButtonMute.classList.add("mute");
     } else volumeButtonMute.classList.remove("mute");
@@ -39,9 +43,7 @@ function audioMute() {
       e.muted = true;
       volumeProgress.value = 0;
     }
-    volumeProgress.style.background = `linear-gradient(to right, rgb(137, 178, 212) 0%, rgb(137, 178, 212) ${
-      volumeProgress.value * 100
-    }%, #fff ${volumeProgress.value * 100}%, #fff 100%)`;
+    volumeProgress.style.background = getBackgroundGradient(volumeProgress.value * 100);
   });
 }
 
