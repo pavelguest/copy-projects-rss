@@ -1,15 +1,6 @@
-import News, { INews } from './news/news';
-import Sources, { ISources } from './sources/sources';
-
-export interface DataNews {
-  status: string;
-  totalResults: number;
-  articles: INews[];
-}
-export interface DataSources {
-  status: string;
-  sources: ISources[];
-}
+import { DataNews, DataSources } from 'components/types/types';
+import News from './news/news';
+import Sources from './sources/sources';
 
 export class AppView {
   private news: News;
@@ -22,12 +13,12 @@ export class AppView {
   }
 
   drawNews(data: DataNews) {
-    const values = data?.articles ? data?.articles : [];
+    const values = data?.articles ? data.articles : [];
     this.news.draw(values);
   }
 
   drawSources(data: DataSources) {
-    const values = data?.sources ? data?.sources : [];
+    const values = data?.sources ? data.sources : [];
     this.sources.draw(values);
   }
 }

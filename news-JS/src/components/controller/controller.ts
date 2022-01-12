@@ -1,6 +1,6 @@
-import { DataNews, DataSources } from 'components/view/appView';
+import { Callback, DataNews, DataSources } from 'components/types/types';
+
 import AppLoader from './appLoader';
-import { Callback } from './loader';
 
 class AppController extends AppLoader {
   getSources(callback: Callback<DataSources>) {
@@ -18,7 +18,8 @@ class AppController extends AppLoader {
 
     while (target !== newsContainer) {
       if (target.classList.contains('source__item')) {
-        const sourceId = target.getAttribute('data-source-id') as string;
+        const sourceId = target.dataset.sourceId as string;
+
         if (newsContainer.getAttribute('data-source') !== sourceId) {
           newsContainer.setAttribute('data-source', sourceId);
           super.getResp(

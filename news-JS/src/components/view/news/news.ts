@@ -1,17 +1,6 @@
+import { INews } from 'components/types/types';
 import './news.css';
 
-export interface INews {
-  author: string;
-  publishedAt: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  source: {
-    name: string;
-    id: string;
-  };
-}
 class News {
   draw(data: INews[]) {
     const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;

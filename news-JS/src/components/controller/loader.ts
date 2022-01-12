@@ -1,8 +1,5 @@
-type Options = {
-  [key: string]: string;
-};
+import { Options, Callback } from '../types/types';
 
-export type Callback<T> = (data: T) => void;
 class Loader {
   public baseLink: string;
 
