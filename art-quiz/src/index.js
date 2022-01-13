@@ -1,6 +1,7 @@
 import "./scss/main.scss";
 
 import "./js/images";
+import "./js/helperFunc";
 
 import "./js/Caterogy";
 

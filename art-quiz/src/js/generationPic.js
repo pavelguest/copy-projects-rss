@@ -12,6 +12,7 @@ import {
   timeGameChecked,
   timeGameValue,
 } from "./generationAuthors";
+import { addAnimation, delAnimation } from "./helperFunc";
 import { mainMenu, timerQuestions } from "./menu";
 import { saveOptions } from "./saveOptions";
 
@@ -29,30 +30,18 @@ export function getGenerationQuestionsPic(arr) {
   function closeQuestionsPic() {
     questionsContainer.innerHTML = "";
     cancelTimerPic();
-    questionsMenu.classList.add("pt-page-rotatePushBottom");
-    categoryMenu.classList.add("pt-page-ontop");
-    categoryMenu.classList.add("pt-page-current");
-    categoryMenu.classList.add("pt-page-rotatePushTop");
+    addAnimation(questionsMenu, categoryMenu);
     window.setTimeout(() => {
-      questionsMenu.classList.remove("pt-page-current");
-      categoryMenu.classList.remove("pt-page-ontop");
-      categoryMenu.classList.remove("pt-page-rotatePushTop");
-      questionsMenu.classList.remove("pt-page-rotatePushBottom");
+      delAnimation(questionsMenu, categoryMenu);
     }, 1000);
   }
 
   function closeQuestionsPicOpenMainMenu() {
     questionsContainer.innerHTML = "";
     cancelTimerPic();
-    questionsMenu.classList.add("pt-page-rotatePushBottom");
-    mainMenu.classList.add("pt-page-ontop");
-    mainMenu.classList.add("pt-page-current");
-    mainMenu.classList.add("pt-page-rotatePushTop");
+    addAnimation(questionsMenu, mainMenu);
     window.setTimeout(() => {
-      questionsMenu.classList.remove("pt-page-current");
-      mainMenu.classList.remove("pt-page-ontop");
-      mainMenu.classList.remove("pt-page-rotatePushTop");
-      questionsMenu.classList.remove("pt-page-rotatePushBottom");
+      delAnimation(questionsMenu, mainMenu);
     }, 1000);
   }
 

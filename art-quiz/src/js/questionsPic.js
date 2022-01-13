@@ -1,31 +1,14 @@
+import { randomPic, shuffle } from "./helperFunc";
 import images from "./images";
-import { shuffle } from "./questionsAuthor";
 
-const allAnswersPic = [];
-
-images.forEach((e) => {
-  allAnswersPic.push([e.author, e.imageNum]);
-});
+const allAnswersPic = images.map((e) => [e.author, e.imageNum]);
 
 let possibleAnswerPic = [];
 function getAllRightAnswersPic(author) {
   possibleAnswerPic = [];
-  for (let i = 0; i < allAnswersPic.length; i++) {
-    if (allAnswersPic[i][0] === author) {
-      possibleAnswerPic.push(+allAnswersPic[i][1]);
-    }
-  }
+  allAnswersPic.filter((elem) => (elem[0] === author) + elem[1]);
   return possibleAnswerPic;
 }
-
-function randomPic(min, max, noRepeat) {
-  const result = Math.round(Math.random() * (max - min) + min);
-  if (!noRepeat.includes(result)) {
-    return result;
-  }
-  return randomPic(min, max, noRepeat);
-}
-
 export class QuestionPictures {
   constructor(i) {
     this.question = `Какая картина принадлежит ${images[i].author}?`;

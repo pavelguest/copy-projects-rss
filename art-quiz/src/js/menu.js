@@ -1,4 +1,5 @@
 import { settingsTimeButtonsContainer, timeGameChecked, timerContainer } from "./generationAuthors";
+import { addAnimation, delAnimation } from "./helperFunc";
 import { saveOptions } from "./saveOptions";
 
 export const openSettingsMenu = document.querySelector(".main-menu__settings-ico");
@@ -9,28 +10,16 @@ export const settingsMenu = document.querySelector(".settings-menu");
 export const footerContainer = document.querySelector(".footer-container");
 
 function openSettings() {
-  mainMenu.classList.add("pt-page-rotatePushBottom");
-  settingsMenu.classList.add("pt-page-ontop");
-  settingsMenu.classList.add("pt-page-current");
-  settingsMenu.classList.add("pt-page-rotatePushTop");
+  addAnimation(mainMenu, settingsMenu);
   window.setTimeout(() => {
-    mainMenu.classList.remove("pt-page-current");
-    settingsMenu.classList.remove("pt-page-ontop");
-    settingsMenu.classList.remove("pt-page-rotatePushTop");
-    mainMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(mainMenu, settingsMenu);
   }, 1000);
 }
 
 function closeSettings() {
-  settingsMenu.classList.add("pt-page-rotatePushBottom");
-  mainMenu.classList.add("pt-page-ontop");
-  mainMenu.classList.add("pt-page-current");
-  mainMenu.classList.add("pt-page-rotatePushTop");
+  addAnimation(settingsMenu, mainMenu);
   window.setTimeout(() => {
-    settingsMenu.classList.remove("pt-page-current");
-    mainMenu.classList.remove("pt-page-ontop");
-    mainMenu.classList.remove("pt-page-rotatePushTop");
-    settingsMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(settingsMenu, mainMenu);
   }, 1000);
 }
 

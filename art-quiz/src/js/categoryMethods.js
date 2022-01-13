@@ -6,6 +6,7 @@ import { saveOptions } from "./saveOptions";
 import { getGenerationQuestionsPic } from "./generationPic";
 import { getCategoryResultAuthors, getCategoryResultPic, resultMenu } from "./resultCategory";
 import Category from "./Caterogy";
+import { addAnimation, delAnimation } from "./helperFunc";
 
 const playArtist = document.querySelector(".play-artist");
 const playPictures = document.querySelector(".play-pictures");
@@ -39,32 +40,23 @@ function setCategoryPic() {
 }
 
 function openCategory() {
-  mainMenu.classList.add("pt-page-rotatePushBottom");
-  categoryMenu.classList.add("pt-page-ontop", "pt-page-current", "pt-page-rotatePushTop");
+  addAnimation(mainMenu, categoryMenu);
   window.setTimeout(() => {
-    mainMenu.classList.remove("pt-page-current");
-    categoryMenu.classList.remove("pt-page-ontop", "pt-page-rotatePushTop");
-    mainMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(mainMenu, categoryMenu);
   }, 1000);
 }
 
 function closeCategory() {
-  categoryMenu.classList.add("pt-page-rotatePushBottom");
-  mainMenu.classList.add("pt-page-ontop", "pt-page-current", "pt-page-rotatePushTop");
+  addAnimation(categoryMenu, mainMenu);
   window.setTimeout(() => {
-    categoryMenu.classList.remove("pt-page-current");
-    mainMenu.classList.remove("pt-page-ontop", "pt-page-rotatePushTop");
-    categoryMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(categoryMenu, mainMenu);
   }, 1000);
 }
 
 function openCategoryResult() {
-  categoryMenu.classList.add("pt-page-rotatePushBottom");
-  resultMenu.classList.add("pt-page-ontop", "pt-page-current", "pt-page-rotatePushTop");
+  addAnimation(categoryMenu, resultMenu);
   window.setTimeout(() => {
-    categoryMenu.classList.remove("pt-page-current");
-    resultMenu.classList.remove("pt-page-ontop", "pt-page-rotatePushTop");
-    categoryMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(categoryMenu, resultMenu);
   }, 1000);
 }
 

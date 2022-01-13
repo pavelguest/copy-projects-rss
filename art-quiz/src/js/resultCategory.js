@@ -1,4 +1,5 @@
 import { categoryMenu } from "./categoryMethods";
+import { addAnimation, delAnimation } from "./helperFunc";
 import images from "./images";
 import { mainMenu } from "./menu";
 import { saveOptions } from "./saveOptions";
@@ -11,29 +12,17 @@ const backResultMenu = document.querySelector(".result-menu__back-ico");
 const backResultMenuToHome = document.querySelector(".result-menu__ico-home");
 
 function closeResultMenu() {
-  resultMenu.classList.add("pt-page-rotatePushBottom");
-  categoryMenu.classList.add("pt-page-ontop");
-  categoryMenu.classList.add("pt-page-current");
-  categoryMenu.classList.add("pt-page-rotatePushTop");
+  addAnimation(resultMenu, categoryMenu);
   window.setTimeout(() => {
-    resultMenu.classList.remove("pt-page-current");
-    categoryMenu.classList.remove("pt-page-ontop");
-    categoryMenu.classList.remove("pt-page-rotatePushTop");
-    resultMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(resultMenu, categoryMenu);
   }, 1000);
   resultMenuContainer.innerHTML = "";
 }
 
 function closeResultMenuToHome() {
-  resultMenu.classList.add("pt-page-rotatePushBottom");
-  mainMenu.classList.add("pt-page-ontop");
-  mainMenu.classList.add("pt-page-current");
-  mainMenu.classList.add("pt-page-rotatePushTop");
+  addAnimation(resultMenu, mainMenu);
   window.setTimeout(() => {
-    resultMenu.classList.remove("pt-page-current");
-    mainMenu.classList.remove("pt-page-ontop");
-    mainMenu.classList.remove("pt-page-rotatePushTop");
-    resultMenu.classList.remove("pt-page-rotatePushBottom");
+    delAnimation(resultMenu, mainMenu);
   }, 1000);
   resultMenuContainer.innerHTML = "";
 }
@@ -46,7 +35,8 @@ export function getCategoryResultAuthors(arr, count) {
   imgCategory.alt = "category";
   resultMenuImage.append(imgCategory);
   resultMenuTitle.textContent = `${count}`;
-  for (let i = 0; i < arr.questions.length; i++) {
+  const arrQuestions = [...arr.questions];
+  arrQuestions.forEach((elem) => {
     const divCardContainer = document.createElement("div");
     const divImgContainer = document.createElement("div");
     const img = document.createElement("img");
@@ -58,7 +48,7 @@ export function getCategoryResultAuthors(arr, count) {
     divImgContainer.classList.add("image-question__container");
     img.classList.add("image-question__container-img");
     divInfo.classList.add("image-question__container-info");
-    img.src = `./assets/images/img/${arr.questions[i].question}.jpg`;
+    img.src = `./assets/images/img/${elem.question}.jpg`;
     img.alt = "question";
     resultMenuContainer.append(divCardContainer);
     divCardContainer.append(divImgContainer);
@@ -67,17 +57,17 @@ export function getCategoryResultAuthors(arr, count) {
     divInfo.append(name);
     divInfo.append(author);
     divInfo.append(year);
-    name.textContent = `${images[arr.questions[i].question].name}`;
-    author.textContent = `${images[arr.questions[i].question].author}`;
-    year.textContent = `${images[arr.questions[i].question].year}`;
+    name.textContent = `${images[elem.question].name}`;
+    author.textContent = `${images[elem.question].author}`;
+    year.textContent = `${images[elem.question].year}`;
 
     divImgContainer.addEventListener("click", () => {
       divCardContainer.classList.toggle("flip");
     });
-    if (saveOptions.rightQuestion[+arr.questions[i].question]) {
+    if (saveOptions.rightQuestion[+elem.question]) {
       img.classList.add("active__category-result");
     }
-  }
+  });
 }
 
 export function getCategoryResultPic(arr, count) {
@@ -88,7 +78,8 @@ export function getCategoryResultPic(arr, count) {
   imgCategory.alt = "category";
   resultMenuImage.append(imgCategory);
   resultMenuTitle.textContent = `${count}`;
-  for (let i = 0; i < arr.questions.length; i++) {
+  const arrQuestions = [...arr.questions];
+  arrQuestions.forEach((elem) => {
     const divCardContainer = document.createElement("div");
     const divImgContainer = document.createElement("div");
     const img = document.createElement("img");
@@ -100,7 +91,7 @@ export function getCategoryResultPic(arr, count) {
     divImgContainer.classList.add("image-question__container");
     img.classList.add("image-question__container-img");
     divInfo.classList.add("image-question__container-info");
-    img.src = `./assets/images/img/${arr.questions[i].answerRight}.jpg`;
+    img.src = `./assets/images/img/${elem.answerRight}.jpg`;
     img.alt = "question";
     resultMenuContainer.append(divCardContainer);
     divCardContainer.append(divImgContainer);
@@ -109,17 +100,17 @@ export function getCategoryResultPic(arr, count) {
     divInfo.append(name);
     divInfo.append(author);
     divInfo.append(year);
-    name.textContent = `${images[arr.questions[i].answerRight].name}`;
-    author.textContent = `${images[arr.questions[i].answerRight].author}`;
-    year.textContent = `${images[arr.questions[i].answerRight].year}`;
+    name.textContent = `${images[elem.answerRight].name}`;
+    author.textContent = `${images[elem.answerRight].author}`;
+    year.textContent = `${images[elem.answerRight].year}`;
 
     divImgContainer.addEventListener("click", () => {
       divCardContainer.classList.toggle("flip");
     });
-    if (saveOptions.rightQuestion[+arr.questions[i].answerRight]) {
+    if (saveOptions.rightQuestion[+elem.answerRight]) {
       img.classList.add("active__category-result");
     }
-  }
+  });
 }
 
 backResultMenu.addEventListener("click", closeResultMenu);
