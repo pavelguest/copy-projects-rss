@@ -4,7 +4,7 @@ import { mainMenu } from "./menu";
 import { getGenerationQuestions, getPaintDefaultColorIndicators, openQuestions } from "./generationAuthors";
 import { saveOptions } from "./saveOptions";
 import { getGenerationQuestionsPic } from "./generationPic";
-import { getCategoryResultAuthors, getCategoryResultPic, resultMenu } from "./resultCategory";
+import { getCategoryResult, resultMenu } from "./resultCategory";
 import Category from "./Caterogy";
 import { addAnimation, delAnimation } from "./helperFunc";
 
@@ -96,7 +96,7 @@ function getCategoryAuthorsContainer() {
 
     buttonsScore.addEventListener("click", () => {
       openCategoryResult();
-      getCategoryResultAuthors(element, i + 1);
+      getCategoryResult(element, i + 1, "author");
     });
     img.addEventListener("click", (e) => {
       openQuestions();
@@ -155,7 +155,7 @@ function getCategoryPicContainer() {
     });
     buttonsScore.addEventListener("click", () => {
       openCategoryResult();
-      getCategoryResultPic(element, i + 1);
+      getCategoryResult(element, i + 1, "pic");
     });
     count += 1;
   });

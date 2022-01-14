@@ -90,27 +90,27 @@
 .active__category-result {
   filter: grayscale(0%);
 }
-.result-menu__back-ico {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  span {
-    display: inline-block;
-    width: 34px;
-    height: 34px;
-    background: url("../assets/svg/settings-back.svg") no-repeat;
-    transition: transform 1s ease;
-  }
-}
+.result-menu__back-ico,
 .result-menu__ico-home {
   position: absolute;
   top: 18px;
-  right: 18px;
+
   span {
     display: inline-block;
     width: 34px;
     height: 34px;
-    background: url("../assets/svg/home.svg") no-repeat;
     transition: transform 1s ease;
+  }
+}
+.result-menu__back-ico {
+  left: 18px;
+  span {
+    background: url("../assets/svg/settings-back.svg") no-repeat;
+  }
+}
+.result-menu__ico-home {
+  right: 18px;
+  span {
+    background: url("../assets/svg/home.svg") no-repeat;
   }
 }

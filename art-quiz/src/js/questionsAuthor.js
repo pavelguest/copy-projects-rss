@@ -7,7 +7,7 @@ const authorArr = Array.from(authorSet);
 export class QuestionAuthor {
   constructor(i) {
     this.question = images[i].imageNum;
-    this.answerRight = images[this.question].author;
+    this.answerRight = images[i].author;
     this.firstIncorrectAnswer = randomAuthors(0, authorArr.length - 1, [this.answerRight], authorArr);
     this.secondIncorrectAnswer = randomAuthors(
       0,

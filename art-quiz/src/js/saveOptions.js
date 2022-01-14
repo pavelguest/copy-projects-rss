@@ -3,15 +3,20 @@ import { timeGameChecked, timeGameValue } from "./generationAuthors";
 
 const buttonSaveOptions = document.querySelector(".save-settings");
 const buttonDefaultOptions = document.querySelector(".default-settings");
+const COUNT_CATEGORY = 12;
+const COUNT_QUESTIONS = 240;
+const IS_TIMER = 1;
+const TIMER_DURATION = 5;
+const VOLUME_DURATION = 0.75;
 
 export class SaveOptions {
   constructor(timer, timerDuration, volumeDuration) {
     this.timer = timer;
     this.timerDuration = timerDuration;
     this.volumeDuration = volumeDuration;
-    this.scoreCategoryAuthors = Array(12).fill(0);
-    this.scoreCategoryPic = Array(12).fill(0);
-    this.rightQuestion = Array(240).fill(0);
+    this.scoreCategoryAuthors = Array(COUNT_CATEGORY).fill(0);
+    this.scoreCategoryPic = Array(COUNT_CATEGORY).fill(0);
+    this.rightQuestion = Array(COUNT_QUESTIONS).fill(0);
   }
 
   save() {
@@ -40,15 +45,15 @@ export class SaveOptions {
   }
 
   default() {
-    this.timer = 1;
-    this.timerDuration = 5;
-    this.volumeDuration = 0.75;
+    this.timer = IS_TIMER;
+    this.timerDuration = TIMER_DURATION;
+    this.volumeDuration = VOLUME_DURATION;
     this.save();
     this.load();
   }
 }
 
-export const saveOptions = new SaveOptions(1, 5, 0.75);
+export const saveOptions = new SaveOptions(IS_TIMER, TIMER_DURATION, VOLUME_DURATION);
 
 buttonSaveOptions.addEventListener("click", () => {
   saveOptions.timer = +timeGameChecked.checked;
