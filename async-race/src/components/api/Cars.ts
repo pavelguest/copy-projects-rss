@@ -1,16 +1,19 @@
-import { ICar } from '../types/types';
+import { ICar } from '../types/Types';
 
 class Cars {
   baseUrl: string = 'http://localhost:3000';
   garage: string = `${this.baseUrl}/garage`;
 
-  async getCars() {
-    const cars = await (await fetch(this.garage)).json();
+  async getCars(page: number, limit = 7) {
+    const response = await fetch(
+      `${this.garage}?_page=${page}&_limit=${limit}`
+    );
+    const cars = await response.json();
     return cars;
   }
   async getCar(id: number) {
-    const car = await (await fetch(`${this.garage}/${id}`)).json();
-    console.log(car);
+    const response = await fetch(`${this.garage}/${id}`);
+    const car = await response.json();
     return car;
   }
   async setCar(body: ICar) {
@@ -33,11 +36,6 @@ class Cars {
   }
 }
 
-const api = new Cars();
-api.getCars();
-api.getCar(2);
-api.setCar({
-  color: 'green',
-  name: 'volga',
-});
-api.deleteCar(1);
+const cars = new Cars();
+
+export default cars;

@@ -1,0 +1,154 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: "roboto";
+  color: white;
+  background-color: #192f2d;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+li {
+  list-style: none;
+}
+button {
+  border: none;
+  outline: none;
+}
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+}
+.main {
+  flex: 1 1 auto;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+.footer-ico__github {
+  width: 35px;
+  background: center url("./../assets/svg/github.svg");
+}
+.footer-ico__school {
+  width: 60px;
+  background: center url("./../assets/svg/rss.svg");
+}
+.footer-ico__github,
+.footer-ico__school {
+  display: block;
+  height: 35px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.header-nav__button {
+  padding: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: none;
+  box-shadow: 2px 2px 20px 2px #000a;
+  &:hover {
+    background: chocolate;
+  }
+}
+.buttons {
+  &:hover {
+    background: chocolate;
+  }
+}
+.garage-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 180px);
+  padding: 10px;
+  box-shadow: 2px 2px 20px 2px #000a;
+}
+.garage-page__title {
+  margin-bottom: 20px;
+}
+.garage-page__nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  margin-bottom: 10px;
+  padding: 5px 0;
+  box-shadow: 2px 2px 20px 2px #000a;
+}
+.cars-list__item-car {
+  position: relative;
+  display: flex;
+  margin-bottom: 5px;
+  border-bottom: solid 2px #ffffff;
+  .car__title {
+    position: absolute;
+    top: 0;
+    left: 120px;
+  }
+}
+.item-car__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: fit-content;
+  margin-bottom: 5px;
+  padding: 5px;
+  box-shadow: 2px 2px 20px 2px #000a;
+
+  row-gap: 5px;
+}
+.item-car__image {
+  display: block;
+  width: 90px;
+  height: 70px;
+  padding: 5px;
+  transition: 0.3s linear;
+}
