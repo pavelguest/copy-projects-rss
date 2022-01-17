@@ -7,5 +7,14 @@ interface ICars {
   color: string;
   id: number;
 }
-
-export { ICar, ICars };
+interface IService<T> {
+  all: () => Promise<T>;
+  // get: (id: number) => Promise<T>;
+  set: (body: ICar) => Promise<T>;
+  delete: (id: number) => Promise<T>;
+}
+interface IData {
+  cars: Promise<ICars>;
+  count: string | null;
+}
+export { ICar, ICars, IService, IData };

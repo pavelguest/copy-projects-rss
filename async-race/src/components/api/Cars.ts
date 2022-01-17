@@ -1,22 +1,17 @@
-import { ICar } from '../types/Types';
+import { ICar, ICars } from '../types/Types';
 
 class Cars {
   baseUrl: string = 'http://localhost:3000';
   garage: string = `${this.baseUrl}/garage`;
 
-  async getCars(page: number, limit = 7) {
-    const response = await fetch(
-      `${this.garage}?_page=${page}&_limit=${limit}`
-    );
-    const cars = await response.json();
-    return cars;
+  async All(page: number, limit = 7) {
+    return await fetch(`${this.garage}?_page=${page}&_limit=${limit}`);
   }
-  async getCar(id: number) {
+  async get(id: number): Promise<ICars> {
     const response = await fetch(`${this.garage}/${id}`);
-    const car = await response.json();
-    return car;
+    return response.json();
   }
-  async setCar(body: ICar) {
+  async set(body: ICar) {
     await (
       await fetch(this.garage, {
         method: 'POST',
@@ -27,15 +22,16 @@ class Cars {
       })
     ).json();
   }
-  async deleteCar(id: number) {
-    await (
-      await fetch(`${this.garage}/${id}`, {
-        method: 'DELETE',
-      })
-    ).json();
+  async delete(id: number) {
+    const res = await fetch(`${this.garage}/${id}`, {
+      method: 'DELETE',
+    });
+    console.log(res.ok);
+
+    return res.ok;
   }
 }
 
-const cars = new Cars();
+// const cars = new Cars();
 
-export default cars;
+export default Cars;

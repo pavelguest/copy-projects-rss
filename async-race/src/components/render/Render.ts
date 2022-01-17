@@ -3,7 +3,7 @@ import buttons from '../buttons/Buttons';
 import { ICars } from '../types/Types';
 
 class Render {
-  renderBaseLayout() {
+  baseLayout() {
     document.body.insertAdjacentHTML(
       'beforeend',
       `<div class="wrapper">
@@ -30,26 +30,51 @@ class Render {
       </div>`
     );
   }
-  renderGaragePage(cars: ICars[]) {
-    console.log(cars);
+  garagePage({ ...args }) {
+    const { cars, count } = args;
+
     document.getElementById('main-page')!.innerHTML = '';
     const div = document.createElement('div');
     const ul = document.createElement('ul');
     div.classList.add('garage-page');
+    ul.classList.add('garage-page__cars-list');
     div.insertAdjacentHTML(
       'beforeend',
-      `
-      <h2 class="garage-page__title">Garage (${cars.length})</h2>
-      <div class="garage-page__nav">
-        <p class="garage-page__nav-title">page #${state.page}</p>
-        <div garage-page__nav-buttons>
-          <button class="buttons" id="prev-list">prev</button>
-          <button class="buttons" id="next-list">next</button>
+      `<div class="garage-page__controls">
+        <div class="controls__left">
+          <h2 class="garage-page__title">Garage (${count})</h2>
+          <div class="garage-page__nav">
+            <p class="garage-page__nav-title">page #${state.page}</p>
+            <div garage-page__nav-buttons>
+              <button class="buttons" id="prev-list">prev</button>
+              <button class="buttons" id="next-list">next</button>
+            </div>
+          </div>
+        </div>
+        <div class="controls__right">
+          <div class="garage-page__settings-inputs">
+            <div class="settings-inputs__create">
+              <input type="text" id="create-car">
+              <input type="color" value="#ffffff" id="create-color">
+              <button id="create">create</button>
+            </div>
+            <div class="settings-inputs__update">
+              <input type="text" id="update-car">
+              <input type="color" value="#ffffff" id="update-color">
+              <button id="update">update</button>
+            </div>
+          </div>
+          <div class="garage-page__settings-buttons">
+            <button class="buttons" id="race">race</button>
+            <button class="buttons" id="reset">reset</button>
+            <button class="buttons" id="generate">generate</button>
+            </div>
         </div>
       </div>
+
+
     `
     );
-    ul.classList.add('garage-page__cars-list');
 
     document.getElementById('main-page')?.append(div);
     div.append(ul);
@@ -69,15 +94,16 @@ class Render {
           </div>
           <p class="car__title">${name}</p>
           <div class="item-car__image">
-            ${this.renderSvgCar(color)}
+            ${this.drawSvgCar(color)}
           </div>
         </li>`
       );
       buttons.addListenerForButtonsCar(id);
     }
     buttons.addListenerForListCars();
+    buttons.addListenerForSettingsCars();
   }
-  renderSvgCar(color: string) {
+  drawSvgCar(color: string) {
     return `
     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 511 511" style="enable-background:new 0 0 511 511;" xml:space="preserve">

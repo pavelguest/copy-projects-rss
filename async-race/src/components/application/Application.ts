@@ -1,11 +1,11 @@
-import cars from '../api/Cars';
+import carService from '../api/CarService';
 import render from '../render/Render';
 import state from './state';
 
 class Application {
-  start() {
-    render.renderBaseLayout();
-    cars.getCars(state.page).then((elem) => render.renderGaragePage(elem));
+  async start() {
+    render.baseLayout();
+    render.garagePage(await carService.all());
   }
 }
 

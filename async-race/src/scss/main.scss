@@ -112,6 +112,27 @@ a:active {
 .garage-page__title {
   margin-bottom: 20px;
 }
+.garage-page__controls {
+  display: flex;
+  justify-content: space-between;
+}
+.controls__right {
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 5px;
+}
+.garage-page__settings-inputs {
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 5px;
+}
+.settings-inputs__create,
+.settings-inputs__update {
+  display: flex;
+  column-gap: 5px;
+}
 .garage-page__nav {
   display: flex;
   flex-direction: column;
