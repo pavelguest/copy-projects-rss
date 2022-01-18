@@ -1,5 +1,5 @@
 import state from '../application/state';
-import buttons from '../buttons/Buttons';
+import listeners from '../buttons/Listeners';
 import { ICars } from '../types/Types';
 
 class Render {
@@ -54,12 +54,12 @@ class Render {
         <div class="controls__right">
           <div class="garage-page__settings-inputs">
             <div class="settings-inputs__create">
-              <input type="text" id="create-car">
+              <input type="text" id="create-name">
               <input type="color" value="#ffffff" id="create-color">
-              <button id="create">create</button>
+              <button id="create" disabled>create</button>
             </div>
             <div class="settings-inputs__update">
-              <input type="text" id="update-car">
+              <input type="text" id="update-name">
               <input type="color" value="#ffffff" id="update-color">
               <button id="update">update</button>
             </div>
@@ -98,10 +98,10 @@ class Render {
           </div>
         </li>`
       );
-      buttons.addListenerForButtonsCar(id);
+      listeners.addListenerForButtonsCar(id);
     }
-    buttons.addListenerForListCars();
-    buttons.addListenerForSettingsCars();
+    listeners.addListenerForListCars();
+    listeners.addListenerForSettingsCars();
   }
   drawSvgCar(color: string) {
     return `

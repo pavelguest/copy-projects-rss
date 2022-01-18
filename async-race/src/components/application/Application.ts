@@ -1,6 +1,5 @@
 import carService from '../api/CarService';
 import render from '../render/Render';
-import state from './state';
 
 class Application {
   async start() {

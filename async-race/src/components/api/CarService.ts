@@ -20,6 +20,14 @@ class CarService implements IService<IData> {
   }
   async set(body: ICar) {
     this.repo.set(body);
+    return this.all();
+  }
+  async get(id: number) {
+    return this.repo.get(id);
+  }
+  async update(id: number, body: ICar) {
+    this.repo.update(id, body);
+    return this.all();
   }
 }
 

@@ -9,9 +9,9 @@ interface ICars {
 }
 interface IService<T> {
   all: () => Promise<T>;
-  // get: (id: number) => Promise<T>;
   set: (body: ICar) => Promise<T>;
   delete: (id: number) => Promise<T>;
+  update: (id: number, body: ICar) => Promise<T>;
 }
 interface IData {
   cars: Promise<ICars>;

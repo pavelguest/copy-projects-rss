@@ -30,6 +30,17 @@ class Cars {
 
     return res.ok;
   }
+  async update(id: number, body: ICar) {
+    await (
+      await fetch(`${this.garage}/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    ).json();
+  }
 }
 
 // const cars = new Cars();
