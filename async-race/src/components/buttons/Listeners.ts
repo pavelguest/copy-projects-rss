@@ -1,12 +1,18 @@
 import carService from '../api/CarService';
 import state from '../application/state';
 import render from '../render/Render';
+import { brandsCars, modelsCars } from '../types/generateNameCars';
 
 class Listeners {
+  generateRandomCars(arr: string[], min: number, max: number) {
+    return arr[Math.round(Math.random() * (max - min) + min)];
+  }
   addListenerForButtonsCar(idCar: number) {
     document
       .getElementById(`select-car${idCar}`)
       ?.addEventListener('click', async () => {
+        (document.getElementById('update') as HTMLButtonElement).disabled =
+          false;
         const { color, name, id } = await carService.get(idCar);
         state.selectCar = id;
         (document.getElementById('update-name') as HTMLButtonElement).value =
@@ -59,7 +65,30 @@ class Listeners {
     const inputUpdateColorCar = document.getElementById(
       'update-color'
     ) as HTMLButtonElement;
+    const buttonCarsGenerate = document.getElementById(
+      'generate'
+    ) as HTMLButtonElement;
 
+    buttonCarsGenerate.addEventListener('click', async () => {
+      for (let i = 0; i <= 100; i++) {
+        const model = this.generateRandomCars(
+          modelsCars,
+          0,
+          modelsCars.length - 1
+        );
+        const brands = this.generateRandomCars(
+          brandsCars,
+          0,
+          brandsCars.length - 1
+        );
+        const colorCar =
+          '#' +
+          (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+
+        await carService.set({ color: colorCar, name: `${brands} ${model}` });
+      }
+      render.garagePage(await carService.all());
+    });
     buttonCreateCar.addEventListener('click', async () => {
       if (inputNameCar.value !== '') {
         render.garagePage(

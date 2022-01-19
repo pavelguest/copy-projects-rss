@@ -61,7 +61,7 @@ class Render {
             <div class="settings-inputs__update">
               <input type="text" id="update-name">
               <input type="color" value="#ffffff" id="update-color">
-              <button id="update">update</button>
+              <button id="update" disabled>update</button>
             </div>
           </div>
           <div class="garage-page__settings-buttons">
@@ -134,6 +134,7 @@ class Render {
 	<path d="M440,291.5c-4.418,0-8,3.582-8,8c0,8.822-7.178,16-16,16s-16-7.178-16-16s7.178-16,16-16c4.418,0,8-3.582,8-8s-3.582-8-8-8
 		c-17.645,0-32,14.355-32,32s14.355,32,32,32s32-14.355,32-32C448,295.082,444.418,291.5,440,291.5z" fill="#fff"/>
 </g>
+</svg>
     `;
   }
 }

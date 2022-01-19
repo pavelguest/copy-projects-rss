@@ -26,8 +26,6 @@ class Cars {
     const res = await fetch(`${this.garage}/${id}`, {
       method: 'DELETE',
     });
-    console.log(res.ok);
-
     return res.ok;
   }
   async update(id: number, body: ICar) {
@@ -42,7 +40,5 @@ class Cars {
     ).json();
   }
 }
-
-// const cars = new Cars();
 
 export default Cars;

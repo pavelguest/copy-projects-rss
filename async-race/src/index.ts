@@ -1,5 +1,6 @@
 import './scss/main.scss';
 
+import './components/types/generateNameCars';
 import './components/application/state';
 import './components/types/Types';
 import './components/api/Cars';
