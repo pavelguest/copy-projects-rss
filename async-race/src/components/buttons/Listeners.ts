@@ -1,24 +1,33 @@
 import carService from '../api/CarService';
+import engineService from '../api/EngineService';
 import state from '../application/state';
 import render from '../render/Render';
 import { brandsCars, modelsCars } from '../types/generateNameCars';
+import {
+  animation,
+  getDistance,
+  randomCars,
+  randomColor,
+} from '../types/helperFunc';
+import { IStatus } from '../types/Types';
 
 class Listeners {
-  generateRandomCars(arr: string[], min: number, max: number) {
-    return arr[Math.round(Math.random() * (max - min) + min)];
-  }
   addListenerForButtonsCar(idCar: number) {
+    const updateName = document.getElementById(
+      'update-name'
+    ) as HTMLButtonElement;
+    const update = document.getElementById('update') as HTMLButtonElement;
+    const updateColor = document.getElementById(
+      'update-color'
+    ) as HTMLButtonElement;
     document
       .getElementById(`select-car${idCar}`)
       ?.addEventListener('click', async () => {
-        (document.getElementById('update') as HTMLButtonElement).disabled =
-          false;
+        update.disabled = false;
         const { color, name, id } = await carService.get(idCar);
         state.selectCar = id;
-        (document.getElementById('update-name') as HTMLButtonElement).value =
-          name;
-        (document.getElementById('update-color') as HTMLButtonElement).value =
-          color;
+        updateName.value = name;
+        updateColor.value = color;
       });
     document
       .getElementById(`remove-car${idCar}`)
@@ -27,10 +36,24 @@ class Listeners {
       });
     document
       .getElementById(`start-car${idCar}`)
-      ?.addEventListener('click', () => console.log(`1`));
-    document
-      .getElementById(`reset-car${idCar}`)
-      ?.addEventListener('click', () => console.log(`1`));
+      ?.addEventListener('click', async () => {
+        const { velocity, distance } = await engineService.status(
+          idCar,
+          IStatus.started
+        );
+        const start = document.querySelector(
+          `.car-number${idCar}`
+        ) as HTMLElement;
+        const finish = document.querySelector('.flag') as HTMLElement;
+        const HTMLdistance: number = getDistance(start, finish);
+        console.log(HTMLdistance);
+        const idAnimation = animation(distance / velocity, start, HTMLdistance);
+      });
+    document.getElementById(`reset-car${idCar}`)?.addEventListener(
+      'click',
+      () => {}
+      // engineService.status(idCar, IStatus.stopped)
+    );
   }
   addListenerForListCars() {
     document
@@ -71,21 +94,13 @@ class Listeners {
 
     buttonCarsGenerate.addEventListener('click', async () => {
       for (let i = 0; i <= 100; i++) {
-        const model = this.generateRandomCars(
-          modelsCars,
-          0,
-          modelsCars.length - 1
-        );
-        const brands = this.generateRandomCars(
-          brandsCars,
-          0,
-          brandsCars.length - 1
-        );
-        const colorCar =
-          '#' +
-          (0x1000000 + Math.random() * 0xffffff).toString(16).substr(1, 6);
+        const model = randomCars(modelsCars, 0, modelsCars.length - 1);
+        const brands = randomCars(brandsCars, 0, brandsCars.length - 1);
 
-        await carService.set({ color: colorCar, name: `${brands} ${model}` });
+        await carService.set({
+          color: randomColor(),
+          name: `${brands} ${model}`,
+        });
       }
       render.garagePage(await carService.all());
     });

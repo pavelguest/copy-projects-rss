@@ -1,9 +1,14 @@
 class Engine {
   baseUrl: string = 'http://localhost:3000';
   engine: string = `${this.baseUrl}/engine`;
-  start() {}
-  drive() {}
-  stop() {}
+  async status(id: number, status: string) {
+    const response = await fetch(`${this.engine}?id=${id}&status=${status}`, {
+      method: 'PATCH',
+    });
+    return response.json();
+  }
   startAll() {}
   stopAll() {}
 }
+
+export default Engine;

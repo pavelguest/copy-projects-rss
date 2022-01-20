@@ -17,4 +17,14 @@ interface IData {
   cars: Promise<ICars>;
   count: string | null;
 }
-export { ICar, ICars, IService, IData };
+enum IStatus {
+  started = `started`,
+  stopped = `stopped`,
+  drive = `drive`,
+}
+interface IState {
+  page: number;
+  countCar: number;
+  selectCar: number;
+}
+export { ICar, ICars, IService, IData, IStatus, IState };
