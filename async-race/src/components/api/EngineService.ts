@@ -1,12 +1,15 @@
-import Engine from './Engine';
+import EngineRepository from './EngineRepository';
 
-class EngineService {
-  repo: Engine;
+export class EngineService {
+  repo: EngineRepository;
   constructor() {
-    this.repo = new Engine();
+    this.repo = new EngineRepository();
   }
   async status(id: number, status: string) {
-    return this.repo.status(id, status);
+    return this.repo.status(id, status).then((data) => {
+      const { velocity, distance } = data;
+      return distance / velocity;
+    });
   }
 }
 

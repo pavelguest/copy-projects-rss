@@ -1,10 +1,12 @@
 import carService from '../api/CarService';
-import render from '../render/Render';
+import garageRender from '../render/GarageRender';
+import baseLayoutRender from '../RendersElements/BaseLayoutRender';
+import state from './state';
 
 class Application {
   async start() {
-    render.baseLayout();
-    render.garagePage(await carService.all());
+    baseLayoutRender.render();
+    garageRender.render(await carService.all(state.page));
   }
 }
 

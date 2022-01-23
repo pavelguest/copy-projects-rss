@@ -1,6 +1,6 @@
 import { ICar, ICars } from '../types/Types';
 
-class Cars {
+class CarsRepository {
   baseUrl: string = 'http://localhost:3000';
   garage: string = `${this.baseUrl}/garage`;
 
@@ -41,4 +41,4 @@ class Cars {
   }
 }
 
-export default Cars;
+export default CarsRepository;

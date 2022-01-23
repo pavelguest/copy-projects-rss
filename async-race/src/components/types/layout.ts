@@ -20,40 +20,6 @@ const base: string = `<div class="wrapper">
     ></a>
   </footer>
 </div>`;
-const garage = (count: number, page: number) => {
-  return `<div class="garage-page__controls">
-   <div class="controls__left">
-     <h2 class="garage-page__title">Garage (${count})</h2>
-     <div class="garage-page__nav">
-       <p class="garage-page__nav-title">page #${page}</p>
-       <div garage-page__nav-buttons>
-         <button class="buttons" id="prev-list">prev</button>
-         <button class="buttons" id="next-list">next</button>
-       </div>
-     </div>
-   </div>
-   <div class="controls__right">
-     <div class="garage-page__settings-inputs">
-       <div class="settings-inputs__create">
-         <input type="text" id="create-name">
-         <input type="color" value="#ffffff" id="create-color">
-         <button id="create" disabled>create</button>
-       </div>
-       <div class="settings-inputs__update">
-         <input type="text" id="update-name">
-         <input type="color" value="#ffffff" id="update-color">
-         <button id="update" disabled>update</button>
-       </div>
-     </div>
-     <div class="garage-page__settings-buttons">
-       <button class="buttons" id="race">race</button>
-       <button class="buttons" id="reset">reset</button>
-       <button class="buttons" id="generate">generate</button>
-       </div>
-   </div>
- </div>
-`;
-};
 
 const carSvg = (color: string) => {
   return `
@@ -89,23 +55,24 @@ const carSvg = (color: string) => {
 </svg>
     `;
 };
-const carContainer = (id: number, name: string, color: string) => {
-  return `<li class="cars-list__item-car">
-  <div class="item-car__buttons">
-    <div class="buttons__settings-car">
-      <button class="buttons" data-id-car="${id}" id="select-car${id}">select</button>
-      <button class="buttons" data-id-car="${id}" id="remove-car${id}">remove</button>
-    </div>
-    <div class="buttons__game-car">
-    <button class="buttons" data-id-car="${id}" id="start-car${id}">start</button>
-    <button class="buttons" data-id-car="${id}" id="reset-car${id}">reset</button>
-    </div>
-  </div>
-  <p class="car__title">${name}</p>
-  <div class="item-car__image car-number${id}">
-  ${carSvg(color)}
-  </div>
-  <div class="flag"></div>
-</li>`;
+
+const tableWinners = (
+  numeration: number,
+  id: number,
+  color: string,
+  name: string,
+  wins: number,
+  time: number
+) => {
+  return `
+  <div>${numeration}</div>
+  <div>${id}</div>
+  <div class="winner-car__container">${carSvg(color)}</div>
+  <div>${name}</div>
+  <div>${wins}</div>
+  <div>${time} s</div>
+
+`;
 };
-export { base, garage, carContainer };
+
+export { base, carSvg, tableWinners };

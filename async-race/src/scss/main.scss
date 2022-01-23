@@ -128,6 +128,7 @@ a:active {
 
   row-gap: 5px;
 }
+
 .settings-inputs__create,
 .settings-inputs__update {
   display: flex;
@@ -173,10 +174,69 @@ a:active {
 
   row-gap: 5px;
 }
+.buttons__game-car,
+.buttons__settings-car,
+.garage-page__nav-buttons,
+.garage-page__settings-buttons {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 5px;
+}
 .item-car__image {
   display: block;
   width: 90px;
   height: 70px;
   padding: 5px;
   transition: 0.3s linear;
+}
+.winners-page__cars-list {
+  max-width: 800px;
+}
+.table-winners__title,
+.table-winners__car {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid #ffffff;
+  div {
+    width: 100px;
+    text-align: center;
+  }
+  button {
+    width: 100px;
+  }
+  button:hover {
+    background-color: #7dfff4;
+  }
+}
+.table-winners__car {
+  height: 50px;
+}
+.winner-car__container {
+  width: 100px;
+  height: 100px;
+}
+.popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 400px;
+  background-color: rgb(61, 94, 94);
+  box-shadow: 2px 2px 20px 2px #000a;
+  transform: translate(-50%, -50%);
+  .popup__title {
+    font-size: 30px;
+    text-align: center;
+  }
+  .popup__button {
+    padding: 15px;
+  }
+  .popup__button:hover {
+    background-color: aqua;
+  }
 }

@@ -1,4 +1,4 @@
-class Engine {
+class EngineRepository {
   baseUrl: string = 'http://localhost:3000';
   engine: string = `${this.baseUrl}/engine`;
   async status(id: number, status: string) {
@@ -7,8 +7,6 @@ class Engine {
     });
     return response.json();
   }
-  startAll() {}
-  stopAll() {}
 }
 
-export default Engine;
+export default EngineRepository;
