@@ -1,4 +1,4 @@
-import { IState } from '../types/Types';
+import { IState } from '../types/types';
 
 let state: IState = {
   page: 1,
@@ -6,8 +6,9 @@ let state: IState = {
   sort: 'id',
   order: 'ASC',
   countCar: 0,
+  countWins: 0,
   selectCar: 0.5,
-  test: null,
+  selectCarName: '',
   isWinner: false,
 };
 export default state;

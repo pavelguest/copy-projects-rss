@@ -5,8 +5,7 @@ import state from '../application/state';
 import garageRender from '../render/GarageRender';
 import { animation, getDistance } from '../types/helperFunc';
 import { carSvg } from '../types/layout';
-import { ICars, IStatus } from '../types/Types';
-import baseLayoutRender from './BaseLayoutRender';
+import { ICars, IStatus } from '../types/types';
 import windowWinnerCarRender from './WindowWinnerCarRender';
 
 class CarRender {
@@ -17,13 +16,12 @@ class CarRender {
 
   private car: HTMLElement | undefined;
   private flag: HTMLElement | undefined;
-  idAnimation: number | null;
+  stopAnimation!: () => void;
 
   constructor(props: ICars) {
     this.id = props.id;
     this.name = props.name;
     this.color = props.color;
-    this.idAnimation = null;
 
     this.engine = new EngineService();
   }
@@ -46,51 +44,47 @@ class CarRender {
   }
 
   async drive() {
-    const time = await this.engine.status(this.id, IStatus.started);
+    const timeOfAllRace = await this.engine.status(this.id, IStatus.started);
     const start = this.car;
     const finish = this.flag;
     const trackDistance: number = getDistance(start!, finish!);
-    this.idAnimation = animation(time, start!, trackDistance);
-    const timeToSec = +(time / 1000).toFixed(1);
+    this.stopAnimation = animation(timeOfAllRace, start!, trackDistance);
+
+    const timeToSec = +(timeOfAllRace / 1000).toFixed(1);
     try {
       await this.engine.status(this.id, IStatus.drive);
-      console.log(`${this.id} доехала`);
-      if (!state.isWinner) {
-        console.log(`победитель`, this.id);
-        state.isWinner = true;
-        windowWinnerCarRender.render(this.name, timeToSec);
-        const response = await winnersService.get(this.id);
-        if (response.status === 404) {
-          await winnersService.set({ id: this.id, wins: 1, time: timeToSec });
-        } else {
-          const winnerObj = await response.json();
-          console.log(winnerObj.time);
 
-          if (winnerObj.time <= timeToSec) {
-            await winnersService.update(this.id, {
-              wins: winnerObj.wins + 1,
-              time: winnerObj.time,
-            });
-          } else {
-            await winnersService.update(this.id, {
-              wins: winnerObj.wins + 1,
-              time: timeToSec,
-            });
-          }
-        }
+      if (state.isWinner) {
+        return;
+      }
+
+      state.isWinner = true;
+      windowWinnerCarRender.render(this.name, timeToSec);
+      const response = await winnersService.get(this.id);
+      if (response.status === 404) {
+        await winnersService.set({ id: this.id, wins: 1, time: timeToSec });
+      } else {
+        const winnerObj = await response.json();
+
+        await winnersService.update(this.id, {
+          wins: winnerObj.wins + 1,
+          time: winnerObj.time <= timeToSec ? winnerObj.time : timeToSec,
+        });
       }
     } catch (error) {
-      console.log(`${this.id} сломалась`);
-      cancelAnimationFrame(this.idAnimation);
+      this.stopAnimation();
     }
   }
+
   async stop() {
-    cancelAnimationFrame(this.idAnimation!);
+    this.stopAnimation();
     await this.engine.status(this.id, IStatus.stopped);
     this.car!.style.transform = `translate(0px)`;
   }
+
   async delete() {
     garageRender.render(await carService.delete(this.id));
+    await winnersService.delete(this.id);
   }
 }
 

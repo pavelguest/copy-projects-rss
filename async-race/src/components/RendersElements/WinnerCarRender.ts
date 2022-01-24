@@ -1,6 +1,6 @@
 import carService from '../api/CarService';
 import { tableWinners } from '../types/layout';
-import { IWinners } from '../types/Types';
+import { IWinners } from '../types/types';
 
 class WinnerCarRender {
   async render(args: IWinners, index: number) {

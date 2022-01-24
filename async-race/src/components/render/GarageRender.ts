@@ -1,7 +1,7 @@
 import state from '../application/state';
 import CarRender from '../RendersElements/CarRender';
 import TrackRender from '../RendersElements/TrackRender';
-import { ICars } from '../types/Types';
+import { ICars } from '../types/types';
 import GarageLeftControlsRender from './GarageLeftControlsRender';
 import GarageRaceControlsRender from './GarageRaceControlsRender';
 import GarageRightControlsRender from './GarageRightControlsRender';
@@ -23,10 +23,11 @@ class GarageRender {
       return;
     }
     const { cars, count } = args;
+    state.countCar = count;
     this.arrCars = [];
     this.mainPage.innerHTML = '';
-    const garageWrapper = document.createElement('li');
-    const garageControls = document.createElement('li');
+    const garageWrapper = document.createElement('div');
+    const garageControls = document.createElement('div');
     const carsWrapper = document.createElement('ul');
     garageWrapper.classList.add('garage-page');
     garageControls.classList.add('garage-page__controls');
@@ -43,8 +44,9 @@ class GarageRender {
     this.garageRaceControls = new GarageRaceControlsRender(this.arrCars);
 
     garageControls.append(this.garageLeftControls.render(count, state.page));
-    garageControls.append(this.garageRaceControls.render());
-    garageControls.append(this.garageRightControls.render());
+    const rightControls = this.garageRightControls.render();
+    garageControls.append(rightControls);
+    rightControls.append(this.garageRaceControls.render());
   }
 }
 

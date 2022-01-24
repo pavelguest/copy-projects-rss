@@ -5,7 +5,10 @@ import ControlsRender from './ControlsRender';
 
 class TrackRender {
   car: CarRender;
-
+  selectCarButton: HTMLButtonElement | null = null;
+  deleteCarButton: HTMLButtonElement | null = null;
+  raceCarButton: HTMLButtonElement | null = null;
+  stopCarButton: HTMLButtonElement | null = null;
   constructor(car: CarRender) {
     this.car = car;
   }
@@ -23,33 +26,35 @@ class TrackRender {
     const buttonsGameCar = document.createElement('li');
     buttonsGameCar.classList.add('buttons__game-car');
 
-    const selectCarButton = new ControlsRender(
+    this.selectCarButton = new ControlsRender(
       'select-car',
       'select',
       this.selectCar.bind(this)
-    );
-    const deleteCarButton = new ControlsRender(
+    ).render();
+    this.deleteCarButton = new ControlsRender(
       'remove-car',
       'remove',
       this.removeCar.bind(this)
-    );
-    const raceCarButton = new ControlsRender(
+    ).render();
+    this.raceCarButton = new ControlsRender(
       'start-car',
       'start',
       this.startCar.bind(this)
-    );
-    const stopCarButton = new ControlsRender(
+    ).render();
+    this.raceCarButton.classList.add('start-car');
+    this.stopCarButton = new ControlsRender(
       'reset-car',
       'reset',
       this.stopCar.bind(this)
-    );
-
+    ).render();
+    this.stopCarButton.disabled = true;
+    this.stopCarButton.classList.add('stop-car');
     controlWrapper.append(buttonsSettingsCar);
-    buttonsSettingsCar.append(selectCarButton.render());
-    buttonsSettingsCar.append(deleteCarButton.render());
+    buttonsSettingsCar.append(this.selectCarButton);
+    buttonsSettingsCar.append(this.deleteCarButton);
     controlWrapper.append(buttonsGameCar);
-    buttonsGameCar.append(raceCarButton.render());
-    buttonsGameCar.append(stopCarButton.render());
+    buttonsGameCar.append(this.raceCarButton);
+    buttonsGameCar.append(this.stopCarButton);
 
     carWrapper.append(controlWrapper);
     this.car.render(carWrapper);
@@ -73,9 +78,13 @@ class TrackRender {
     this.car.delete();
   }
   async startCar() {
+    this.raceCarButton!.disabled = true;
+    this.stopCarButton!.disabled = false;
     this.car.drive();
   }
   async stopCar() {
+    this.raceCarButton!.disabled = false;
+    this.stopCarButton!.disabled = true;
     this.car.stop();
   }
 }

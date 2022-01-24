@@ -1,7 +1,7 @@
 import state from '../application/state';
 import WinnerCarRender from '../RendersElements/WinnerCarRender';
 import WinnersSortControls from '../RendersElements/WinnersSortControls';
-import { IWinners } from '../types/Types';
+import { IWinners } from '../types/types';
 import WinnersControlsListRender from './WinnersControlsRender';
 
 class WinnersRender {
@@ -22,6 +22,7 @@ class WinnersRender {
     }
 
     const { cars, count } = args;
+    state.countWins = count;
 
     this.mainPage.innerHTML = '';
     const winnersWrapper = document.createElement('li');

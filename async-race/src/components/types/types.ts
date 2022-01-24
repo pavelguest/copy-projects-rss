@@ -41,8 +41,9 @@ interface IState {
   sort: string;
   order: string;
   countCar: number;
+  countWins: number;
   selectCar: number;
-  test: null | number;
+  selectCarName: string;
   isWinner: boolean;
 }
 

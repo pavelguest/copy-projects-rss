@@ -1,5 +1,5 @@
 import state from '../application/state';
-import { ITimeWins, IWinners, IWins } from '../types/Types';
+import { ITimeWins, IWinners, IWins } from '../types/types';
 
 class WinnersRepository {
   baseUrl: string = 'http://localhost:3000';

@@ -10,8 +10,20 @@ class WindowWinnerCarRender {
     popupButton.textContent = `OK`;
     popup.append(popupTitle);
     popup.append(popupButton);
+    (document.querySelector('#reset') as HTMLButtonElement).disabled = true;
     popupButton.addEventListener('click', () => {
       popup.remove();
+      document.querySelectorAll('button').forEach((button) => {
+        button.disabled = false;
+      });
+      document.querySelectorAll('.start-car').forEach((button) => {
+        if (button instanceof HTMLButtonElement) button.disabled = true;
+      });
+      document.querySelectorAll('.stop-car').forEach((button) => {
+        if (button instanceof HTMLButtonElement) button.disabled = true;
+      });
+      (document.querySelector('#reset') as HTMLButtonElement).disabled = false;
+      (document.querySelector('#race') as HTMLButtonElement).disabled = true;
     });
     document.body.append(popup);
   }

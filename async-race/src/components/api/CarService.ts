@@ -1,5 +1,5 @@
 import state from '../application/state';
-import { ICar, IData, IService } from '../types/Types';
+import { ICar, IData, IService } from '../types/types';
 import CarsRepository from './CarsRepository';
 
 class CarService implements IService<IData> {

@@ -1,4 +1,4 @@
-import { ITimeWins, IWinners, IWins } from '../types/Types';
+import { ITimeWins, IWinners, IWins } from '../types/types';
 import WinnersRepository from './WinnersRepository';
 
 class WinnersService {
@@ -23,6 +23,10 @@ class WinnersService {
   }
   async update(id: number, body: IWins | ITimeWins) {
     this.repo.update(id, body);
+    return this.all();
+  }
+  async delete(id: number) {
+    await this.repo.delete(id);
     return this.all();
   }
 }

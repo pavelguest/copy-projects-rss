@@ -1,4 +1,4 @@
-import { ICar, ICars } from '../types/Types';
+import { ICar, ICars } from '../types/types';
 
 class CarsRepository {
   baseUrl: string = 'http://localhost:3000';

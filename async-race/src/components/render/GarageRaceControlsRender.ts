@@ -29,6 +29,7 @@ class GarageRaceControlsRender {
       'reset',
       this.stopCars.bind(this)
     ).render();
+    this.stopCarsButton.disabled = true;
     this.generateCarsButton = new ControlsRender(
       'generate',
       'generate',
@@ -44,9 +45,22 @@ class GarageRaceControlsRender {
   raceCars() {
     state.isWinner = false;
     this.cars.forEach((car) => car.drive());
+    document.querySelectorAll('button').forEach((button) => {
+      button.disabled = true;
+    });
+    this.raceCarsButton!.disabled = true;
+    this.stopCarsButton!.disabled = false;
   }
   stopCars() {
     this.cars.forEach((car) => car.stop());
+    document.querySelectorAll('button').forEach((button) => {
+      button.disabled = false;
+    });
+    this.raceCarsButton!.disabled = false;
+    this.stopCarsButton!.disabled = true;
+    document.querySelectorAll('.stop-car').forEach((button) => {
+      if (button instanceof HTMLButtonElement) button.disabled = true;
+    });
   }
   async generateCars() {
     for (let i = 0; i <= 100; i++) {

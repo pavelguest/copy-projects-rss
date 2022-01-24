@@ -11,13 +11,13 @@ class GarageRightControlsRender {
   inputUpdateColor: HTMLInputElement | null = null;
   buttonUpdateCar: HTMLButtonElement | null = null;
   render() {
-    const rightControls = document.createElement('li');
+    const rightControls = document.createElement('div');
     rightControls.classList.add('controls__right');
 
-    const controlsContainer = document.createElement('li');
+    const controlsContainer = document.createElement('div');
     controlsContainer.classList.add('garage-page__settings-inputs');
 
-    const createCarControls = document.createElement('li');
+    const createCarControls = document.createElement('div');
     createCarControls.classList.add('settings-inputs__create');
 
     this.inputCreateName = document.createElement('input');
@@ -51,6 +51,10 @@ class GarageRightControlsRender {
       this.updateCar.bind(this)
     ).render();
 
+    this.buttonCreateCar.disabled = state.selectCarName === '' ? true : false;
+
+    this.inputCreateName.value = state.selectCarName;
+
     this.inputCreateName.addEventListener('input', () => {
       this.updateInputName();
     });
@@ -70,6 +74,7 @@ class GarageRightControlsRender {
   updateInputName() {
     if (this.inputCreateName!.value) {
       this.buttonCreateCar!.disabled = false;
+      state.selectCarName = this.inputCreateName!.value;
     }
   }
   async createCar() {

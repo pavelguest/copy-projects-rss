@@ -42,12 +42,14 @@ class WinnersControlsListRender {
     return controls;
   }
   async prevList() {
-    if (state.page > 1) state.page -= 1;
-    winnersRender.render(await winnersService.all(state.page));
+    if (state.pageWin > 1) state.pageWin -= 1;
+    winnersRender.render(await winnersService.all(state.pageWin));
   }
   async nextList() {
-    state.page += 1;
-    winnersRender.render(await winnersService.all(state.page));
+    if (state.countWins! / 10 >= state.pageWin) {
+      state.pageWin += 1;
+    }
+    winnersRender.render(await winnersService.all(state.pageWin));
   }
 }
 
