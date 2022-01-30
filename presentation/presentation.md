@@ -1,0 +1,3 @@
+- My deploy [click](https://rolling-scopes-school.github.io/pavelguest-JSFE2021Q3/presentation/)
+- My video [click](https://youtu.be/xBQgKjqO1h8)
+- My transcription [click](https://docs.google.com/document/d/1UiKFGy0Zg24vVG4CfTIbJQnK_ip7R6VDKQwde-3Z_po/edit?usp=sharing)
