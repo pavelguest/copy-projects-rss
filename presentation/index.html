@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="description" content="A framework for easily creating beautiful presentations using HTML"/><meta name="author" content="Hakim El Hattab"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>presentation</title><script defer="defer" src="js/p1.b99f2080bf9dd45875a3.js"></script><link href="css/p1.b7b7521b6bd0055cd4ad.css" rel="stylesheet"></head><body><div class="reveal"><div class="slides"><section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom"><h1>CANVAS</h1><p><small>Created by <a target="_blank" href="https://github.com/pavelguest">Pavel Puchinski</a></small></p></section><section><section><h2>WHAT IS CANVAS?</h2><p>The canvas element is part of HTML5 and allows for dynamic, scriptable rendering of 2D shapes and bitmap images. It is a low level, procedural model that updates a bitmap. HTML5 Canvas also helps in making 2D games.</p></section><section><h2>HISTORY</h2><p>Canvas was initially introduced by Apple for use in their own Mac OS X WebKit component in 2004,powering applications like Dashboard widgets and the Safari browser. Later, in 2005 it was adopted in version 1.8 of Gecko browsers, and Opera in 2006, and standardized by the Web Hypertext Application Technology Working Group (WHATWG) on new proposed specifications for next generation web technologies.</p></section><section><h2>USAGE</h2><p>A canvas consists of a drawable region defined in HTML code with height and width attributes. JavaScript code may access the area through a full set of drawing functions similar to those of other common 2D APIs, thus allowing for dynamically generated graphics. Some anticipated uses of canvas include building graphs, animations, games, and image composition.</p></section></section><section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom"><h2>BROWSERS SUPPORT</h2><img src="./img/caniuse-canvas.JPG" alt="caniuse-canvas"/><p>Сanvas emulation for older browsers <a href="https://github.com/arv/explorercanvas">ExplorerCanvas</a></p></section><section data-auto-animate id="fragments"><h2 data-id="code-title">EXAMPLE CODE</h2><p class="fragment">HTML</p><pre class="fragment" data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+            <canvas id="example" width="200" height="200">
+              This text is displayed if your browser
+              does not support HTML5 Canvas.
+            </canvas>
+					</code></pre><p class="fragment">JS</p><pre class="fragment" data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+            const example = document.getElementById('example');
+            const context = example.getContext('2d');
+            context.fillStyle = 'red';
+            context.fillRect(30, 30, 50, 50);
+					</code></pre></section><section><section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom"><h2>DRAWING</h2><p>Canvas only supports two primitive shapes: rectangles and paths (lists of points connected by lines). All other shapes must be created by combining one or more paths. We have an assortment of path drawing functions which make it possible to compose very complex shapes.</p></section><section><h2>Drawing rectangles</h2><pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              fillRect(x, y, width, height)   // Draws a filled rectangle
+              strokeRect(x, y, width, height) // Draws a rectangular outline
+              clearRect(x, y, width, height)  // Clears rectangular area
+					</code></pre><p>Example</p><pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+              function draw() {
+                const canvas = document.getElementById('canvas');
+                if (canvas.getContext){
+                  const ctx = canvas.getContext('2d');
+                  ctx.fillRect(25,25,100,100);
+                  ctx.clearRect(45,45,60,60);
+                  ctx.strokeRect(50,50,50,50);
+                }
+              }
+					</code></pre><img src="./img/canvas-rect-example.png" alt="canvas-rect" style="position: absolute; bottom: 0; right: 0"/></section><section style="position: relative"><h2>Drawing paths</h2><pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+            beginPath()   // Creates a new path
+            //Path.methods - Methods to set different paths for objects
+            closePath()   // Adds a straight line to the path, going to
+                          // the start of the current sub-path
+            stroke()      // Draws the shape by stroking its outline
+            fill()        // Draws a solid shape
+                          // by filling the path's content area
+            </code></pre><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D#paths">link to Path Methods</a></section><section><p>Drawing path example</p><pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+            function draw() {
+              const canvas = document.getElementById('canvas');
+              if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+                ctx.beginPath();
+                ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+                ctx.moveTo(110, 75);
+                ctx.arc(75, 75, 35, 0, Math.PI, false);  // Mouth
+                ctx.moveTo(65, 65);
+                ctx.arc(60, 65, 5, 0, Math.PI * 2, true);  // Left eye
+                ctx.moveTo(95, 65);
+                ctx.arc(90, 65, 5, 0, Math.PI * 2, true);  // Right eye
+                ctx.stroke();
+              }}
+          </code></pre></section><section><div><p>Screenshot</p><img src="./img/canvas-smiley-example.png" alt="canvas-smiley-example"/></div><div><p>Live sample</p><img style="background-color: #ffffff" src="./img/canvas-smiley-live-sample.png" alt="canvas-smiley-example"/></div></section></section><section><section><h2>Animation</h2></section><section><h2>BASIC ANIMATION STEPS</h2><ul><li>Clear the canvas</li><li>Save the canvas state</li><li>Draw animated shapes</li><li>Restore the canvas state</li></ul></section><section><h2>CONTROLLING AN ANIMATION</h2><p>SCHEDULED UPDATES</p><pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+            setInterval(function, delay)    // no user interaction
+            setTimeout(function, delay)     // use keyboard or mouse events
+            requestAnimationFrame(callback) // user interaction
+          </code></pre></section><section><p>ANIMATION CODE EXAMPLE</p><pre data-id="code-animation"><code class="hljs" data-trim data-line-numbers>
+                let canvas
+                let canvasContext
+                let increment = 0
+                let speed = 5
+                window.onload = function() {
+                  canvas = document.getElementById('animationCanvas');
+                  canvasContext = canvas.getContext('2d');
+                  setInterval(drawEverything, 50);
+                }
+                function drawEverything() {
+                  bounce()
+                  increment = increment + speed;
+                canvasContext.fillStyle = 'black';
+                  canvasContext.fillRect(0,0,canvas.width,canvas.height);
+                  canvasContext.fillStyle = 'blue';
+                  canvasContext.fillRect(increment,200,10,10);
+                  canvasContext.fillStyle = 'green';
+                  canvasContext.fillRect(200,increment,10,10);
+                  canvasContext.fillStyle = 'red';
+                  canvasContext.fillRect(increment,increment,10,10);
+                }
+                function bounce(){
+                  if(!increment > 0) {
+                  speed = -speed
+                  }
+                  if(increment > 400) {
+                  speed = -speed
+                  }
+                }
+          </code></pre></section><section><img src="./img/animation-example.gif" alt="animation-example"/></section></section><section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom"><section><h2>beautiful examples of using canvas</h2></section><section><img src="./img/animation-example-1.gif" alt="animation-example"></section><section><img src="./img/animation-example-2.gif" alt="animation-example"></section><section><img src="./img/animation-example-3.gif" alt="animation-example"></section></section><section><section><h2>LIBRARIES</h2><p>The Canvas API is extremely powerful, but not always simple to use. The libraries listed below can make the creation of canvas-based projects faster and easier.</p></section><section><ul><li><a href="https://www.createjs.com/easeljs" target="_blank">EaselJS</a></li><li><a href="http://fabricjs.com/" target="_blank">Fabric.js</a></li><li><a href="https://www.patrick-wied.at/static/heatmapjs/" target="_blank">heatmap.js</a></li><li><a href="https://konvajs.org/" target="_blank">Konva.js</a></li><li><a href="http://paperjs.org/" target="_blank">Paper.js</a></li><li><a href="https://www.google.com/search?q=canvas+library+js&oq=can&aqs=chrome.0.69i59l3j69i57j69i60l4.928j0j1&sourceid=chrome&ie=UTF-8" target="_blank">other libraries</a></li></ul></section></section><section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom"><h2>The end</h2><p>Thank you for your attention</p></section></div></div></body></html>
