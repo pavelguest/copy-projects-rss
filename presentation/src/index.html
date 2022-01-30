@@ -255,7 +255,7 @@
                   canvasContext.fillRect(increment,increment,10,10);
                 }
                 function bounce(){
-                  if(increment < 0) {
+                  if(!increment > 0) {
                   speed = -speed
                   }
                   if(increment > 400) {
