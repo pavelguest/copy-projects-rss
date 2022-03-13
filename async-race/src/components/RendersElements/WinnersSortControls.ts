@@ -8,7 +8,7 @@ class WinnersSortControls {
   isSortWins = false;
   isSortTime = false;
   render() {
-    const tableWrapper = document.createElement('li');
+    const tableWrapper = document.createElement('div');
     tableWrapper.classList.add('table-winners__title');
     const buttonIdWinner = new ControlsRender(
       'id-winner',

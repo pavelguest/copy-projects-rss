@@ -11,11 +11,11 @@ class CarsRepository {
     const response = await fetch(`${this.garage}/${id}`);
     return response.json();
   }
-  async set(body: ICar) {
+  async set(car: ICar) {
     await (
       await fetch(this.garage, {
         method: 'POST',
-        body: JSON.stringify(body),
+        body: JSON.stringify(car),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -28,11 +28,11 @@ class CarsRepository {
     });
     return res.ok;
   }
-  async update(id: number, body: ICar) {
+  async update(id: number, car: ICar) {
     await (
       await fetch(`${this.garage}/${id}`, {
         method: 'PUT',
-        body: JSON.stringify(body),
+        body: JSON.stringify(car),
         headers: {
           'Content-Type': 'application/json',
         },

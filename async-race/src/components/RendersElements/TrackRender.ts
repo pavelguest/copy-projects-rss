@@ -50,18 +50,20 @@ class TrackRender {
     this.stopCarButton.disabled = true;
     this.stopCarButton.classList.add('stop-car');
     controlWrapper.append(buttonsSettingsCar);
-    buttonsSettingsCar.append(this.selectCarButton);
-    buttonsSettingsCar.append(this.deleteCarButton);
+
+    buttonsSettingsCar.append(this.selectCarButton, this.deleteCarButton);
+
     controlWrapper.append(buttonsGameCar);
-    buttonsGameCar.append(this.raceCarButton);
-    buttonsGameCar.append(this.stopCarButton);
+
+    buttonsGameCar.append(this.raceCarButton, this.stopCarButton);
 
     carWrapper.append(controlWrapper);
+
     this.car.render(carWrapper);
 
     return carWrapper;
   }
-  async selectCar() {
+  selectCar() {
     const updateName = document.getElementById(
       'update-name'
     ) as HTMLButtonElement;
@@ -87,6 +89,7 @@ class TrackRender {
     this.stopCarButton!.disabled = true;
     this.car.stop();
   }
+  disabledButtons() {}
 }
 
 export default TrackRender;

@@ -1,11 +1,11 @@
 import state from '../application/state';
 import WinnerCarRender from '../RendersElements/WinnerCarRender';
 import WinnersSortControls from '../RendersElements/WinnersSortControls';
-import { IWinners } from '../types/types';
+import { ICarsForRender, IWinners, IWinnersForRender } from '../types/types';
 import WinnersControlsListRender from './WinnersControlsRender';
 
 class WinnersRender {
-  mainPage: HTMLElement | null = null;
+  container: HTMLElement | null = null;
   winnersControlsListRender: WinnersControlsListRender;
   winnersSortControls: WinnersSortControls;
   winnerCarRender: WinnerCarRender;
@@ -15,27 +15,27 @@ class WinnersRender {
     this.winnersSortControls = new WinnersSortControls();
     this.winnerCarRender = new WinnerCarRender();
   }
-  render({ ...args }) {
-    this.mainPage = document.getElementById('main-page');
-    if (!this.mainPage) {
+  render({ ...args }: IWinnersForRender) {
+    this.container = document.getElementById('main-page');
+    if (!this.container) {
       return;
     }
 
     const { cars, count } = args;
-    state.countWins = count;
+    state.countWins = Number(count);
 
-    this.mainPage.innerHTML = '';
-    const winnersWrapper = document.createElement('li');
+    this.container.innerHTML = '';
+    const winnersWrapper = document.createElement('ul');
     const winnersControls = document.createElement('li');
     const resultWrapper = document.createElement('ul');
     winnersWrapper.classList.add('garage-page');
     winnersControls.classList.add('garage-page__controls');
     resultWrapper.classList.add('winners-page__cars-list');
     winnersWrapper.append(winnersControls);
-    this.mainPage.append(winnersWrapper);
+    this.container.append(winnersWrapper);
     winnersWrapper.append(resultWrapper);
     winnersControls.append(
-      this.winnersControlsListRender.render(count, state.pageWin)
+      this.winnersControlsListRender.render(Number(count), state.pageWin)
     );
     resultWrapper.append(this.winnersSortControls.render());
 

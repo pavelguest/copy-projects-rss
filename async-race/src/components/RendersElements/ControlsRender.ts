@@ -2,6 +2,7 @@ class ControlsRender {
   callback: (event: MouseEvent) => void;
   typeControl: string;
   text: string;
+  button: HTMLButtonElement | null;
 
   constructor(
     typeControl: string,
@@ -11,17 +12,21 @@ class ControlsRender {
     this.callback = callback;
     this.typeControl = typeControl;
     this.text = text;
+    this.button = null;
   }
 
   render() {
-    const btn: HTMLButtonElement = document.createElement('button');
-    btn.classList.add('buttons');
-    btn.id = this.typeControl;
-    btn.textContent = this.text;
+    this.button = document.createElement('button');
+    this.button.classList.add('buttons');
+    this.button.dataset.id = this.typeControl;
+    this.button.textContent = this.text;
 
-    btn.addEventListener('click', this.callback);
+    this.button.addEventListener('click', this.callback);
 
-    return btn;
+    return this.button;
+  }
+  set disable(flag: boolean) {
+    this.button!.disabled = flag;
   }
 }
 

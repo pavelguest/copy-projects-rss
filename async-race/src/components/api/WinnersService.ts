@@ -21,7 +21,7 @@ class WinnersService {
     this.repo.set(body);
     return this.all();
   }
-  async update(id: number, body: IWins | ITimeWins) {
+  async update(id: number, body: IWins) {
     this.repo.update(id, body);
     return this.all();
   }

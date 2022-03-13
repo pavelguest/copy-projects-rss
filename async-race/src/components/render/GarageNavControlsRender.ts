@@ -3,7 +3,7 @@ import state from '../application/state';
 import ControlsRender from '../RendersElements/ControlsRender';
 import garageRender from './GarageRender';
 
-class GarageLeftControlsRender {
+class GarageNavControlsRender {
   render(count: number, page: number) {
     const leftControls = document.createElement('div');
     leftControls.classList.add('controls__left');
@@ -53,4 +53,4 @@ class GarageLeftControlsRender {
   }
 }
 
-export default GarageLeftControlsRender;
+export default GarageNavControlsRender;

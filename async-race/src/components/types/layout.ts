@@ -56,7 +56,7 @@ const carSvg = (color: string) => {
     `;
 };
 
-const tableWinners = (
+const getWinnersRow = (
   numeration: number,
   id: number,
   color: string,
@@ -75,4 +75,4 @@ const tableWinners = (
 `;
 };
 
-export { base, carSvg, tableWinners };
+export { base, carSvg, getWinnersRow };

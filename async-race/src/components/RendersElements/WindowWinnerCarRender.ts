@@ -1,3 +1,5 @@
+import garageRender from '../render/GarageRender';
+
 class WindowWinnerCarRender {
   render(name: string, time: number) {
     const popup = document.createElement('div');
@@ -10,20 +12,18 @@ class WindowWinnerCarRender {
     popupButton.textContent = `OK`;
     popup.append(popupTitle);
     popup.append(popupButton);
-    (document.querySelector('#reset') as HTMLButtonElement).disabled = true;
+    garageRender.garageRaceControls!.stopCarsButton!.disabled = true;
     popupButton.addEventListener('click', () => {
       popup.remove();
       document.querySelectorAll('button').forEach((button) => {
         button.disabled = false;
       });
-      document.querySelectorAll('.start-car').forEach((button) => {
-        if (button instanceof HTMLButtonElement) button.disabled = true;
+      garageRender.arrTracks.forEach((track) => {
+        track.raceCarButton!.disabled = true;
+        track.stopCarButton!.disabled = true;
       });
-      document.querySelectorAll('.stop-car').forEach((button) => {
-        if (button instanceof HTMLButtonElement) button.disabled = true;
-      });
-      (document.querySelector('#reset') as HTMLButtonElement).disabled = false;
-      (document.querySelector('#race') as HTMLButtonElement).disabled = true;
+      garageRender.garageRaceControls!.stopCarsButton!.disabled = false;
+      garageRender.garageRaceControls!.raceCarsButton!.disabled = true;
     });
     document.body.append(popup);
   }

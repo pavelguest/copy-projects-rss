@@ -1,10 +1,9 @@
 import carService from '../api/CarService';
-import { tableWinners } from '../types/layout';
+import { getWinnersRow } from '../types/layout';
 import { IWinners } from '../types/types';
 
 class WinnerCarRender {
   async render(args: IWinners, index: number) {
-    console.log(args);
     const { id, wins, time } = args;
     const winner = await carService.get(id);
 
@@ -13,7 +12,7 @@ class WinnerCarRender {
 
     winnersCar.insertAdjacentHTML(
       'beforeend',
-      tableWinners(index + 1, id, winner.color, winner.name, wins, time)
+      getWinnersRow(index + 1, id, winner.color, winner.name, wins, time)
     );
     return winnersCar;
   }

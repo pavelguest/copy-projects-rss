@@ -3,7 +3,7 @@ import state from '../application/state';
 import ControlsRender from '../RendersElements/ControlsRender';
 import garageRender from './GarageRender';
 
-class GarageRightControlsRender {
+class GarageSettingsControlsRender {
   inputCreateName: HTMLInputElement | null = null;
   inputCreateColor: HTMLInputElement | null = null;
   buttonCreateCar: HTMLButtonElement | null = null;
@@ -101,4 +101,4 @@ class GarageRightControlsRender {
   }
 }
 
-export default GarageRightControlsRender;
+export default GarageSettingsControlsRender;

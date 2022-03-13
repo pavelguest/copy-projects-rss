@@ -18,15 +18,15 @@ class CarService implements IService<IData> {
     await this.repo.delete(id);
     return this.all();
   }
-  async set(body: ICar) {
-    this.repo.set(body);
+  async set(car: ICar) {
+    this.repo.set(car);
     return this.all();
   }
   async get(id: number) {
     return this.repo.get(id);
   }
-  async update(id: number, body: ICar) {
-    this.repo.update(id, body);
+  async update(id: number, car: ICar) {
+    this.repo.update(id, car);
     return this.all();
   }
 }

@@ -35,7 +35,7 @@ function animation(
 }
 
 const getPositionAtCenter = (item: Element) => {
-  const { top, left, width, height } = item.getBoundingClientRect();
+  const { top, left } = item.getBoundingClientRect();
   return { x: left, y: top };
 };
 

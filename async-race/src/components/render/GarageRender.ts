@@ -1,30 +1,33 @@
 import state from '../application/state';
 import CarRender from '../RendersElements/CarRender';
 import TrackRender from '../RendersElements/TrackRender';
-import { ICars } from '../types/types';
-import GarageLeftControlsRender from './GarageLeftControlsRender';
+import { ICars, ICarsForRender } from '../types/types';
+import GarageNavControlsRender from './GarageNavControlsRender';
 import GarageRaceControlsRender from './GarageRaceControlsRender';
-import GarageRightControlsRender from './GarageRightControlsRender';
+import GarageSettingsControlsRender from './GarageSettingsControlsRender';
 
 class GarageRender {
   arrCars: CarRender[];
+  arrTracks: TrackRender[];
   mainPage: HTMLElement | null = null;
-  garageLeftControls: GarageLeftControlsRender;
-  garageRightControls: GarageRightControlsRender;
+  garageLeftControls: GarageNavControlsRender;
+  garageRightControls: GarageSettingsControlsRender;
   garageRaceControls: GarageRaceControlsRender | null = null;
   constructor() {
     this.arrCars = [];
-    this.garageLeftControls = new GarageLeftControlsRender();
-    this.garageRightControls = new GarageRightControlsRender();
+    this.arrTracks = [];
+    this.garageLeftControls = new GarageNavControlsRender();
+    this.garageRightControls = new GarageSettingsControlsRender();
   }
-  render({ ...args }) {
+  render({ ...args }: ICarsForRender) {
     this.mainPage = document.getElementById('main-page');
     if (!this.mainPage) {
       return;
     }
     const { cars, count } = args;
-    state.countCar = count;
+    state.countCar = Number(count);
     this.arrCars = [];
+    this.arrTracks = [];
     this.mainPage.innerHTML = '';
     const garageWrapper = document.createElement('div');
     const garageControls = document.createElement('div');
@@ -39,11 +42,14 @@ class GarageRender {
       const car = new CarRender(dataCar);
       this.arrCars.push(car);
       const track = new TrackRender(car);
+      this.arrTracks.push(track);
       carsWrapper.append(track.render());
     });
     this.garageRaceControls = new GarageRaceControlsRender(this.arrCars);
 
-    garageControls.append(this.garageLeftControls.render(count, state.page));
+    garageControls.append(
+      this.garageLeftControls.render(Number(count), state.page)
+    );
     const rightControls = this.garageRightControls.render();
     garageControls.append(rightControls);
     rightControls.append(this.garageRaceControls.render());

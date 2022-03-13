@@ -15,6 +15,7 @@ interface IWinners {
 
 interface IWins {
   wins: number;
+  time: number;
 }
 interface ITimeWins {
   time: number;
@@ -46,7 +47,15 @@ interface IState {
   selectCarName: string;
   isWinner: boolean;
 }
+interface ICarsForRender {
+  cars: ICars[];
+  count: string | null;
+}
 
+interface IWinnersForRender {
+  cars: IWinners[];
+  count: string | null;
+}
 export {
   ICar,
   ICars,
@@ -57,4 +66,6 @@ export {
   IData,
   raceStatus as IStatus,
   IState,
+  ICarsForRender,
+  IWinnersForRender,
 };
